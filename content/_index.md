@@ -6,9 +6,6 @@ description = "Privacy Preserving AI assistant, works for you under your full co
 # Terraphim Overview
 **Terraphim** The purpose of the project is to build a knowledgeable personal assistant, which runs on local infrastructure and works only for the benefit of the owner.
 
-## First release in two weeks by 20 February 2022 - Minimal Usable Product
-Aimed at developers and engineers: Local search which depending on settings "Role" changes the default search behaviour, roles can be Developer, Engineer, Architect, Father, Gamer. Role Developer default search behaviour: returns results from stackoverflow, github, local filesystem with a pre-defined folder including Markdown Files.
-
 # Why Terraphim?
 **Situation**: In the current digital-first world complexity of information raises exponentially and thus requires vast amounts of knowledge to make good decisions. The ownership of personal and organisation data is given to large corporations and user needs are aggregated towards "average" or most common user, which results in degradation of overall knowledge management experience. Existing search or AI-assisted products don't have user needs at heart and not addressing individual user needs: the average user is part of the product proposition for advertisement. At the same time, personal hardware evolves the average British household has 8.5 devices in 2017, now more due to pandemics, but most of this hardware provides a marginal benefit and isn't connected into the coherent user-centric overall experience
 
@@ -48,45 +45,8 @@ If you would like to receive update leave your details below, it's not subscript
 # Name of the project
 Inspired by Relict serios of science fiction by Vasiliy Golovachev, where terraphim is a artificial intelligence (ink) living inside space suite (part of exocortex).
 
-<ul class="steps is-vertical is-narrow is-medium is-centered has-content-centered">
-  <li class="steps-segment">
-    <span href="#" class="steps-marker"></span>
-    <div class="steps-content">
-      <p class="is-size-4">2000</p>
-      <p>Lorem Ipsum Dolor Sit Amet</p>
-    </div>
-  </li>
-  <li class="steps-segment">
-    <span href="#" class="steps-marker is-hollow"></span>
-    <div class="steps-content">
-      <p class="is-size-4">2002</p>
-      <p>Maecenas Ultrices Aliquet Velit Vitae</p>
-    </div>
-  </li>
-  <li class="steps-segment">
-    <span class="steps-marker">
-      <span class="icon">
-        <i class="fa fa-check"></i>
-      </span>
-    </span>
-    <div class="steps-content">
-      <p class="is-size-4">2007</p>
-      <p>Aliquam Quis Scelerisque Mauris Nullam</p>
-    </div>
-  </li>
-  <li class="steps-segment is-active has-gaps">
-    <span class="steps-marker"></span>
-    <div class="steps-content">
-      <p class="is-size-4">2012</p>
-      <p>Etiam A Nunc Vitae Nunc</p>
-    </div>
-  </li>
-  <li class="steps-segment">
-    <span class="steps-marker"></span>
-    <div class="steps-content">
-      <p class="is-size-4">2017</p>
-      <p>In Sed Vehicula Est Vivamus</p>
-    </div>
-  </li>
-</ul>
+# Roadmap 
+## First release in two weeks by 20 February 2022 - Minimal Usable Product
+Aimed at developers and engineers: Local search which depending on settings "Role" changes the default search behaviour, roles can be Developer, Engineer, Architect, Father, Gamer. First release will be shipped with Role Developer default search behaviour: returns results from stackoverflow, github, local filesystem with a pre-defined folder including search over Markdown Files.
+
 </div>
