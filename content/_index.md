@@ -12,7 +12,7 @@ description = "Privacy Preserving AI assistant, works for you under your full co
 **Individuals** can't find relevant information in different knowledge repositories: personal like Roam Research/Obsidian/Coda/Notion or team focused like Jira/Confluence/Sharepoint. There are  growing concerns about the privacy of the data and sharing individuals data across an ever-growing list of services, some of which have a questionable data ethics policy (i.e. Miro policy stated they can market any user content without permission as of Jan 2020)
 
 # Proposal
-**Terraphim** is a privacy preserving AI assistant which works for you under your full control. It is a local search engine which can be configured to search for different types of content, such as Stackoverflow, Github, local filesystem with a pre-defined folder including Markdown Files.
+**Terraphim** is a privacy preserving AI assistant which works for you under your full control. Staring from local search engine which can be configured to search for different types of content, such as Stackoverflow, Github, local filesystem with a pre-defined folder including Markdown Files and then take Terraphim forward to work with other user's owned content.
 Use modern algorithms for AI/ML, data fusion and distributed communication techniques to run AI assistants on user's hardware. 
 
 # Ask
