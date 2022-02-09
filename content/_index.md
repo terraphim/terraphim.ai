@@ -16,34 +16,58 @@ description = "Privacy Preserving AI assistant, works for you under your full co
 Use modern algorithms for AI/ML, data fusion and distributed communication techniques to run AI assistants on user's hardware. 
 
 # Ask
-Become an early Patreon patron, help shape products and support our development. 
+Become an early Patreon patron or GitHub Sponsor, help shape products and support our development. 
 
 If you would like to receive update leave your details below, it's not subscription list, you will receive single email from me on launch:
-<section class="section">
-  <div class="container">
+
+
+<section class="section" id="form">
+ <div class="container">
     <div class="columns is-left">
-      <div class="column is-6 has-text-left">
-        <form name="terraphimlist" method="POST" data-netlify="true">
-      <div class="field is-pulled-left">
-            <label class="label">Your Name: <input type="text" name="name" /></label>   
+    <div class="column is-6">
+
+  <div class="columns">
+    <div class="column">
+    <form name="terraphimlist" method="POST" data-netlify="true">
+      <div class="field">
+        <p class="control">
+          <input class="input" type="text" placeholder="Your Name" name="name">
+        </p>
       </div>
-  <div class="field is-pulled-left">
-    <label class="label">Your Email: <input type="email" name="email" /></label>
-  </div>
-  <div class="field is-pulled-right">
-    <button type="submit">Send</button>
-  </div>
-</form>
+      <div class="field">
+        <p class="control has-icons-left has-icons-right">
+          <input class="input" name="email" type="email" placeholder="Your email" value="hello@">
+          <span class="icon is-small is-left">
+            <i class="fa fa-envelope"></i>
+          </span>
+        </p>
       </div>
+        <div class="field">
+        <p class="control">
+          <textarea class="textarea" placeholder="Optional message" name="message"></textarea>
+        </p>
+      </div>
+      <div class="field is-grouped">
+        <p class="control">
+          <button class="button is-primary">Submit</button>
+        </p>
     </div>
+    </div>
+    </form>
   </div>
 </section>
 
+
 # Name of the project
+
 Inspired by Relict serios of science fiction by Vasiliy Golovachev, where terraphim is a artificial intelligence (ink) living inside space suite (part of exocortex).
 
 # Roadmap 
 ## First release in two weeks by 20 February 2022 - Minimal Usable Product
+
 Aimed at developers and engineers: Local search which depending on settings "Role" changes the default search behaviour, roles can be Developer, Engineer, Architect, Father, Gamer. First release will be shipped with Role Developer default search behaviour: returns results from stackoverflow, github, local filesystem with a pre-defined folder including search over Markdown Files.
 
-</div>
+# Inspired 
+
+Raycast, QuickSilver and Alfred
+
