@@ -10,6 +10,4 @@ tags = ["donate", "support"]
 comments = false
 +++
 
-This is a small example post of stuff you can do with the `DeepThought` theme.
-We'll try to represent all possible markdown and shortcode combinations here
-so you can develop easily.
+This is a begging of an exciting great new journey, support open source projects by donating or contributing.
