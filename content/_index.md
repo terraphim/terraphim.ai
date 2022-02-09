@@ -21,17 +21,14 @@ Become an early Patreon patron, help shape products and support our development.
 If you would like to receive update leave your details below, it's not subscription list, you will receive single email from me on launch:
 <section class="section">
   <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-6">
+    <div class="columns is-left">
+      <div class="column is-6 has-text-left">
         <form name="terraphimlist" method="POST" data-netlify="true">
-      <div class="field">
+      <div class="field is-pulled-left">
             <label class="label">Your Name: <input type="text" name="name" /></label>   
       </div>
-  <div class="field">
+  <div class="field is-pulled-left">
     <label class="label">Your Email: <input type="email" name="email" /></label>
-  </div>
-  <div class="field">
-    <label class="label">Message: <textarea name="message"></textarea></label>
   </div>
   <div class="field">
     <button type="submit">Send</button>
