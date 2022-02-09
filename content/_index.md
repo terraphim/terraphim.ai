@@ -30,7 +30,7 @@ If you would like to receive update leave your details below, it's not subscript
   <div class="field is-pulled-left">
     <label class="label">Your Email: <input type="email" name="email" /></label>
   </div>
-  <div class="field">
+  <div class="field is-pulled-right">
     <button type="submit">Send</button>
   </div>
 </form>
