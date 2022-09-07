@@ -186,7 +186,7 @@ webmanifest = "/icons/site.webmanifest"
 
 [extra.author]
 name = "Dr Alexander Mikhalev"
-avatar = "images/terraphim_logo.png"
+avatar = "images/terraphim_logo_gray.png"
 
 [extra.social]
 github = "terraphim"
