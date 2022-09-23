@@ -39,3 +39,16 @@ The powers roughly follows:
 * ViewModel (with relevance function/scoring)
 * View (with UI) or Action
 
+### Terraphim powers - skills
+
+```
+[[Skill]]
+```
+Parameters:
+
+* name 
+* haystack 
+* haystack arguments
+
+Haystack is a source, can be PubMed, Github, Coda.io, Notion.so etc.
+Haystack arguments 

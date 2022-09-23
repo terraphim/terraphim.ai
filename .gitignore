@@ -1,3 +1,6 @@
 # Local Netlify folder
 .netlify
 public/
+.DS_Store
+static/.DS_Store
+themes/.DS_Store
