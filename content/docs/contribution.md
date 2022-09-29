@@ -24,5 +24,4 @@ General guidelines for contributing to the project.
 
 Even for conceptual topics such as ethics or enterprise architecture, there should be path to be implemented in real would: student's head or software working in production considered to be real world. 
 
-# How to contribute
-Check out supported shortcuts [Extended Shortcuts](@/docs/extended-shortcodes/index.md)
+
