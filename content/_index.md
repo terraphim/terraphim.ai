@@ -1,5 +1,5 @@
 +++
-title = "Terraphim"
+title = "Terraphim - Privacy Preserving AI assistant"
 description = "Privacy Preserving AI assistant, works for you under your full control"
 +++
 
@@ -85,12 +85,12 @@ We have ample experience and expertise:
 
 # Contacts
 
-You can find Alex Mikhalev's contacts ![here.](https://applied-knowledge.systems/contacts)
+![Contact us](https://github.com/terraphim/terraphim.ai/tree/main/content/static/contacts_small.png)
 
 # News and updates
 
-Browser plugin for selecting and zooming your knowledge graph concepts right on web pages.
-INCOSE EMEA webinar on semantic search over systems engineering body of knowledge.
+Browser plugin for selecting and zooming your knowledge graph concepts right on web pages. ![Link to the video](https://github.com/terraphim/terraphim.ai/tree/main/content/static/terraphim_extension_demo2-2023-07-27_17.39.11.mp4)
+INCOSE EMEA webinar on semantic search over systems engineering body of knowledge. ![Slide deck](https://appliedknowledgesystemsltd-my.sharepoint.com/:p:/g/personal/alex_turkhanov_applied-knowledge_systems/EQLyyW7H4t1Fmmw4gjV46XQBjcwx6UVi20549g4MiOsS3Q?e=HFDsFV)
 We successfully closed the first project period with Innovate UK. These are our lessons learned.
 
 # Why "Terraphim"?
