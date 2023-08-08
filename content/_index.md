@@ -97,7 +97,7 @@ Sorry for the inconvenience; they are a picture to avoid spam bots.
 
 # Why "Terraphim"?
 
-I was inspired by the Relict series of science fiction by Vasiliy Golovachev, where Terraphim is artificial intelligence living inside the space suite (part of an exocortex).
+Alex Mikhalev was inspired by the Relict series of science fiction by Vasiliy Golovachev, where Terraphim is artificial intelligence living inside the space suite (part of an exocortex).
 
 # Activated by
 
