@@ -86,6 +86,7 @@ We have ample experience and expertise:
 # Contacts
 
 ![Contact us](images/contacts_small.png).
+
 Sorry for the inconvenience; they are a picture to avoid spam bots.
 
 # News and updates
