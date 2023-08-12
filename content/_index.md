@@ -16,11 +16,7 @@ We use modern algorithms for AI/ML, data fusion, and distributed communication t
 
 **Individuals** can't find relevant information in different knowledge repositories [[1]](https://www.coveo.com/en/resources/reports/relevance-report-workplace), [[2]](https://cottrillresearch.com/various-survey-statistics-workers-spend-too-much-time-searching-for-information/), [[3]](https://www.forbes.com/sites/forbestechcouncil/2019/12/17/reality-check-still-spending-more-time-gathering-instead-of-analyzing/): personal ones like Roam Research/Obsidian/Coda/Notion, team-focused ones like Jira/Confluence/Sharepoint, or public [[4]](https://www.theatlantic.com/technology/archive/2021/06/the-internet-is-a-collective-hallucination/619320/). There are growing concerns about the privacy of the data and sharing individuals data across an ever-growing list of services, some of which have a questionable data ethics policy (i.e., Miro policy stated they could market any user content without permission as of Jan 2020).
 
-![Terraphim Cloud system architecture.](images/terraphim_architecture.svg)
-
-# Long-term vision
-
-There will be a short explanatory video.
+{{ youtube(id="tQECA97u1rY") }}
 
 # Follow us
 
@@ -85,9 +81,9 @@ We have ample experience and expertise:
 
 # Contacts
 
-![Contact us](images/contacts_small.png).
+[Contact the developer alex@terraphim.ai](mailto:alex@terraphim.ai)
 
-Sorry for the inconvenience; they are a picture to avoid spam bots.
+[Contact the product manager at@terraphim.ai](mailto:at@terraphim.ai)
 
 # News and updates
 
