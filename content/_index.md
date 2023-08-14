@@ -16,7 +16,15 @@ We use modern algorithms for AI/ML, data fusion, and distributed communication t
 
 **Individuals** can't find relevant information in different knowledge repositories [[1]](https://www.coveo.com/en/resources/reports/relevance-report-workplace), [[2]](https://cottrillresearch.com/various-survey-statistics-workers-spend-too-much-time-searching-for-information/), [[3]](https://www.forbes.com/sites/forbestechcouncil/2019/12/17/reality-check-still-spending-more-time-gathering-instead-of-analyzing/): personal ones like Roam Research/Obsidian/Coda/Notion, team-focused ones like Jira/Confluence/Sharepoint, or public [[4]](https://www.theatlantic.com/technology/archive/2021/06/the-internet-is-a-collective-hallucination/619320/). There are growing concerns about the privacy of the data and sharing individuals data across an ever-growing list of services, some of which have a questionable data ethics policy (i.e., Miro policy stated they could market any user content without permission as of Jan 2020).
 
-{{ youtube(id="tQECA97u1rY") }}
+<div class="vimeo is-flex is-justify-content-center is-align-items-center">
+    <iframe
+        width="848" height="510"
+        title="vimeo-player" 
+        src="https://player.vimeo.com/video/854283350" 
+        frameborder="0" 
+        allowfullscreen>
+    </iframe>
+</div>
 
 # Follow us
 
