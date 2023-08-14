@@ -20,7 +20,7 @@ We use modern algorithms for AI/ML, data fusion, and distributed communication t
     <iframe
         width="848" height="510"
         title="vimeo-player" 
-        src="https://player.vimeo.com/video/{{854283350}}" 
+        src="https://player.vimeo.com/video/854283350" 
         frameborder="0" 
         allowfullscreen>
     </iframe>
