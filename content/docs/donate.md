@@ -22,7 +22,10 @@ We may build a commercial service on top of Terraphim Core(Cortex), but the core
 
 # Donation-driven roadmap
 To support the project's development, we introduce a "donation-driven roadmap": if you want a feature, vote for it not only with your thumb but with your money. 
-In exchange, we will be seeking your feedback on the feature implementation, and you will receive access to private repositories ahead of the public. 
+In exchange:
+* you will help us to shapre the feature -  we will be seeking your feedback on the feature implementation
+* you will receive access to private repositories ahead of the public 
+* you donation will help us to reward contributors and maintainers of the project
 
 Sponsor the features on our [GitHub page](https://github.com/sponsors/terraphim) or propose a new idea in [GitHub discussions](https://github.com/orgs/terraphim/discussions)
 
