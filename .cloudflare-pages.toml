@@ -1,0 +1,65 @@
+# Cloudflare Pages Configuration for Terraphim AI
+# This file configures build settings for Cloudflare Pages deployment
+# Documentation: https://developers.cloudflare.com/pages/platform/build-configuration/
+
+[build]
+# The command to build your site
+command = "zola build"
+
+# The directory containing your built site files
+destination = "public"
+
+[build.environment]
+# Specify the Zola version to use
+ZOLA_VERSION = "0.14.1"
+
+# Node.js version (if needed for any build tools)
+# NODE_VERSION = "18"
+
+[deployment]
+# Account-level configuration
+# These can also be set via Cloudflare dashboard
+
+# Preview deployments configuration
+[preview]
+# Preview builds use the same command as production
+# Cloudflare Pages automatically handles preview URLs
+
+# Custom headers for security and performance
+[[headers]]
+for = "/*"
+  [headers.values]
+  X-Frame-Options = "SAMEORIGIN"
+  X-Content-Type-Options = "nosniff"
+  X-XSS-Protection = "1; mode=block"
+  Referrer-Policy = "strict-origin-when-cross-origin"
+  Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+# Cache static assets
+[[headers]]
+for = "/css/*"
+  [headers.values]
+  Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/js/*"
+  [headers.values]
+  Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/images/*"
+  [headers.values]
+  Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/icons/*"
+  [headers.values]
+  Cache-Control = "public, max-age=31536000, immutable"
+
+# Redirect rules (if needed)
+# [[redirects]]
+# from = "/old-path"
+# to = "/new-path"
+# status = 301
+
+# 404 page configuration is handled by Zola's 404.html
