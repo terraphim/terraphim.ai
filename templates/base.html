@@ -33,10 +33,19 @@
   <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" integrity="sha384-oGm59HWAkwO32h2w8u0B98wKBZJwd6MbWtAJwQKCTffZjOXHXrnyv9Syjovgc+UV" crossorigin="anonymous">
   {% endif %}
 
+  <!-- Preconnect to external domains for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.1/css/academicons.min.css" integrity="sha384-FIue+PI4SsI9XfHCz8dBLg33b0c1fMJgNU3X//L26FYbGnlSEfWmNT7zgWc2N9b6" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" integrity="sha384-IJLmUY0f1ePPX6uSCJ9Bxik64/meJmjSYD7dHaJqTXXEBE4y+Oe9P2KBZa/z7p0Q" crossorigin="anonymous">
+
+  <!-- Updated Bulma to latest version 1.0.2 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css" integrity="sha384-RKXhxkvsT8FTM+ijEx/1695+MK6fFU0r3PeMAO2M/D/dGHYHKWTkEZPGxRpjagQq" crossorigin="anonymous">
+
   <link href="{{ get_url(path='deep-thought.css') }}" rel="stylesheet" />
+  <link href="{{ get_url(path='custom.css') }}" rel="stylesheet" />
   {% block user_custom_stylesheet %}
   <link href="{{ get_url(path='css/bulma-steps.css') }}" rel="stylesheet" />
   {% endblock %}
@@ -71,6 +80,9 @@
 </head>
 
 <body class="has-background-white">
+  <!-- Accessibility: Skip to main content -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
   <nav aria-label="section navigation" class="navbar is-light" role="navigation">
     <div class="container">
       <div class="navbar-brand">
@@ -97,9 +109,9 @@
               <i class="fas fa-search"></i>
             </span>
           </a>
-          <a class="navbar-item" id="dark-mode" title="Switch to dark theme">
+          <a class="navbar-item" id="dark-mode" title="Switch to dark theme" aria-label="Toggle dark mode">
             <span class="icon">
-              <i class="fas fa-adjust"></i>
+              <i class="fas fa-moon"></i>
             </span>
           </a>
         </div>
@@ -110,8 +122,10 @@
   {% block header %}
   {% endblock %}
 
-  {% block content %}
-  {% endblock %}
+  <main id="main-content">
+    {% block content %}
+    {% endblock %}
+  </main>
 
   {% block search %}
   <section class="modal" id="search-modal">
