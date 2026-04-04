@@ -1,0 +1,5 @@
+public/
+.DS_Store
+.env
+.env.1password
+*.deepthought-bak
