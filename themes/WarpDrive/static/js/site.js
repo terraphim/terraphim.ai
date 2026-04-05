@@ -52,36 +52,62 @@
   }
 
   /* ---- Search modal ---- */
-  var searchBtn = document.getElementById('nav-search');
   var searchModal = document.getElementById('search-modal');
   var searchClose = searchModal ? searchModal.querySelector('.modal-close') : null;
   var searchInput = searchModal ? searchModal.querySelector('#search') : null;
 
-  if (searchBtn && searchModal) {
+  function openSearch() {
+    if (!searchModal) return;
+    searchModal.classList.add('is-active');
+    if (searchInput) searchInput.focus();
+  }
+
+  function closeSearch() {
+    if (!searchModal) return;
+    searchModal.classList.remove('is-active');
+  }
+
+  var searchBtn = document.getElementById('nav-search');
+  if (searchBtn) {
     searchBtn.addEventListener('click', function (e) {
       e.preventDefault();
-      searchModal.classList.add('is-active');
-      if (searchInput) searchInput.focus();
+      openSearch();
     });
+  }
 
-    if (searchClose) {
-      searchClose.addEventListener('click', function () {
-        searchModal.classList.remove('is-active');
-      });
-    }
+  var searchRibbon = document.getElementById('nav-search-ribbon');
+  if (searchRibbon) {
+    searchRibbon.addEventListener('click', function (e) {
+      e.preventDefault();
+      openSearch();
+    });
+  }
 
+  if (searchClose) {
+    searchClose.addEventListener('click', closeSearch);
+  }
+
+  if (searchModal) {
     searchModal.addEventListener('click', function (e) {
       if (e.target === searchModal || e.target.classList.contains('modal-background')) {
-        searchModal.classList.remove('is-active');
-      }
-    });
-
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && searchModal.classList.contains('is-active')) {
-        searchModal.classList.remove('is-active');
+        closeSearch();
       }
     });
   }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && searchModal && searchModal.classList.contains('is-active')) {
+      closeSearch();
+    }
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      if (searchModal && searchModal.classList.contains('is-active')) {
+        closeSearch();
+      } else {
+        openSearch();
+      }
+    }
+  });
 
   /* ---- Elasticlunr search integration ---- */
   if (searchInput && typeof elasticlunr !== 'undefined') {

@@ -41,7 +41,7 @@ anchors = "on"
 
 [search]
 include_title = true
-include_description = false
+include_description = true
 include_path = false
 include_content = true
 
