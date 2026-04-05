@@ -2,6 +2,9 @@
 title = "Quickstart"
 description = "Get started with Terraphim AI in 5 minutes"
 date = 2026-01-27
+
+[extra]
+toc = true
 +++
 
 # Quickstart Guide
