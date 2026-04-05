@@ -3,3 +3,4 @@ public/
 .env
 .env.1password
 *.deepthought-bak
+.cached-context
