@@ -24,7 +24,7 @@ curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts
 
 ### Available Binaries
 
-v1.15.0 ships pre-built binaries for 7 platforms:
+v1.16.31 ships pre-built binaries for 7 platforms:
 
 - **macOS**: Apple Silicon (ARM64), Intel (x64), Universal
 - **Linux**: x86_64 (GNU), x86_64 (MUSL), ARM64 (MUSL), ARMv7 (MUSL)

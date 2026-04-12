@@ -179,7 +179,7 @@
   var platformDetect = document.getElementById('platformDetect');
 
   if (installSection && platformDetect) {
-    var version = installSection.getAttribute('data-version') || '1.15.0';
+    var version = installSection.getAttribute('data-version') || '1.16.31';
     var base = 'https://github.com/terraphim/terraphim-ai/releases/download/v' + version + '/';
     var platform = null;
 

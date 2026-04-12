@@ -52,7 +52,7 @@ By default, server runs on `http://localhost:8080`.
 
 You should see output like:
 ```
-[INFO] Terraphim Server v1.15.0 starting...
+[INFO] Terraphim Server v1.16.31 starting...
 [INFO] Server listening on http://localhost:8080
 [INFO] Knowledge graph initialized
 ```
@@ -68,7 +68,7 @@ terraphim-agent
 You'll see a welcome message and can start typing commands:
 
 ```
-Terraphim AI Agent v1.15.0
+Terraphim AI Agent v1.16.31
 Type 'help' for available commands
 
 > search rust async

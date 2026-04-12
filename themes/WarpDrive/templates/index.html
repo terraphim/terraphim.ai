@@ -18,9 +18,9 @@
     knowledge graphs, at native speed.
   </p>
   <div class="hero-actions">
-    <a href="https://github.com/terraphim/terraphim-ai/releases/tag/v{{ config.extra.release_version | default(value='1.15.0') }}" class="btn btn-primary">
+    <a href="https://github.com/terraphim/terraphim-ai/releases/tag/v{{ config.extra.release_version | default(value='1.16.31') }}" class="btn btn-primary">
       <i class="fa-solid fa-rocket" aria-hidden="true"></i>
-      Download v{{ config.extra.release_version | default(value="1.15.0") }}
+      Download v{{ config.extra.release_version | default(value="1.16.31") }}
     </a>
     <a href="{{ config.base_url }}/docs/quickstart" class="btn btn-ghost">
       <i class="fa-solid fa-bolt" aria-hidden="true"></i>
@@ -544,7 +544,7 @@
 </section>
 
 <!-- ---- INSTALL ---- -->
-<section class="install" id="install" aria-label="Installation" data-version="{{ config.extra.release_version | default(value='1.15.0') }}">
+<section class="install" id="install" aria-label="Installation" data-version="{{ config.extra.release_version | default(value='1.16.31') }}">
   <div class="install-inner">
     <div class="section-overline">
       <i class="fa-solid fa-download" aria-hidden="true"></i>
@@ -565,7 +565,7 @@
           <span id="platformBtnText">Download</span>
         </a>
       </div>
-      {% set rv = config.extra.release_version | default(value="1.15.0") %}
+      {% set rv = config.extra.release_version | default(value="1.16.31") %}
       {% set dl = "https://github.com/terraphim/terraphim-ai/releases/download/v" ~ rv ~ "/" %}
       <details class="all-platforms">
         <summary>All platforms</summary>
@@ -648,7 +648,7 @@
                 <span class="prompt-text">curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts/install.sh | bash</span>
                 <button class="copy-btn" data-copy="curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts/install.sh | bash" aria-label="Copy command">copy</button>
               </div>
-              <p class="install-note">Requires WSL. Or <a href="https://github.com/terraphim/terraphim-ai/releases/download/v{{ config.extra.release_version | default(value='1.15.0') }}/terraphim-agent-{{ config.extra.release_version | default(value='1.15.0') }}-x86_64-pc-windows-msvc.zip">download the .zip directly</a>.</p>
+              <p class="install-note">Requires WSL. Or <a href="https://github.com/terraphim/terraphim-ai/releases/download/v{{ config.extra.release_version | default(value='1.16.31') }}/terraphim-agent-{{ config.extra.release_version | default(value='1.16.31') }}-x86_64-pc-windows-msvc.zip">download the .zip directly</a>.</p>
             </div>
           </div>
         </div>
@@ -706,9 +706,9 @@
     </div>
 
     <div class="install-cta">
-      <a href="https://github.com/terraphim/terraphim-ai/releases/tag/v{{ config.extra.release_version | default(value='1.15.0') }}" class="btn btn-primary">
+      <a href="https://github.com/terraphim/terraphim-ai/releases/tag/v{{ config.extra.release_version | default(value='1.16.31') }}" class="btn btn-primary">
         <i class="fa-solid fa-download" aria-hidden="true"></i>
-        Download v{{ config.extra.release_version | default(value="1.15.0") }}
+        Download v{{ config.extra.release_version | default(value="1.16.31") }}
       </a>
       <a href="{{ config.base_url }}/docs/installation" class="btn btn-ghost">
         <i class="fa-solid fa-book" aria-hidden="true"></i>
