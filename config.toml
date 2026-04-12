@@ -51,7 +51,7 @@ include_content = true
 
 [extra]
 version = "1.16.0"
-release_version = "1.15.0"
+release_version = "1.16.31"
 
 navbar_items = [
     { code = "en", nav_items = [

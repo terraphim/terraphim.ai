@@ -10,9 +10,9 @@ paginate_by = 10
 
 Stay up-to-date with the latest Terraphim AI releases.
 
-## Latest Release: v1.15.0
+## Latest Release: v1.16.31
 
-**Released:** 3 April 2026
+**Released:** 7 April 2026
 
 [Download from GitHub](https://github.com/terraphim/terraphim-ai/releases/latest) | [GitHub Releases](https://github.com/terraphim/terraphim-ai/releases)
 
@@ -64,7 +64,7 @@ View complete release history on [GitHub Releases](https://github.com/terraphim/
 
 Stable releases are recommended for production use. They have been thoroughly tested and are the most reliable version.
 
-**Latest Stable:** v1.15.0
+**Latest Stable:** v1.16.31
 
 ### Development
 
