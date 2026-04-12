@@ -59,6 +59,7 @@ navbar_items = [
         { url = "$BASE_URL/releases", name = "Releases" },
         { url = "$BASE_URL/docs/quickstart", name = "Quickstart" },
         { url = "https://docs.terraphim.ai", name = "Docs" },
+        { url = "$BASE_URL/docs/crates", name = "Crates" },
         { url = "$BASE_URL/docs/installation", name = "Install" },
         { url = "$BASE_URL/docs/donate", name = "Donate" },
     ] },
