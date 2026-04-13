@@ -18,3 +18,8 @@ Terraphim supports role-based knowledge graphs for system operators, engineers, 
 Install via Homebrew, Cargo, curl quick install, or download binaries for macOS, Linux, and Windows.
 Library bindings available for Node.js via @terraphim/autocomplete, Python via terraphim-automata,
 and a browser extension with WASM-powered search.
+
+Join the community: [Discord](https://discord.gg/VPJXB6BGuY) |
+[Discourse](https://terraphim.discourse.group) |
+[GitHub](https://github.com/terraphim/terraphim-ai) |
+[Reddit](https://reddit.com/r/TerraphimAI)
