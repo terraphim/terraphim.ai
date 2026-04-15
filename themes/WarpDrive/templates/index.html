@@ -314,7 +314,7 @@
       System Readouts
     </div>
     <h2 class="section-title">Ship Systems</h2>
-    <p class="section-subtitle">Core subsystem status and performance metrics.</p>
+    <p class="section-subtitle">What the engine actually does, with numbers from the <a href="https://docs.terraphim.ai">benchmark suite</a>.</p>
 
     <div class="systems-layout">
       <div class="systems-grid">
@@ -322,24 +322,20 @@
           <div class="system-card-header">
             <i class="fa-solid fa-microchip" aria-hidden="true"></i>
             <h3>Computation Core</h3>
-            <span class="status-badge online">Online</span>
           </div>
           <div class="system-card-body">
-            <p>Rust/WASM computation core. Aho-Corasick automata compiled once, reused across searches. O(n) time complexity regardless of pattern count.</p>
+            <p>Rust compiled to native or WebAssembly. Aho-Corasick automata match every pattern in a single pass -- O(n) in text length, independent of pattern count.</p>
             <div class="metric">
-              <span class="metric-label">CPU Load</span>
-              <div class="metric-bar"><div class="metric-bar-fill green" style="width: 12%"></div></div>
-              <span class="metric-value">12%</span>
+              <span class="metric-label">Inference</span>
+              <span class="metric-value">5-10 ns</span>
             </div>
             <div class="metric">
-              <span class="metric-label">WASM Heap</span>
-              <div class="metric-bar"><div class="metric-bar-fill blue" style="width: 24%"></div></div>
-              <span class="metric-value">24 MB</span>
+              <span class="metric-label">Search query</span>
+              <span class="metric-value">sub-millisecond</span>
             </div>
             <div class="metric">
-              <span class="metric-label">Automata</span>
-              <div class="metric-bar"><div class="metric-bar-fill green" style="width: 100%"></div></div>
-              <span class="metric-value">Compiled</span>
+              <span class="metric-label">Index throughput</span>
+              <span class="metric-value">~310 MiB/s</span>
             </div>
           </div>
         </div>
@@ -348,24 +344,20 @@
           <div class="system-card-header">
             <i class="fa-solid fa-memory" aria-hidden="true"></i>
             <h3>Memory Subsystem</h3>
-            <span class="status-badge online">Online</span>
           </div>
           <div class="system-card-body">
-            <p>Knowledge graphs in efficient compressed representations. Rust's zero-cost abstractions. No garbage collector, deterministic allocation.</p>
+            <p>No float vectors, no dense embeddings, no GPU allocation. Rust's zero-cost abstractions, deterministic allocation, graphs held in compressed representations.</p>
             <div class="metric">
-              <span class="metric-label">Graph Nodes</span>
-              <div class="metric-bar"><div class="metric-bar-fill blue" style="width: 45%"></div></div>
-              <span class="metric-value">14,230</span>
+              <span class="metric-label">Graph footprint</span>
+              <span class="metric-value">15-20 MB</span>
             </div>
             <div class="metric">
-              <span class="metric-label">Edges</span>
-              <div class="metric-bar"><div class="metric-bar-fill blue" style="width: 62%"></div></div>
-              <span class="metric-value">38,912</span>
+              <span class="metric-label">Index build (100 terms)</span>
+              <span class="metric-value">~301 &micro;s</span>
             </div>
             <div class="metric">
-              <span class="metric-label">Patterns</span>
-              <div class="metric-bar"><div class="metric-bar-fill amber" style="width: 35%"></div></div>
-              <span class="metric-value">2,847</span>
+              <span class="metric-label">Index build (1,000 terms)</span>
+              <span class="metric-value">~3.66 ms</span>
             </div>
           </div>
         </div>
@@ -374,24 +366,20 @@
           <div class="system-card-header">
             <i class="fa-solid fa-lock" aria-hidden="true"></i>
             <h3>Privacy Shield</h3>
-            <span class="status-badge secure">Secure</span>
           </div>
           <div class="system-card-body">
-            <p>All operations execute locally. No network requests for search, indexing, or graph operations. Your knowledge stays on your device.</p>
+            <p>All operations execute locally. No network calls for search, indexing, or graph traversal. Your data never leaves the device.</p>
             <div class="metric">
-              <span class="metric-label">Network</span>
-              <div class="metric-bar"><div class="metric-bar-fill green" style="width: 0%"></div></div>
-              <span class="metric-value">0 calls</span>
-            </div>
-            <div class="metric">
-              <span class="metric-label">Exported</span>
-              <div class="metric-bar"><div class="metric-bar-fill green" style="width: 0%"></div></div>
-              <span class="metric-value">0 bytes</span>
+              <span class="metric-label">Network calls (search)</span>
+              <span class="metric-value">0</span>
             </div>
             <div class="metric">
               <span class="metric-label">Telemetry</span>
-              <div class="metric-bar"><div class="metric-bar-fill green" style="width: 0%"></div></div>
-              <span class="metric-value">Disabled</span>
+              <span class="metric-value">None</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Third-party services</span>
+              <span class="metric-value">None required</span>
             </div>
           </div>
         </div>
@@ -401,39 +389,45 @@
         <div class="indicator-panel">
           <div class="indicator-panel-title">
             <i class="fa-solid fa-circle-nodes" aria-hidden="true"></i>
-            Subsystem Status
+            What runs on your box
           </div>
-          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Search Index</span><span class="indicator-val">Ready</span></div>
-          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Graph Engine</span><span class="indicator-val">Active</span></div>
-          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">MCP Server</span><span class="indicator-val">Loaded</span></div>
-          <div class="indicator-row"><div class="indicator-dot blue"></div><span class="indicator-name">Aho-Corasick</span><span class="indicator-val">Compiled</span></div>
-          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Token Tracker</span><span class="indicator-val">Active</span></div>
-          <div class="indicator-row"><div class="indicator-dot amber"></div><span class="indicator-name">Role Configs</span><span class="indicator-val">3 active</span></div>
+          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Search engine</span><span class="indicator-val">Aho-Corasick</span></div>
+          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Graph engine</span><span class="indicator-val">RoleGraph</span></div>
+          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Agent protocol</span><span class="indicator-val">MCP server</span></div>
+          <div class="indicator-row"><div class="indicator-dot blue"></div><span class="indicator-name">Runtime</span><span class="indicator-val">Rust + WASM</span></div>
+          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Hook system</span><span class="indicator-val">Native</span></div>
+          <div class="indicator-row"><div class="indicator-dot amber"></div><span class="indicator-name">Deployment</span><span class="indicator-val">Desktop / CLI / Server</span></div>
         </div>
 
         <div class="indicator-panel">
           <div class="indicator-panel-title">
             <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
-            Performance Log
+            Measured performance
           </div>
-          <div class="indicator-row"><div class="indicator-dot blue"></div><span class="indicator-name">Last search</span><span class="indicator-val">0.3ms</span></div>
-          <div class="indicator-row"><div class="indicator-dot blue"></div><span class="indicator-name">Graph query</span><span class="indicator-val">0.8ms</span></div>
-          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Index build</span><span class="indicator-val">142ms</span></div>
-          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Startup</span><span class="indicator-val">89ms</span></div>
+          <div class="indicator-row"><div class="indicator-dot blue"></div><span class="indicator-name">Inference</span><span class="indicator-val">5-10 ns</span></div>
+          <div class="indicator-row"><div class="indicator-dot blue"></div><span class="indicator-name">Search latency</span><span class="indicator-val">&lt; 1 ms</span></div>
+          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Index 100 terms</span><span class="indicator-val">~301 &micro;s</span></div>
+          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Index 1,000 terms</span><span class="indicator-val">~3.66 ms</span></div>
+          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Graph RAM</span><span class="indicator-val">15-20 MB</span></div>
         </div>
 
         <div class="indicator-panel">
           <div class="indicator-panel-title">
             <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
-            Security Audit
+            Privacy posture
           </div>
           <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Data at rest</span><span class="indicator-val">Local</span></div>
-          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Network access</span><span class="indicator-val">None</span></div>
-          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Third-party</span><span class="indicator-val">None</span></div>
-          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Open source</span><span class="indicator-val">Yes</span></div>
+          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Network access</span><span class="indicator-val">None required</span></div>
+          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Account required</span><span class="indicator-val">No</span></div>
+          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Licence</span><span class="indicator-val">Apache-2.0 OSS</span></div>
         </div>
       </div>
     </div>
+
+    <p class="section-footnote" style="text-align:center;margin-top:2rem;font-size:0.875rem;opacity:0.7;">
+      Numbers from Criterion benchmarks in <code>crates/terraphim_automata/benches</code> and
+      <a href="https://docs.terraphim.ai">docs.terraphim.ai</a>. Run them yourself: <code>cargo bench</code>.
+    </p>
   </div>
 </section>
 
