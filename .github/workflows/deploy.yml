@@ -1,0 +1,48 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  OP_API_TOKEN: op://TerraphimPlatform/terraphim-md-book-cloudflare/workers-api-token
+  OP_ACCOUNT_ID: op://TerraphimPlatform/terraphim-md-book-cloudflare/account_id
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy
+    runs-on: [self-hosted, linux, x64]
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Install Zola 0.22.1
+        run: |
+          curl -L https://github.com/getzola/zola/releases/download/v0.22.1/zola-v0.22.1-x86_64-unknown-linux-gnu.tar.gz | tar xz
+          sudo mv zola /usr/local/bin
+
+      - name: Build site
+        run: zola build
+
+      - name: Load secrets from 1Password
+        id: op-load-secrets
+        uses: 1password/load-secrets-action@v2
+        with:
+          export-env: true
+        env:
+          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+          CLOUDFLARE_API_TOKEN: ${{ env.OP_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ env.OP_ACCOUNT_ID }}
+
+      - name: Deploy to Cloudflare Pages
+        id: deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ env.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ env.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy public --project-name=terraphim-ai --branch=main
