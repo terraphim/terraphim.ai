@@ -1,0 +1,41 @@
+{
+  "generated_at": "2025-11-11T00:00:00Z",
+  "source": {
+    "repo": "terraphim/terraphim-ai",
+    "commit": "manual-snapshot-2025-11-11",
+    "workflow_run": null,
+    "notes": "Hand-authored from docs/archive/root/test_benchmark_report_20251111.md and content/capabilities/rust-wasm.md. Will be replaced by automated snapshot once terraphim-ai scripts/update-benchmark-snapshot.sh lands (see Gitea #574)."
+  },
+  "metrics": {
+    "inference_ns": {
+      "label": "Inference",
+      "value": "5-10",
+      "unit": "ns"
+    },
+    "search_latency_ms": {
+      "label": "Search query",
+      "value": "< 1",
+      "unit": "ms"
+    },
+    "index_throughput_mibps": {
+      "label": "Index throughput",
+      "value": "~310",
+      "unit": "MiB/s"
+    },
+    "graph_footprint_mb": {
+      "label": "Graph footprint",
+      "value": "15-20",
+      "unit": "MB"
+    },
+    "index_build_100_terms_us": {
+      "label": "Index build (100 terms)",
+      "value": "~301",
+      "unit": "\u00b5s"
+    },
+    "index_build_1000_terms_ms": {
+      "label": "Index build (1,000 terms)",
+      "value": "~3.66",
+      "unit": "ms"
+    }
+  }
+}

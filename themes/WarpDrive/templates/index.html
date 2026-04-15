@@ -354,6 +354,13 @@
 </section>
 
 <!-- ---- SYSTEM READOUTS ---- -->
+{% set bench = load_data(path="content/data/benchmarks.json") %}
+{% set inference = bench.metrics.inference_ns %}
+{% set search_latency = bench.metrics.search_latency_ms %}
+{% set throughput = bench.metrics.index_throughput_mibps %}
+{% set graph_footprint = bench.metrics.graph_footprint_mb %}
+{% set build_100 = bench.metrics.index_build_100_terms_us %}
+{% set build_1000 = bench.metrics.index_build_1000_terms_ms %}
 <section class="section" id="systems" aria-label="System readouts">
   <div class="section-inner">
     <div class="section-overline">
@@ -373,16 +380,16 @@
           <div class="system-card-body">
             <p>Rust compiled to native or WebAssembly. Aho-Corasick automata match every pattern in a single pass -- O(n) in text length, independent of pattern count.</p>
             <div class="metric">
-              <span class="metric-label">Inference</span>
-              <span class="metric-value">5-10 ns</span>
+              <span class="metric-label">{{ inference.label }}</span>
+              <span class="metric-value">{{ inference.value }} {{ inference.unit }}</span>
             </div>
             <div class="metric">
-              <span class="metric-label">Search query</span>
-              <span class="metric-value">sub-millisecond</span>
+              <span class="metric-label">{{ search_latency.label }}</span>
+              <span class="metric-value">{{ search_latency.value }} {{ search_latency.unit }}</span>
             </div>
             <div class="metric">
-              <span class="metric-label">Index throughput</span>
-              <span class="metric-value">~310 MiB/s</span>
+              <span class="metric-label">{{ throughput.label }}</span>
+              <span class="metric-value">{{ throughput.value }} {{ throughput.unit }}</span>
             </div>
           </div>
         </div>
@@ -395,16 +402,16 @@
           <div class="system-card-body">
             <p>No float vectors, no dense embeddings, no GPU allocation. Rust's zero-cost abstractions, deterministic allocation, graphs held in compressed representations.</p>
             <div class="metric">
-              <span class="metric-label">Graph footprint</span>
-              <span class="metric-value">15-20 MB</span>
+              <span class="metric-label">{{ graph_footprint.label }}</span>
+              <span class="metric-value">{{ graph_footprint.value }} {{ graph_footprint.unit }}</span>
             </div>
             <div class="metric">
-              <span class="metric-label">Index build (100 terms)</span>
-              <span class="metric-value">~301 &micro;s</span>
+              <span class="metric-label">{{ build_100.label }}</span>
+              <span class="metric-value">{{ build_100.value }} {{ build_100.unit }}</span>
             </div>
             <div class="metric">
-              <span class="metric-label">Index build (1,000 terms)</span>
-              <span class="metric-value">~3.66 ms</span>
+              <span class="metric-label">{{ build_1000.label }}</span>
+              <span class="metric-value">{{ build_1000.value }} {{ build_1000.unit }}</span>
             </div>
           </div>
         </div>
@@ -451,11 +458,11 @@
             <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
             Measured performance
           </div>
-          <div class="indicator-row"><div class="indicator-dot blue"></div><span class="indicator-name">Inference</span><span class="indicator-val">5-10 ns</span></div>
-          <div class="indicator-row"><div class="indicator-dot blue"></div><span class="indicator-name">Search latency</span><span class="indicator-val">&lt; 1 ms</span></div>
-          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Index 100 terms</span><span class="indicator-val">~301 &micro;s</span></div>
-          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Index 1,000 terms</span><span class="indicator-val">~3.66 ms</span></div>
-          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Graph RAM</span><span class="indicator-val">15-20 MB</span></div>
+          <div class="indicator-row"><div class="indicator-dot blue"></div><span class="indicator-name">{{ inference.label }}</span><span class="indicator-val">{{ inference.value }} {{ inference.unit }}</span></div>
+          <div class="indicator-row"><div class="indicator-dot blue"></div><span class="indicator-name">Search latency</span><span class="indicator-val">{{ search_latency.value }} {{ search_latency.unit }}</span></div>
+          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Index 100 terms</span><span class="indicator-val">{{ build_100.value }} {{ build_100.unit }}</span></div>
+          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Index 1,000 terms</span><span class="indicator-val">{{ build_1000.value }} {{ build_1000.unit }}</span></div>
+          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Graph RAM</span><span class="indicator-val">{{ graph_footprint.value }} {{ graph_footprint.unit }}</span></div>
         </div>
 
         <div class="indicator-panel">
@@ -472,8 +479,10 @@
     </div>
 
     <p class="section-footnote">
-      Numbers from Criterion benchmarks in <code class="inline-code">crates/terraphim_automata/benches</code> and
-      <a class="inline-link" href="https://docs.terraphim.ai">docs.terraphim.ai</a>. Run them yourself: <code class="inline-code">cargo bench</code>.
+      Last measured <time datetime="{{ bench.generated_at }}">{{ bench.generated_at | date(format="%Y-%m-%d") }}</time>
+      from Criterion benchmarks in <code class="inline-code">crates/terraphim_automata/benches</code>.
+      Run them yourself: <code class="inline-code">cargo bench</code>.
+      {% if bench.source.workflow_run %}&middot; <a class="inline-link" href="{{ bench.source.workflow_run }}">View CI run</a>{% endif %}
     </p>
   </div>
 </section>
