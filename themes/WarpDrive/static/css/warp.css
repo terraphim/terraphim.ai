@@ -2256,3 +2256,53 @@ main { padding-top: 52px; }
   }
   .post-card, .article-box { background: #f9f9f9; border: 1px solid #ddd; }
 }
+
+/* ---- Inline links in section copy (outside .prose) ---- */
+.inline-link {
+  color: var(--warp-bright);
+  text-decoration: none;
+  border-bottom: 1px dashed oklch(0.78 0.18 55 / 0.45);
+  padding-bottom: 1px;
+  font-weight: 500;
+  transition: color var(--transition), border-color var(--transition), background var(--transition);
+}
+.inline-link:hover,
+.inline-link:focus-visible {
+  color: var(--warp-streak);
+  border-bottom-color: var(--warp-streak);
+  background: oklch(0.78 0.18 55 / 0.08);
+}
+.inline-link:focus-visible {
+  outline: 2px solid var(--warp-bright);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.inline-code {
+  font-family: "JetBrains Mono", "Fira Code", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.85em;
+  padding: 0.12em 0.4em;
+  background: oklch(0.14 0.025 260 / 0.6);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  color: var(--warp-bright);
+}
+
+.section-footnote {
+  text-align: center;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.875rem;
+  color: var(--text-dim);
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.section-footnote .inline-link { color: var(--warp-bright); }
+.section-footnote .inline-code { font-size: 0.8em; }
+
+/* Subtitle links blend with subtitle styling */
+.section-subtitle .inline-link {
+  border-bottom-color: oklch(0.78 0.18 55 / 0.35);
+}
