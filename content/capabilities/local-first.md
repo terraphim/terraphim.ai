@@ -1,6 +1,6 @@
 +++
 title = "Local-First Architecture"
-description = "Your data never leaves your machine -- all indexing, searching, and graph traversal happens entirely on-device"
+description = "Your data never leaves your machine — all indexing, searching, and graph traversal happens entirely on-device"
 date = 2026-04-05
 weight = 1
 
@@ -32,20 +32,20 @@ The search architecture is deliberately non-neural and offline-first:
 
 ## No Account Required
 
-There is no sign-up, no API key, no subscription. You install Terraphim and it works. Your search history, your knowledge graphs, your indexed documents -- all of it stays on your machine under your control.
+There is no sign-up, no API key, no subscription. You install Terraphim and it works. Your search history, your knowledge graphs, your indexed documents — all of it stays on your machine under your control.
 
 ## How It Compares
 
 Traditional enterprise search tools upload your data to cloud servers, process it with proprietary models, and return results through APIs that require authentication and ongoing payment. Terraphim inverts this model entirely:
 
-- **Data stays on device** -- not uploaded, not cached remotely, not used for training
-- **Works offline** -- full functionality without an internet connection
-- **Zero telemetry** -- no usage tracking, no analytics, no fingerprinting
-- **No vendor lock-in** -- open source, standard formats, portable knowledge graphs
+- **Data stays on device** — not uploaded, not cached remotely, not used for training
+- **Works offline** — full functionality without an internet connection
+- **Zero telemetry** — no usage tracking, no analytics, no fingerprinting
+- **No vendor lock-in** — open source, standard formats, portable knowledge graphs
 
 ## Deployment Options
 
-Terraphim runs wherever you need it: as a native desktop application, a WebAssembly module in your browser, a CLI tool, or a TUI (terminal user interface). For teams that need shared access, Terraphim Private Cloud uses AWS Firecracker microVMs to give each user a dedicated virtual machine with their own TLS certificate -- keeping data isolated even in multi-tenant deployments.
+Terraphim runs wherever you need it: as a native desktop application, a WebAssembly module in your browser, a CLI tool, or a TUI (terminal user interface). For teams that need shared access, Terraphim Private Cloud uses AWS Firecracker microVMs to give each user a dedicated virtual machine with their own TLS certificate — keeping data isolated even in multi-tenant deployments.
 
 ## Learn More
 

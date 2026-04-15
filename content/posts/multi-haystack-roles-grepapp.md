@@ -161,7 +161,7 @@ Multi-haystack roles represent a fundamental shift in how we think about code se
 **Old model**: One haystack per role, choose your scope
 **New model**: Multiple haystacks per role, get comprehensive results
 
-This aligns with how developers actually work: they do not want to choose between "my code" and "the world's code" -- they want both, intelligently combined.
+This aligns with how developers actually work: they do not want to choose between "my code" and "the world's code" — they want both, intelligently combined.
 
 As we expand this pattern to more roles and add more haystack types (MCP servers, Atomic Data, AI assistants), Terraphim becomes not just a search tool, but a **knowledge synthesis engine** for developers.
 

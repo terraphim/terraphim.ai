@@ -1,6 +1,6 @@
 +++
 title = "KG-Boosted File Search"
-description = "File search augmented with knowledge graph context -- find files by semantic relationship, not just name"
+description = "File search augmented with knowledge graph context — find files by semantic relationship, not just name"
 date = 2026-04-05
 weight = 6
 
@@ -24,10 +24,10 @@ When you search for "requirements validation", Terraphim does not just grep for 
 
 Terraphim searches across multiple sources simultaneously:
 
-- **Local filesystem** -- Markdown files, code, documentation
-- **Knowledge repositories** -- Obsidian vaults, Logseq graphs
-- **Shared servers** -- Atomic Server for team knowledge
-- **Code search** -- GitHub, StackOverflow, and other configured haystacks
+- **Local filesystem** — Markdown files, code, documentation
+- **Knowledge repositories** — Obsidian vaults, Logseq graphs
+- **Shared servers** — Atomic Server for team knowledge
+- **Code search** — GitHub, StackOverflow, and other configured haystacks
 
 Results from all sources are unified, deduplicated, and ranked using a single knowledge graph.
 
@@ -47,7 +47,7 @@ Each role's knowledge graph contains domain-specific concepts and synonyms that 
 
 ## Context Collections
 
-Terraphim organises searchable content into context collections -- curated sets of documents, taxonomies, and vocabulary that define a domain. Collections can be shared across a team or customised per user, providing consistent search relevance without centralised configuration.
+Terraphim organises searchable content into context collections — curated sets of documents, taxonomies, and vocabulary that define a domain. Collections can be shared across a team or customised per user, providing consistent search relevance without centralised configuration.
 
 ## Integration with AI Assistants
 

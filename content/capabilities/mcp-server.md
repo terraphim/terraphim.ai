@@ -40,10 +40,10 @@ Different roles need different context. A systems engineer asking about "require
 
 Typical AI assistant integrations send your files and context to cloud APIs. Terraphim's MCP server runs locally:
 
-- **No data upload** -- your files, code, and documents stay on your machine
-- **No API key** -- no third-party service required for the knowledge graph layer
-- **No latency** -- knowledge graph queries resolve in nanoseconds, not network round trips
-- **Full control** -- you decide which knowledge graphs are active and what context your AI sees
+- **No data upload** — your files, code, and documents stay on your machine
+- **No API key** — no third-party service required for the knowledge graph layer
+- **No latency** — knowledge graph queries resolve in nanoseconds, not network round trips
+- **Full control** — you decide which knowledge graphs are active and what context your AI sees
 
 ## Integration with Claude Code
 

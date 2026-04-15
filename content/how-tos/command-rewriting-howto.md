@@ -10,15 +10,15 @@ toc = true
 # How-To: Learning-Driven Command Rewriting
 
 This guide shows how to use terraphim-agent to rewrite shell commands before
-execution -- for example `npm install` -> `bun add` or `pip install` -> `uv
-add` -- by plugging a knowledge-graph-backed thesaurus into your AI coding
+execution — for example `npm install` -> `bun add` or `pip install` -> `uv
+add` — by plugging a knowledge-graph-backed thesaurus into your AI coding
 agent's tool-execution hook.
 
 The mechanism composes three pieces that already exist in terraphim-agent:
 
 1. A Logseq-style knowledge graph of command synonyms under
    `~/.config/terraphim/docs/src/kg/` (or any role-configured path).
-2. `terraphim-agent replace` -- Aho-Corasick replacement that rewrites text
+2. `terraphim-agent replace` — Aho-Corasick replacement that rewrites text
    using a role's compiled thesaurus.
 3. A plugin hook in your AI agent (OpenCode, Claude Code, etc.) that
    intercepts every Bash tool call, pipes the command through `replace`,
@@ -91,11 +91,11 @@ Expected output:
 
 Flags worth knowing:
 
-- `--fail-open` -- on any error, emits the input unchanged. Mandatory in
+- `--fail-open` — on any error, emits the input unchanged. Mandatory in
   hooks so a misconfigured terraphim-agent never wedges the agent.
-- `--json` -- structured output with `result`, `changed`, `replacements`.
+- `--json` — structured output with `result`, `changed`, `replacements`.
   Use this if the hook needs to branch on whether anything changed.
-- `--format plain|markdown|wiki|html` -- how the replacement is wrapped.
+- `--format plain|markdown|wiki|html` — how the replacement is wrapped.
   Hooks want `plain`.
 
 ## 3. Flush the cache after KG edits
@@ -205,25 +205,25 @@ In `suggest` mode the command still executes as `npm install express`; in
 `terraphim-agent learn hook --format <claude|codex|opencode>` has three
 modes driven by `--learn-hook-type`:
 
-- `post-tool-use` -- the default, captures failed Bash commands as
+- `post-tool-use` — the default, captures failed Bash commands as
   learnings. This is already wired into the OpenCode plugin's
   `tool.execute.after` callback.
-- `pre-tool-use` -- warns if the command matches a past failure pattern.
+- `pre-tool-use` — warns if the command matches a past failure pattern.
   Does not block.
-- `user-prompt-submit` -- scans the user's prompt for patterns like "use X
+- `user-prompt-submit` — scans the user's prompt for patterns like "use X
   instead of Y" or "prefer X over Y" and records a `ToolPreference`
   correction under
   `~/Library/Application Support/terraphim/learnings/correction-*.md`.
 
 At present these corrections are stored but **not yet fed back** into the
-replacement thesaurus. Closing that loop is tracked as future work -- see
+replacement thesaurus. Closing that loop is tracked as future work — see
 the accompanying GitHub issue "Learning-driven command correction: Phase 2
 & 3".
 
 ## Troubleshooting
 
 **`replace` returns the original unchanged.**
-Run `terraphim-agent search "<synonym>" --role "<role>"` -- if the concept
+Run `terraphim-agent search "<synonym>" --role "<role>"` — if the concept
 appears, the KG is loaded but the synonym is not. Confirm the synonym is on
 the `synonyms::` line (case-insensitive; commas separate entries). Flush
 the cache (section 3) and retry.
@@ -236,12 +236,12 @@ find one, and fell back to building from markdown. Expected on first run.
 Check the plugin loaded: `grep terraphim-hooks
 ~/.local/share/opencode/log/$(ls -t ~/.local/share/opencode/log/ | head -1)`.
 You should see a line like `service=plugin path=...terraphim-hooks.js
-loading plugin`. If absent, the plugin file is in the wrong directory --
+loading plugin`. If absent, the plugin file is in the wrong directory —
 OpenCode autoloads from `~/.config/opencode/plugin/` and
 `~/.config/opencode/plugins/`.
 
 **Commands get double-rewritten on retry.**
 The hook only touches `tool.execute.before`; the agent does not loop back
 through the hook on its own retries. If you see double rewrites, check
-whether `input.tool === "Bash"` is spelt exactly -- OpenCode passes
+whether `input.tool === "Bash"` is spelt exactly — OpenCode passes
 `"Bash"`, not `"bash"`.

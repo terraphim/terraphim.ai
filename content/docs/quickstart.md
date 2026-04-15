@@ -186,11 +186,11 @@ terraphim-agent
 
 ## Next Steps
 
-- [Installation Guide](/docs/installation) -- More installation options and troubleshooting
-- [Configuration Guide](/docs/terraphim_config) -- Customise Terraphim to your needs
-- [Contribution Guide](/docs/contribution) -- Contribute to Terraphim development
-- [Discord Community](https://discord.gg/VPJXB6BGuY) -- Join our Discord for support
-- [Discourse Forum](https://terraphim.discourse.group) -- Community discussions and Q&A
+- [Installation Guide](/docs/installation) — More installation options and troubleshooting
+- [Configuration Guide](/docs/terraphim_config) — Customise Terraphim to your needs
+- [Contribution Guide](/docs/contribution) — Contribute to Terraphim development
+- [Discord Community](https://discord.gg/VPJXB6BGuY) — Join our Discord for support
+- [Discourse Forum](https://terraphim.discourse.group) — Community discussions and Q&A
 
 ## Getting Help
 

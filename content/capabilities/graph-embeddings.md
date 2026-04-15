@@ -1,6 +1,6 @@
 +++
 title = "Graph Embeddings"
-description = "Deterministic graph-based embeddings via Aho-Corasick and RoleGraph -- no neural vectors, no GPUs"
+description = "Deterministic graph-based embeddings via Aho-Corasick and RoleGraph — no neural vectors, no GPUs"
 date = 2026-04-15
 weight = 10
 

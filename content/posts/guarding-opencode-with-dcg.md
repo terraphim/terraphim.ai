@@ -147,7 +147,7 @@ This distinction matters. OpenCode iterates over `tool` entries expecting `ToolD
 | Category | Examples |
 |----------|----------|
 | Git history destruction | `git reset --hard`, `git push --force`, `git branch -D` |
-| Uncommitted work loss | `git checkout -- .`, `git restore file`, `git clean -f` |
+| Uncommitted work loss | `git checkout — .`, `git restore file`, `git clean -f` |
 | Stash destruction | `git stash drop`, `git stash clear` |
 | Filesystem damage | `rm -rf` outside `/tmp` |
 | Database operations | `DROP TABLE`, `FLUSHALL` (via packs) |
@@ -208,7 +208,7 @@ Instructions are suggestions. Guards are guarantees.
 
 ---
 
-*DCG is built by [Jeffrey Emanuel](https://github.com/Dicklesworthstone) -- see his [destructive_command_guard](https://github.com/Dicklesworthstone/destructive_command_guard) repository and the broader [agentic coding flywheel](https://github.com/Dicklesworthstone/agentic_coding_flywheel_setup) ecosystem for more agent safety tooling.*
+*DCG is built by [Jeffrey Emanuel](https://github.com/Dicklesworthstone) — see his [destructive_command_guard](https://github.com/Dicklesworthstone/destructive_command_guard) repository and the broader [agentic coding flywheel](https://github.com/Dicklesworthstone/agentic_coding_flywheel_setup) ecosystem for more agent safety tooling.*
 
 *This post is part of the [Disciplined Engineering](/posts/disciplined-engineering-ai-systems/) series. See also: [Teaching AI Agents with Knowledge Graph Hooks](/posts/teaching-ai-agents-with-knowledge-graphs/) and [Teaching AI Agents to Learn from Their Mistakes](/posts/teaching-ai-agents-to-learn-from-mistakes/).*
 

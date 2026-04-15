@@ -1,6 +1,6 @@
 +++
 title = "Origin Story"
-description = "From The Pattern to Terraphim AI -- a decade of rethinking search from the ground up"
+description = "From The Pattern to Terraphim AI — a decade of rethinking search from the ground up"
 date = 2026-04-05
 weight = 7
 
@@ -18,7 +18,7 @@ icon = "fa-solid fa-rocket"
 
 Terraphim AI did not start as a product. It started as a frustration with how slowly machine learning pipelines process data.
 
-The project's predecessor, **The Pattern**, grew out of participation in two Kaggle data science competitions. The original ML pipeline could not finish processing data in six days. The Pattern processed the same data for training in six hours and achieved under two-millisecond inference. That hundredfold improvement was not a hardware upgrade -- it was a fundamental rethinking of how search and retrieval should work.
+The project's predecessor, **The Pattern**, grew out of participation in two Kaggle data science competitions. The original ML pipeline could not finish processing data in six days. The Pattern processed the same data for training in six hours and achieved under two-millisecond inference. That hundredfold improvement was not a hardware upgrade — it was a fundamental rethinking of how search and retrieval should work.
 
 ## Redis Hackathon Platinum Winner
 
@@ -36,7 +36,7 @@ By rethinking from the ground up, Terraphim AI achieves pipeline processing in h
 
 ## Validated by INCOSE
 
-The methodology has been validated within the **INCOSE** (International Council on Systems Engineering) community for the Systems Engineering Handbook v.4 and the Systems Engineering Digital Process Model v.1. It was recognised as a valid low-effort substitution for formal model-based systems engineering -- particularly valuable for brownfield systems engineering, reverse-engineering, and professional certification.
+The methodology has been validated within the **INCOSE** (International Council on Systems Engineering) community for the Systems Engineering Handbook v.4 and the Systems Engineering Digital Process Model v.1. It was recognised as a valid low-effort substitution for formal model-based systems engineering — particularly valuable for brownfield systems engineering, reverse-engineering, and professional certification.
 
 ## Why Search is Broken
 

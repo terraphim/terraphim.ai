@@ -163,8 +163,8 @@ pip install terraphim-automata
 
 Two browser extensions are available for developer-mode installation:
 
-- **Terraphim Sidebar** -- knowledge graph search panel
-- **Terraphim Autocomplete** -- autocomplete suggestions in text fields
+- **Terraphim Sidebar** — knowledge graph search panel
+- **Terraphim Autocomplete** — autocomplete suggestions in text fields
 
 Install from source:
 
@@ -233,7 +233,7 @@ rustup update stable
 
 ## Next Steps
 
-- [Quickstart Guide](/docs/quickstart) -- Get up and running in 5 minutes
-- [Configuration Guide](/docs/terraphim_config) -- Customise Terraphim to your needs
-- [Discord Community](https://discord.gg/VPJXB6BGuY) -- Join our Discord for support
-- [Discourse Forum](https://terraphim.discourse.group) -- Community discussions and Q&A
+- [Quickstart Guide](/docs/quickstart) — Get up and running in 5 minutes
+- [Configuration Guide](/docs/terraphim_config) — Customise Terraphim to your needs
+- [Discord Community](https://discord.gg/VPJXB6BGuY) — Join our Discord for support
+- [Discourse Forum](https://terraphim.discourse.group) — Community discussions and Q&A

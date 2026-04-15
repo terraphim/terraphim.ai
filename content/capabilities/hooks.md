@@ -1,6 +1,6 @@
 +++
 title = "Hooks System"
-description = "Pre and post tool-use hooks for AI coding assistants -- capture failures, inject knowledge, automate learning"
+description = "Pre and post tool-use hooks for AI coding assistants — capture failures, inject knowledge, automate learning"
 date = 2026-04-05
 weight = 5
 
@@ -66,12 +66,12 @@ Terraphim supports hooks at four points in the AI workflow:
 
 Hooks are configured via TOML and environment variables, with sensible defaults:
 
-- **Fail-open in development** -- hooks that crash do not block your work
-- **Fail-closed in production** -- strict validation when it matters
-- **Configurable timeouts** -- hooks that take too long are bypassed gracefully
+- **Fail-open in development** — hooks that crash do not block your work
+- **Fail-closed in production** — strict validation when it matters
+- **Configurable timeouts** — hooks that take too long are bypassed gracefully
 
 ## Deep Dives
 
-- [Teaching AI Coding Agents with Knowledge Graph Hooks](/posts/teaching-ai-agents-with-knowledge-graphs/) -- How Aho-Corasick automata intercept and transform AI agent commands
-- [Teaching AI Agents to Learn from Their Mistakes](/posts/teaching-ai-agents-to-learn-from-mistakes/) -- Turning agent failures into institutional memory
+- [Teaching AI Coding Agents with Knowledge Graph Hooks](/posts/teaching-ai-agents-with-knowledge-graphs/) — How Aho-Corasick automata intercept and transform AI agent commands
+- [Teaching AI Agents to Learn from Their Mistakes](/posts/teaching-ai-agents-to-learn-from-mistakes/) — Turning agent failures into institutional memory
 - [MCP Server Integration](/capabilities/mcp-server/)

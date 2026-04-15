@@ -1,6 +1,6 @@
 +++
 title = "Rust/WASM Performance"
-description = "Written in Rust, compiled to WebAssembly -- sub-millisecond search latency at near-native speed"
+description = "Written in Rust, compiled to WebAssembly — sub-millisecond search latency at near-native speed"
 date = 2026-04-05
 weight = 4
 
@@ -16,7 +16,7 @@ icon = "fa-brands fa-rust"
 
 ## Near-Native Speed, Everywhere
 
-Terraphim AI is written in Rust and compiles to WebAssembly. This is not a marketing choice -- it is a performance requirement. Knowledge graph inference runs in **5 to 10 nanoseconds**. Pipeline processing completes in hundreds of milliseconds. Search queries resolve in sub-millisecond time.
+Terraphim AI is written in Rust and compiles to WebAssembly. This is not a marketing choice — it is a performance requirement. Knowledge graph inference runs in **5 to 10 nanoseconds**. Pipeline processing completes in hundreds of milliseconds. Search queries resolve in sub-millisecond time.
 
 ## Why Rust
 
@@ -26,10 +26,10 @@ Rust provides **memory safety without garbage collection**, **zero-cost abstract
 
 WebAssembly allows the same Rust codebase to run:
 
-- **In your browser** -- no installation required, instant access
-- **On your desktop** -- native performance as a standalone application
-- **On your server** -- same code, same results, different deployment target
-- **On mobile** -- lightweight enough for devices with limited resources
+- **In your browser** — no installation required, instant access
+- **On your desktop** — native performance as a standalone application
+- **On your server** — same code, same results, different deployment target
+- **On mobile** — lightweight enough for devices with limited resources
 
 One codebase, compiled to multiple targets, with no performance compromise.
 
@@ -54,7 +54,7 @@ Terraphim includes a comprehensive benchmarking framework covering:
 - Aho-Corasick pattern matching speed
 - End-to-end performance across all components
 
-All benchmarks run on standard hardware -- no GPU, no specialised accelerator.
+All benchmarks run on standard hardware — no GPU, no specialised accelerator.
 
 ## Low Footprint
 

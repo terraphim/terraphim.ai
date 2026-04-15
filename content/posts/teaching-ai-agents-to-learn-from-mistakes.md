@@ -10,13 +10,13 @@ toc = true
 comments = true
 +++
 
-AI coding agents make the same mistakes over and over. We built a learning system that captures failures, stores corrections, and feeds them back into future sessions -- turning every error into institutional memory.
+AI coding agents make the same mistakes over and over. We built a learning system that captures failures, stores corrections, and feeds them back into future sessions — turning every error into institutional memory.
 
 <!-- more -->
 
 ## The Problem: Groundhog Day for AI Agents
 
-Every AI coding agent session starts from zero. Claude Code runs `npm install`, gets corrected, switches to `bun` -- and tomorrow does it again. A force-push to main gets blocked, the agent learns why, then forgets by next session.
+Every AI coding agent session starts from zero. Claude Code runs `npm install`, gets corrected, switches to `bun` — and tomorrow does it again. A force-push to main gets blocked, the agent learns why, then forgets by next session.
 
 In our previous post on [Knowledge Graph Hooks](/posts/teaching-ai-agents-with-knowledge-graphs/), we showed how Aho-Corasick automata can intercept and transform agent commands in real time. But interception is reactive. What if the agent could *remember* its past failures and avoid repeating them?
 
@@ -42,7 +42,7 @@ captured_at: 2026-04-04T18:43:07+00:00
 ---
 ```
 
-The hook is fail-open -- if `terraphim-agent` is unavailable, it exits silently. Development is never blocked.
+The hook is fail-open — if `terraphim-agent` is unavailable, it exits silently. Development is never blocked.
 
 ### Stage 2: Human Corrections
 
@@ -114,7 +114,7 @@ The `learn hook` subcommand parses the Claude Code tool result format, extracts 
 
 Here is actual data from our production learning store, accumulated across weeks of development sessions:
 
-**Package manager enforcement** -- 3 npm entries, all corrected to bun:
+**Package manager enforcement** — 3 npm entries, all corrected to bun:
 ```
 [G] [cmd] npm install lodash (exit: 1)
    Correction: Use 'bun add lodash' instead.
@@ -122,7 +122,7 @@ Here is actual data from our production learning store, accumulated across weeks
    Correction: Use bun instead of npm/yarn/pnpm.
 ```
 
-**Git safety** -- 29 push failures captured, including one critical correction:
+**Git safety** — 29 push failures captured, including one critical correction:
 ```
 [G] [cmd] git push --force origin main (exit: 1)
    Correction: NEVER force push to main. Use feature branches and PRs.
@@ -175,9 +175,9 @@ rejected
 ```
 
 Being plain markdown, these files are:
-- **Human-readable** -- developers can browse and edit directly
-- **Version-controllable** -- share learnings across a team via git
-- **Portable** -- copy between machines or agents
+- **Human-readable** — developers can browse and edit directly
+- **Version-controllable** — share learnings across a team via git
+- **Portable** — copy between machines or agents
 
 ## CLI Reference
 
@@ -236,10 +236,10 @@ Failed commands are captured automatically. Query them with `terraphim-agent lea
 
 The learning system is the foundation for richer agent memory:
 
-- **Cross-agent sharing** -- learnings from one agent become available to all agents on the team
-- **Automatic promotion** -- when a correction appears N times, auto-generate a KG entry
-- **Session search integration** -- `terraphim-agent sessions search` already indexes learnings alongside session transcripts
-- **Confidence scoring** -- weight corrections by frequency and recency
+- **Cross-agent sharing** — learnings from one agent become available to all agents on the team
+- **Automatic promotion** — when a correction appears N times, auto-generate a KG entry
+- **Session search integration** — `terraphim-agent sessions search` already indexes learnings alongside session transcripts
+- **Confidence scoring** — weight corrections by frequency and recency
 
 The goal is not to make agents perfect on the first try. It is to make them incapable of making the same mistake twice.
 

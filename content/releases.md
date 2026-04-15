@@ -32,9 +32,9 @@ v1.16.31 ships pre-built binaries for 7 platforms:
 - **Debian packages**: amd64
 
 Three binaries in each release:
-- `terraphim-agent` -- Interactive TUI/REPL with knowledge graph search
-- `terraphim-cli` -- CLI for automation, scripting, and JSON output
-- `terraphim_server` -- HTTP REST API server
+- `terraphim-agent` — Interactive TUI/REPL with knowledge graph search
+- `terraphim-cli` — CLI for automation, scripting, and JSON output
+- `terraphim_server` — HTTP REST API server
 
 ### Installation
 
