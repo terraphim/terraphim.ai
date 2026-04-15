@@ -175,13 +175,45 @@ main {
   animation: fadeUp 0.5s var(--ease-out) 0.5s forwards;
 }
 
+.hero-install {
+  margin: 0 auto 1.5rem;
+  max-width: 520px;
+  opacity: 0;
+  animation: fadeUp 0.5s var(--ease-out) 0.6s forwards;
+  transform: translateY(12px);
+}
+.hero-install-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+.hero-command {
+  background: oklch(0.10 0.02 260 / 0.85);
+  border: 1px solid var(--border-bright);
+  border-radius: var(--radius-lg);
+  padding: 0.75rem 1rem;
+  box-shadow: 0 0 0 1px oklch(0.78 0.18 55 / 0.08),
+              0 8px 24px oklch(0.06 0.03 260 / 0.5);
+  font-size: 1rem;
+}
+.hero-command .prompt-text { color: var(--warp-streak); font-weight: 500; }
+.hero-install-alt {
+  margin-top: 0.5rem;
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  text-align: center;
+}
+
 .hero-actions {
   display: flex;
   gap: 0.75rem;
   justify-content: center;
   flex-wrap: wrap;
   opacity: 0;
-  animation: fadeUp 0.5s var(--ease-out) 0.65s forwards;
+  animation: fadeUp 0.5s var(--ease-out) 0.75s forwards;
 }
 
 @keyframes fadeUp {

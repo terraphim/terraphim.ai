@@ -17,14 +17,27 @@
     Your data never leaves your machine. Aho-Corasick pattern matching across role-based
     knowledge graphs, at native speed.
   </p>
+
+  <div class="hero-install">
+    <div class="hero-install-label">Install terraphim-agent</div>
+    <div class="command-line hero-command">
+      <span class="prompt-symbol">$</span>
+      <span class="prompt-text">cargo install terraphim-agent</span>
+      <button class="copy-btn" data-copy="cargo install terraphim-agent" aria-label="Copy install command">copy</button>
+    </div>
+    <div class="hero-install-alt">
+      or <a href="{{ config.base_url }}/docs/installation" class="inline-link">Homebrew, curl, binary downloads</a>
+    </div>
+  </div>
+
   <div class="hero-actions">
-    <a href="https://github.com/terraphim/terraphim-ai/releases/tag/v{{ config.extra.release_version | default(value='1.16.31') }}" class="btn btn-primary">
-      <i class="fa-solid fa-rocket" aria-hidden="true"></i>
-      Download v{{ config.extra.release_version | default(value="1.16.31") }}
-    </a>
-    <a href="{{ config.base_url }}/docs/quickstart" class="btn btn-ghost">
+    <a href="{{ config.base_url }}/docs/quickstart" class="btn btn-primary">
       <i class="fa-solid fa-bolt" aria-hidden="true"></i>
       Quickstart
+    </a>
+    <a href="https://github.com/terraphim/terraphim-ai/releases/tag/v{{ config.extra.release_version | default(value='1.16.31') }}" class="btn btn-ghost">
+      <i class="fa-solid fa-rocket" aria-hidden="true"></i>
+      v{{ config.extra.release_version | default(value="1.16.31") }} release
     </a>
     <a href="https://github.com/terraphim/terraphim-ai" class="btn btn-ghost">
       <i class="fa-brands fa-github" aria-hidden="true"></i>
@@ -65,7 +78,7 @@
       </div>
       <div class="stat">
         <span class="stat-label">Pattern Engine</span>
-        <span class="stat-value amber">Aho-Corasick</span>
+        <span class="stat-value amber">Graph Embeddings</span>
       </div>
       <div class="stat">
         <span class="stat-label">Runtime</span>
@@ -92,7 +105,8 @@
     </div>
     <h2 class="section-title">Core Capabilities</h2>
     <p class="section-subtitle">
-      Each waypoint represents a fundamental capability of the Terraphim navigation system.
+      Nine capabilities the engine ships with today. Each waypoint links to its
+      detailed page.
     </p>
 
     <div class="waypoints-grid">
@@ -105,7 +119,21 @@
               <h3 class="waypoint-title">Local-First Architecture</h3>
             </div>
           </div>
-          <p class="waypoint-desc">Your data never leaves your machine. All indexing, searching, and graph traversal happens entirely on-device. No cloud dependency, no data exfiltration, no telemetry.</p>
+          <p class="waypoint-desc">Your data never leaves your machine. Indexing, searching, and graph traversal all happen on-device. No cloud, no exfiltration, no telemetry.</p>
+          <span class="waypoint-cta">Explore capability <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+        </article>
+      </a>
+
+      <a href="{{ get_url(path='@/capabilities/graph-embeddings.md') }}" class="waypoint-link">
+        <article class="waypoint">
+          <div class="waypoint-header">
+            <div class="waypoint-icon"><i class="fa-solid fa-bezier-curve" aria-hidden="true"></i></div>
+            <div>
+              <span class="waypoint-number">WP-002</span>
+              <h3 class="waypoint-title">Graph Embeddings</h3>
+            </div>
+          </div>
+          <p class="waypoint-desc">Deterministic, explainable graph-based embeddings. No neural vectors, no GPUs. Every match traces back to a concept in the thesaurus.</p>
           <span class="waypoint-cta">Explore capability <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
         </article>
       </a>
@@ -115,11 +143,25 @@
           <div class="waypoint-header">
             <div class="waypoint-icon"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i></div>
             <div>
-              <span class="waypoint-number">WP-002</span>
+              <span class="waypoint-number">WP-003</span>
               <h3 class="waypoint-title">Knowledge Graph Engine</h3>
             </div>
           </div>
-          <p class="waypoint-desc">Build and traverse interconnected knowledge graphs with Aho-Corasick multi-pattern matching. Thousands of patterns matched simultaneously in a single pass.</p>
+          <p class="waypoint-desc">Role-configured knowledge graphs with Aho-Corasick multi-pattern matching. Thousands of patterns matched simultaneously in a single pass.</p>
+          <span class="waypoint-cta">Explore capability <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+        </article>
+      </a>
+
+      <a href="{{ get_url(path='@/capabilities/terraphim-agent.md') }}" class="waypoint-link">
+        <article class="waypoint">
+          <div class="waypoint-header">
+            <div class="waypoint-icon"><i class="fa-solid fa-robot" aria-hidden="true"></i></div>
+            <div>
+              <span class="waypoint-number">WP-004</span>
+              <h3 class="waypoint-title">terraphim-agent CLI</h3>
+            </div>
+          </div>
+          <p class="waypoint-desc">Search-first AI agent. Session search across Claude Code and Cursor history, learning capture from failed commands, command rewriting via thesaurus.</p>
           <span class="waypoint-cta">Explore capability <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
         </article>
       </a>
@@ -129,25 +171,11 @@
           <div class="waypoint-header">
             <div class="waypoint-icon"><i class="fa-solid fa-plug" aria-hidden="true"></i></div>
             <div>
-              <span class="waypoint-number">WP-003</span>
-              <h3 class="waypoint-title">MCP Server Integration</h3>
+              <span class="waypoint-number">WP-005</span>
+              <h3 class="waypoint-title">MCP Server</h3>
             </div>
           </div>
-          <p class="waypoint-desc">Native Model Context Protocol server. Connect your AI assistant to local knowledge graphs. KG-boosted file search, token tracking, and role-based context enrichment.</p>
-          <span class="waypoint-cta">Explore capability <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
-        </article>
-      </a>
-
-      <a href="{{ get_url(path='@/capabilities/rust-wasm.md') }}" class="waypoint-link">
-        <article class="waypoint">
-          <div class="waypoint-header">
-            <div class="waypoint-icon"><i class="fa-brands fa-rust" aria-hidden="true"></i></div>
-            <div>
-              <span class="waypoint-number">WP-004</span>
-              <h3 class="waypoint-title">Rust/WASM Performance</h3>
-            </div>
-          </div>
-          <p class="waypoint-desc">Written in Rust, compiled to WebAssembly. Sub-millisecond search latency. Memory-safe, thread-safe, running at near-native speed in your browser or desktop.</p>
+          <p class="waypoint-desc">Native Model Context Protocol server. Connect your AI assistant to local knowledge graphs. KG-boosted file search, token tracking, role-based context.</p>
           <span class="waypoint-cta">Explore capability <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
         </article>
       </a>
@@ -157,11 +185,25 @@
           <div class="waypoint-header">
             <div class="waypoint-icon"><i class="fa-solid fa-code-branch" aria-hidden="true"></i></div>
             <div>
-              <span class="waypoint-number">WP-005</span>
+              <span class="waypoint-number">WP-006</span>
               <h3 class="waypoint-title">Hooks System</h3>
             </div>
           </div>
-          <p class="waypoint-desc">Pre and post tool-use hooks for AI coding assistants. Capture failed commands, inject knowledge graph context, and automate learning from development sessions.</p>
+          <p class="waypoint-desc">Pre and post tool-use hooks for AI coding assistants. Capture failed commands, inject knowledge graph context, automate learning from sessions.</p>
+          <span class="waypoint-cta">Explore capability <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+        </article>
+      </a>
+
+      <a href="{{ get_url(path='@/capabilities/multi-haystack.md') }}" class="waypoint-link">
+        <article class="waypoint">
+          <div class="waypoint-header">
+            <div class="waypoint-icon"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></div>
+            <div>
+              <span class="waypoint-number">WP-007</span>
+              <h3 class="waypoint-title">Multi-Haystack Search</h3>
+            </div>
+          </div>
+          <p class="waypoint-desc">One query, many sources. Search local files, Confluence, Jira, Discourse, email, and global code via grepapp -- ranked by the role's knowledge graph.</p>
           <span class="waypoint-cta">Explore capability <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
         </article>
       </a>
@@ -171,29 +213,34 @@
           <div class="waypoint-header">
             <div class="waypoint-icon"><i class="fa-solid fa-magnifying-glass-chart" aria-hidden="true"></i></div>
             <div>
-              <span class="waypoint-number">WP-006</span>
+              <span class="waypoint-number">WP-008</span>
               <h3 class="waypoint-title">KG-Boosted File Search</h3>
             </div>
           </div>
-          <p class="waypoint-desc">File search augmented with knowledge graph context. Find files not just by name but by their semantic relationship to your domain concepts and role-specific vocabulary.</p>
+          <p class="waypoint-desc">File search augmented with knowledge graph context. Find files by their semantic relationship to domain concepts and role-specific vocabulary.</p>
           <span class="waypoint-cta">Explore capability <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
         </article>
       </a>
 
-      <a href="{{ get_url(path='@/capabilities/origin-story.md') }}" class="waypoint-link">
+      <a href="{{ get_url(path='@/capabilities/rust-wasm.md') }}" class="waypoint-link">
         <article class="waypoint">
           <div class="waypoint-header">
-            <div class="waypoint-icon"><i class="fa-solid fa-rocket" aria-hidden="true"></i></div>
+            <div class="waypoint-icon"><i class="fa-brands fa-rust" aria-hidden="true"></i></div>
             <div>
-              <span class="waypoint-number">WP-007</span>
-              <h3 class="waypoint-title">Origin Story</h3>
+              <span class="waypoint-number">WP-009</span>
+              <h3 class="waypoint-title">Rust / WASM Runtime</h3>
             </div>
           </div>
-          <p class="waypoint-desc">From The Pattern (Redis Hackathon Platinum winner) through Kaggle competitions and Oxford lectures to Terraphim AI -- a decade of rethinking search from the ground up.</p>
+          <p class="waypoint-desc">Written in Rust, compiled to WebAssembly. Sub-millisecond search. Memory-safe, thread-safe, running at near-native speed in browser or desktop.</p>
           <span class="waypoint-cta">Explore capability <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
         </article>
       </a>
     </div>
+
+    <p class="section-footnote">
+      Curious how it started? Read the <a class="inline-link" href="{{ get_url(path='@/capabilities/origin-story.md') }}">origin story</a> --
+      from The Pattern (Redis Hackathon Platinum winner) through Kaggle and Oxford to Terraphim AI.
+    </p>
   </div>
 </section>
 
@@ -495,33 +542,24 @@
       Launch Platforms
     </div>
     <h2 class="section-title">Deploy Everywhere</h2>
-    <p class="section-subtitle">One engine. Multiple deployment targets. Always local-first.</p>
+    <p class="section-subtitle">One engine. Eight deployment targets. Always local-first.</p>
 
     <div class="deploy-grid">
-      <article class="deploy-card">
-        <div class="deploy-icon"><i class="fa-solid fa-desktop" aria-hidden="true"></i></div>
-        <div class="deploy-content">
-          <h3 class="deploy-title">Desktop Application</h3>
-          <p class="deploy-desc">Native desktop app built with Tauri. Full system integration, file system access, offline-first operation. <a href="https://github.com/terraphim/terraphim-ai-desktop">Separate repository</a>.</p>
-          <span class="deploy-badge native">Tauri</span>
-        </div>
-      </article>
-
-      <article class="deploy-card">
-        <div class="deploy-icon"><i class="fa-solid fa-puzzle-piece" aria-hidden="true"></i></div>
-        <div class="deploy-content">
-          <h3 class="deploy-title">Browser Extension</h3>
-          <p class="deploy-desc">Knowledge graph search in your browser. WASM-powered, runs entirely in the extension sandbox. Coming to Chrome Web Store. <a href="https://github.com/terraphim/terraphim-ai/tree/main/browser_extensions/INSTALL.md">Install now</a>.</p>
-          <span class="deploy-badge wasm">WASM</span>
-        </div>
-      </article>
-
       <article class="deploy-card">
         <div class="deploy-icon"><i class="fa-solid fa-terminal" aria-hidden="true"></i></div>
         <div class="deploy-content">
           <h3 class="deploy-title">Command Line</h3>
-          <p class="deploy-desc">Full CLI for pipeline integration, scripting, and terminal-first workflows. Native Rust binary, no runtime dependencies.</p>
+          <p class="deploy-desc">Install <code class="inline-code">terraphim-agent</code> and <code class="inline-code">terraphim-cli</code> from Cargo, Homebrew, or curl. Native Rust, zero runtime deps.</p>
           <span class="deploy-badge rust">Rust CLI</span>
+        </div>
+      </article>
+
+      <article class="deploy-card">
+        <div class="deploy-icon"><i class="fa-solid fa-desktop" aria-hidden="true"></i></div>
+        <div class="deploy-content">
+          <h3 class="deploy-title">Desktop Application</h3>
+          <p class="deploy-desc">Native Tauri desktop app. Full system integration, file-system access, offline-first. <a class="inline-link" href="https://github.com/terraphim/terraphim-ai-desktop">Separate repository</a>.</p>
+          <span class="deploy-badge native">Tauri</span>
         </div>
       </article>
 
@@ -529,8 +567,53 @@
         <div class="deploy-icon"><i class="fa-solid fa-server" aria-hidden="true"></i></div>
         <div class="deploy-content">
           <h3 class="deploy-title">HTTP Server</h3>
-          <p class="deploy-desc">REST API server for search, configuration, chat, and document management. Integrates with Confluence, Jira, Discourse, email, and local files.</p>
+          <p class="deploy-desc">REST API for search, config, chat, and document management. Integrates with Confluence, Jira, Discourse, email, local files, and grepapp.</p>
           <span class="deploy-badge rust">REST API</span>
+        </div>
+      </article>
+
+      <article class="deploy-card">
+        <div class="deploy-icon"><i class="fa-solid fa-plug" aria-hidden="true"></i></div>
+        <div class="deploy-content">
+          <h3 class="deploy-title">MCP Server</h3>
+          <p class="deploy-desc">Model Context Protocol server for Claude, Cursor, and any MCP-capable assistant. Exposes search, role-aware KG context, and token tracking.</p>
+          <span class="deploy-badge native">MCP</span>
+        </div>
+      </article>
+
+      <article class="deploy-card">
+        <div class="deploy-icon"><i class="fa-solid fa-puzzle-piece" aria-hidden="true"></i></div>
+        <div class="deploy-content">
+          <h3 class="deploy-title">Browser Extension</h3>
+          <p class="deploy-desc">Knowledge graph search in your browser, WASM-powered, runs in the extension sandbox. <a class="inline-link" href="https://github.com/terraphim/terraphim-ai/tree/main/browser_extensions/INSTALL.md">Install now</a>.</p>
+          <span class="deploy-badge wasm">WASM</span>
+        </div>
+      </article>
+
+      <article class="deploy-card">
+        <div class="deploy-icon"><i class="fa-brands fa-node-js" aria-hidden="true"></i></div>
+        <div class="deploy-content">
+          <h3 class="deploy-title">Node / npm</h3>
+          <p class="deploy-desc"><code class="inline-code">@terraphim/autocomplete</code> on npm. Aho-Corasick matching and knowledge-graph autocomplete for Node and browser apps, compiled to WASM.</p>
+          <span class="deploy-badge wasm">npm + WASM</span>
+        </div>
+      </article>
+
+      <article class="deploy-card">
+        <div class="deploy-icon"><i class="fa-brands fa-python" aria-hidden="true"></i></div>
+        <div class="deploy-content">
+          <h3 class="deploy-title">Python</h3>
+          <p class="deploy-desc"><code class="inline-code">terraphim-automata</code> on PyPI. Python bindings to the Aho-Corasick automata crate via PyO3. Drop-in for data pipelines and notebooks.</p>
+          <span class="deploy-badge native">PyO3</span>
+        </div>
+      </article>
+
+      <article class="deploy-card">
+        <div class="deploy-icon"><i class="fa-solid fa-microchip" aria-hidden="true"></i></div>
+        <div class="deploy-content">
+          <h3 class="deploy-title">Edge &amp; Embedded</h3>
+          <p class="deploy-desc">15-20 MB graph footprint runs on Raspberry Pi, edge devices, and modest cloud instances. Docker and Debian packages available from each release.</p>
+          <span class="deploy-badge rust">ARM64 / Debian</span>
         </div>
       </article>
     </div>
