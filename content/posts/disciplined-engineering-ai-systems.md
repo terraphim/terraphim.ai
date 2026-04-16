@@ -31,15 +31,9 @@ The missing piece is not better models. It is engineering discipline. AI agents 
 
 ## The V-Model: Adding Discipline Back
 
-We built a V-model for AI agents to add the discipline that research demands but harnesses ignore:
+We built a V-model for AI agents. The left side asks "what should we build?" The right side asks "did we build it correctly?"
 
-```
-Research ────────────────> Design ───────────────> Specification
-     │                        │                        │
-     │                        │                        │
-     └────────────────────────┴────────────────────────┘
-          Validation <────────── Verification <───────── Implementation
-```
+![The V-Model for AI Agents: Research, Design, Specification, Implementation, Verification, Validation with quality gates at each transition](/images/v-model-overview.png)
 
 ### Phase 1: Research
 
