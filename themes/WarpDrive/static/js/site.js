@@ -142,9 +142,10 @@
         var item = searchIndex.documentStore.getDoc(result.ref);
         if (!item) return;
 
+        var url = result.ref;
         var div = document.createElement('div');
         div.className = 'search-result';
-        div.innerHTML = '<a href="' + item.url + '" class="search-result-link">' +
+        div.innerHTML = '<a href="' + url + '" class="search-result-link">' +
           '<h4 class="search-result-title">' + (item.title || 'Untitled') + '</h4>' +
           '<p class="search-result-body">' + (item.body || '').substring(0, 150) + '...</p>' +
           '</a>';
