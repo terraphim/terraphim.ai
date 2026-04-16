@@ -11,49 +11,23 @@ toc = true
 comments = true
 +++
 
-AI coding agents are making us worse engineers, unless you add discipline back. Here is why "vibe coding" is building unmaintainable systems at unprecedented velocity—and what we do instead.
+AI coding agents are making us worse engineers, unless we add discipline back. Here is what we do instead of vibe coding, and how you can do it too in 30 seconds.
 
 <!-- more -->
 
-## The 30% Problem
+## The Vibe Coding Problem
 
-In 2024, researchers published a 300+ page survey on code intelligence ([arXiv:2511.18538](https://arxiv.org/abs/2511.18538)). Their core finding was revolutionary: code scales differently than natural language, and scaling laws vary by programming language.
+Every AI-generated pull request we review has the same pattern:
 
-Go benefits from 32k+ context windows. Python plateaus at 16k. Rust's compiler provides unique optimisation signals.
+- **Scope creep** beyond the original task. You ask for a bug fix, you get a refactored module.
+- **No traceability** from requirements to tests. The agent shipped code, but nobody verified it does what was actually asked.
+- **Knowledge lost between sessions.** Each conversation starts from scratch. Yesterday's design decisions evaporate overnight.
 
-Fast forward to 2026. The hottest AI coding agents—Cursor, Claude Code, Amazon Q Developer, Harness AI—have adopted approximately **30%** of these insights. The other 70%? Ignored. Lost in the gap between research and production.
+The agent shipped code. It even passed the tests. But the tests were written by the same agent that wrote the code, optimising for the metric rather than understanding the problem.
 
-This isn't academic nitpicking. It's why your AI-generated codebase has 800% more duplication than hand-written code. It's why agents "game" test suites instead of actually understanding your code. It's why we're building unmaintainable systems at unprecedented velocity.
+The missing piece is not better models. It is engineering discipline. AI agents need the same rigour humans use: understand the problem before coding, verify against the design, validate against requirements. We encoded this as executable skills that any AI coding agent can follow.
 
-### Language-Specific Scaling Laws
-
-The 2024 research derived scaling laws specifically for programming languages—not just adapting text LLM laws.
-
-| Language | Optimal Context | Scaling Behaviour |
-|----------|-----------------|-------------------|
-| **Go** | 32k+ tokens | High signal-to-noise, benefits from more context |
-| **Python** | ~16k tokens | Diminishing returns after 16k |
-| **JavaScript** | Carefully curated | High noise, needs pruning |
-| **Rust** | Type-aware | Compiler feedback most valuable |
-
-What harnesses do: Use 128k context for everything. "More is better."
-
-The cost: Wasted tokens, slower inference, confused models drowning in irrelevant context.
-
-### RLVR: Reinforcement Learning with Verified Rewards
-
-The research evaluated RL strategies with different reward signals:
-
-| Reward Signal | Effectiveness | Risk |
-|---------------|---------------|------|
-| **Test-passing** | High short-term | Gaming behaviour, overfitting |
-| **Compiler feedback** | Very high | Language-specific implementation |
-| **Type-checking** | High | Requires typed languages |
-| **Coverage increase** | Moderate | May incentivise useless tests |
-
-What harnesses do: Use test-passing rewards. Simple, universal, and flawed.
-
-The cost: Agents learn to pass tests without understanding code. They game the metric. Technical debt accumulates.
+> *The research evidence behind this framework, including language-specific scaling laws and the 30% adoption gap between code intelligence research and production harnesses, is the subject of [our next article](/posts/the-30-percent-problem-code-intelligence/).*
 
 ## The V-Model: Adding Discipline Back
 
@@ -134,26 +108,39 @@ Automated quality gates, zero manual overhead. Every PR reviewed before it merge
 
 ## Guard Rails in Practice
 
-Example: A git-safety-guard skill that runs before any commit:
-1. Checks for secrets in diff
-2. Verifies tests pass
-3. Confirms no debug code remains
-4. Validates commit message format
-5. Checks for TODO comments that should be issues
+AI agents do not type commands into a terminal. They invoke tools programmatically, and they do not always get it right. "Cleaning up build artefacts" becomes `rm -rf ./src` (one-character typo). "Resetting to last commit" becomes `git reset --hard` (uncommitted work gone). You need a safety net that operates between the agent and your shell.
+
+We use two layers of guard rails:
+
+**Layer 1: git-safety-guard** (a terraphim-skill that runs as a PreToolUse hook):
+- Blocks `git reset --hard`, `git push --force`, `rm -rf` and similar destructive commands before they execute
+- Checks for secrets in diffs before commits
+- Validates commit message format
+- Zero configuration: install the skill, protection is immediate
+
+**Layer 2: Destructive Command Guard (DCG)** integrated via tool hooks:
+- A Rust binary using SIMD-accelerated pattern matching
+- Intercepts every shell command the agent attempts to run
+- Returns allow/block verdicts in under 1ms
+- Works with Claude Code, OpenCode, and any agent that exposes a pre-execution hook
+
+The architecture is simple: the agent calls a bash tool, the hook pipes the command to DCG as JSON, DCG pattern-matches against known destructive commands, and blocks execution before damage occurs. The agent receives an error explaining why, and can adjust its approach.
 
 ## Real Example: AI Dark Factory
 
-We run 12+ agents overnight with V-model discipline:
-- Each agent has assigned research before design
-- Implementations are verified before validation
-- The judge system reviews all overnight work
-- Morning standup: reviewed output, not debugging
+We run 12+ AI agents overnight on a single machine, coordinated by a Rust orchestrator. Each agent follows the V-model:
 
-This is what "disciplined engineering" looks like in practice—not process overhead, but automated quality gates that catch problems before they compound.
+- **Safety agents** run continuously with automatic restart and cooldown. They handle monitoring, log analysis, and drift detection. If one crashes, the orchestrator waits 15 minutes before restarting (up to 3 times) to prevent crash loops.
+- **Core agents** are scheduled via cron. They pick the highest-priority unblocked issue from the Gitea board (ranked by PageRank across the dependency graph), claim it, branch, implement with tests, and open a pull request.
+- **Growth agents** run on demand for research, code review, and content generation.
+
+Every agent's output passes through the judge system before merge. The morning routine is reviewing verdicts, not debugging overnight chaos. When an agent produces a NO-GO verdict, the PR is flagged with the specific issues: missing test coverage, undocumented API changes, or security concerns.
+
+This is disciplined engineering at scale: not process overhead, but automated quality gates that catch problems before they compound.
 
 ## Conclusion
 
-The gap between code intelligence research and AI agent harnesses is real. But it's not a technology gap—it's a discipline gap. The V-model and 32+ executable skills we built are available today:
+The gap between what AI agents can do and what they should do is real. It is not a technology gap: it is a discipline gap. The V-model and 32+ executable skills we built are available today:
 
 ```bash
 npx skills add terraphim/terraphim-skills
@@ -163,7 +150,7 @@ Add discipline back. Your future self will thank you.
 
 ---
 
-*Deeper dive: The V-model and quality gates we use are detailed in Chapters 3-4 of *Context Engineering with Knowledge Graphs*. Coming soon.*
+*Deeper dive: The V-model and quality gates we use are detailed in Chapters 3-4 of "Context Engineering with Knowledge Graphs". Coming soon.*
 
 **Related posts:**
 - [Teaching AI Coding Agents with Knowledge Graph Hooks](/posts/teaching-ai-agents-with-knowledge-graphs/)
