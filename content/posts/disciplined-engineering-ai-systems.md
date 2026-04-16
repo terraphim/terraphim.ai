@@ -112,7 +112,7 @@ We use two layers of guard rails:
 - Validates commit message format
 - Zero configuration: install the skill, protection is immediate
 
-**Layer 2: Destructive Command Guard (DCG)** integrated via tool hooks:
+**Layer 2: [Destructive Command Guard (DCG)](https://github.com/Dicklesworthstone/destructive_command_guard)** by Jeff Emanuel, integrated via tool hooks:
 - A Rust binary using SIMD-accelerated pattern matching
 - Intercepts every shell command the agent attempts to run
 - Returns allow/block verdicts in under 1ms
