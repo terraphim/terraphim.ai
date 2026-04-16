@@ -208,8 +208,9 @@ modes driven by `--learn-hook-type`:
 - `post-tool-use` — the default, captures failed Bash commands as
   learnings. This is already wired into the OpenCode plugin's
   `tool.execute.after` callback.
-- `pre-tool-use` — warns if the command matches a past failure pattern.
-  Does not block.
+- `pre-tool-use` — checks if the command matches a past failure pattern and
+  stashes the hint to `~/.local/share/terraphim/session-hints.txt` for LLM
+  consumption. Does not block and does not print to the user terminal.
 - `user-prompt-submit` — scans the user's prompt for patterns like "use X
   instead of Y" or "prefer X over Y" and records a `ToolPreference`
   correction under
