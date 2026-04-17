@@ -12,6 +12,8 @@ comments = true
 
 AI coding agents make the same mistakes over and over. We built a learning system that captures failures, stores corrections, and feeds them back into future sessions — turning every error into institutional memory.
 
+> Builds on [Why Graph Embeddings Matter](/posts/why-graph-embeddings-matter/) — the deterministic engine that makes "remember this correction forever" cheap. Apply the pattern in your own project via the [Command Rewriting How-to](/how-tos/command-rewriting-howto/).
+
 <!-- more -->
 
 ## The Problem: Groundhog Day for AI Agents

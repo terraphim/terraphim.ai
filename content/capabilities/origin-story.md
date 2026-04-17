@@ -1,18 +1,30 @@
 +++
 title = "Origin Story"
-description = "From The Pattern to Terraphim AI — a decade of rethinking search from the ground up"
-date = 2026-04-05
+description = "From science fiction to The Pattern to Terraphim AI — a decade of rethinking search from the ground up"
+date = 2026-04-17
 weight = 7
 
 [taxonomies]
 categories = ["Capabilities"]
-tags = ["history", "the-pattern", "redis", "kaggle", "oxford", "incose"]
+tags = ["history", "the-pattern", "redis", "kaggle", "oxford", "incose", "science-fiction", "relict"]
 
 [extra]
 toc = true
 waypoint = "WP-007"
 icon = "fa-solid fa-rocket"
 +++
+
+## Inspired by Science Fiction
+
+The name *Terraphim* comes from the [Relict series][relict] of science fiction novels by [Vasiliy Golovachev](https://en.wikipedia.org/wiki/Vasili_Golovachov). In Golovachev's universe a Terraphim is an artificial intelligence that lives inside a spacesuit — part of an exocortex — or inside your house or vehicle, designed to help you with your tasks. You carry it with you.
+
+Similar companions are now familiar across modern science fiction. Destiny 2 has [Ghost][ghost], a small floating AI bound to its Guardian. Star Wars Jedi: Survivor has [BD-1][bd-1], a droid riding on Cal Kestis's back. Same pattern: a compact, mobile, personal intelligence that augments rather than replaces.
+
+That image — small, local, loyal, always with you — drives the engineering choices in the rest of this page. Terraphim runs on your hardware, codifies knowledge as compact graphs rather than heavyweight models, and never ships your data across a boundary. The sci-fi premise is the brief; what follows is how we built it.
+
+[bd-1]: https://starwars.fandom.com/wiki/BD-1
+[ghost]: https://www.destinypedia.com/Ghost
+[relict]: https://www.goodreads.com/en/book/show/196710046
 
 ## From Kaggle to Nanosecond Inference
 

@@ -12,6 +12,8 @@ comments = true
 
 You know what is embarrassing? Making the same mistake for the tenth time. Last week, I typed `docker-compose up` instead of `docker compose up`. The command failed. I sighed. I corrected it. Three days later? Same thing. Same sigh. Same correction.
 
+> Builds on [Why Graph Embeddings Matter](/posts/why-graph-embeddings-matter/) — the deterministic engine that lets Terraphim store and replay corrections in microseconds. Apply the pattern in your own project via the [Command Rewriting How-to](/how-tos/command-rewriting-howto/).
+
 <!-- more -->
 
 ## The Problem Nobody Talks About

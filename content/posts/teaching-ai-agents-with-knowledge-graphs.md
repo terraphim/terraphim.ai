@@ -12,6 +12,8 @@ comments = true
 
 How we use Aho-Corasick automata and knowledge graphs to automatically enforce coding standards across AI coding agents like Claude Code, Cursor, and Aider.
 
+> **New:** see [Why Graph Embeddings Matter](/posts/why-graph-embeddings-matter/) for the underlying engine that makes these hooks possible — sub-millisecond, deterministic, fully explainable.
+
 <!-- more -->
 
 ## Anthropic Bought Bun. Claude Still Outputs `npm install`.
@@ -245,6 +247,10 @@ Knowledge graph hooks provide a powerful, declarative way to enforce coding stan
 - Keep your knowledge graph version-controlled and human-readable
 
 The Aho-Corasick automata ensure efficient matching regardless of pattern count, making this approach scale to large knowledge graphs.
+
+## Next Steps
+
+To wire knowledge-graph hooks into your own project, the [Command Rewriting How-to](/how-tos/command-rewriting-howto/) walks through the configuration end to end. To understand *why* the matching is sub-millisecond and deterministic — and what that lets you promise to your users — read [Why Graph Embeddings Matter](/posts/why-graph-embeddings-matter/).
 
 ## Resources
 
