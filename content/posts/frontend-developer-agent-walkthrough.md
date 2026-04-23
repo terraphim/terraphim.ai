@@ -30,7 +30,7 @@ The front-end developer agent combines three capabilities:
 
 3. **Global Code Search (GrepApp)**: Searches millions of public GitHub repositories for TypeScript code patterns via the grep.app API, filtered to TypeScript for modern front-end relevance.
 
-Results from both haystacks are merged and ranked using BM25Plus, giving you a single sorted list that blends your local context with community examples.
+Results from both haystacks are merged and ranked using TerraphimGraph, a hybrid scoring algorithm that combines knowledge graph concept matching with TF-IDF rescoring. In testing, a query for "svelte component" returned 13 results with TerraphimGraph versus 1 result with the simpler BM25Plus scorer. The 18 concept files with 358 synonyms actively influence ranking, not just display.
 
 ## The Knowledge Graph
 
@@ -49,6 +49,19 @@ $props, bind, each block, await block, load function, +page.svelte
 When you search for `$derived` or `+page.svelte`, the Aho-Corasick automaton matches it to the "Svelte Patterns" concept in O(n+m) time. The matching is case-insensitive and leftmost-longest, so "CSS grid" matches as one term rather than two separate words.
 
 If no exact match exists, a TF-IDF fallback kicks in using `trigger::` directives for semantic similarity.
+
+## Hybrid Scoring: Why TerraphimGraph
+
+Terraphim offers multiple relevance functions. For a knowledge-graph-backed agent, `terraphim-graph` is strictly superior to the simpler `bm25plus`:
+
+| Aspect | BM25Plus | TerraphimGraph |
+|--------|----------|----------------|
+| KG concepts affect ranking | No (display only) | Yes (graph + TF-IDF hybrid) |
+| Term co-occurrence | Not used | Boosts related documents |
+| KG link insertion | Disabled | Enabled in results |
+| TF-IDF rescoring | Not applied | 30% weight boost |
+
+TerraphimGraph uses a two-pass scoring system. Pass 1 builds a co-occurrence graph from Aho-Corasick matches and ranks documents by `total_rank = node_rank + edge_rank + document_rank`. Pass 2 applies TF-IDF rescoring at 30% weight. Documents containing co-occurring concepts (e.g., "svelte" + "component" + "state management") score higher than those matching only one term.
 
 ## Svelte and SvelteKit Focus
 
@@ -94,10 +107,13 @@ Query: "flexbox responsive layout"
     v
 [Ripgrep]       [GrepApp (TypeScript)]
     |                |
-    +--- merged + ranked (BM25Plus) ---+
-                  |
-                  v
-          Ranked results
+    v                v
+[TerraphimGraph hybrid scoring:
+  Pass 1: KG graph ranking (node + edge co-occurrence)
+  Pass 2: TF-IDF rescoring (30% weight boost)]
+              |
+              v
+      Ranked results
 ```
 
 ## Read the Full Walkthrough
