@@ -116,6 +116,42 @@ Query: "flexbox responsive layout"
       Ranked results
 ```
 
+## MCP Integration with AI Coding Agents
+
+The `terraphim_mcp_server` binary exposes all knowledge graph tools via the Model Context Protocol, so any MCP-compatible AI coding agent can use your front-end developer KG during coding sessions.
+
+**opencode** (`~/.config/opencode/opencode.json`):
+
+```json
+{
+  "mcp": {
+    "terraphim": {
+      "type": "local",
+      "command": ["~/.cargo/bin/terraphim_mcp_server"],
+      "environment": { "TERRAPHIM_DATA_PATH": "~/.terraphim" }
+    }
+  }
+}
+```
+
+**Claude Code** (`~/.claude.json`):
+
+```json
+{
+  "mcpServers": {
+    "terraphim": {
+      "type": "stdio",
+      "command": "~/.cargo/bin/terraphim_mcp_server",
+      "env": { "RUST_LOG": "error" }
+    }
+  }
+}
+```
+
+After configuration, the AI agent gains access to 18 MCP tools: `search`, `autocomplete_terms`, `replace_matches`, `terraphim_find_files`, `terraphim_grep`, and more. Queries auto-route to the Front-End Developer role when front-end terms are detected.
+
+For Cursor, Windsurf, or any HTTP-based MCP client, start the SSE server: `terraphim_mcp_server --sse --bind 127.0.0.1:8000`.
+
 ## Read the Full Walkthrough
 
 The complete step-by-step guide covers:
@@ -125,6 +161,7 @@ The complete step-by-step guide covers:
 - Creating 18 front-end concept files
 - Configuring the role with dual haystacks
 - Using search, autocomplete, replace, and validate commands
+- Integrating with opencode and Claude Code via MCP
 - Adding new concepts to the knowledge graph
 - Troubleshooting common issues
 
