@@ -52,7 +52,7 @@ By default, server runs on `http://localhost:8080`.
 
 You should see output like:
 ```
-[INFO] Terraphim Server v1.16.31 starting...
+[INFO] Terraphim Server v1.16.32 starting...
 [INFO] Server listening on http://localhost:8080
 [INFO] Knowledge graph initialized
 ```
@@ -68,13 +68,13 @@ terraphim-agent
 You'll see a welcome message and can start typing commands:
 
 ```
-Terraphim AI Agent v1.16.31
+Terraphim AI Agent v1.16.32
 Type 'help' for available commands
 
 > search rust async
 Found 12 results for 'rust async'
 
-> role engineer
+> roles select engineer
 Role set to: Engineer (optimising for technical depth)
 
 > search patterns
@@ -87,10 +87,10 @@ Here are the most useful commands to get started:
 
 ```bash
 > search <query>              # Search knowledge graph
-> role <name>                 # Set search role (engineer, architect, etc.)
-> connect <term1> <term2>    # Link two terms in knowledge graph
-> import <file>                # Import markdown file into knowledge graph
-> export <format>              # Export knowledge graph (json, csv)
+> roles select <name>         # Set search role (engineer, architect, etc.)
+> connect <term1> <term2>     # Link two terms in knowledge graph
+> import <file>               # Import markdown file into knowledge graph
+> export <format>             # Export knowledge graph (json, csv)
 > status                      # Show server status and statistics
 > help                        # Show all available commands
 ```
@@ -133,7 +133,7 @@ source add filesystem ~/code/ --recursive
 ### Role-Based Filtering
 
 ```bash
-> role architect
+> roles select architect
 > search system design patterns
 ```
 
@@ -175,7 +175,7 @@ terraphim-agent
 > search error handling patterns
 
 # 4. Set role for better results
-> role senior-engineer
+> roles select senior-engineer
 
 # 5. Search again with role context
 > search error handling patterns

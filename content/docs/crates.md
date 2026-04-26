@@ -1,6 +1,6 @@
 +++
 title = "Crate Reference"
-description = "Complete reference for all 52 crates in the Terraphim AI workspace"
+description = "Complete reference for all 54 crates in the Terraphim AI workspace"
 date = 2026-04-12
 
 [extra]
@@ -9,7 +9,7 @@ toc = true
 
 # Crate Reference
 
-Terraphim AI is a modular Rust workspace comprising 52 crates. Each crate has a single responsibility and can be used independently or composed into larger systems. All crates are available in the [terraphim-ai](https://github.com/terraphim/terraphim-ai) monorepo.
+Terraphim AI is a modular Rust workspace comprising 54 crates. Each crate has a single responsibility and can be used independently or composed into larger systems. All crates are available in the [terraphim-ai](https://github.com/terraphim/terraphim-ai) monorepo.
 
 ## Core Engine
 
@@ -72,6 +72,8 @@ Advanced crates for KG-powered reasoning, task planning, and goal management.
 | **terraphim_rlm** | Recursive Language Model (RLM) orchestration for structured reasoning chains. |
 | **terraphim_hooks** | Unified hooks infrastructure for knowledge graph-based text replacement and validation. |
 | **terraphim_file_search** | Knowledge-graph scored file search integration. |
+| **terraphim_codebase_eval** | Codebase evaluation system with manifest types and metrics aggregation. |
+| **terraphim_negative_contribution** | Negative contribution analysis for identifying anti-patterns and risks. |
 
 ## Haystack Integrations
 
@@ -109,6 +111,7 @@ Deployment, CI/CD, and infrastructure management.
 | **terraphim-firecracker** | Sub-2-second VM boot optimisation system for sandboxed agent execution. |
 | **terraphim_mcp_server** | Model Context Protocol (MCP) server exposing Terraphim tools to AI assistants. |
 | **terraphim_onepassword_cli** | 1Password CLI integration for secret management. |
+| **terraphim_atomic_client** | Atomic Data Server client for managing stores and agents. |
 
 ## Chat and Assistants
 
