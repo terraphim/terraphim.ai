@@ -63,6 +63,6 @@ The mechanism — automata, ranking formula, ASCII walk-through — is on the [G
 
 The current default in the AI tooling ecosystem is to reach for a vector database the moment anyone mentions "semantic search." It is the path of least resistance because the tools are well-marketed and the API surface is familiar. But for a large class of problems — explainability-first systems, on-device agents, anywhere you need a hard latency budget or a hard explainability guarantee — graph embeddings are the better-engineered answer. Not the only answer; the better one for that class.
 
-The promotion campaign over the next few weeks goes deeper: a [sub-millisecond context article](https://terraphim.ai/posts/sub-millisecond-context-knowledge-graphs/) walks through the FST/Aho-Corasick implementation, and the *Context Engineering with Knowledge Graphs* book (launching in May) puts it in the wider context of moving from RAG to context graphs.
+The promotion campaign over the next few weeks goes deeper: a [sub-millisecond context article](/posts/sub-millisecond-context-knowledge-graphs/) walks through the FST/Aho-Corasick implementation, and the *Context Engineering with Knowledge Graphs* book (launching in May) puts it in the wider context of moving from RAG to context graphs.
 
 Until then: read the reference, try the how-to, and let us know in [Discourse](https://terraphim.discourse.group) what you build with it.
