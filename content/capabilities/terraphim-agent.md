@@ -33,9 +33,6 @@ cargo install terraphim-agent
 - **Learning compile**: `learn compile` converts captured `ToolPreference` corrections into a
   thesaurus JSON that the `replace` command loads directly, closing the feedback loop from
   failure to live rewrite.
-- **Evaluation framework**: `evaluate` measures automata classification accuracy with
-  precision, recall, and F1 against a ground-truth JSON file, and flags terms that
-  consistently produce false positives.
 - **Listener dispatch**: the listener executes `terraphim-agent` subcommands triggered by
   `@adf:<agent-name>` Gitea mentions, with three security layers (allowlist, metachar
   rejection, CommandGuard), and posts results back as markdown comments.

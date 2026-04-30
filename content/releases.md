@@ -10,9 +10,9 @@ paginate_by = 10
 
 Stay up-to-date with the latest Terraphim AI releases.
 
-## Latest Release: v1.16.31
+## Latest Release: v1.17.0
 
-**Released:** 7 April 2026
+**Released:** 3 April 2026
 
 [Download from GitHub](https://github.com/terraphim/terraphim-ai/releases/latest) | [GitHub Releases](https://github.com/terraphim/terraphim-ai/releases)
 
@@ -24,7 +24,7 @@ curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts
 
 ### Available Binaries
 
-v1.16.31 ships pre-built binaries for 7 platforms:
+v1.17.0 ships pre-built binaries for 7 platforms:
 
 - **macOS**: Apple Silicon (ARM64), Intel (x64), Universal
 - **Linux**: x86_64 (GNU), x86_64 (MUSL), ARM64 (MUSL), ARMv7 (MUSL)
@@ -32,9 +32,8 @@ v1.16.31 ships pre-built binaries for 7 platforms:
 - **Debian packages**: amd64
 
 Three binaries in each release:
-- `terraphim-agent` — Interactive TUI/REPL with knowledge graph search
-- `terraphim-cli` — CLI for automation, scripting, and JSON output
-- `terraphim_server` — HTTP REST API server
+- `terraphim-agent` -- Interactive REPL with knowledge graph search, session history, and learning capture
+- `terraphim_server` -- HTTP REST API server
 
 ### Installation
 
@@ -48,8 +47,7 @@ curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts
 brew tap terraphim/terraphim && brew install terraphim-ai
 
 # Cargo
-cargo install terraphim-agent
-cargo install terraphim-cli
+cargo install terraphim_agent --features repl-full
 ```
 
 [Installation Guide](/docs/installation)
@@ -64,7 +62,7 @@ View complete release history on [GitHub Releases](https://github.com/terraphim/
 
 Stable releases are recommended for production use. They have been thoroughly tested and are the most reliable version.
 
-**Latest Stable:** v1.16.31
+**Latest Stable:** v1.17.0
 
 ### Development
 
@@ -81,8 +79,7 @@ Check the [main branch](https://github.com/terraphim/terraphim-ai/tree/main) for
 curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts/install.sh | bash
 
 # Cargo
-cargo install terraphim-agent --force
-cargo install terraphim-cli --force
+cargo install terraphim_agent --features repl-full --force
 ```
 
 ### Configuration Compatibility
@@ -95,7 +92,6 @@ After installation or upgrade, verify your version:
 
 ```bash
 terraphim-agent --version
-terraphim-cli --version
 ```
 
 ## Beta Testing

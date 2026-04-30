@@ -24,18 +24,15 @@ curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts
 brew tap terraphim/terraphim && brew install terraphim-ai
 ```
 
-This installs `terraphim-agent`, `terraphim-cli`, and `terraphim_server`.
+This installs `terraphim-agent` and `terraphim_server`.
 
 ### Cargo (Rust)
 
 Install using Cargo, Rust's package manager.
 
 ```bash
-# Install agent with interactive TUI
-cargo install terraphim-agent
-
-# Install CLI for automation
-cargo install terraphim-cli
+# Install agent with interactive REPL and full features
+cargo install terraphim_agent --features repl-full
 ```
 
 ### Debian/Ubuntu
@@ -43,8 +40,8 @@ cargo install terraphim-cli
 Download the `.deb` package from the latest release:
 
 ```bash
-curl -LO https://github.com/terraphim/terraphim-ai/releases/latest/download/terraphim-agent_1.16.32-1_amd64.deb
-sudo dpkg -i terraphim-agent_1.16.32-1_amd64.deb
+curl -LO https://github.com/terraphim/terraphim-ai/releases/latest/download/terraphim-agent_1.17.0-1_amd64.deb
+sudo dpkg -i terraphim-agent_1.17.0-1_amd64.deb
 ```
 
 ## Platform-Specific Guides
@@ -57,18 +54,18 @@ Download the latest release from GitHub:
 
 ```bash
 # x86_64 (GNU)
-curl -LO https://github.com/terraphim/terraphim-ai/releases/latest/download/terraphim-agent-1.16.32-x86_64-unknown-linux-gnu.tar.gz
-tar -xzf terraphim-agent-1.16.32-x86_64-unknown-linux-gnu.tar.gz
-sudo mv terraphim-agent terraphim-cli terraphim_server /usr/local/bin/
+curl -LO https://github.com/terraphim/terraphim-ai/releases/latest/download/terraphim-agent-1.17.0-x86_64-unknown-linux-gnu.tar.gz
+tar -xzf terraphim-agent-1.17.0-x86_64-unknown-linux-gnu.tar.gz
+sudo mv terraphim-agent /usr/local/bin/
 
 # x86_64 (MUSL / static)
-curl -LO https://github.com/terraphim/terraphim-ai/releases/latest/download/terraphim-agent-1.16.32-x86_64-unknown-linux-musl.tar.gz
+curl -LO https://github.com/terraphim/terraphim-ai/releases/latest/download/terraphim-agent-1.17.0-x86_64-unknown-linux-musl.tar.gz
 
 # ARM64 (MUSL)
-curl -LO https://github.com/terraphim/terraphim-ai/releases/latest/download/terraphim-agent-1.16.32-aarch64-unknown-linux-musl.tar.gz
+curl -LO https://github.com/terraphim/terraphim-ai/releases/latest/download/terraphim-agent-1.17.0-aarch64-unknown-linux-musl.tar.gz
 
 # ARMv7 (MUSL)
-curl -LO https://github.com/terraphim/terraphim-ai/releases/latest/download/terraphim-agent-1.16.32-armv7-unknown-linux-musleabihf.tar.gz
+curl -LO https://github.com/terraphim/terraphim-ai/releases/latest/download/terraphim-agent-1.17.0-armv7-unknown-linux-musleabihf.tar.gz
 ```
 
 #### Build from Source
@@ -82,9 +79,7 @@ cd terraphim-ai
 cargo build --release
 
 # Install
-sudo cp target/release/terraphim_server /usr/local/bin/
 sudo cp target/release/terraphim-agent /usr/local/bin/
-sudo cp target/release/terraphim-cli /usr/local/bin/
 ```
 
 ### macOS
@@ -93,15 +88,15 @@ sudo cp target/release/terraphim-cli /usr/local/bin/
 
 ```bash
 # Apple Silicon (ARM64)
-curl -LO https://github.com/terraphim/terraphim-ai/releases/latest/download/terraphim-agent-1.16.32-aarch64-apple-darwin.tar.gz
-tar -xzf terraphim-agent-1.16.32-aarch64-apple-darwin.tar.gz
-sudo mv terraphim-agent terraphim-cli terraphim_server /usr/local/bin/
+curl -LO https://github.com/terraphim/terraphim-ai/releases/latest/download/terraphim-agent-1.17.0-aarch64-apple-darwin.tar.gz
+tar -xzf terraphim-agent-1.17.0-aarch64-apple-darwin.tar.gz
+sudo mv terraphim-agent /usr/local/bin/
 
 # Intel (x86_64)
-curl -LO https://github.com/terraphim/terraphim-ai/releases/latest/download/terraphim-agent-1.16.32-x86_64-apple-darwin.tar.gz
+curl -LO https://github.com/terraphim/terraphim-ai/releases/latest/download/terraphim-agent-1.17.0-x86_64-apple-darwin.tar.gz
 
 # Universal (Fat binary)
-curl -LO https://github.com/terraphim/terraphim-ai/releases/latest/download/terraphim-agent-1.16.32-universal-apple-darwin.tar.gz
+curl -LO https://github.com/terraphim/terraphim-ai/releases/latest/download/terraphim-agent-1.17.0-universal-apple-darwin.tar.gz
 ```
 
 #### Build from Source
@@ -112,9 +107,7 @@ Requires Xcode command line tools.
 git clone https://github.com/terraphim/terraphim-ai.git
 cd terraphim-ai
 cargo build --release
-sudo cp target/release/terraphim_server /usr/local/bin/
 sudo cp target/release/terraphim-agent /usr/local/bin/
-sudo cp target/release/terraphim-cli /usr/local/bin/
 ```
 
 ### Windows
@@ -123,7 +116,7 @@ sudo cp target/release/terraphim-cli /usr/local/bin/
 
 ```powershell
 # Download and extract
-curl -LO https://github.com/terraphim/terraphim-ai/releases/latest/download/terraphim-agent-1.16.32-x86_64-pc-windows-msvc.zip
+curl -LO https://github.com/terraphim/terraphim-ai/releases/latest/download/terraphim-agent-1.17.0-x86_64-pc-windows-msvc.zip
 ```
 
 Extract the zip and add the directory to your PATH.
@@ -184,16 +177,10 @@ After installation, verify that Terraphim is working:
 ```bash
 # Check version
 terraphim-agent --version
-# terraphim-agent 1.16.32
+# terraphim-agent 1.17.0
 
-terraphim-cli --version
-# terraphim-cli 1.16.32
-
-# Start the server
-terraphim_server
-
-# In another terminal, use the agent
-terraphim-agent
+# Start the REPL
+terraphim-agent repl
 ```
 
 ## Troubleshooting
@@ -203,9 +190,7 @@ terraphim-agent
 If you get a permission denied error, make the binary executable:
 
 ```bash
-chmod +x /usr/local/bin/terraphim_server
 chmod +x /usr/local/bin/terraphim-agent
-chmod +x /usr/local/bin/terraphim-cli
 ```
 
 ### Command Not Found

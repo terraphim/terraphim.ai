@@ -2,6 +2,7 @@
 title = "Quickstart"
 description = "Get started with Terraphim AI in 5 minutes"
 date = 2026-01-27
+updated = 2026-05-01
 
 [extra]
 toc = true
@@ -9,16 +10,15 @@ toc = true
 
 # Quickstart Guide
 
-Get up and running with Terraphim AI in just 5 minutes.
+Get up and running with Terraphim AI in just 5 minutes. The agent works offline by default -- no server required.
 
-## Step 1: Install Terraphim
+## Step 1: Install
 
 Choose your preferred installation method:
 
 ### Option A: Universal Installer (Recommended)
 
 ```bash
-# Single command installation with platform detection
 curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts/install.sh | bash
 ```
 
@@ -31,166 +31,128 @@ brew tap terraphim/terraphim && brew install terraphim-ai
 ### Option C: Cargo
 
 ```bash
-# Install agent with interactive TUI
-cargo install terraphim-agent
-
-# Install CLI for automation
-cargo install terraphim-cli
+cargo install terraphim_agent --features repl-full
 ```
 
-[Need more options?](/docs/installation)
+[More installation options](/docs/installation)
 
-## Step 2: Start Server
-
-Terraphim server provides HTTP API and knowledge graph backend.
+## Step 2: Launch the REPL
 
 ```bash
-terraphim_server
+terraphim-agent repl
 ```
 
-By default, server runs on `http://localhost:8080`.
-
-You should see output like:
-```
-[INFO] Terraphim Server v1.16.32 starting...
-[INFO] Server listening on http://localhost:8080
-[INFO] Knowledge graph initialized
-```
-
-## Step 3: Use the Agent
-
-In a new terminal, start the interactive agent:
-
-```bash
-terraphim-agent
-```
-
-You'll see a welcome message and can start typing commands:
+You will see:
 
 ```
-Terraphim AI Agent v1.16.32
-Type 'help' for available commands
+============================================================
+Terraphim TUI REPL
+============================================================
+Type /help for help, /quit to exit
+Mode: Offline Mode | Current Role: AI Engineer
 
-> search rust async
-Found 12 results for 'rust async'
-
-> roles select engineer
-Role set to: Engineer (optimising for technical depth)
-
-> search patterns
-Found 8 results for 'patterns'
+AI Engineer>
 ```
 
-## Common Agent Commands
+The REPL runs offline by default. No server or network connection required.
+
+## Step 3: First Search
+
+Search your knowledge graph:
+
+```
+AI Engineer> /search knowledge graph
+```
+
+Results are displayed in a ranked table with title and file path.
+
+## Step 4: Explore REPL Commands
 
 Here are the most useful commands to get started:
 
-```bash
-> search <query>              # Search knowledge graph
-> roles select <name>         # Set search role (engineer, architect, etc.)
-> connect <term1> <term2>     # Link two terms in knowledge graph
-> import <file>               # Import markdown file into knowledge graph
-> export <format>             # Export knowledge graph (json, csv)
-> status                      # Show server status and statistics
-> help                        # Show all available commands
-```
+| Command | Description |
+|---------|-------------|
+| `/search "query"` | Search knowledge graph with role context |
+| `/autocomplete "query"` | Autocomplete terms from the thesaurus |
+| `/extract "text"` | Extract matching paragraphs |
+| `/find "text"` | Find exact matches in indexed documents |
+| `/replace "text"` | Replace matches using thesaurus mappings |
+| `/thesaurus` | Show loaded thesaurus entries |
+| `/graph` | Visualise knowledge graph (ASCII) |
+| `/role list` | List available roles |
+| `/role select <name>` | Switch to a different role |
+| `/config show` | Display current configuration |
+| `/help` | Show all available commands |
+| `/quit` | Exit the REPL |
 
-## Step 4: Import Your Content
+## CLI Subcommands
 
-Import your markdown files or documentation:
-
-```bash
-# Import a single file
-import ~/notes/project-a.md
-
-# Import entire directory
-import ~/Documents/knowledge-base/
-```
-
-## Step 5: Configure Data Sources
-
-Configure Terraphim to search different sources:
+For scripting and automation, use subcommands directly:
 
 ```bash
-# Search GitHub repositories
-source add github https://github.com/terraphim/terraphim-ai
+# Search from the command line
+terraphim-agent search "knowledge graph" --limit 5
 
-# Search StackOverflow
-source add stackoverflow rust tokio
+# List roles
+terraphim-agent roles list
 
-# Search local filesystem
-source add filesystem ~/code/ --recursive
+# Show configuration
+terraphim-agent config show
+
+# Visualise knowledge graph (ASCII)
+terraphim-agent graph --top-k 10
 ```
 
-## Step 6: Explore Features
+## Session Search
 
-### Semantic Search
+Import and search your AI coding assistant history (Claude Code, Cursor, Aider):
 
 ```bash
-> search how to implement async channels in rust
+# Check available sources
+terraphim-agent sessions sources
+
+# Import sessions
+terraphim-agent sessions import
+
+# Search across sessions
+terraphim-agent sessions search "rust async error"
 ```
 
-### Role-Based Filtering
+## Learning Capture
+
+Terraphim captures failed commands and their corrections for future reference:
 
 ```bash
-> roles select architect
-> search system design patterns
+# List captured learnings
+terraphim-agent learn list
+
+# Query by pattern
+terraphim-agent learn query "npm"
+
+# Compile corrections into a thesaurus
+terraphim-agent learn compile
 ```
 
-### Knowledge Graph Exploration
+See the blog post [Teaching AI Agents to Learn from Their Mistakes](/posts/teaching-ai-agents-to-learn-from-mistakes) for a worked example.
 
-```bash
-> connect tokio async
-> show tokio
-```
+## Onboarding Wizard
 
-## CLI Automation
+On first run, the interactive wizard helps you configure:
 
-For automation and scripting, use the CLI instead of REPL:
+1. **Role selection** -- choose a role (AI Engineer, Log Analyst, etc.)
+2. **Haystack path** -- where your documents live
+3. **Knowledge graph** -- remote automata or local markdown files
+4. **LLM provider** -- Ollama (local) or OpenRouter (cloud)
 
-```bash
-# Search and get JSON output
-terraphim-cli search "async patterns" --format json
-
-# Import files programmatically
-terraphim-cli import ~/notes/*.md --recursive
-
-# Set role and search
-terraphim-cli search "rust error handling" --role engineer
-```
-
-## Example Workflow
-
-Here's a complete example workflow:
-
-```bash
-# 1. Start the server (in one terminal)
-terraphim_server &
-
-# 2. Import your codebase (in another terminal)
-terraphim-agent
-> import ~/my-project/src/
-
-# 3. Search for information
-> search error handling patterns
-
-# 4. Set role for better results
-> roles select senior-engineer
-
-# 5. Search again with role context
-> search error handling patterns
-
-# 6. Export results
-> export json > search-results.json
-```
+You can re-run the wizard at any time with `terraphim-agent onboard`.
 
 ## Next Steps
 
-- [Installation Guide](/docs/installation) — More installation options and troubleshooting
-- [Configuration Guide](/docs/terraphim_config) — Customise Terraphim to your needs
-- [Contribution Guide](/docs/contribution) — Contribute to Terraphim development
-- [Discord Community](https://discord.gg/VPJXB6BGuY) — Join our Discord for support
-- [Discourse Forum](https://terraphim.discourse.group) — Community discussions and Q&A
+- [Installation Guide](/docs/installation) -- More installation options and troubleshooting
+- [Configuration Guide](/docs/terraphim_config) -- Customise Terraphim to your needs
+- [Contribution Guide](/docs/contribution) -- Contribute to Terraphim development
+- [Discord Community](https://discord.gg/VPJXB6BGuY) -- Join our Discord for support
+- [Discourse Forum](https://terraphim.discourse.group) -- Community discussions and Q&A
 
 ## Getting Help
 
@@ -200,4 +162,3 @@ If you run into issues:
 2. [Create a new issue](https://github.com/terraphim/terraphim-ai/issues/new)
 3. Join [Discord community](https://discord.gg/VPJXB6BGuY) for support
 4. Visit [Discourse forum](https://terraphim.discourse.group) for discussions
-5. Contact us at [alex@terraphim.ai](mailto:alex@terraphim.ai)
