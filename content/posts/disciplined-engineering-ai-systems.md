@@ -92,13 +92,9 @@ Validate against the original requirements:
 
 ## terraphim-skills: 32+ Executable Disciplines
 
-We packaged the V-model as executable skills you can add to any AI agent:
+We packaged the V-model as executable skills for any AI coding agent. As of May 2026 the repository is private (see the update at the top of this post) and the `skills.sh` installer has been retired. The framework is now deployed as part of our consulting engagements at [zestic.ai](https://zestic.ai).
 
-```bash
-npx skills add terraphim/terraphim-skills
-```
-
-This installs skills that enforce:
+The skills enforce:
 - **disciplined-research**: Understand before building
 - **disciplined-design**: Plan before coding
 - **disciplined-implementation**: Build with tests
@@ -128,7 +124,7 @@ We use two layers of guard rails:
 - Validates commit message format
 - Zero configuration: install the skill, protection is immediate
 
-**Layer 2: [Destructive Command Guard (DCG)](https://github.com/Dicklesworthstone/destructive_command_guard)** by Jeff Emanuel, integrated via tool hooks:
+**Layer 2: [Destructive Command Guard (DCG)](https://github.com/Dicklesworthstone/destructive_command_guard) by Jeff Emanuel, integrated via tool hooks:
 - A Rust binary using SIMD-accelerated pattern matching
 - Intercepts every shell command the agent attempts to run
 - Returns allow/block verdicts in under 1ms
@@ -150,13 +146,9 @@ This is disciplined engineering at scale: not process overhead, but automated qu
 
 ## Conclusion
 
-The gap between what AI agents can do and what they should do is real. It is not a technology gap: it is a discipline gap. The V-model and 32+ executable skills we built are available today:
+The gap between what AI agents can do and what they should do is real. It is not a technology gap: it is a discipline gap. The V-model and the 32+ executable skills we built are now part of our consulting work rather than an open repository.
 
-```bash
-npx skills add terraphim/terraphim-skills
-```
-
-Add discipline back. Your future self will thank you.
+Add discipline back. If you want it inside your team, get in touch at [zestic.ai](https://zestic.ai).
 
 ---
 
