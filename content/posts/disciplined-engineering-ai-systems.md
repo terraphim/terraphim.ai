@@ -15,6 +15,22 @@ AI coding agents are making us worse engineers, unless we add discipline back. H
 
 <!-- more -->
 
+## Update, May 2026: this repository is now private
+
+Up until last week, terraphim-skills was open source. You could install the whole set with one command via `skills.sh`. Then I ran a comparison: our skills against Andrej Karpathy's, against derivatives of Karpathy's, and against a no-skills control. For the first time in my life I clicked "Make private" on a public repository.
+
+Even on the first batch of tests, our approach beat both Karpathy's and the control:
+
+- 85% traceability of code back to the original requirements
+- Tests written by default, not bolted on after the fact
+- No ralph loop, no autoresearch swarm, no token-burning
+
+We control the flow and we control the cost, because we are not an AI lab and we are not a VC-funded startup burning tokens to chase a leaderboard. We are a consultancy getting things done with AI and building AI.
+
+The results speak for themselves. A few weeks ago I read a story about an autoresearch agent that achieved a speedup on the Liquid (Rails) parser. I had a slow markdown parser inside this very project. I ran our disciplined loop on it. Twice. Result: a 400x to 900x speedup in parsing.
+
+Here is how.
+
 ## The Vibe Coding Problem
 
 Every AI-generated pull request we review has the same pattern:
@@ -33,7 +49,7 @@ The missing piece is not better models. It is engineering discipline. AI agents 
 
 We built a V-model for AI agents. The left side asks "what should we build?" The right side asks "did we build it correctly?"
 
-![The V-Model for AI Agents: Research, Design, Specification, Implementation, Verification, Validation with quality gates at each transition](/images/v-model-overview.png)
+![The V-Model for AI Agents: Research, Design, Specification, Implementation, Verification, Validation with a Quality Gate, mirrored symmetrically across the V-axis](/images/v-model-overview.png)
 
 ### Phase 1: Research
 
