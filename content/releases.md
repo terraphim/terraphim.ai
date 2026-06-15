@@ -10,11 +10,11 @@ paginate_by = 10
 
 Stay up-to-date with the latest Terraphim AI releases.
 
-## Latest Release: v1.17.0
+## Latest Release: v1.20.5
 
-**Released:** 3 April 2026
+**Released:** 14 June 2026
 
-[Download from GitHub](https://github.com/terraphim/terraphim-ai/releases/latest) | [GitHub Releases](https://github.com/terraphim/terraphim-ai/releases)
+[Download from GitHub](https://github.com/terraphim/terraphim-ai/releases/tag/v1.20.5) | [GitHub Releases](https://github.com/terraphim/terraphim-ai/releases)
 
 ### Quick Install
 
@@ -24,16 +24,34 @@ curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts
 
 ### Available Binaries
 
-v1.17.0 ships pre-built binaries for 7 platforms:
+v1.20.5 ships **53 release assets** across server and client tooling:
+
+- **Server** (`terraphim_server`): macOS universal (signed & notarized), Linux GNU/MUSL, Windows, Debian `.deb`
+- **Clients** (`terraphim-agent`, `terraphim-cli`, `terraphim-grep`): macOS, Linux GNU/MUSL, Windows
+- **Docker**: multi-arch images for Ubuntu 20.04 and 22.04 (`ghcr.io/terraphim/terraphim-server`)
+- **Checksums**: `checksums.txt` for integrity verification
+
+Platforms:
 
 - **macOS**: Apple Silicon (ARM64), Intel (x64), Universal
-- **Linux**: x86_64 (GNU), x86_64 (MUSL), ARM64 (MUSL), ARMv7 (MUSL)
+- **Linux**: x86_64 (GNU), x86_64 (MUSL), ARM64 (MUSL)
 - **Windows**: x64
-- **Debian packages**: amd64
+- **Debian packages**: `terraphim-server` amd64
 
-Three binaries in each release:
-- `terraphim-agent` -- Interactive REPL with knowledge graph search, session history, and learning capture
-- `terraphim_server` -- HTTP REST API server
+### New in This Release
+
+**Polyrepo release pipeline**
+- Client binaries built from [terraphim-clients](https://github.com/terraphim/terraphim-clients) and attached to the main release
+- Comprehensive GitHub Actions release: server matrix, Docker, Debian packages, macOS notarization, Homebrew tap update
+
+**Server & infrastructure**
+- `terraphim_service` 1.20.5 from the Terraphim cargo registry (openrouter fix)
+- MUSL cross-compilation for x86_64 and aarch64 Linux
+- Docker images published for `linux/amd64` and `linux/arm64`
+
+**Developer experience**
+- `terraphim-agent` REPL, `terraphim-cli` toolkit, and `terraphim-grep` hybrid search on all major platforms
+- Homebrew formulas updated via automated release workflow
 
 ### Installation
 
@@ -44,7 +62,7 @@ Choose your preferred method:
 curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts/install.sh | bash
 
 # Homebrew
-brew tap terraphim/terraphim && brew install terraphim-ai
+brew tap terraphim/terraphim && brew install terraphim-server terraphim-agent
 
 # Cargo
 cargo install terraphim_agent --features repl-full
@@ -62,7 +80,7 @@ View complete release history on [GitHub Releases](https://github.com/terraphim/
 
 Stable releases are recommended for production use. They have been thoroughly tested and are the most reliable version.
 
-**Latest Stable:** v1.17.0
+**Latest Stable:** v1.20.5
 
 ### Development
 

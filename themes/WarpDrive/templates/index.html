@@ -35,9 +35,9 @@
       <i class="fa-solid fa-bolt" aria-hidden="true"></i>
       Quickstart
     </a>
-    <a href="https://github.com/terraphim/terraphim-ai/releases/tag/v{{ config.extra.release_version | default(value='1.16.31') }}" class="btn btn-ghost">
+    <a href="https://github.com/terraphim/terraphim-ai/releases/tag/v{{ config.extra.release_version | default(value='1.20.5') }}" class="btn btn-ghost">
       <i class="fa-solid fa-rocket" aria-hidden="true"></i>
-      v{{ config.extra.release_version | default(value="1.16.31") }} release
+      v{{ config.extra.release_version | default(value="1.20.5") }} release
     </a>
     <a href="https://github.com/terraphim/terraphim-ai" class="btn btn-ghost">
       <i class="fa-brands fa-github" aria-hidden="true"></i>
@@ -630,7 +630,7 @@
 </section>
 
 <!-- ---- INSTALL ---- -->
-<section class="install" id="install" aria-label="Installation" data-version="{{ config.extra.release_version | default(value='1.16.31') }}">
+<section class="install" id="install" aria-label="Installation" data-version="{{ config.extra.release_version | default(value='1.20.5') }}">
   <div class="install-inner">
     <div class="section-overline">
       <i class="fa-solid fa-download" aria-hidden="true"></i>
@@ -651,7 +651,7 @@
           <span id="platformBtnText">Download</span>
         </a>
       </div>
-      {% set rv = config.extra.release_version | default(value="1.16.31") %}
+      {% set rv = config.extra.release_version | default(value="1.20.5") %}
       {% set dl = "https://github.com/terraphim/terraphim-ai/releases/download/v" ~ rv ~ "/" %}
       <details class="all-platforms">
         <summary>All platforms</summary>
@@ -663,7 +663,7 @@
           <li><a href="{{ dl }}terraphim-agent-{{ rv }}-x86_64-unknown-linux-musl.tar.gz"><i class="fa-brands fa-linux" aria-hidden="true"></i> Linux x64 (MUSL)</a></li>
           <li><a href="{{ dl }}terraphim-agent-{{ rv }}-aarch64-unknown-linux-musl.tar.gz"><i class="fa-brands fa-linux" aria-hidden="true"></i> Linux ARM64</a></li>
           <li><a href="{{ dl }}terraphim-agent-{{ rv }}-x86_64-pc-windows-msvc.zip"><i class="fa-brands fa-windows" aria-hidden="true"></i> Windows x64</a></li>
-          <li><a href="{{ dl }}terraphim-agent_{{ rv }}-1_amd64.deb"><i class="fa-brands fa-linux" aria-hidden="true"></i> Debian package (amd64)</a></li>
+          <li><a href="{{ dl }}terraphim-server_{{ rv }}-1_amd64.deb"><i class="fa-brands fa-linux" aria-hidden="true"></i> Debian package (amd64)</a></li>
         </ul>
       </details>
     </div>
@@ -734,7 +734,7 @@
                 <span class="prompt-text">curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts/install.sh | bash</span>
                 <button class="copy-btn" data-copy="curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts/install.sh | bash" aria-label="Copy command">copy</button>
               </div>
-              <p class="install-note">Requires WSL. Or <a href="https://github.com/terraphim/terraphim-ai/releases/download/v{{ config.extra.release_version | default(value='1.16.31') }}/terraphim-agent-{{ config.extra.release_version | default(value='1.16.31') }}-x86_64-pc-windows-msvc.zip">download the .zip directly</a>.</p>
+              <p class="install-note">Requires WSL. Or <a href="https://github.com/terraphim/terraphim-ai/releases/download/v{{ config.extra.release_version | default(value='1.20.5') }}/terraphim-agent-{{ config.extra.release_version | default(value='1.20.5') }}-x86_64-pc-windows-msvc.zip">download the .zip directly</a>.</p>
             </div>
           </div>
         </div>
@@ -792,9 +792,9 @@
     </div>
 
     <div class="install-cta">
-      <a href="https://github.com/terraphim/terraphim-ai/releases/tag/v{{ config.extra.release_version | default(value='1.16.31') }}" class="btn btn-primary">
+      <a href="https://github.com/terraphim/terraphim-ai/releases/tag/v{{ config.extra.release_version | default(value='1.20.5') }}" class="btn btn-primary">
         <i class="fa-solid fa-download" aria-hidden="true"></i>
-        Download v{{ config.extra.release_version | default(value="1.16.31") }}
+        Download v{{ config.extra.release_version | default(value="1.20.5") }}
       </a>
       <a href="{{ config.base_url }}/docs/installation" class="btn btn-ghost">
         <i class="fa-solid fa-book" aria-hidden="true"></i>

@@ -35,7 +35,16 @@ fi
 # Strip leading 'v' for the version number
 VERSION="${LATEST#v}"
 RELEASE_DATE=$(gh api "repos/$REPO/releases/latest" --jq '.published_at[:10]' 2>/dev/null)
-RELEASE_DATE_PRETTY=$(date -j -f "%Y-%m-%d" "$RELEASE_DATE" "+%-d %B %Y" 2>/dev/null || echo "$RELEASE_DATE")
+RELEASE_DATE_PRETTY=$(date -d "$RELEASE_DATE" "+%-d %B %Y" 2>/dev/null \
+  || date -j -f "%Y-%m-%d" "$RELEASE_DATE" "+%-d %B %Y" 2>/dev/null \
+  || echo "$RELEASE_DATE")
+
+# GNU sed (Linux) vs BSD sed (macOS)
+if sed --version >/dev/null 2>&1; then
+  sed_inplace() { sed -i "$@"; }
+else
+  sed_inplace() { sed -i '' "$@"; }
+fi
 
 # Read current version from config.toml
 CURRENT=$(grep '^release_version' "$CONFIG" | sed 's/.*= *"\(.*\)"/\1/')
@@ -48,28 +57,28 @@ fi
 echo "Updating release: v$CURRENT -> v$VERSION (released $RELEASE_DATE_PRETTY)"
 
 # Update config.toml
-sed -i '' "s/^release_version = \".*\"/release_version = \"$VERSION\"/" "$CONFIG"
+sed_inplace "s/^release_version = \".*\"/release_version = \"$VERSION\"/" "$CONFIG"
 
 # Update releases.md: version references and date
-sed -i '' "s/Latest Release: v[0-9][0-9.]*/Latest Release: v$VERSION/" "$RELEASES_MD"
-sed -i '' "s/Latest Stable:\*\* v[0-9][0-9.]*/Latest Stable:** v$VERSION/" "$RELEASES_MD"
-sed -i '' "s/\*\*Released:\*\* .*/\*\*Released:\*\* $RELEASE_DATE_PRETTY/" "$RELEASES_MD"
+sed_inplace "s/Latest Release: v[0-9][0-9.]*/Latest Release: v$VERSION/" "$RELEASES_MD"
+sed_inplace "s/Latest Stable:\*\* v[0-9][0-9.]*/Latest Stable:** v$VERSION/" "$RELEASES_MD"
+sed_inplace "s/\*\*Released:\*\* .*/\*\*Released:\*\* $RELEASE_DATE_PRETTY/" "$RELEASES_MD"
 
 # Update installation.md and quickstart.md: replace old version in download URLs and comments
 for f in "$INSTALL_MD" "$QUICKSTART_MD" "$RELEASES_MD"; do
   if [ -f "$f" ]; then
-    sed -i '' "s/$CURRENT/$VERSION/g" "$f"
+    sed_inplace "s/$CURRENT/$VERSION/g" "$f"
   fi
 done
 
 # Update index.html template: default() fallback values
 if [ -f "$INDEX_HTML" ]; then
-  sed -i '' "s/$CURRENT/$VERSION/g" "$INDEX_HTML"
+  sed_inplace "s/$CURRENT/$VERSION/g" "$INDEX_HTML"
 fi
 
 # Update site.js: JS fallback version
 if [ -f "$SITE_JS" ]; then
-  sed -i '' "s/$CURRENT/$VERSION/g" "$SITE_JS"
+  sed_inplace "s/$CURRENT/$VERSION/g" "$SITE_JS"
 fi
 
 echo "Updated all version references: v$CURRENT -> v$VERSION"
