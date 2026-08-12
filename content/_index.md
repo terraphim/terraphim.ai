@@ -19,6 +19,19 @@ Install via Homebrew, Cargo, curl quick install, or download binaries for macOS,
 Library bindings available for Node.js via @terraphim/autocomplete, Python via terraphim-automata,
 and a browser extension with WASM-powered search.
 
+## From the Blog
+
+**How-Tos**
+- [Command Rewriting How-To](/how-tos/command-rewriting-howto/) — Turn AI agent mistakes into permanent corrections
+
+**Key Concepts**
+- [Why Graph Embeddings Matter](/posts/why-graph-embeddings-matter/) — The deterministic engine behind Terraphim's intelligence
+- [Teaching AI Agents to Learn from Their Mistakes](/posts/teaching-ai-agents-to-learn-from-mistakes/) — Capture failures, store corrections, feed them back into future sessions
+- [Learning via Negativa](/posts/learning-via-negativa/) — How Terraphim remembers what you keep getting wrong
+- [Stop Paying the Cold-Start Tax](/posts/cold-start-tax-agentic-memory/) — Agentic memory for teams running dozens of agents nightly
+
+[See all posts →](/posts/)
+
 Join the community: [Discord](https://discord.gg/VPJXB6BGuY) |
 [Discourse](https://terraphim.discourse.group) |
 [GitHub](https://github.com/terraphim/terraphim-ai) |
