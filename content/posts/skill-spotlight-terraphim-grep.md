@@ -41,12 +41,15 @@ They do not support speed, reliability, adoption, or package-availability claims
 
 ## Publication boundary
 
-`terraphim-grep` and `terraphim-learning-memory` are source-branch release candidates on open, unmerged stacked pull requests #65 and #66.
+The four community packages are source-branch release candidates on open, unmerged stacked pull requests #65, #66, and #72.
 <!-- evidence: CAT-005 -->
+
+`scripts/skills.sh` exposes exactly four free community skills: `kg-rlm-ingest`, `local-knowledge`, `terraphim-grep`, and `terraphim-learning-memory`; core and premium packages remain in the 54-entry marketplace catalogue and are not exposed through that installer.
+<!-- evidence: CAT-011 -->
 
 The live marketplace currently reports 47 active skills, not 54.
 <!-- evidence: CAT-004 -->
 
-Before changing this post from draft, merge PR #65, publish the skill package, verify its public catalogue page and install route, and replace `RELEASE_COMMIT` in the source link below. Runtime examples should continue to state the binary version that produced them.
+Before changing this post from draft, merge the stacked PRs through #72, publish the skill package, verify its public catalogue page and community install route, and replace `RELEASE_COMMIT` in the source link below. Runtime examples should continue to state the binary version that produced them.
 
 Repository: [terraphim/terraphim-skills](https://github.com/terraphim/terraphim-skills). Candidate source: [reviewed skill revision](https://github.com/terraphim/terraphim-skills/blob/RELEASE_COMMIT/skills/terraphim-grep/SKILL.md).

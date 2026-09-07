@@ -21,8 +21,11 @@ That distinction is the point of this draft: useful memory practice starts by ch
 
 ## Release status first
 
-`terraphim-grep` and `terraphim-learning-memory` are source-branch release candidates on open, unmerged stacked pull requests #65 and #66.
+The four community packages are source-branch release candidates on open, unmerged stacked pull requests #65, #66, and #72.
 <!-- evidence: CAT-005 -->
+
+`scripts/skills.sh` exposes exactly four free community skills: `kg-rlm-ingest`, `local-knowledge`, `terraphim-grep`, and `terraphim-learning-memory`; core and premium packages remain in the 54-entry marketplace catalogue and are not exposed through that installer.
+<!-- evidence: CAT-011 -->
 
 The installed `terraphim-agent` 1.21.13 has no `memory` namespace.
 <!-- evidence: MEM-001 -->
@@ -37,6 +40,9 @@ Do not read the candidate skill as an announcement of a released memory command.
 The practical boundary is capability discovery. An agent checks installed help before selecting a command, then uses the component that owns the information: failed-command learning, session history, local role knowledge, or a project knowledge graph. A successful route message is not treated as proof that content was stored.
 <!-- evidence: MEM-004 -->
 
+Session history is built into this community workflow. The released CLI exposes `sources`, `list`, `search`, and `stats`; live validation found matching prior work while also surfacing parser warnings that callers must not hide.
+<!-- evidence: MEM-009 -->
+
 This makes the guide an orchestration layer over capabilities that may differ between installations. It also keeps temporary task progress out of long-lived knowledge unless there is a durable, sourced fact to preserve.
 <!-- evidence: MEM-008 -->
 
@@ -50,7 +56,7 @@ That means a normal “remember this” request should not trigger a broad build
 
 ## What would justify stronger wording
 
-Publication can call this a released skill only after PRs #65 and #66 merge, the package is published, and its live catalogue and install route are checked.
+Publication can call this a released skill only after PRs #65, #66, and #72 merge, the package is published, and its live catalogue and install route are checked.
 <!-- evidence: MEM-006 -->
 
 Claims about a `memory` runtime need separate evidence from a released binary whose help exposes that namespace, followed by exercised capture, read-back, correction, retirement, and failure behaviour. Until then, the accurate description is narrower: this candidate teaches capability-aware memory orchestration across existing Terraphim components.
@@ -58,4 +64,4 @@ Claims about a `memory` runtime need separate evidence from a released binary wh
 
 Repository: [terraphim/terraphim-skills](https://github.com/terraphim/terraphim-skills). Candidate source: [reviewed skill revision](https://github.com/terraphim/terraphim-skills/blob/RELEASE_COMMIT/skills/terraphim-learning-memory/SKILL.md).
 
-Editorial source gate: replace `RELEASE_COMMIT` after the stacked pull requests merge and the GitHub mirror contains the reviewed commit.
+Editorial source gate: replace `RELEASE_COMMIT` after all three stacked pull requests merge and the GitHub mirror contains the reviewed commit.

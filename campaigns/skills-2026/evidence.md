@@ -1,6 +1,6 @@
 # Evidence ledger: skills campaign 2026
 
-Review basis: `/Users/alex/projects/terraphim/terraphim-skills` at `6e97f8652a3083f69874c70cf3c19835f1e73ee0` on branch `task/22-community-learning-memory`, reviewed 2026-09-07. Absolute paths are intentional in this internal ledger. Public copy must use a stable GitHub commit path or an editorial placeholder.
+Review basis: `/Users/alex/projects/terraphim/terraphim-skills` at `fe4dd603451b8912e69598579b299f2fd128c071` on branch `task/71-community-only-installer`, reviewed 2026-09-07. Absolute paths are intentional in this internal ledger. Public copy must use a stable GitHub commit path or an editorial placeholder.
 
 ## Claim states
 
@@ -14,37 +14,31 @@ Package validation establishes integrity and structure. It does not establish th
 
 ### CAT-001
 
-- **Exact claim:** The source-branch release candidate contains 54 skill names in `scripts/skills.sh`, and the marketplace candidate lists the same 54 names.
+- **Exact claim:** The source-branch marketplace candidate lists 54 skill packages.
 - **Status:** proved
-- **Primary sources:** `/Users/alex/projects/terraphim/terraphim-skills/scripts/skills.sh:10-65`; `/Users/alex/projects/terraphim/terraphim-skills/.claude-plugin/marketplace.json:11-1198`
+- **Primary source:** `/Users/alex/projects/terraphim/terraphim-skills/.claude-plugin/marketplace.json:11-1198`
 - **Verification:**
 
   ```text
-  $ bash scripts/skills.sh --list | wc -l | tr -d ' '
-  54
   $ jq -r '.plugins[].name' .claude-plugin/marketplace.json | wc -l | tr -d ' '
   54
-  $ comm -3 \
-      <(bash scripts/skills.sh --list | sort) \
-      <(jq -r '.plugins[].name' .claude-plugin/marketplace.json | sort)
-  # no output; the name sets match
   ```
 
-- **Publication gate:** retain the count only while the two lists still match at the publication revision.
+- **Publication gate:** retain the count only while marketplace metadata still contains 54 unique packages at the publication revision.
 
 ### CAT-002
 
-- **Exact claim:** Each of those 54 candidate skills has a `SKILL.md` and a `skill.toml`.
+- **Exact claim:** Each of those 54 marketplace candidate skills has a `SKILL.md` and a `skill.toml`.
 - **Status:** proved
 - **Primary sources:** `/Users/alex/projects/terraphim/terraphim-skills/skills/*/SKILL.md:1-10`; `/Users/alex/projects/terraphim/terraphim-skills/skills/*/skill.toml:1-24`
-- **Verification:** `while IFS= read -r skill; do test -f "skills/$skill/SKILL.md" && test -f "skills/$skill/skill.toml" || printf '%s\n' "$skill"; done < <(bash scripts/skills.sh --list)` returned no skill names and exit 0.
+- **Verification:** iterating over `jq -r '.plugins[].name' .claude-plugin/marketplace.json` and checking `skills/$skill/SKILL.md` plus `skills/$skill/skill.toml` returned no missing paths and exit 0.
 - **Publication gate:** rerun against the publication revision.
 
 ### CAT-003
 
 - **Exact claim:** The candidate marketplace metadata version is 1.6.1.
 - **Status:** proved
-- **Primary sources:** `/Users/alex/projects/terraphim/terraphim-skills/.claude-plugin/marketplace.json:7-10`; `/Users/alex/projects/terraphim/terraphim-skills/scripts/skills.sh:129-130`
+- **Primary sources:** `/Users/alex/projects/terraphim/terraphim-skills/.claude-plugin/marketplace.json:7-10`; `/Users/alex/projects/terraphim/terraphim-skills/scripts/skills.sh:79-80`
 - **Verification:** `jq -r '.metadata.version' .claude-plugin/marketplace.json` returned `1.6.1`; `rg -n '^echo "Terraphim Engineering Skills v1.6.1"$' scripts/skills.sh` returned the matching version line.
 - **Publication gate:** confirm the version has not changed before publication.
 
@@ -58,32 +52,27 @@ Package validation establishes integrity and structure. It does not establish th
 
 ### CAT-005
 
-- **Exact claim:** `terraphim-grep` and `terraphim-learning-memory` are source-branch release candidates on open, unmerged stacked pull requests #65 and #66.
+- **Exact claim:** The four community packages are source-branch release candidates on open, unmerged stacked pull requests #65, #66, and #72.
 - **Status:** proved
-- **Primary sources:** Gitea PR #65 at head `f84858b3bb4b6913ef4a4f5e96b1713fff6c07a0`; Gitea PR #66 at head `6e97f8652a3083f69874c70cf3c19835f1e73ee0`
-- **Verification:** `source ~/.config/terraphim/gitea.env && gtr view-pull --owner terraphim --repo terraphim-skills --index 65 && gtr view-pull --owner terraphim --repo terraphim-skills --index 66` returned `state:"open"`, `merged:false` for both; #66 base is `task/64-community-terraphim-grep`.
-- **Publication gate:** both PRs merged, mirrored to a stable public GitHub commit, packages published, and live catalogue entries verified.
+- **Primary sources:** Gitea PRs #65, #66, and #72; `/Users/alex/projects/terraphim/terraphim-skills/scripts/skills.sh:10-15`
+- **Verification:** `gtr view-pull` returned `state:"open"` and `merged:false` for all three stacked PRs; #72 is based on #66 and contains the four-entry community installer plus the `local-knowledge` and `kg-rlm-ingest` community changes.
+- **Publication gate:** all three PRs merged in order, mirrored to a stable public GitHub commit, packages published, and public install routes verified.
 
 ### CAT-006
 
-- **Exact claim:** Local checks passed for all checked-in signatures and manifests, all 54 TSM package validations, the strict Claude marketplace validation, and the issue-to-PR adapter validator; these checks establish package integrity and documentation structure, not runtime behaviour.
+- **Exact claim:** The community change passed 45 Python tests, 73% aggregate branch coverage, six Bun tests, signed-manifest and installer-policy validation, TSM validation for all four community skills, and an isolated install of four skills with zero skipped.
 - **Status:** proved
-- **Primary sources:** `/Users/alex/projects/terraphim/terraphim-skills/scripts/validate-optional-augmentation.py:574-618`; `/Users/alex/projects/terraphim/terraphim-skills/scripts/validate-command-adapters.py:280-368`; `/Users/alex/projects/terraphim/terraphim-skills/docs/signed-skill-manifests.md:49-69`
-- **Verification:**
-  - `python3 scripts/validate-optional-augmentation.py` returned `Optional augmentation validation: PASS`.
-  - `python3 scripts/resign-manifest.py --all-stale` returned `all checked-in manifests verify against their files and the author registry`.
-  - validating every `scripts/skills.sh --list` entry with `tsm --agent claude-code validate skills/$skill` returned `tsm_validated=54` and `result=PASS`.
-  - `claude plugin validate . --strict` returned `Validation passed`.
-  - `python3 scripts/validate-command-adapters.py` returned `Adapter validator: 23/23 checks passed`.
-- **Publication gate:** rerun every check at the release commit and keep runtime claims on separate evidence IDs.
+- **Primary source:** `/Users/alex/projects/terraphim/terraphim-skills/docs/validation/validation-report-community-knowledge-skills.md:101-116`
+- **Verification:** the report records 45 passing Python tests, 73% aggregate branch coverage, six passing Bun tests, passing trust-chain checks, four passing TSM validations, and `Four installed, zero skipped` in an isolated destination.
+- **Publication gate:** rerun the checks at the release commit and keep package, documentation, and runtime claims separate.
 
 ### CAT-007
 
-- **Exact claim:** `scripts/skills.sh` is a guidance-file installer: it downloads only each skill's `SKILL.md`, not every file declared by that skill's manifest.
+- **Exact claim:** The community shell installer downloads one `SKILL.md` per selected skill; every current community manifest signs only that standalone file, so the four-skill install does not omit a required community package file.
 - **Status:** proved
-- **Primary sources:** `/Users/alex/projects/terraphim/terraphim-skills/scripts/skills.sh:88-125`; `/Users/alex/projects/terraphim/terraphim-skills/skills/gitea-issue-to-pr/skill.toml:14-19`
-- **Verification:** source inspection shows a single `${REPO}/${skill}/SKILL.md` request and a single `SKILL.md` destination, while the example manifest declares five package files.
-- **Publication gate:** either make the installer fetch and verify all manifest-declared files, or label it only as a guidance-file installer everywhere.
+- **Primary sources:** `/Users/alex/projects/terraphim/terraphim-skills/scripts/skills.sh:38-75`; `/Users/alex/projects/terraphim/terraphim-skills/docs/validation/validation-report-community-knowledge-skills.md:23-35`
+- **Verification:** signed-manifest validation and an isolated install confirmed that all four current community packages contain the required standalone `SKILL.md` and no omitted companion file.
+- **Publication gate:** keep the shell route community-only; extend it to manifest-declared files before admitting any future multi-file community package.
 
 ### CAT-008
 
@@ -109,7 +98,15 @@ Package validation establishes integrity and structure. It does not establish th
 - **Verification:** source and threat review recorded in those entries.
 - **Publication gate:** close every referenced blocker.
 
-## Initial five claims and blockers
+### CAT-011
+
+- **Exact claim:** `scripts/skills.sh` exposes exactly four free community skills: `kg-rlm-ingest`, `local-knowledge`, `terraphim-grep`, and `terraphim-learning-memory`; core and premium packages remain in the 54-entry marketplace catalogue and are not exposed through that installer.
+- **Status:** proved
+- **Primary sources:** `/Users/alex/projects/terraphim/terraphim-skills/scripts/skills.sh:10-15`; `/Users/alex/projects/terraphim/terraphim-skills/README.md:8-34`; `/Users/alex/projects/terraphim/terraphim-skills/scripts/validate-optional-augmentation.py`
+- **Verification:** `bash scripts/skills.sh --list` returned the four names; the validator derived expected membership from signed manifests with `tier = "community"` and rejected missing, additional, or duplicate entries.
+- **Publication gate:** merge PR #72 and verify the public installer returns the same four names.
+
+## Community and blocked spotlight claims
 
 ### MEM-001
 
@@ -153,7 +150,7 @@ Package validation establishes integrity and structure. It does not establish th
 
 ### MEM-006
 
-- **Exact claim:** Publication can call this a released skill only after PRs #65 and #66 merge, the package is published, and its live catalogue and install route are checked.
+- **Exact claim:** Publication can call this a released skill only after PRs #65, #66, and #72 merge, the package is published, and its live catalogue and install route are checked.
 - **Status:** blocked
 - **Primary source:** CAT-005
 - **Verification:** current PR and live catalogue checks under CAT-004 and CAT-005.
@@ -174,6 +171,30 @@ Package validation establishes integrity and structure. It does not establish th
 - **Primary sources:** `/Users/alex/projects/terraphim/terraphim-skills/skills/terraphim-learning-memory/SKILL.md:31-80`; `/Users/alex/projects/terraphim/terraphim-skills/skills/terraphim-learning-memory/SKILL.md:109-123`
 - **Verification:** source review.
 - **Publication gate:** no additional gate beyond MEM-006.
+
+### MEM-009
+
+- **Exact claim:** Session history is built into this community workflow. The released CLI exposes `sources`, `list`, `search`, and `stats`; live validation found matching prior work while also surfacing parser warnings that callers must not hide.
+- **Status:** proved
+- **Primary sources:** `/Users/alex/projects/terraphim/terraphim-skills/skills/terraphim-learning-memory/SKILL.md:83-133`; `/Users/alex/projects/terraphim/terraphim-skills/docs/validation/validation-report-community-knowledge-skills.md:37-49`
+- **Verification:** `terraphim-agent sessions --help` exposed the four subcommands and `terraphim-agent sessions search "local-knowledge kg-rlm-ingest community skill validation" --limit 10` returned matching sessions with parser warnings for unsupported records.
+- **Publication gate:** retain the installed version and warning boundary; do not invent `sessions import`, `sessions show`, or export commands.
+
+### LKG-001
+
+- **Exact claim:** The community `local-knowledge` guide uses the current direct CLI to discover roles and configured paths, perform structured read-only search, cite results, and inspect response data rather than trusting an empty-search exit status.
+- **Status:** proved
+- **Primary sources:** `/Users/alex/projects/terraphim/terraphim-skills/skills/local-knowledge/SKILL.md:25-132`; `/Users/alex/projects/terraphim/terraphim-skills/docs/validation/validation-report-community-knowledge-skills.md:37-49`
+- **Verification:** live checks on `terraphim-agent 1.21.13` returned 16 roles, role-specific KG and haystack configuration, and one structured local result with concept and total-match metadata. A separate empty query returned exit 0 and `success:true`, so the guide checks `.data.results` and `.data.total_matches`.
+- **Publication gate:** merge PR #72 and rerun against the release binary and public package.
+
+### KGI-001
+
+- **Exact claim:** The community `kg-rlm-ingest` guide discovers the configured role path, extracts and deduplicates concepts deterministically, requires an authorised safe edit, refreshes the role cache, and accepts success only after retrieval of the intended note; validation stopped before mutating production knowledge.
+- **Status:** proved
+- **Primary sources:** `/Users/alex/projects/terraphim/terraphim-skills/skills/kg-rlm-ingest/SKILL.md:39-197`; `/Users/alex/projects/terraphim/terraphim-skills/docs/validation/validation-report-community-knowledge-skills.md:71-85`
+- **Verification:** live CLI checks established role/path discovery, deterministic extraction, structured deduplication search, and role-scoped cache refresh. The write protocol was validated up to the explicit production-authorisation boundary; no production knowledge note was changed.
+- **Publication gate:** merge PR #72; every real ingestion still requires authorised path inspection, write, cache refresh, and retrieval.
 
 ### GRP-001
 
@@ -437,11 +458,11 @@ Each sentence below is an instruction summary, not an outcome guarantee. Sources
 | SKL-024 | `implementation` instructs an agent to implement an approved design with tests, documentation, and lint checks. | documented | `/Users/alex/projects/terraphim/terraphim-skills/skills/implementation/SKILL.md:1-10` |
 | SKL-025 | `issue-to-pr-core` instructs an agent to use a tracker-neutral issue-to-PR contract with risk routing, evidence, review, and explicit delivery gates. | documented | `/Users/alex/projects/terraphim/terraphim-skills/skills/issue-to-pr-core/SKILL.md:1-21`; see CORE-001 |
 | SKL-026 | `judge` instructs an agent to assess outputs with semantic, pragmatic, and syntactic dimensions and record structured verdicts. | documented | `/Users/alex/projects/terraphim/terraphim-skills/skills/judge/SKILL.md:1-10` |
-| SKL-027 | `kg-rlm-ingest` instructs an agent to distil sourced material into role-scoped knowledge-graph notes, using deterministic extraction before optional RLM work. | documented | `/Users/alex/projects/terraphim/terraphim-skills/skills/kg-rlm-ingest/SKILL.md:1-10` |
+| SKL-027 | `kg-rlm-ingest` instructs an agent to distil sourced material into role-scoped knowledge-graph notes, using deterministic extraction before optional RLM work and requiring retrieval after every authorised write. | documented | `/Users/alex/projects/terraphim/terraphim-skills/skills/kg-rlm-ingest/SKILL.md:1-35`; `/Users/alex/projects/terraphim/terraphim-skills/skills/kg-rlm-ingest/SKILL.md:142-160` |
 | SKL-028 | `learning-capture` instructs an agent to capture and query failed-command records, but activation is blocked pending safety and accuracy fixes. | blocked | `/Users/alex/projects/terraphim/terraphim-skills/skills/learning-capture/SKILL.md:1-17`; see LRN-001 and LRN-002 |
 | SKL-029 | `linear-issue-to-pr` instructs an agent to take a Linear issue through a phased engineering and pull-request workflow. | documented | `/Users/alex/projects/terraphim/terraphim-skills/skills/linear-issue-to-pr/SKILL.md:1-10` |
 | SKL-030 | `linear-ticket-writer` instructs an agent to draft structured Linear tickets with lifecycle, priority, state, and estimate fields. | documented | `/Users/alex/projects/terraphim/terraphim-skills/skills/linear-ticket-writer/SKILL.md:1-10` |
-| SKL-031 | `local-knowledge` instructs an agent to search configured personal notes and role documentation through Terraphim. | documented | `/Users/alex/projects/terraphim/terraphim-skills/skills/local-knowledge/SKILL.md:1-10` |
+| SKL-031 | `local-knowledge` instructs an agent to discover configured roles and paths, search local knowledge through structured direct commands, cite results, and remain read-only. | documented | `/Users/alex/projects/terraphim/terraphim-skills/skills/local-knowledge/SKILL.md:1-23`; `/Users/alex/projects/terraphim/terraphim-skills/skills/local-knowledge/SKILL.md:41-81` |
 | SKL-032 | `md-book` instructs an agent to work with the MD-Book documentation generator, including highlighting, live reload, search, and templates. | documented | `/Users/alex/projects/terraphim/terraphim-skills/skills/md-book/SKILL.md:1-10` |
 | SKL-033 | `open-source-contribution` instructs an agent to prepare issues and pull requests that follow a project's contribution conventions. | documented | `/Users/alex/projects/terraphim/terraphim-skills/skills/open-source-contribution/SKILL.md:1-10` |
 | SKL-034 | `quality-gate` instructs an agent to assemble review, security, performance-risk, traceability, acceptance, and relevant visual evidence for a change. | documented | `/Users/alex/projects/terraphim/terraphim-skills/skills/quality-gate/SKILL.md:1-10` |
@@ -459,7 +480,7 @@ Each sentence below is an instruction summary, not an outcome guarantee. Sources
 | SKL-046 | `technical-book-writer` instructs an agent to structure a long technical explanation with progressive concepts, diagrams, and chapter files. | documented | `/Users/alex/projects/terraphim/terraphim-skills/skills/technical-book-writer/SKILL.md:1-10` |
 | SKL-047 | `terraphim-grep` instructs an agent to use local search first, scope paths, request JSON when needed, and make LLM synthesis explicit. | blocked | `/Users/alex/projects/terraphim/terraphim-skills/skills/terraphim-grep/SKILL.md:1-22`; see GRP-001 and GRP-002 |
 | SKL-048 | `terraphim-hooks` instructs an agent to configure knowledge-graph-based text replacement for supported command and commit hooks. | documented | `/Users/alex/projects/terraphim/terraphim-skills/skills/terraphim-hooks/SKILL.md:1-10` |
-| SKL-049 | `terraphim-learning-memory` instructs an agent to retrieve, assess, verify, capture, and revisit durable evidence through available Terraphim components. | blocked | `/Users/alex/projects/terraphim/terraphim-skills/skills/terraphim-learning-memory/SKILL.md:1-29`; see MEM-001 to MEM-003 and CAT-005 |
+| SKL-049 | `terraphim-learning-memory` instructs an agent to retrieve, assess, verify, capture, and revisit durable evidence, with source session search built into the workflow. | blocked | `/Users/alex/projects/terraphim/terraphim-skills/skills/terraphim-learning-memory/SKILL.md:1-29`; `/Users/alex/projects/terraphim/terraphim-skills/skills/terraphim-learning-memory/SKILL.md:83-133`; see MEM-001 to MEM-003 and CAT-005 |
 | SKL-050 | `terraphim-linear` instructs an agent to fetch and inspect Linear issues through semantic aliases or structured output. | documented | `/Users/alex/projects/terraphim/terraphim-skills/skills/terraphim-linear/SKILL.md:1-10` |
 | SKL-051 | `terraphim-rlm` instructs an agent to route multi-step, multi-file work through budgeted recursive decomposition and reconciliation tools. | documented | `/Users/alex/projects/terraphim/terraphim-skills/skills/terraphim-rlm/SKILL.md:1-10` |
 | SKL-052 | `testing` instructs an agent to write and run unit, integration, property-based, and benchmark tests and analyse failures. | documented | `/Users/alex/projects/terraphim/terraphim-skills/skills/testing/SKILL.md:1-10` |
@@ -470,9 +491,9 @@ Each sentence below is an instruction summary, not an outcome guarantee. Sources
 
 Before any announcement leaves draft:
 
-1. Rerun CAT-001, CAT-002, CAT-006, and all relevant runtime checks at the exact release commit.
-2. Resolve CAT-007 or keep the guidance-file limitation explicit beside every installer command.
+1. Rerun CAT-001, CAT-002, CAT-006, CAT-007, CAT-011, and all relevant runtime checks at the exact release commit.
+2. Keep `scripts/skills.sh` community-only and verify that every admitted community package remains complete through that route.
 3. Confirm live catalogue count and each promoted package page through the public service.
-4. Merge and publish both stacked candidates before describing them as released.
+4. Merge and publish all three stacked community pull requests before describing the four skills as released.
 5. Keep `learning-capture` and `gitea-issue-to-pr` out of recommendation copy until every blocker closes.
 6. Run a human editorial review for claim wording, source links, platform rules, and affiliation disclosure.

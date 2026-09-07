@@ -55,8 +55,10 @@ The first finding requires validated identifiers, argument-safe command construc
 
 ## Static checks do not close these findings
 
-Local checks passed for all checked-in signatures and manifests, all 54 TSM package validations, the strict Claude marketplace validation, and the issue-to-PR adapter validator; these checks establish package integrity and documentation structure, not runtime behaviour.
+The community change passed 45 Python tests, 73% aggregate branch coverage, six Bun tests, signed-manifest and installer-policy validation, TSM validation for all four community skills, and an isolated install of four skills with zero skipped.
 <!-- evidence: CAT-006 -->
+
+Those community distribution checks do not resolve this premium adapter's runtime enforcement blockers.
 
 The adapter validator can show that expected files and contract text are present. It does not prove fail-closed execution, safe interpolation, or independent remote verification.
 <!-- evidence: CAT-009 -->

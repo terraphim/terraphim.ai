@@ -2,7 +2,7 @@
 
 ## Objective
 
-Publish a phased, source-linked account of what the 54 candidate skills instruct agents to do. Do not imply that instruction guarantees an outcome. Keep four evidence classes separate:
+Publish a phased, source-linked account of what the 54 marketplace candidate skills instruct agents to do, while leading release announcements with the four free community skills. Do not imply that instruction guarantees an outcome. Keep four evidence classes separate:
 
 1. documented workflow guidance;
 2. source-branch release candidate;
@@ -17,7 +17,7 @@ No platform announcement or Zola post leaves draft while any applicable conditio
 
 - candidate and live catalogue counts differ without an explicit limitation;
 - a promoted skill is unmerged or unavailable through the claimed route;
-- installer copy implies complete packages while `scripts/skills.sh` downloads only `SKILL.md`;
+- installer copy implies that `scripts/skills.sh` exposes core or premium packages, or admits a community package that requires unsigned or omitted companion files;
 - package validation is presented as runtime proof;
 - a claim lacks a stable evidence ID, reviewed source range, and reproduction result;
 - `learning-capture` or `gitea-issue-to-pr` appears as a recommendation before its blockers close;
@@ -26,41 +26,30 @@ No platform announcement or Zola post leaves draft while any applicable conditio
 
 ## Phase 0: remediate and release
 
-1. After explicit approval, merge stacked PRs #65 and #66 in order, then mirror the release commit to GitHub.
-2. Fix or explicitly constrain the guidance-file installer.
-3. Fix `learning-capture`: secret redaction, no payload re-emission, accurate storage discovery, accurate host activation, adversarial tests, and security review.
-4. Fix `gitea-issue-to-pr`: fail-closed gates, validation verdict enforcement, structured remote read-backs, shell-safe values, portable configuration, and executable failure-path tests.
-5. Publish candidate packages, verify each live page and install route, and rerun the ledger commands at the release commit.
+1. After explicit approval, merge stacked PRs #65, #66, and #72 in order, then mirror the release commit to GitHub.
+2. Verify the public shell installer exposes exactly the four signed community packages and installs each package completely.
+3. Publish the four community packages, verify each live page and install route, and rerun the ledger commands at the release commit.
 
 If phase 0 is incomplete, publication remains paused. Drafts may be reviewed internally.
 
-## Phase 1: initial five
+The premium audit drafts have independent gates. `learning-capture` requires secret redaction, no payload re-emission, accurate storage discovery and host activation, adversarial tests, and security review. `gitea-issue-to-pr` requires fail-closed gates, validation-verdict enforcement, structured remote read-backs, shell-safe values, portable configuration, and executable failure-path tests. These findings do not block the community release when the affected premium packages are omitted from recommendation and installer copy.
 
-Publish the overview first, then one spotlight no more frequently than every three days:
+## Phase 1: community release
 
-1. `terraphim-learning-memory`: present as capability-aware orchestration guidance, not a shipped memory namespace.
+Publish the overview first, then one community spotlight no more frequently than every three days:
+
+1. `terraphim-learning-memory`: present session retrieval as built-in while distinguishing the guide from an unavailable `memory` namespace.
 2. `terraphim-grep`: separate the unmerged skill package from locally exercised `terraphim-grep` 1.21.13 behaviour.
-3. `learning-capture`: publish only after LRN-001 and LRN-002 close; until then retain the blocked audit draft.
-4. `gitea-issue-to-pr`: publish only after GIT-001 through GIT-004 close; until then retain the blocked audit draft.
-5. `issue-to-pr-core`: present only as a written tracker-neutral contract unless adapter conformance has separate runtime evidence.
+3. `local-knowledge`: present the validated direct, structured, read-only retrieval workflow and its privacy boundary.
+4. `kg-rlm-ingest`: present deterministic-first extraction and the authorised write plus retrieval boundary; do not imply that production knowledge was mutated during validation.
 
-Do not turn the sequence into five near-identical launch posts. Each spotlight must lead with a distinct workflow, limitation, and verification task.
+Do not turn the sequence into near-identical launch posts. Each spotlight must lead with a distinct workflow, limitation, and verification task. The `learning-capture`, `gitea-issue-to-pr`, and `issue-to-pr-core` drafts remain internal premium catalogue audits, not community-installer announcements.
 
-## Phase 2: remaining 49
+## Phase 2: broader marketplace catalogue
 
-Begin only after phase 1 feedback is incorporated. Publish one grouped article per week, with individual spotlights only where readers ask for them.
+Begin only after phase 1 feedback is incorporated. Build the schedule from marketplace metadata and manifest tiers, excluding the four community packages already covered. Publish one grouped article per week, with individual spotlights only where readers ask for them. Never present a core or premium package as available through `scripts/skills.sh`.
 
-| Week after phase 1 | Theme | Seven skills |
-|---|---|---|
-| 1 | Discovery and planning | `acceptance-testing`, `disciplined-research`, `disciplined-quality-evaluation`, `disciplined-design`, `disciplined-specification`, `disciplined-implementation`, `disciplined-verification` |
-| 2 | Verification and review | `disciplined-validation`, `testing`, `requirements-traceability`, `quality-gate`, `code-review`, `structural-pr-review`, `ubs-scanner` |
-| 3 | Rust engineering | `rust-development`, `rust-performance`, `rust-observability`, `rust-ci-cd`, `rust-fleet-standard`, `security-audit`, `debugging` |
-| 4 | Knowledge and agent orchestration | `local-knowledge`, `session-search`, `kg-rlm-ingest`, `terraphim-hooks`, `terraphim-rlm`, `deterministic-rlm-review`, `adf-orchestrate` |
-| 5 | Trackers and collaboration | `gitea-pagerank-workflow`, `linear-issue-to-pr`, `linear-ticket-writer`, `terraphim-linear`, `open-source-contribution`, `community-engagement`, `git-safety-guard` |
-| 6 | Research and communication | `documentation`, `md-book`, `grounded-content-writer`, `technical-book-writer`, `deep-research`, `repeatable-demo-video`, `judge` |
-| 7 | Architecture and delivery tools | `ai-config-management`, `architecture`, `devops`, `gpui-components`, `implementation`, `quickwit-log-search`, `visual-testing` |
-
-The seven groups contain all 49 skills not covered in phase 1. Recount against `scripts/skills.sh` before scheduling.
+Suggested themes are discovery and planning, verification and review, Rust engineering, advanced knowledge and orchestration, trackers and collaboration, research and communication, and architecture and delivery. Recount the non-community set against `.claude-plugin/marketplace.json` before scheduling.
 
 ## Proof protocol
 

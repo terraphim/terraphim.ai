@@ -45,8 +45,10 @@ The current text presents Claude Code, Codex, and OpenCode installation commands
 
 ## Why a signed package is not enough
 
-Local checks passed for all checked-in signatures and manifests, all 54 TSM package validations, the strict Claude marketplace validation, and the issue-to-PR adapter validator; these checks establish package integrity and documentation structure, not runtime behaviour.
+The community change passed 45 Python tests, 73% aggregate branch coverage, six Bun tests, signed-manifest and installer-policy validation, TSM validation for all four community skills, and an isolated install of four skills with zero skipped.
 <!-- evidence: CAT-006 -->
+
+Those community distribution checks do not resolve this premium package's runtime and security blockers.
 
 A valid digest can prove that downloaded bytes match reviewed bytes. It cannot prove that those bytes redact secrets, activate on every claimed host, or store data where the guide says.
 <!-- evidence: CAT-008 -->

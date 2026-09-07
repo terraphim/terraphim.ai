@@ -12,8 +12,11 @@ toc = true
 comments = true
 +++
 
-The source-branch release candidate contains 54 skill names in `scripts/skills.sh`, and the marketplace candidate lists the same 54 names.
+The source-branch marketplace candidate lists 54 skill packages.
 <!-- evidence: CAT-001 -->
+
+`scripts/skills.sh` exposes exactly four free community skills: `kg-rlm-ingest`, `local-knowledge`, `terraphim-grep`, and `terraphim-learning-memory`; core and premium packages remain in the 54-entry marketplace catalogue and are not exposed through that installer.
+<!-- evidence: CAT-011 -->
 
 The live marketplace currently reports 47 active skills, not 54.
 <!-- evidence: CAT-004 -->
@@ -24,13 +27,13 @@ This draft describes the candidate catalogue without presenting every candidate 
 
 ## How to read this catalogue
 
-Each of those 54 candidate skills has a `SKILL.md` and a `skill.toml`.
+Each of those 54 marketplace candidate skills has a `SKILL.md` and a `skill.toml`.
 <!-- evidence: CAT-002 -->
 
 The candidate marketplace metadata version is 1.6.1.
 <!-- evidence: CAT-003 -->
 
-Local checks passed for all checked-in signatures and manifests, all 54 TSM package validations, the strict Claude marketplace validation, and the issue-to-PR adapter validator; these checks establish package integrity and documentation structure, not runtime behaviour.
+The community change passed 45 Python tests, 73% aggregate branch coverage, six Bun tests, signed-manifest and installer-policy validation, TSM validation for all four community skills, and an isolated install of four skills with zero skipped.
 <!-- evidence: CAT-006 -->
 
 The descriptions below say what each guide instructs an agent to do. They do not guarantee that the agent will complete the task, produce a correct result, or satisfy a deployment environment. The [repository](https://github.com/terraphim/terraphim-skills) is the public project link. Before publication, replace `RELEASE_COMMIT` in the [reviewed source link](https://github.com/terraphim/terraphim-skills/tree/RELEASE_COMMIT) with the immutable release commit.
@@ -102,15 +105,15 @@ The descriptions below say what each guide instructs an agent to do. They do not
 
 - `terraphim-grep` instructs an agent to use local search first, scope paths, request JSON when needed, and make LLM synthesis explicit.
 <!-- evidence: SKL-047 -->
-- `terraphim-learning-memory` instructs an agent to retrieve, assess, verify, capture, and revisit durable evidence through available Terraphim components.
+- `terraphim-learning-memory` instructs an agent to retrieve, assess, verify, capture, and revisit durable evidence, with source session search built into the workflow.
 <!-- evidence: SKL-049 -->
 - `learning-capture` instructs an agent to capture and query failed-command records, but activation is blocked pending safety and accuracy fixes.
 <!-- evidence: SKL-028 -->
-- `local-knowledge` instructs an agent to search configured personal notes and role documentation through Terraphim.
+- `local-knowledge` instructs an agent to discover configured roles and paths, search local knowledge through structured direct commands, cite results, and remain read-only.
 <!-- evidence: SKL-031 -->
 - `session-search` instructs an agent to search imported coding-assistant session history for previous conversations and decisions.
 <!-- evidence: SKL-044 -->
-- `kg-rlm-ingest` instructs an agent to distil sourced material into role-scoped knowledge-graph notes, using deterministic extraction before optional RLM work.
+- `kg-rlm-ingest` instructs an agent to distil sourced material into role-scoped knowledge-graph notes, using deterministic extraction before optional RLM work and requiring retrieval after every authorised write.
 <!-- evidence: SKL-027 -->
 - `terraphim-hooks` instructs an agent to configure knowledge-graph-based text replacement for supported command and commit hooks.
 <!-- evidence: SKL-048 -->
@@ -166,10 +169,10 @@ The descriptions below say what each guide instructs an agent to do. They do not
 
 ## Release boundaries
 
-`terraphim-grep` and `terraphim-learning-memory` are source-branch release candidates on open, unmerged stacked pull requests #65 and #66.
+The four community packages are source-branch release candidates on open, unmerged stacked pull requests #65, #66, and #72.
 <!-- evidence: CAT-005 -->
 
-`scripts/skills.sh` is a guidance-file installer: it downloads only each skill's `SKILL.md`, not every file declared by that skill's manifest.
+The community shell installer downloads one `SKILL.md` per selected skill; every current community manifest signs only that standalone file, so the four-skill install does not omit a required community package file.
 <!-- evidence: CAT-007 -->
 
 `learning-capture` and `gitea-issue-to-pr` remain blocked in this campaign. Their spotlight drafts explain the findings and the checks required before either can be recommended.
