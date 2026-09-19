@@ -37,12 +37,7 @@ cargo install terraphim_agent --features repl-full
 
 ### Debian/Ubuntu
 
-Download the `.deb` package from the latest release:
-
-```bash
-curl -LO https://github.com/terraphim/terraphim-ai/releases/latest/download/terraphim-server_1.20.5-1_amd64.deb
-sudo dpkg -i terraphim-server_1.20.5-1_amd64.deb
-```
+> **Note:** there is currently no `.deb` build in the latest releases. Use the binary download below (MUSL static build works on any Debian/Ubuntu) or `cargo install`. A `.deb` packaging gap is tracked separately.
 
 ## Platform-Specific Guides
 
@@ -50,19 +45,19 @@ sudo dpkg -i terraphim-server_1.20.5-1_amd64.deb
 
 #### Binary Download
 
-Download the latest release from GitHub:
+Download the latest release from the R2 CDN (`downloads.terraphim.ai`):
 
 ```bash
 # x86_64 (GNU)
-curl -LO https://github.com/terraphim/terraphim-ai/releases/latest/download/terraphim-agent-1.20.5-x86_64-unknown-linux-gnu.tar.gz
-tar -xzf terraphim-agent-1.20.5-x86_64-unknown-linux-gnu.tar.gz
+curl -LO https://downloads.terraphim.ai/terraphim-agent/terraphim-agent-1.21.14-x86_64-unknown-linux-gnu.tar.gz
+tar -xzf terraphim-agent-1.21.14-x86_64-unknown-linux-gnu.tar.gz
 sudo mv terraphim-agent /usr/local/bin/
 
 # x86_64 (MUSL / static)
-curl -LO https://github.com/terraphim/terraphim-ai/releases/latest/download/terraphim-agent-1.20.5-x86_64-unknown-linux-musl.tar.gz
+curl -LO https://downloads.terraphim.ai/terraphim-agent/terraphim-agent-1.21.14-x86_64-unknown-linux-musl.tar.gz
 
 # ARM64 (MUSL)
-curl -LO https://github.com/terraphim/terraphim-ai/releases/latest/download/terraphim-agent-1.20.5-aarch64-unknown-linux-musl.tar.gz
+curl -LO https://downloads.terraphim.ai/terraphim-agent/terraphim-agent-1.21.14-aarch64-unknown-linux-musl.tar.gz
 
 ```
 
@@ -86,15 +81,15 @@ sudo cp target/release/terraphim-agent /usr/local/bin/
 
 ```bash
 # Apple Silicon (ARM64)
-curl -LO https://github.com/terraphim/terraphim-ai/releases/latest/download/terraphim-agent-1.20.5-aarch64-apple-darwin.tar.gz
-tar -xzf terraphim-agent-1.20.5-aarch64-apple-darwin.tar.gz
+curl -LO https://downloads.terraphim.ai/terraphim-agent/terraphim-agent-1.21.14-aarch64-apple-darwin.tar.gz
+tar -xzf terraphim-agent-1.21.14-aarch64-apple-darwin.tar.gz
 sudo mv terraphim-agent /usr/local/bin/
 
 # Intel (x86_64)
-curl -LO https://github.com/terraphim/terraphim-ai/releases/latest/download/terraphim-agent-1.20.5-x86_64-apple-darwin.tar.gz
+curl -LO https://downloads.terraphim.ai/terraphim-agent/terraphim-agent-1.21.14-x86_64-apple-darwin.tar.gz
 
 # Universal (Fat binary)
-curl -LO https://github.com/terraphim/terraphim-ai/releases/latest/download/terraphim-agent-1.20.5-universal-apple-darwin.tar.gz
+curl -LO https://downloads.terraphim.ai/terraphim-agent/terraphim-agent-1.21.14-universal-apple-darwin.tar.gz
 ```
 
 #### Build from Source
@@ -114,12 +109,12 @@ sudo cp target/release/terraphim-agent /usr/local/bin/
 
 ```powershell
 # Download and extract
-curl -LO https://github.com/terraphim/terraphim-ai/releases/latest/download/terraphim-agent-1.20.5-x86_64-pc-windows-msvc.zip
+curl -LO https://github.com/terraphim/terraphim-clients/releases/download/v1.21.14/terraphim-agent-1.21.14-x86_64-pc-windows-msvc.zip
 ```
 
 Extract the zip and add the directory to your PATH.
 
-- [Download for Windows x64](https://github.com/terraphim/terraphim-ai/releases/latest)
+- [Download for Windows x64](https://github.com/terraphim/terraphim-clients/releases/latest)
 
 #### Build from Source
 
@@ -175,7 +170,7 @@ After installation, verify that Terraphim is working:
 ```bash
 # Check version
 terraphim-agent --version
-# terraphim-agent 1.20.5
+# terraphim-agent 1.21.14
 
 # Start the REPL
 terraphim-agent repl
