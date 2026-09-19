@@ -180,8 +180,8 @@
   var platformDetect = document.getElementById('platformDetect');
 
   if (installSection && platformDetect) {
-    var version = installSection.getAttribute('data-version') || '1.20.5';
-    var base = 'https://github.com/terraphim/terraphim-ai/releases/download/v' + version + '/';
+    var version = installSection.getAttribute('data-version') || '1.21.14';
+    var base = 'https://github.com/terraphim/terraphim-clients/releases/download/v' + version + '/';
     var platform = null;
 
     var ua = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '';
