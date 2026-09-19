@@ -62,6 +62,7 @@ navbar_items = [
         { url = "https://terraphim.rs", name = "Rust" },
         { url = "$BASE_URL/releases", name = "Releases" },
         { url = "$BASE_URL/docs/installation", name = "Install" },
+        { url = "$BASE_URL/#community", name = "Community" },
         { url = "$BASE_URL/docs/donate", name = "Donate" },
     ] },
 ]

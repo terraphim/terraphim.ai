@@ -543,6 +543,86 @@
   </div>
 </section>
 
+<!-- ---- COMMUNITY ---- -->
+<section class="section" id="community" aria-label="Join the community">
+  <div class="section-inner">
+    <div class="section-overline">
+      <i class="fa-solid fa-users" aria-hidden="true"></i>
+      Community
+    </div>
+    <h2 class="section-title">Join the Conversation</h2>
+    <p class="section-subtitle">
+      Connect with developers, share knowledge, and help shape the future of local-first AI tooling.
+    </p>
+
+    <div class="waypoints-grid">
+      {% if config.extra.social.discord %}
+      <a href="https://discord.gg/{{ config.extra.social.discord }}" target="_blank" rel="noopener" class="waypoint-link">
+        <article class="waypoint">
+          <div class="waypoint-header">
+            <div class="waypoint-icon"><i class="fa-brands fa-discord" aria-hidden="true"></i></div>
+            <div>
+              <span class="waypoint-number">COM-01</span>
+              <h3 class="waypoint-title">Discord</h3>
+            </div>
+          </div>
+          <p class="waypoint-desc">Real-time chat for questions, debugging help, and feature discussions. The fastest way to get support from the team and community.</p>
+          <span class="waypoint-cta">Join Discord <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+        </article>
+      </a>
+      {% endif %}
+
+      {% if config.extra.social.discourse %}
+      <a href="https://{{ config.extra.social.discourse }}" target="_blank" rel="noopener" class="waypoint-link">
+        <article class="waypoint">
+          <div class="waypoint-header">
+            <div class="waypoint-icon"><i class="fa-brands fa-discourse" aria-hidden="true"></i></div>
+            <div>
+              <span class="waypoint-number">COM-02</span>
+              <h3 class="waypoint-title">Discourse</h3>
+            </div>
+          </div>
+          <p class="waypoint-desc">Long-form discussions, tutorials, and knowledge sharing. Post use cases, integration guides, and deep technical explorations.</p>
+          <span class="waypoint-cta">Browse forums <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+        </article>
+      </a>
+      {% endif %}
+
+      {% if config.extra.social.reddit %}
+      <a href="https://www.reddit.com/r/{{ config.extra.social.reddit }}" target="_blank" rel="noopener" class="waypoint-link">
+        <article class="waypoint">
+          <div class="waypoint-header">
+            <div class="waypoint-icon"><i class="fa-brands fa-reddit" aria-hidden="true"></i></div>
+            <div>
+              <span class="waypoint-number">COM-03</span>
+              <h3 class="waypoint-title">Reddit</h3>
+            </div>
+          </div>
+          <p class="waypoint-desc">Community-driven news, demos, and project showcases. Share what you build, upvote features, discuss privacy-first architecture.</p>
+          <span class="waypoint-cta">Visit subreddit <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+        </article>
+      </a>
+      {% endif %}
+
+      {% if config.extra.social.github %}
+      <a href="https://github.com/{{ config.extra.social.github }}" target="_blank" rel="noopener" class="waypoint-link">
+        <article class="waypoint">
+          <div class="waypoint-header">
+            <div class="waypoint-icon"><i class="fa-brands fa-github" aria-hidden="true"></i></div>
+            <div>
+              <span class="waypoint-number">COM-04</span>
+              <h3 class="waypoint-title">GitHub</h3>
+            </div>
+          </div>
+          <p class="waypoint-desc">Source code, issues, pull requests, and release notes. Report bugs, propose features, and contribute code to the project.</p>
+          <span class="waypoint-cta">Star on GitHub <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+        </article>
+      </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
 <!-- ---- DEPLOY ---- -->
 <section class="section" id="deploy" aria-label="Deployment targets">
   <div class="section-inner">
