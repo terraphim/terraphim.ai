@@ -217,7 +217,7 @@ You typed `git push -f` in a repo with protected branches? It learns that `-f` i
 
 ```bash
 # Install terraphim-agent
-cargo install terraphim-agent
+cargo install terraphim_agent --features repl-full
 
 # Install the learning hook for Claude Code
 terraphim-agent learn install-hook claude

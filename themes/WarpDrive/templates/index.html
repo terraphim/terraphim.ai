@@ -22,8 +22,8 @@
     <div class="hero-install-label">Install terraphim-agent</div>
     <div class="command-line hero-command">
       <span class="prompt-symbol">$</span>
-      <span class="prompt-text">cargo install terraphim-agent</span>
-      <button class="copy-btn" data-copy="cargo install terraphim-agent" aria-label="Copy install command">copy</button>
+      <span class="prompt-text">cargo install terraphim_agent --features repl-full</span>
+      <button class="copy-btn" data-copy="cargo install terraphim_agent --features repl-full" aria-label="Copy install command">copy</button>
     </div>
     <div class="hero-install-alt">
       or <a href="{{ config.base_url }}/docs/installation" class="inline-link">Homebrew, curl, binary downloads</a>
@@ -35,9 +35,9 @@
       <i class="fa-solid fa-bolt" aria-hidden="true"></i>
       Quickstart
     </a>
-    <a href="https://github.com/terraphim/terraphim-ai/releases/tag/v{{ config.extra.release_version | default(value='1.20.5') }}" class="btn btn-ghost">
+    <a href="https://github.com/terraphim/terraphim-clients/releases/tag/v{{ config.extra.release_version | default(value='1.21.16') }}" class="btn btn-ghost">
       <i class="fa-solid fa-rocket" aria-hidden="true"></i>
-      v{{ config.extra.release_version | default(value="1.20.5") }} release
+      v{{ config.extra.release_version | default(value="1.21.16") }} release
     </a>
     <a href="https://github.com/terraphim/terraphim-ai" class="btn btn-ghost">
       <i class="fa-brands fa-github" aria-hidden="true"></i>
@@ -710,7 +710,7 @@
 </section>
 
 <!-- ---- INSTALL ---- -->
-<section class="install" id="install" aria-label="Installation" data-version="{{ config.extra.release_version | default(value='1.20.5') }}">
+<section class="install" id="install" aria-label="Installation" data-version="{{ config.extra.release_version | default(value='1.21.16') }}">
   <div class="install-inner">
     <div class="section-overline">
       <i class="fa-solid fa-download" aria-hidden="true"></i>
@@ -731,8 +731,8 @@
           <span id="platformBtnText">Download</span>
         </a>
       </div>
-      {% set rv = config.extra.release_version | default(value="1.20.5") %}
-      {% set dl = "https://github.com/terraphim/terraphim-ai/releases/download/v" ~ rv ~ "/" %}
+      {% set rv = config.extra.release_version | default(value="1.21.16") %}
+      {% set dl = "https://downloads.terraphim.ai/terraphim-agent/" %}
       <details class="all-platforms">
         <summary>All platforms</summary>
         <ul class="platform-list">
@@ -778,8 +778,8 @@
             <div class="install-block">
               <div class="command-line">
                 <span class="prompt-symbol">$</span>
-                <span class="prompt-text">brew tap terraphim/terraphim && brew install terraphim-ai</span>
-                <button class="copy-btn" data-copy="brew tap terraphim/terraphim && brew install terraphim-ai" aria-label="Copy command">copy</button>
+                <span class="prompt-text">brew tap terraphim/terraphim && brew install terraphim-agent</span>
+                <button class="copy-btn" data-copy="brew tap terraphim/terraphim && brew install terraphim-agent" aria-label="Copy command">copy</button>
               </div>
             </div>
           </div>
@@ -792,13 +792,13 @@
             <div class="install-block">
               <div class="command-line">
                 <span class="prompt-symbol">$</span>
-                <span class="prompt-text">cargo install terraphim-agent</span>
-                <button class="copy-btn" data-copy="cargo install terraphim-agent" aria-label="Copy command">copy</button>
+                <span class="prompt-text">cargo install terraphim_agent --features repl-full</span>
+                <button class="copy-btn" data-copy="cargo install terraphim_agent --features repl-full" aria-label="Copy command">copy</button>
               </div>
               <div class="command-line">
                 <span class="prompt-symbol">$</span>
-                <span class="prompt-text">cargo install terraphim-cli</span>
-                <button class="copy-btn" data-copy="cargo install terraphim-cli" aria-label="Copy command">copy</button>
+                <span class="prompt-text">cargo install terraphim_cli</span>
+                <button class="copy-btn" data-copy="cargo install terraphim_cli" aria-label="Copy command">copy</button>
               </div>
             </div>
           </div>
@@ -814,7 +814,7 @@
                 <span class="prompt-text">curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts/install.sh | bash</span>
                 <button class="copy-btn" data-copy="curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts/install.sh | bash" aria-label="Copy command">copy</button>
               </div>
-              <p class="install-note">Requires WSL. Or <a href="https://github.com/terraphim/terraphim-ai/releases/download/v{{ config.extra.release_version | default(value='1.20.5') }}/terraphim-agent-{{ config.extra.release_version | default(value='1.20.5') }}-x86_64-pc-windows-msvc.zip">download the .zip directly</a>.</p>
+              <p class="install-note">Requires WSL. Or <a href="https://downloads.terraphim.ai/terraphim-agent/terraphim-agent-{{ config.extra.release_version | default(value='1.21.16') }}-x86_64-pc-windows-msvc.zip">download the .zip directly</a>.</p>
             </div>
           </div>
         </div>
@@ -872,9 +872,9 @@
     </div>
 
     <div class="install-cta">
-      <a href="https://github.com/terraphim/terraphim-ai/releases/tag/v{{ config.extra.release_version | default(value='1.20.5') }}" class="btn btn-primary">
+      <a href="https://github.com/terraphim/terraphim-clients/releases/tag/v{{ config.extra.release_version | default(value='1.21.16') }}" class="btn btn-primary">
         <i class="fa-solid fa-download" aria-hidden="true"></i>
-        Download v{{ config.extra.release_version | default(value="1.20.5") }}
+        Download v{{ config.extra.release_version | default(value="1.21.16") }}
       </a>
       <a href="{{ config.base_url }}/docs/installation" class="btn btn-ghost">
         <i class="fa-solid fa-book" aria-hidden="true"></i>

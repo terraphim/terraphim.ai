@@ -10,11 +10,11 @@ paginate_by = 10
 
 Stay up-to-date with the latest Terraphim AI releases.
 
-## Latest Release: v1.21.9
+## Latest Release: v1.21.16
 
-**Released:** 6 July 2026
+**Released:** 25 September 2026
 
-[GitHub Releases](https://github.com/terraphim/terraphim-clients/releases/tag/v1.21.9) | [Release Notes](https://github.com/terraphim/terraphim-clients/releases/tag/v1.21.9)
+[GitHub Releases](https://github.com/terraphim/terraphim-clients/releases/tag/v1.21.16) | [Release Notes](https://github.com/terraphim/terraphim-clients/releases/tag/v1.21.16)
 
 ### Self-Update (recommended)
 
@@ -37,21 +37,25 @@ curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts
 
 Binaries are distributed via Cloudflare R2 with zero-egress CDN. Browse the manifests:
 
-- [terraphim-agent manifest](https://downloads.terraphim.ai/terraphim-agent/stable.json)
-- [terraphim-grep manifest](https://downloads.terraphim.ai/terraphim-grep/stable.json)
-- [terraphim-cli manifest](https://downloads.terraphim.ai/terraphim-cli/stable.json)
+- [terraphim-agent manifest](https://downloads.terraphim.ai/terraphim-agent/stable-v2.json)
+- [terraphim-grep manifest](https://downloads.terraphim.ai/terraphim-grep/stable-v2.json)
+- [terraphim-cli manifest](https://downloads.terraphim.ai/terraphim-cli/stable-v2.json)
+
+The `stable-v2.json` manifests carry the version, release date and a SHA-256
+digest plus size for every published archive. The older `stable.json` pointers
+are still served for pre-1.21.15 clients.
 
 Download the latest archive for your platform directly:
 
 ```bash
-curl -fsSLO "https://downloads.terraphim.ai/terraphim-agent/terraphim-agent-1.21.9-x86_64-unknown-linux-gnu.tar.gz"
-tar -xzf terraphim-agent-1.21.9-*.tar.gz
+curl -fsSLO "https://downloads.terraphim.ai/terraphim-agent/terraphim-agent-1.21.16-x86_64-unknown-linux-gnu.tar.gz"
+tar -xzf terraphim-agent-1.21.16-*.tar.gz
 sudo mv terraphim-agent /usr/local/bin/
 ```
 
 ### Available Binaries
 
-v1.21.9 ships across three client tools:
+v1.21.16 ships across three client tools:
 
 - **`terraphim-agent`** — full CLI + REPL + TUI
 - **`terraphim-grep`** — intelligent hybrid search with RLM fallback
@@ -73,21 +77,17 @@ All Linux and macOS archives are **Ed25519-signed** and verified on install by t
 
 ### What's New
 
-**R2 binary distribution — no rate limits, no GitHub token**
-- Client binaries served from Cloudflare R2 via `downloads.terraphim.ai` (free global CDN egress)
-- JSON manifest backend — version discovery is a single HTTP GET (sub-second, edge-cached)
-- `terraphim-agent update` and `terraphim-grep update` work out of the box with no credentials
-- GitHub Releases retained as an automatic fallback
+**Public install path corrected**
+- The universal installer now resolves release versions from the channel manifests rather than from version-less GitHub assets, so it installs the current release instead of an older one
+- Downloads are verified against the manifest's SHA-256 before anything is unpacked, and a mismatch aborts the install
+- Archives are unpacked from a staging directory; the destination is only written once the bytes are verified and the expected binary is present
 
-**Archive signing (Ed25519 / zipsign)**
-- Every `.tar.gz` archive is now signed and verified on install
-- Multi-key verifier supports key rotation (2026-07 clients key + 2025-01 legacy key)
-- Unsigned archives are rejected — `MissingSignature` is a hard failure, not a warning
+**Version reporting and exit codes**
+- The installer reports a specific exit code per failure (unreachable manifest, unavailable version, failed download, checksum mismatch)
 
-**Self-update robustness**
-- Install-path fix: updates now install to the running binary's location (no more `~/.cargo/bin` shadowing `/usr/local/bin`)
-- Atomic-rename install: can replace the currently-running binary without `ETXTBSY`
-- Backend selector: `TERRAPHIM_UPDATE_BACKEND=r2|github` env override
+**Release integrity**
+- `stable-v2.json` manifests publish a SHA-256 digest and byte size for every archive
+- Archive signing (Ed25519 / zipsign) continues to apply to every `.tar.gz`
 
 ### Installation
 
@@ -128,7 +128,7 @@ View complete release history on [GitHub Releases (terraphim-clients)](https://g
 
 Stable releases are recommended for production use. They are thoroughly tested and signed. The self-updater fetches signed archives from `downloads.terraphim.ai` by default.
 
-**Latest Stable:** v1.21.9
+**Latest Stable:** v1.21.16
 
 ### Development
 
