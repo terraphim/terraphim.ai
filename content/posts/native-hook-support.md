@@ -159,7 +159,7 @@ Each role learns differently and optimises search for its domain.
 
 ```bash
 # Install latest terraphim-agent
-cargo install terraphim-agent
+cargo install terraphim_agent --features repl-full
 
 # Install hook for your AI agent
 terraphim-agent learn install-hook claude
@@ -189,7 +189,7 @@ This release passed rigorous quality gates:
 
 ```bash
 # Install
-cargo install terraphim-agent
+cargo install terraphim_agent --features repl-full
 
 # Set up your role
 terraphim-agent setup --template rust-engineer-v2

@@ -1,12 +1,28 @@
 name: Deploy to Cloudflare Pages
 
+# Production deploy. Runs after a push to main (or on demand).
+#
+# The Cloudflare Pages project `terraphim-ai` is deployed exclusively through
+# this workflow. There is no separate CDN/Git integration to keep in sync, so a
+# green run here means the published site matches main.
+
 on:
   push:
     branches:
       - main
   workflow_dispatch:
 
+permissions:
+  contents: read
+  deployments: write
+
+concurrency:
+  group: cloudflare-pages-production
+  cancel-in-progress: false
+
 env:
+  ZOLA_VERSION: "0.22.1"
+  CF_PROJECT: terraphim-ai
   OP_API_TOKEN: op://TerraphimPlatform/terraphim-md-book-cloudflare/workers-api-token
   OP_ACCOUNT_ID: op://TerraphimPlatform/terraphim-md-book-cloudflare/account_id
 
@@ -14,17 +30,17 @@ jobs:
   build-and-deploy:
     name: Build and Deploy
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      deployments: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Install Zola 0.22.1
+      - name: Install Zola ${{ env.ZOLA_VERSION }}
         run: |
-          curl -L https://github.com/getzola/zola/releases/download/v0.22.1/zola-v0.22.1-x86_64-unknown-linux-gnu.tar.gz | tar xz
+          curl --fail --location --silent --show-error \
+            "https://github.com/getzola/zola/releases/download/v${ZOLA_VERSION}/zola-v${ZOLA_VERSION}-x86_64-unknown-linux-gnu.tar.gz" \
+            | tar xz
           sudo mv zola /usr/local/bin
+          zola --version
 
       - name: Build site
         run: zola build
@@ -45,4 +61,29 @@ jobs:
         with:
           apiToken: ${{ env.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ env.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy public --project-name=terraphim-ai --branch=main
+          command: pages deploy public --project-name=${{ env.CF_PROJECT }} --branch=main
+
+      - name: Verify the deployed site serves the committed version
+        env:
+          DEPLOY_URL: ${{ steps.deploy.outputs.deployment-url }}
+        run: |
+          expected=$(grep -oP '^release_version\s*=\s*"\K[^"]+' config.toml)
+          url="${DEPLOY_URL:-https://${CF_PROJECT}.pages.dev}"
+          echo "Expecting release_version ${expected} at ${url}"
+
+          attempt=1
+          while [ "${attempt}" -le 5 ]; do
+            body=$(curl --fail --location --silent --show-error --max-time 30 "${url}/" || true)
+            if printf '%s' "${body}" | grep -q "${expected}"; then
+              echo "Deployment served release ${expected} on attempt ${attempt}"
+              exit 0
+            fi
+            echo "Attempt ${attempt}: ${expected} not found yet, retrying"
+            attempt=$((attempt + 1))
+            sleep 15
+          done
+
+          # Surface the site content for debugging before failing.
+          curl --fail --location --silent --show-error --max-time 30 "${url}/" | head -c 2000 || true
+          echo "::error::Deployed site does not advertise release ${expected}"
+          exit 1

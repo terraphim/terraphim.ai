@@ -20,7 +20,7 @@ you encounter a recurring error.
 Install it with one command:
 
 ```bash
-cargo install terraphim-agent
+cargo install terraphim_agent --features repl-full
 ```
 
 ## What it does
