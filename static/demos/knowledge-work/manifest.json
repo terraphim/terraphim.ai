@@ -7,7 +7,7 @@
   "media": [
     {
       "file": "chrome-online-editor.mp4",
-      "sha256": "92a48e3bd2b79b46475bf1e318cad46335708bf2ed6654f1f928c4cb78f11de4",
+      "sha256": "acb5e852e642de4fdf44d8928d8039e70c2294810d4e54a4dbc10fbdfd9aae5c",
       "probe": {
         "programs": [],
         "stream_groups": [],
@@ -17,11 +17,17 @@
             "codec_type": "video",
             "width": 1440,
             "height": 1080
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "16000",
+            "channels": 1
           }
         ],
         "format": {
           "duration": "44.433333",
-          "size": "579757"
+          "size": "794182"
         }
       },
       "scope": "finite actual-output demo; full all41 acceptance remains unproved",
@@ -29,7 +35,7 @@
     },
     {
       "file": "firefox-online-editor.mp4",
-      "sha256": "87a137e39bba5bd0bae681a3304a9406fcf8d17d25e56918c49fcb2413307aea",
+      "sha256": "d971e5ef2fc359c79c6144e29fe29067b1a41a4243a3dc130b763469e6cb4017",
       "probe": {
         "programs": [],
         "stream_groups": [],
@@ -39,11 +45,17 @@
             "codec_type": "video",
             "width": 1440,
             "height": 1080
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "16000",
+            "channels": 1
           }
         ],
         "format": {
           "duration": "49.033333",
-          "size": "850757"
+          "size": "1042412"
         }
       },
       "scope": "finite actual-output demo; full all41 acceptance remains unproved",
@@ -51,7 +63,7 @@
     },
     {
       "file": "safari-online-editor-public.mp4",
-      "sha256": "57fc4c0104750e4b2aed9879caac92c5d7d54ec9c7f457fde3d34d32a7d8006f",
+      "sha256": "8f28aaa6fff183f6de04da0f4c0abd7bd499c86f5a8abf767771528b47970540",
       "probe": {
         "programs": [],
         "stream_groups": [],
@@ -61,11 +73,17 @@
             "codec_type": "video",
             "width": 1440,
             "height": 1080
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "16000",
+            "channels": 1
           }
         ],
         "format": {
           "duration": "44.600000",
-          "size": "807106"
+          "size": "994385"
         }
       },
       "scope": "finite actual-output demo; full all41 acceptance remains unproved",
@@ -73,7 +91,7 @@
     },
     {
       "file": "zed-existing-extension-public.mp4",
-      "sha256": "96ced61ac72f4dca0de8f1377e7ff70d408ecfad134c4bafdfb636ae435e6512",
+      "sha256": "b1fa8efd1163bdbbac3df57e681bcaf0c7820af4f4dd46d3fb7d864f73ee1dd0",
       "probe": {
         "programs": [],
         "stream_groups": [],
@@ -83,11 +101,17 @@
             "codec_type": "video",
             "width": 1440,
             "height": 1080
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "16000",
+            "channels": 1
           }
         ],
         "format": {
           "duration": "59.733333",
-          "size": "931049"
+          "size": "1194725"
         }
       },
       "scope": "finite actual-output demo; full all41 acceptance remains unproved",
@@ -95,7 +119,7 @@
     },
     {
       "file": "grep-live-execution-public.mp4",
-      "sha256": "4393d99c486a81951a669e6a509f8006e6b169717246ffc6c727b67b01f58549",
+      "sha256": "823b68d238393b8c7770b269314cd1450c171881c44830b1f09db244435d2985",
       "probe": {
         "programs": [],
         "stream_groups": [],
@@ -105,11 +129,17 @@
             "codec_type": "video",
             "width": 1440,
             "height": 1080
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "16000",
+            "channels": 1
           }
         ],
         "format": {
           "duration": "21.000000",
-          "size": "595159"
+          "size": "721828"
         }
       },
       "scope": "Actual captured terminal subprocesses on Safari clean export; same KG/chunks, only --answer changes. External synthesis is interpretive; policy is not proof of practice.",
@@ -117,7 +147,7 @@
     },
     {
       "file": "grammarly-for-knowledge-work-preview.mp4",
-      "sha256": "d383d61011ea3895872b79745aa9bccbe0ef4023fb7d9e03412206d70c21802f",
+      "sha256": "62070e7f73319580ceac46001192483d308f94284f2cbf7a6631f4ddc69f6a1f",
       "probe": {
         "programs": [],
         "stream_groups": [],
@@ -127,11 +157,17 @@
             "codec_type": "video",
             "width": 1440,
             "height": 1080
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "16000",
+            "channels": 1
           }
         ],
         "format": {
           "duration": "77.433333",
-          "size": "1260456"
+          "size": "1687908"
         }
       },
       "scope": "Chrome online editor, explicit Safari clean-export handoff, actual grep comparison. Candidate preview; not full 41 acceptance or production deployment.",
@@ -139,7 +175,7 @@
     }
   ],
   "coverageDisclaimer": "These four refreshed captures do not replace the original all41 ledger; no acceptance row promoted.",
-  "edition": "paced-v2: burned-in explanatory text, original raw captures retained",
+  "edition": "paced-v2 / narrated-v3: British female Emma narration, original video bitstreams preserved",
   "priorEdits": [
     {
       "input": "safari-online-editor.mp4",
@@ -421,5 +457,77 @@
         "outro 4s"
       ]
     }
-  ]
+  ],
+  "narration": {
+    "voice": "Emma",
+    "voiceId": "bf_emma",
+    "language": "en-gb",
+    "engine": "Kokoro v1.0 ONNX",
+    "syntheticVoice": true,
+    "processing": "fixed per-take gain and scheduled silence only; no tempo/pitch changes",
+    "script": "narration.json",
+    "outputs": [
+      {
+        "file": "chrome-online-editor.mp4",
+        "videoBitstreamSha256": "SHA256=a04a15c051bed06e0cbeb2904a6a6e1ae9edb80e07117e454306e36e0af773a3",
+        "videoBitstreamUnchanged": true,
+        "narrationWavSha256": "b851c256a62d66c3d876341e2c4f87fc252104a1808b49c048e3baa396800bce",
+        "audioDuration": 44.4333125,
+        "fixedGainOnly": true,
+        "noTempoOrPitchChanges": true,
+        "peakDbfs": -3.81337915925506
+      },
+      {
+        "file": "firefox-online-editor.mp4",
+        "videoBitstreamSha256": "SHA256=566fcc7bf31742286a849c35f79eb91c3ff2b0b3baa13c4a2f042481dcdf58e7",
+        "videoBitstreamUnchanged": true,
+        "narrationWavSha256": "01c633468d81ac427fb99a2ccede25aaae6d7d5dc7b69dd8ceef7432d86d1c65",
+        "audioDuration": 49.0333125,
+        "fixedGainOnly": true,
+        "noTempoOrPitchChanges": true,
+        "peakDbfs": -6.069365083187769
+      },
+      {
+        "file": "safari-online-editor-public.mp4",
+        "videoBitstreamSha256": "SHA256=f840cd8dbc6cca40b37abcb69d4249b874a5c3530a0da00d18b93d4e35495c7b",
+        "videoBitstreamUnchanged": true,
+        "narrationWavSha256": "84a24f20accdf96052863d111846f3834b6ab56159c42d6005c68d646b3e9d89",
+        "audioDuration": 44.6,
+        "fixedGainOnly": true,
+        "noTempoOrPitchChanges": true,
+        "peakDbfs": -4.123910538110745
+      },
+      {
+        "file": "zed-existing-extension-public.mp4",
+        "videoBitstreamSha256": "SHA256=3ae61c8a3d132656b793042698b93af2022acc92997485ca53a9d4528c6d17dd",
+        "videoBitstreamUnchanged": true,
+        "narrationWavSha256": "0ac8f0159d88e876e21141a7a34269a6034c69564ca61ef3d3a862e7619f1ad3",
+        "audioDuration": 59.7333125,
+        "fixedGainOnly": true,
+        "noTempoOrPitchChanges": true,
+        "peakDbfs": -3.9357742326822764
+      },
+      {
+        "file": "grep-live-execution-public.mp4",
+        "videoBitstreamSha256": "SHA256=64c6f830aa210be69d37f435d3e11a0ff3e61c858756d35af6d4052dc51ee53e",
+        "videoBitstreamUnchanged": true,
+        "narrationWavSha256": "4dd1967bf44e34fccaba979cb09ab004fb115b121c5ac1bebe80d617a3d0e9f9",
+        "audioDuration": 21.0,
+        "fixedGainOnly": true,
+        "noTempoOrPitchChanges": true,
+        "peakDbfs": -5.318855404652813
+      },
+      {
+        "file": "grammarly-for-knowledge-work-preview.mp4",
+        "videoBitstreamSha256": "SHA256=84d00af2d9f328ec793cf32034c45e4c6745b3017e20f7520acefde2604c359b",
+        "videoBitstreamUnchanged": true,
+        "narrationWavSha256": "be72dd52339b1de191c9db44f0cdeca0ad02c5238813dc9d4b5401d1441a9352",
+        "audioDuration": 77.4333125,
+        "fixedGainOnly": true,
+        "noTempoOrPitchChanges": true,
+        "peakDbfs": -3.81337915925506
+      }
+    ],
+    "scriptSha256": "2d1aa86738df56ac8f730400dec3838368259f4a08bb3c06c8409e1bcc822133"
+  }
 }

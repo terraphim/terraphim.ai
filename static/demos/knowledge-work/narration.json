@@ -1,0 +1,875 @@
+{
+  "voice": "Emma",
+  "voiceId": "bf_emma",
+  "language": "en-gb",
+  "videos": [
+    {
+      "file": "chrome-online-editor.mp4",
+      "beats": [
+        {
+          "id": "chrome-online-editor-1",
+          "start": 0,
+          "end": 8.0,
+          "text": "Start with a public project brief about decisions, risks, and terminology.",
+          "visualEvidence": "Start with a public project brief: decisions, risks and terminology.",
+          "take": {
+            "id": "acbf93356791fbc2",
+            "text": "Start with a public project brief about decisions, risks, and terminology.",
+            "duration": 4.3826875,
+            "sha256": "15d4df2133f41088cde3164b2ac6cfd824c99acf693f943a46909c07c758bd55"
+          },
+          "audioStart": 0.15,
+          "audioEnd": 4.532688,
+          "fits": true
+        },
+        {
+          "id": "chrome-online-editor-2",
+          "start": 8.0,
+          "end": 19.333333,
+          "text": "The knowledge graph supplies alternatives; here, Judgment replaces Decision.",
+          "visualEvidence": "The shared knowledge graph suggests alternatives. Apply Judgment.",
+          "take": {
+            "id": "f34961a739d61776",
+            "text": "The knowledge graph supplies alternatives; here, Judgment replaces Decision.",
+            "duration": 4.6646875,
+            "sha256": "84b5285157f6df061cc6da016a592c3d8d95224da9a9b38470add6c2888edefb"
+          },
+          "audioStart": 8.15,
+          "audioEnd": 12.814688,
+          "fits": true
+        },
+        {
+          "id": "chrome-online-editor-3",
+          "start": 19.333333,
+          "end": 29.833333,
+          "text": "Add Assessment as your own alternative, then check undo and redo.",
+          "visualEvidence": "Add Assessment as your own wording, then exercise Undo and Redo.",
+          "take": {
+            "id": "b37d8bcc60a23c3b",
+            "text": "Add Assessment as your own alternative, then check undo and redo.",
+            "duration": 3.9986875,
+            "sha256": "26c1db2f20295c75de1f5af043369c906c7977f3c9f8ce7de0d27ef65c95cbdc"
+          },
+          "audioStart": 19.483333,
+          "audioEnd": 23.48202,
+          "fits": true
+        },
+        {
+          "id": "chrome-online-editor-4",
+          "start": 29.833333,
+          "end": 35.833333,
+          "text": "Save the annotated document, then reopen it.",
+          "visualEvidence": "Save and reopen the annotated document. Dialog waiting is cut.",
+          "take": {
+            "id": "84b392d0d100edc5",
+            "text": "Save the annotated document, then reopen it.",
+            "duration": 2.952,
+            "sha256": "1bf4c62a031e45622595160677ac22be84167a0e62cffcd80138b2d6176a7a04"
+          },
+          "audioStart": 29.983333,
+          "audioEnd": 32.935333,
+          "fits": true
+        },
+        {
+          "id": "chrome-online-editor-5",
+          "start": 35.833333,
+          "end": 44.4675,
+          "text": "Assessment remains active after reopening, with the other alternatives attached.",
+          "visualEvidence": "Assessment remains active after reopen. Other alternatives stay attached.",
+          "take": {
+            "id": "ea934832d391abbd",
+            "text": "Assessment remains active after reopening, with the other alternatives attached.",
+            "duration": 4.755375,
+            "sha256": "ed81679e1a364463d160e3e15de4da993bd9ed439caf08feb1715ccd88a39d04"
+          },
+          "audioStart": 35.983333,
+          "audioEnd": 40.738708,
+          "fits": true
+        }
+      ]
+    },
+    {
+      "file": "firefox-online-editor.mp4",
+      "beats": [
+        {
+          "id": "firefox-online-editor-1",
+          "start": 0,
+          "end": 11.333333,
+          "text": "Firefox uses the same public brief and shared knowledge graph.",
+          "visualEvidence": "Open the public brief and inspect alternatives from the same knowledge graph.",
+          "take": {
+            "id": "0c382d896fc69ac3",
+            "text": "Firefox uses the same public brief and shared knowledge graph.",
+            "duration": 3.892,
+            "sha256": "754c28f4567f5b110fbe92130c79f9e9fd478d01aa59d289614d4f89db0f293d"
+          },
+          "audioStart": 0.15,
+          "audioEnd": 4.042,
+          "fits": true
+        },
+        {
+          "id": "firefox-online-editor-2",
+          "start": 11.333333,
+          "end": 21.833333,
+          "text": "Choose wording and add Assessment as another alternative.",
+          "visualEvidence": "Choose wording and add Assessment. Compare it directly in the document.",
+          "take": {
+            "id": "9eb5af57c1d2b24a",
+            "text": "Choose wording and add Assessment as another alternative.",
+            "duration": 3.347375,
+            "sha256": "ede0ed8008ffc00e7c9d4573f573378ceac689af5daecaf327a1750228e6f711"
+          },
+          "audioStart": 11.483333,
+          "audioEnd": 14.830708,
+          "fits": true
+        },
+        {
+          "id": "firefox-online-editor-3",
+          "start": 21.833333,
+          "end": 28.833333,
+          "text": "Reopen the saved document with Assessment still active.",
+          "visualEvidence": "Reopen the saved annotated document with Assessment still active.",
+          "take": {
+            "id": "82e170566b0b6d72",
+            "text": "Reopen the saved document with Assessment still active.",
+            "duration": 3.124,
+            "sha256": "49a63e2a54c911fefd226b0e118fbc19cf8105913dea714be1481a389b241ce2"
+          },
+          "audioStart": 21.983333,
+          "audioEnd": 25.107333,
+          "fits": true
+        },
+        {
+          "id": "firefox-online-editor-4",
+          "start": 28.833333,
+          "end": 38.166667,
+          "text": "Move a note into Overflow, then bring it back.",
+          "visualEvidence": "Set a note aside in Overflow, then return it to the document.",
+          "take": {
+            "id": "086ecb5fa0201683",
+            "text": "Move a note into Overflow, then bring it back.",
+            "duration": 2.8,
+            "sha256": "683488139b1daf85418b6d044bf5675aba76f5fb891e2ca890978a744a216dd3"
+          },
+          "audioStart": 28.983333,
+          "audioEnd": 31.783333,
+          "fits": true
+        },
+        {
+          "id": "firefox-online-editor-5",
+          "start": 38.166667,
+          "end": 49.046667,
+          "text": "Inspect the Lab; this short brief produces zero cuts, so no reduction is claimed.",
+          "visualEvidence": "Inspect the Lab. This short brief produces zero cuts; no reduction is claimed.",
+          "take": {
+            "id": "8ff10a5d099258c8",
+            "text": "Inspect the Lab; this short brief produces zero cuts, so no reduction is claimed.",
+            "duration": 5.0926875,
+            "sha256": "08f9eccd5d03bd2d8ac1c4065058384a945792a9048e8d9bbc8ee5373448f7bd"
+          },
+          "audioStart": 38.316667,
+          "audioEnd": 43.409355,
+          "fits": true
+        }
+      ]
+    },
+    {
+      "file": "safari-online-editor-public.mp4",
+      "beats": [
+        {
+          "id": "safari-online-editor-public-1",
+          "start": 0,
+          "end": 8.666667,
+          "text": "Safari opens the same brief with the shared knowledge graph.",
+          "visualEvidence": "Use the same public brief and shared knowledge graph in Safari.",
+          "take": {
+            "id": "59aa0e905ae8554d",
+            "text": "Safari opens the same brief with the shared knowledge graph.",
+            "duration": 3.4866875,
+            "sha256": "7c8df16fa56e24ffc9162ce6cec5acde058180a1c7126cf07720f520d5276b52"
+          },
+          "audioStart": 0.15,
+          "audioEnd": 3.636687,
+          "fits": true
+        },
+        {
+          "id": "safari-online-editor-public-2",
+          "start": 8.666667,
+          "end": 18.666667,
+          "text": "Apply Judgment from the graph’s suggested alternatives.",
+          "visualEvidence": "Apply Judgment from the knowledge-graph alternatives.",
+          "take": {
+            "id": "de8cfd9b0b0d19a1",
+            "text": "Apply Judgment from the graph’s suggested alternatives.",
+            "duration": 3.209375,
+            "sha256": "f80b33f0ddf1e840e7bf114b38d1968695e8750a144ceb4c2cf70cf0677c3384"
+          },
+          "audioStart": 8.816667,
+          "audioEnd": 12.026042,
+          "fits": true
+        },
+        {
+          "id": "safari-online-editor-public-3",
+          "start": 18.666667,
+          "end": 31.166667,
+          "text": "Create Assessment as your own wording, and make it active.",
+          "visualEvidence": "Create Assessment as your own alternative and make it active.",
+          "take": {
+            "id": "a2f7ec77f736c375",
+            "text": "Create Assessment as your own wording, and make it active.",
+            "duration": 3.2606875,
+            "sha256": "4835099d81516456ba75e9ac4a9b19f9192b575d9cb18f04e7f2a55137f6d0cf"
+          },
+          "audioStart": 18.816667,
+          "audioEnd": 22.077354,
+          "fits": true
+        },
+        {
+          "id": "safari-online-editor-public-4",
+          "start": 31.166667,
+          "end": 36.666667,
+          "text": "Save the annotated document, retaining the alternatives.",
+          "visualEvidence": "Save the annotated document. Idle time around the dialog is removed.",
+          "take": {
+            "id": "c4ad9701f888f693",
+            "text": "Save the annotated document, retaining the alternatives.",
+            "duration": 3.529375,
+            "sha256": "4196961001cd53d7dc33e4eb31788bade93d7c581d1da24aa9010ef2750ff04d"
+          },
+          "audioStart": 31.316667,
+          "audioEnd": 34.846042,
+          "fits": true
+        },
+        {
+          "id": "safari-online-editor-public-5",
+          "start": 36.666667,
+          "end": 44.584795,
+          "text": "Reopen with Assessment preserved; clean export is verified separately.",
+          "visualEvidence": "Reopen with Assessment preserved. Clean export is verified separately.",
+          "take": {
+            "id": "5b1482c2741c3c32",
+            "text": "Reopen with Assessment preserved; clean export is verified separately.",
+            "duration": 4.489375,
+            "sha256": "e15da452b38abc453d366fbd8dd27f3ad2d8d063cb809dd7d81ca2b1004703b2"
+          },
+          "audioStart": 36.816667,
+          "audioEnd": 41.306042,
+          "fits": true
+        }
+      ]
+    },
+    {
+      "file": "zed-existing-extension-public.mp4",
+      "beats": [
+        {
+          "id": "zed-existing-extension-public-1",
+          "start": 0,
+          "end": 12.0,
+          "text": "The existing Zed extension offers completion using the same knowledge graph.",
+          "visualEvidence": "The existing extension offers completion from the same knowledge graph.",
+          "take": {
+            "id": "19d8728cdc5f58ae",
+            "text": "The existing Zed extension offers completion using the same knowledge graph.",
+            "duration": 4.468,
+            "sha256": "ea79c17023d8478f4831fce265393e847d787ba80e5aa029b85bbe34ed535317"
+          },
+          "audioStart": 0.15,
+          "audioEnd": 4.618,
+          "fits": true
+        },
+        {
+          "id": "zed-existing-extension-public-2",
+          "start": 12.0,
+          "end": 22.0,
+          "text": "Apply Judgment, then check native undo and redo with saved checkpoints.",
+          "visualEvidence": "Apply Judgment, then use native Undo and Redo with saved checkpoints.",
+          "take": {
+            "id": "4f4a4b70843cfe60",
+            "text": "Apply Judgment, then check native undo and redo with saved checkpoints.",
+            "duration": 4.425375,
+            "sha256": "9c13d5489c411a7954cd1d6dec593a469d04283a1121a37ef8b970cce34e2778"
+          },
+          "audioStart": 12.15,
+          "audioEnd": 16.575375,
+          "fits": true
+        },
+        {
+          "id": "zed-existing-extension-public-3",
+          "start": 22.0,
+          "end": 34.5,
+          "text": "Ghost the Risk passage; the file retains its text and source anchor.",
+          "visualEvidence": "Ghost the Risk passage. Its text and anchor are retained in the file.",
+          "take": {
+            "id": "d3550a7c8812a2c8",
+            "text": "Ghost the Risk passage; the file retains its text and source anchor.",
+            "duration": 4.179375,
+            "sha256": "74602fe9e899f11ab2c5608e5fe8606b40dca5011e09d1d067882f5712d1a421"
+          },
+          "audioStart": 22.15,
+          "audioEnd": 26.329375,
+          "fits": true
+        },
+        {
+          "id": "zed-existing-extension-public-4",
+          "start": 34.5,
+          "end": 41.166667,
+          "text": "Inspect the saved annotation and native history.",
+          "visualEvidence": "Inspect the saved annotation while exercising native history.",
+          "take": {
+            "id": "477e7e73a064cfda",
+            "text": "Inspect the saved annotation and native history.",
+            "duration": 2.9433125,
+            "sha256": "a1b060f10155586597a20eab8e2c8ffb61fb16fc095a518886ea84a7ae0ee50e"
+          },
+          "audioStart": 34.65,
+          "audioEnd": 37.593312,
+          "fits": true
+        },
+        {
+          "id": "zed-existing-extension-public-5",
+          "start": 41.166667,
+          "end": 45.5,
+          "text": "The ghost retains the exact Risk text.",
+          "visualEvidence": "The saved ghost includes the exact Risk text and its source anchor.",
+          "take": {
+            "id": "bf0ba8ed2e7e338d",
+            "text": "The ghost retains the exact Risk text.",
+            "duration": 2.602,
+            "sha256": "1fa98bd4e3fae9f2bbd96950a82f8e5c0605d879e159463f764e483fcdbd1577"
+          },
+          "audioStart": 41.316667,
+          "audioEnd": 43.918667,
+          "fits": true
+        },
+        {
+          "id": "zed-existing-extension-public-6",
+          "start": 45.5,
+          "end": 59.715485,
+          "text": "Revive the passage and check undo and redo; the stock extension does not provide the browser’s full visual interface.",
+          "visualEvidence": "Revive the passage and check Undo/Redo. Stock Zed does not have browser UI parity.",
+          "take": {
+            "id": "d3ef6acf381f5c45",
+            "text": "Revive the passage and check undo and redo; the stock extension does not provide the browser’s full visual interface.",
+            "duration": 6.8246875,
+            "sha256": "dee1178e650078d9f68b51411bf595286cfb22e2970b781061df2b55599cbb1d"
+          },
+          "audioStart": 45.65,
+          "audioEnd": 52.474688,
+          "fits": true
+        }
+      ]
+    },
+    {
+      "file": "grep-live-execution-public.mp4",
+      "beats": [
+        {
+          "id": "grep-live-execution-public-1",
+          "start": 0,
+          "end": 8.0,
+          "text": "Without synthesis, the search returns source evidence for the judgment query.",
+          "visualEvidence": "Without --answer: retrieve source evidence. No generated answer is requested.",
+          "take": {
+            "id": "1e06d1942487ebf6",
+            "text": "Without synthesis, the search returns source evidence for the judgment query.",
+            "duration": 4.3513125,
+            "sha256": "1990fcf95b65eb2167351d94ce590aeeff9f25355869a558ddfb8b349b0003d8"
+          },
+          "audioStart": 0.15,
+          "audioEnd": 4.501313,
+          "fits": true
+        },
+        {
+          "id": "grep-live-execution-public-2",
+          "start": 8.0,
+          "end": 12.0,
+          "text": "Enable synthesis; provider waiting is compressed.",
+          "visualEvidence": "Same query, corpus and KG; add --answer. Provider waiting is compressed.",
+          "take": {
+            "id": "285ad8a1229c7fda",
+            "text": "Enable synthesis; provider waiting is compressed.",
+            "duration": 3.1666875,
+            "sha256": "c011b3b33ad9649aa83f33a9a232e1c06ba974148d707160ac0b6650e823907b"
+          },
+          "audioStart": 8.15,
+          "audioEnd": 11.316688,
+          "fits": true
+        },
+        {
+          "id": "grep-live-execution-public-3",
+          "start": 12.0,
+          "end": 21.0,
+          "text": "Inspect the real synthesis; it mistakes a review policy for observed practice.",
+          "visualEvidence": "Read the real synthesis. It overstates a review policy as observed practice.",
+          "take": {
+            "id": "63facd3d628f9d08",
+            "text": "Inspect the real synthesis; it mistakes a review policy for observed practice.",
+            "duration": 4.7766875,
+            "sha256": "1405a1df4ac6769fae1d739d8bd28ced828108d11b1479c025d53f781f726b35"
+          },
+          "audioStart": 12.15,
+          "audioEnd": 16.926687,
+          "fits": true
+        }
+      ]
+    },
+    {
+      "file": "grammarly-for-knowledge-work-preview.mp4",
+      "beats": [
+        {
+          "id": "overview-intro",
+          "start": 0,
+          "end": 4,
+          "text": "Grammarly for knowledge work, with your knowledge graph.",
+          "take": {
+            "id": "8e4bdf0c876e853e",
+            "text": "Grammarly for knowledge work, with your knowledge graph.",
+            "duration": 2.8113125,
+            "sha256": "12ccd94cc81c5fe6d93c640890d20ab64544c8676f825fe787b2ddcd90d41015"
+          },
+          "audioStart": 0.15,
+          "audioEnd": 2.961313,
+          "fits": true
+        },
+        {
+          "id": "overview-chrome-online-editor-1",
+          "start": 4,
+          "end": 12.0,
+          "text": "Start with a public project brief about decisions, risks, and terminology.",
+          "visualEvidence": "Start with a public project brief: decisions, risks and terminology.",
+          "take": {
+            "id": "acbf93356791fbc2",
+            "text": "Start with a public project brief about decisions, risks, and terminology.",
+            "duration": 4.3826875,
+            "sha256": "15d4df2133f41088cde3164b2ac6cfd824c99acf693f943a46909c07c758bd55"
+          },
+          "audioStart": 4.15,
+          "audioEnd": 8.532688,
+          "fits": true
+        },
+        {
+          "id": "overview-chrome-online-editor-2",
+          "start": 12.0,
+          "end": 23.333333,
+          "text": "The knowledge graph supplies alternatives; here, Judgment replaces Decision.",
+          "visualEvidence": "The shared knowledge graph suggests alternatives. Apply Judgment.",
+          "take": {
+            "id": "f34961a739d61776",
+            "text": "The knowledge graph supplies alternatives; here, Judgment replaces Decision.",
+            "duration": 4.6646875,
+            "sha256": "84b5285157f6df061cc6da016a592c3d8d95224da9a9b38470add6c2888edefb"
+          },
+          "audioStart": 12.15,
+          "audioEnd": 16.814688,
+          "fits": true
+        },
+        {
+          "id": "overview-chrome-online-editor-3",
+          "start": 23.333333,
+          "end": 33.833332999999996,
+          "text": "Add Assessment as your own alternative, then check undo and redo.",
+          "visualEvidence": "Add Assessment as your own wording, then exercise Undo and Redo.",
+          "take": {
+            "id": "b37d8bcc60a23c3b",
+            "text": "Add Assessment as your own alternative, then check undo and redo.",
+            "duration": 3.9986875,
+            "sha256": "26c1db2f20295c75de1f5af043369c906c7977f3c9f8ce7de0d27ef65c95cbdc"
+          },
+          "audioStart": 23.483333,
+          "audioEnd": 27.48202,
+          "fits": true
+        },
+        {
+          "id": "overview-chrome-online-editor-4",
+          "start": 33.833332999999996,
+          "end": 39.833333,
+          "text": "Save the annotated document, then reopen it.",
+          "visualEvidence": "Save and reopen the annotated document. Dialog waiting is cut.",
+          "take": {
+            "id": "84b392d0d100edc5",
+            "text": "Save the annotated document, then reopen it.",
+            "duration": 2.952,
+            "sha256": "1bf4c62a031e45622595160677ac22be84167a0e62cffcd80138b2d6176a7a04"
+          },
+          "audioStart": 33.983333,
+          "audioEnd": 36.935333,
+          "fits": true
+        },
+        {
+          "id": "overview-chrome-online-editor-5",
+          "start": 39.833333,
+          "end": 48.433333,
+          "text": "Assessment remains active after reopening, with the other alternatives attached.",
+          "visualEvidence": "Assessment remains active after reopen. Other alternatives stay attached.",
+          "take": {
+            "id": "ea934832d391abbd",
+            "text": "Assessment remains active after reopening, with the other alternatives attached.",
+            "duration": 4.755375,
+            "sha256": "ed81679e1a364463d160e3e15de4da993bd9ed439caf08feb1715ccd88a39d04"
+          },
+          "audioStart": 39.983333,
+          "audioEnd": 44.738708,
+          "fits": true
+        },
+        {
+          "id": "overview-handoff",
+          "start": 48.433333,
+          "end": 52.433333,
+          "text": "A separately checked export feeds local search.",
+          "take": {
+            "id": "0c6c6342971166b9",
+            "text": "A separately checked export feeds local search.",
+            "duration": 2.8906875,
+            "sha256": "5039dc695512d25d4bc8437939a8066fae18e5e8c002fe505fc52c29e2e80121"
+          },
+          "audioStart": 48.583333,
+          "audioEnd": 51.474021,
+          "fits": true
+        },
+        {
+          "id": "overview-grep-live-execution-public-1",
+          "start": 52.433333,
+          "end": 60.433333,
+          "text": "Without synthesis, the search returns source evidence for the judgment query.",
+          "visualEvidence": "Without --answer: retrieve source evidence. No generated answer is requested.",
+          "take": {
+            "id": "1e06d1942487ebf6",
+            "text": "Without synthesis, the search returns source evidence for the judgment query.",
+            "duration": 4.3513125,
+            "sha256": "1990fcf95b65eb2167351d94ce590aeeff9f25355869a558ddfb8b349b0003d8"
+          },
+          "audioStart": 52.583333,
+          "audioEnd": 56.934646,
+          "fits": true
+        },
+        {
+          "id": "overview-grep-live-execution-public-2",
+          "start": 60.433333,
+          "end": 64.433333,
+          "text": "Enable synthesis; provider waiting is compressed.",
+          "visualEvidence": "Same query, corpus and KG; add --answer. Provider waiting is compressed.",
+          "take": {
+            "id": "285ad8a1229c7fda",
+            "text": "Enable synthesis; provider waiting is compressed.",
+            "duration": 3.1666875,
+            "sha256": "c011b3b33ad9649aa83f33a9a232e1c06ba974148d707160ac0b6650e823907b"
+          },
+          "audioStart": 60.583333,
+          "audioEnd": 63.750021,
+          "fits": true
+        },
+        {
+          "id": "overview-grep-live-execution-public-3",
+          "start": 64.433333,
+          "end": 73.433333,
+          "text": "Inspect the real synthesis; it mistakes a review policy for observed practice.",
+          "visualEvidence": "Read the real synthesis. It overstates a review policy as observed practice.",
+          "take": {
+            "id": "63facd3d628f9d08",
+            "text": "Inspect the real synthesis; it mistakes a review policy for observed practice.",
+            "duration": 4.7766875,
+            "sha256": "1405a1df4ac6769fae1d739d8bd28ced828108d11b1479c025d53f781f726b35"
+          },
+          "audioStart": 64.583333,
+          "audioEnd": 69.36002,
+          "fits": true
+        },
+        {
+          "id": "overview-outro",
+          "start": 73.433333,
+          "end": 77.433333,
+          "text": "Check generated claims against the source evidence.",
+          "take": {
+            "id": "5042040463419651",
+            "text": "Check generated claims against the source evidence.",
+            "duration": 2.9106875,
+            "sha256": "0186543fa68be948858c9dab67f1e31e3e91bf70d5083b0435e6e193c67ec87d"
+          },
+          "audioStart": 73.583333,
+          "audioEnd": 76.49402,
+          "fits": true
+        }
+      ]
+    }
+  ],
+  "takes": [
+    {
+      "id": "acbf93356791fbc2",
+      "text": "Start with a public project brief about decisions, risks, and terminology.",
+      "duration": 4.3826875,
+      "sha256": "15d4df2133f41088cde3164b2ac6cfd824c99acf693f943a46909c07c758bd55",
+      "sourceLufs": -23.9,
+      "fixedGainDb": 0.8999999999999986,
+      "normalizedLufs": -23.0,
+      "normalizedPeakDbfs": -3.813379159255059
+    },
+    {
+      "id": "f34961a739d61776",
+      "text": "The knowledge graph supplies alternatives; here, Judgment replaces Decision.",
+      "duration": 4.6646875,
+      "sha256": "84b5285157f6df061cc6da016a592c3d8d95224da9a9b38470add6c2888edefb",
+      "sourceLufs": -23.6,
+      "fixedGainDb": 0.6000000000000014,
+      "normalizedLufs": -23.0,
+      "normalizedPeakDbfs": -7.160423142162379
+    },
+    {
+      "id": "b37d8bcc60a23c3b",
+      "text": "Add Assessment as your own alternative, then check undo and redo.",
+      "duration": 3.9986875,
+      "sha256": "26c1db2f20295c75de1f5af043369c906c7977f3c9f8ce7de0d27ef65c95cbdc",
+      "sourceLufs": -23.9,
+      "fixedGainDb": 0.8999999999999986,
+      "normalizedLufs": -23.0,
+      "normalizedPeakDbfs": -6.788180067192378
+    },
+    {
+      "id": "84b392d0d100edc5",
+      "text": "Save the annotated document, then reopen it.",
+      "duration": 2.952,
+      "sha256": "1bf4c62a031e45622595160677ac22be84167a0e62cffcd80138b2d6176a7a04",
+      "sourceLufs": -23.3,
+      "fixedGainDb": 0.3000000000000007,
+      "normalizedLufs": -23.0,
+      "normalizedPeakDbfs": -4.590765910984735
+    },
+    {
+      "id": "ea934832d391abbd",
+      "text": "Assessment remains active after reopening, with the other alternatives attached.",
+      "duration": 4.755375,
+      "sha256": "ed81679e1a364463d160e3e15de4da993bd9ed439caf08feb1715ccd88a39d04",
+      "sourceLufs": -23.9,
+      "fixedGainDb": 0.8999999999999986,
+      "normalizedLufs": -23.0,
+      "normalizedPeakDbfs": -5.899342283698916
+    },
+    {
+      "id": "0c382d896fc69ac3",
+      "text": "Firefox uses the same public brief and shared knowledge graph.",
+      "duration": 3.892,
+      "sha256": "754c28f4567f5b110fbe92130c79f9e9fd478d01aa59d289614d4f89db0f293d",
+      "sourceLufs": -23.4,
+      "fixedGainDb": 0.3999999999999986,
+      "normalizedLufs": -23.0,
+      "normalizedPeakDbfs": -6.759863336509847
+    },
+    {
+      "id": "9eb5af57c1d2b24a",
+      "text": "Choose wording and add Assessment as another alternative.",
+      "duration": 3.347375,
+      "sha256": "ede0ed8008ffc00e7c9d4573f573378ceac689af5daecaf327a1750228e6f711",
+      "sourceLufs": -23.5,
+      "fixedGainDb": 0.5,
+      "normalizedLufs": -23.0,
+      "normalizedPeakDbfs": -6.415510018018219
+    },
+    {
+      "id": "82e170566b0b6d72",
+      "text": "Reopen the saved document with Assessment still active.",
+      "duration": 3.124,
+      "sha256": "49a63e2a54c911fefd226b0e118fbc19cf8105913dea714be1481a389b241ce2",
+      "sourceLufs": -23.4,
+      "fixedGainDb": 0.3999999999999986,
+      "normalizedLufs": -23.0,
+      "normalizedPeakDbfs": -6.069365083187769
+    },
+    {
+      "id": "086ecb5fa0201683",
+      "text": "Move a note into Overflow, then bring it back.",
+      "duration": 2.8,
+      "sha256": "683488139b1daf85418b6d044bf5675aba76f5fb891e2ca890978a744a216dd3",
+      "sourceLufs": -23.5,
+      "fixedGainDb": 0.5,
+      "normalizedLufs": -23.0,
+      "normalizedPeakDbfs": -7.073953372661098
+    },
+    {
+      "id": "8ff10a5d099258c8",
+      "text": "Inspect the Lab; this short brief produces zero cuts, so no reduction is claimed.",
+      "duration": 5.0926875,
+      "sha256": "08f9eccd5d03bd2d8ac1c4065058384a945792a9048e8d9bbc8ee5373448f7bd",
+      "sourceLufs": -23.6,
+      "fixedGainDb": 0.6000000000000014,
+      "normalizedLufs": -23.0,
+      "normalizedPeakDbfs": -6.9498962285471455
+    },
+    {
+      "id": "59aa0e905ae8554d",
+      "text": "Safari opens the same brief with the shared knowledge graph.",
+      "duration": 3.4866875,
+      "sha256": "7c8df16fa56e24ffc9162ce6cec5acde058180a1c7126cf07720f520d5276b52",
+      "sourceLufs": -23.3,
+      "fixedGainDb": 0.3000000000000007,
+      "normalizedLufs": -23.0,
+      "normalizedPeakDbfs": -5.755127850773832
+    },
+    {
+      "id": "de8cfd9b0b0d19a1",
+      "text": "Apply Judgment from the graph’s suggested alternatives.",
+      "duration": 3.209375,
+      "sha256": "f80b33f0ddf1e840e7bf114b38d1968695e8750a144ceb4c2cf70cf0677c3384",
+      "sourceLufs": -23.3,
+      "fixedGainDb": 0.3000000000000007,
+      "normalizedLufs": -23.0,
+      "normalizedPeakDbfs": -7.05856382844242
+    },
+    {
+      "id": "a2f7ec77f736c375",
+      "text": "Create Assessment as your own wording, and make it active.",
+      "duration": 3.2606875,
+      "sha256": "4835099d81516456ba75e9ac4a9b19f9192b575d9cb18f04e7f2a55137f6d0cf",
+      "sourceLufs": -23.7,
+      "fixedGainDb": 0.6999999999999993,
+      "normalizedLufs": -23.0,
+      "normalizedPeakDbfs": -6.354724187532799
+    },
+    {
+      "id": "c4ad9701f888f693",
+      "text": "Save the annotated document, retaining the alternatives.",
+      "duration": 3.529375,
+      "sha256": "4196961001cd53d7dc33e4eb31788bade93d7c581d1da24aa9010ef2750ff04d",
+      "sourceLufs": -23.4,
+      "fixedGainDb": 0.3999999999999986,
+      "normalizedLufs": -23.0,
+      "normalizedPeakDbfs": -4.123910538110746
+    },
+    {
+      "id": "5b1482c2741c3c32",
+      "text": "Reopen with Assessment preserved; clean export is verified separately.",
+      "duration": 4.489375,
+      "sha256": "e15da452b38abc453d366fbd8dd27f3ad2d8d063cb809dd7d81ca2b1004703b2",
+      "sourceLufs": -23.6,
+      "fixedGainDb": 0.6000000000000014,
+      "normalizedLufs": -23.0,
+      "normalizedPeakDbfs": -5.410533001296409
+    },
+    {
+      "id": "19d8728cdc5f58ae",
+      "text": "The existing Zed extension offers completion using the same knowledge graph.",
+      "duration": 4.468,
+      "sha256": "ea79c17023d8478f4831fce265393e847d787ba80e5aa029b85bbe34ed535317",
+      "sourceLufs": -23.9,
+      "fixedGainDb": 0.8999999999999986,
+      "normalizedLufs": -23.0,
+      "normalizedPeakDbfs": -5.0598462484227475
+    },
+    {
+      "id": "4f4a4b70843cfe60",
+      "text": "Apply Judgment, then check native undo and redo with saved checkpoints.",
+      "duration": 4.425375,
+      "sha256": "9c13d5489c411a7954cd1d6dec593a469d04283a1121a37ef8b970cce34e2778",
+      "sourceLufs": -23.5,
+      "fixedGainDb": 0.5,
+      "normalizedLufs": -23.0,
+      "normalizedPeakDbfs": -6.6761987308853215
+    },
+    {
+      "id": "d3550a7c8812a2c8",
+      "text": "Ghost the Risk passage; the file retains its text and source anchor.",
+      "duration": 4.179375,
+      "sha256": "74602fe9e899f11ab2c5608e5fe8606b40dca5011e09d1d067882f5712d1a421",
+      "sourceLufs": -23.9,
+      "fixedGainDb": 0.8999999999999986,
+      "normalizedLufs": -23.0,
+      "normalizedPeakDbfs": -5.798453040926165
+    },
+    {
+      "id": "477e7e73a064cfda",
+      "text": "Inspect the saved annotation and native history.",
+      "duration": 2.9433125,
+      "sha256": "a1b060f10155586597a20eab8e2c8ffb61fb16fc095a518886ea84a7ae0ee50e",
+      "sourceLufs": -23.6,
+      "fixedGainDb": 0.6000000000000014,
+      "normalizedLufs": -23.0,
+      "normalizedPeakDbfs": -6.70738497452449
+    },
+    {
+      "id": "bf0ba8ed2e7e338d",
+      "text": "The ghost retains the exact Risk text.",
+      "duration": 2.602,
+      "sha256": "1fa98bd4e3fae9f2bbd96950a82f8e5c0605d879e159463f764e483fcdbd1577",
+      "sourceLufs": -23.0,
+      "fixedGainDb": 0.0,
+      "normalizedLufs": -23.0,
+      "normalizedPeakDbfs": -4.61812824001936
+    },
+    {
+      "id": "d3ef6acf381f5c45",
+      "text": "Revive the passage and check undo and redo; the stock extension does not provide the browser’s full visual interface.",
+      "duration": 6.8246875,
+      "sha256": "dee1178e650078d9f68b51411bf595286cfb22e2970b781061df2b55599cbb1d",
+      "sourceLufs": -24.2,
+      "fixedGainDb": 1.1999999999999993,
+      "normalizedLufs": -23.0,
+      "normalizedPeakDbfs": -3.9357742326822756
+    },
+    {
+      "id": "1e06d1942487ebf6",
+      "text": "Without synthesis, the search returns source evidence for the judgment query.",
+      "duration": 4.3513125,
+      "sha256": "1990fcf95b65eb2167351d94ce590aeeff9f25355869a558ddfb8b349b0003d8",
+      "sourceLufs": -23.9,
+      "fixedGainDb": 0.8999999999999986,
+      "normalizedLufs": -23.0,
+      "normalizedPeakDbfs": -5.70212266755059
+    },
+    {
+      "id": "285ad8a1229c7fda",
+      "text": "Enable synthesis; provider waiting is compressed.",
+      "duration": 3.1666875,
+      "sha256": "c011b3b33ad9649aa83f33a9a232e1c06ba974148d707160ac0b6650e823907b",
+      "sourceLufs": -23.5,
+      "fixedGainDb": 0.5,
+      "normalizedLufs": -23.0,
+      "normalizedPeakDbfs": -5.318855404652813
+    },
+    {
+      "id": "63facd3d628f9d08",
+      "text": "Inspect the real synthesis; it mistakes a review policy for observed practice.",
+      "duration": 4.7766875,
+      "sha256": "1405a1df4ac6769fae1d739d8bd28ced828108d11b1479c025d53f781f726b35",
+      "sourceLufs": -23.4,
+      "fixedGainDb": 0.3999999999999986,
+      "normalizedLufs": -23.0,
+      "normalizedPeakDbfs": -5.895818374159975
+    },
+    {
+      "id": "8e4bdf0c876e853e",
+      "text": "Grammarly for knowledge work, with your knowledge graph.",
+      "duration": 2.8113125,
+      "sha256": "12ccd94cc81c5fe6d93c640890d20ab64544c8676f825fe787b2ddcd90d41015",
+      "sourceLufs": -23.1,
+      "fixedGainDb": 0.10000000000000142,
+      "normalizedLufs": -23.0,
+      "normalizedPeakDbfs": -5.475734725126166
+    },
+    {
+      "id": "0c6c6342971166b9",
+      "text": "A separately checked export feeds local search.",
+      "duration": 2.8906875,
+      "sha256": "5039dc695512d25d4bc8437939a8066fae18e5e8c002fe505fc52c29e2e80121",
+      "sourceLufs": -23.7,
+      "fixedGainDb": 0.6999999999999993,
+      "normalizedLufs": -23.0,
+      "normalizedPeakDbfs": -4.925235742130317
+    },
+    {
+      "id": "5042040463419651",
+      "text": "Check generated claims against the source evidence.",
+      "duration": 2.9106875,
+      "sha256": "0186543fa68be948858c9dab67f1e31e3e91bf70d5083b0435e6e193c67ec87d",
+      "sourceLufs": -23.1,
+      "fixedGainDb": 0.10000000000000142,
+      "normalizedLufs": -23.0,
+      "normalizedPeakDbfs": -6.608202480650833
+    }
+  ],
+  "syntheticVoice": true,
+  "engine": "Kokoro v1.0 ONNX",
+  "quality": {
+    "status": "PASS",
+    "normalizedMean": 0.9941638608305275,
+    "normalizedMinimum": 0.9090909090909091,
+    "normalization": "Lowercase and tokenize; re-open/reopen, z-extension/zed extension, judgement/judgment equivalent; no script prompting",
+    "timing": "All original takes fit their captioned scenes at natural speed"
+  }
+}

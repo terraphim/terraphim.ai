@@ -12,7 +12,7 @@ class PublicationMediaTests(unittest.TestCase):
     def test_published_bytes_match_reviewed_inventory(self):
         manifest = json.loads((MEDIA / 'manifest.json').read_text())
         self.assertEqual(len(manifest['media']), 6)
-        expected = {'manifest.json'}
+        expected = {'manifest.json', 'narration.json'}
         for entry in manifest['media']:
             self.assertTrue(entry['publicDelivery'])
             expected.add(entry['file'])
@@ -20,6 +20,38 @@ class PublicationMediaTests(unittest.TestCase):
             self.assertEqual(hashlib.sha256(data).hexdigest(), entry['sha256'])
             self.assertEqual(len(data), int(entry['probe']['format']['size']))
         self.assertEqual({p.name for p in MEDIA.iterdir()}, expected)
+
+    def test_all_six_demos_have_synchronized_british_narration(self):
+        manifest = json.loads((MEDIA / 'manifest.json').read_text())
+        narration = manifest['narration']
+        self.assertEqual(narration['voiceId'], 'bf_emma')
+        self.assertEqual(narration['language'], 'en-gb')
+        self.assertTrue(narration['syntheticVoice'])
+        raw_script = (MEDIA / narration['script']).read_bytes()
+        self.assertEqual(hashlib.sha256(raw_script).hexdigest(), narration['scriptSha256'])
+        script = json.loads(raw_script)
+        self.assertEqual(script['quality']['status'], 'PASS')
+        self.assertGreaterEqual(script['quality']['normalizedMean'], 0.97)
+        self.assertGreaterEqual(script['quality']['normalizedMinimum'], 0.90)
+        videos = {e['file']: e for e in manifest['media']}
+        self.assertEqual({e['file'] for e in script['videos']}, set(videos))
+        for output in narration['outputs']:
+            self.assertTrue(output['videoBitstreamUnchanged'])
+            self.assertTrue(output['noTempoOrPitchChanges'])
+            self.assertLessEqual(output['peakDbfs'], -3)
+        for video in script['videos']:
+            entry = videos[video['file']]
+            audio = [s for s in entry['probe']['streams'] if s['codec_type'] == 'audio']
+            self.assertEqual(len(audio), 1)
+            self.assertEqual(audio[0]['codec_name'], 'aac')
+            duration = float(entry['probe']['format']['duration'])
+            previous_end = 0
+            for beat in video['beats']:
+                self.assertTrue(beat['fits'])
+                self.assertGreaterEqual(beat['audioStart'], previous_end)
+                self.assertLessEqual(beat['audioEnd'], min(beat['end'], duration))
+                self.assertAlmostEqual(beat['audioEnd'] - beat['audioStart'], beat['take']['duration'], delta=0.000002)
+                previous_end = beat['audioEnd']
 
     def test_unavailable_windows_download_is_not_advertised(self):
         for name in ['themes/WarpDrive/templates/index.html', 'themes/WarpDrive/static/js/site.js', 'content/docs/installation.md']:
