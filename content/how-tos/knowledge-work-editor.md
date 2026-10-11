@@ -8,6 +8,24 @@ date = 2026-10-11
 
 Keep alternatives attached to words, sentences and paragraphs. Ghost a passage without losing it, stash notes in Overflow, and use the Lab to inspect possible cuts. The editor runs as WebAssembly in your browser with a bundled local knowledge graph.
 
+## Grammarly for knowledge work
+
+Follow a public project brief from editing to search using the same knowledge graph. The overview shows the browser editor, explicitly hands off to the clean file exported from Safari, then compares real `terraphim-grep` executions with and without `--answer`.
+
+<video controls preload="metadata" playsinline style="width:100%;max-width:960px" aria-label="Editor and terraphim-grep overview"><source src="/demos/knowledge-work/grammarly-for-knowledge-work-preview.mp4" type="video/mp4">[Download the overview](/demos/knowledge-work/grammarly-for-knowledge-work-preview.mp4)</video>
+
+### Recorded host walkthroughs
+
+- [Chrome: editing, saved annotations and reopen](/demos/knowledge-work/chrome-online-editor.mp4)
+- [Safari: editing and actual clean export](/demos/knowledge-work/safari-online-editor-public.mp4)
+- [Firefox: editing, saved annotations and reopen](/demos/knowledge-work/firefox-online-editor.mp4)
+- [Existing Zed extension: KG completion, saved history, Ghost and Revive](/demos/knowledge-work/zed-existing-extension-public.mp4)
+- [Real grep execution: evidence without synthesis, then with `--answer`](/demos/knowledge-work/grep-live-execution-public.mp4)
+
+The browser recordings produced identical saved annotated files. Newly authored Assessment registers as a document-scoped synonym; it does not update the shared KG used by the CLI. Zed demonstrates existing extension capabilities; the Zed fork is separate. The brief's Trim preview produced zero cuts, so this recording does not demonstrate text reduction. The generated synthesis overstates a review policy as observed practice; compare that statement with the returned evidence rather than treating it as verified fact.
+
+Safari idle setup was cut; the Zed avatar was masked. The terminal recording caps idle gaps and holds the final result. These are finite walkthroughs, not complete acceptance of all 41 requirements. [Build identities, media hashes and edit disclosures](/demos/knowledge-work/manifest.json) identify the recorded candidate. The pending Unicode normalization repair is not included in this candidate.
+
 This is a preview. The complete source-video requirements are still being qualified; Safari dragging and some visual/native cases remain unresolved. Keyboard pull from Overflow is available. The browser demo does not imply full custom visual parity in the stock Zed extension.
 
 ## Start with a public brief

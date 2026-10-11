@@ -1,0 +1,185 @@
+{
+  "schema": 1,
+  "sourceEditorCommit": "e2ee3ff9f6133cd67cd15533109c8020c20a0cdf",
+  "previewUrl": "https://f215f8d2.terraphim-ai.pages.dev/editor/",
+  "productionDeployment": false,
+  "knowledgeGraphSha256": "e850422ec72faa06aae0d6c2893a9f1d2e36d60a5aef79bd8f863daa2d71b015",
+  "media": [
+    {
+      "file": "chrome-online-editor.mp4",
+      "sha256": "31046ecaf39ccf98bf23d3bedce5a43e1211e71dd0c1916ea25006cdb70dd72e",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1140,
+            "height": 720
+          }
+        ],
+        "format": {
+          "duration": "129.268333",
+          "size": "2518815"
+        }
+      },
+      "scope": "finite actual-output demo; full all41 acceptance remains unproved",
+      "publicDelivery": true
+    },
+    {
+      "file": "firefox-online-editor.mp4",
+      "sha256": "73ed0c0bfe161047fddcaf28fdef502a7456c6e4fda6242d3629420c4eeb66ce",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1140,
+            "height": 720
+          }
+        ],
+        "format": {
+          "duration": "108.320000",
+          "size": "3122042"
+        }
+      },
+      "scope": "finite actual-output demo; full all41 acceptance remains unproved",
+      "publicDelivery": true
+    },
+    {
+      "file": "safari-online-editor-public.mp4",
+      "sha256": "a23a6193492a48bb6640e69719d8fda0f76683d8047b4ca65753e95da43ef2ec",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1140,
+            "height": 720
+          }
+        ],
+        "format": {
+          "duration": "102.877193",
+          "size": "934702"
+        }
+      },
+      "scope": "finite actual-output demo; full all41 acceptance remains unproved",
+      "publicDelivery": true
+    },
+    {
+      "file": "zed-existing-extension-public.mp4",
+      "sha256": "1a35654d940dac04b598d6a625455ffb9c40838b19e75e673c073b55ccb98c1a",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1140,
+            "height": 720
+          }
+        ],
+        "format": {
+          "duration": "208.646455",
+          "size": "894771"
+        }
+      },
+      "scope": "finite actual-output demo; full all41 acceptance remains unproved",
+      "publicDelivery": true
+    },
+    {
+      "file": "grep-live-execution-public.mp4",
+      "sha256": "464b68bb59ca5260aa8d9547e3b7f8af3aa5f576eca87d7abf9ac56ffb65ba1d",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1318,
+            "height": 1104
+          }
+        ],
+        "format": {
+          "duration": "45.100000",
+          "size": "1598835"
+        }
+      },
+      "scope": "Actual captured terminal subprocesses on Safari clean export; same KG/chunks, only --answer changes. External synthesis is interpretive; policy is not proof of practice.",
+      "publicDelivery": true
+    },
+    {
+      "file": "grammarly-for-knowledge-work-preview.mp4",
+      "sha256": "421f1d69f1ad72cdd928c42c42f977caebfed1bbeb63713fb00ccf896ee5a6eb",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1920,
+            "height": 1080
+          }
+        ],
+        "format": {
+          "duration": "202.366667",
+          "size": "4786427"
+        }
+      },
+      "scope": "Chrome online editor, explicit Safari clean-export handoff, actual grep comparison. Candidate preview; not full 41 acceptance or production deployment.",
+      "publicDelivery": true
+    }
+  ],
+  "edits": [
+    {
+      "input": "safari-online-editor.mp4",
+      "output": "safari-online-editor-public.mp4",
+      "retainedSourceSeconds": [
+        140,
+        242.783333
+      ],
+      "reason": "remove idle setup; raw retained"
+    },
+    {
+      "input": "zed-existing-extension.mp4",
+      "output": "zed-existing-extension-public.mp4",
+      "sourceSeconds": [
+        0,
+        208.498333
+      ],
+      "rectangle": [
+        1110,
+        0,
+        30,
+        30
+      ],
+      "reason": "mask personal avatar",
+      "verification": "opaque inner region max luma <=20 over all decoded frames; 205s full frame visually inspected"
+    },
+    {
+      "input": "grep-live-execution-r2.cast",
+      "output": "grep-live-execution-public.mp4",
+      "reason": "terminal rendering, idle gaps capped at five seconds, final frame extended twenty seconds; raw cast retained"
+    },
+    {
+      "output": "grammarly-for-knowledge-work-preview.mp4",
+      "inputs": [
+        "overview-intro.png",
+        "chrome-online-editor.mp4",
+        "overview-handoff.png",
+        "grep-live-execution-public.mp4",
+        "overview-outro.png"
+      ],
+      "reason": "disclosed title cards, chronological source clips, scale/pad to 1920x1080; no fabricated output"
+    }
+  ],
+  "coverageDisclaimer": "These four refreshed captures do not replace the original all41 ledger; no acceptance row promoted."
+}

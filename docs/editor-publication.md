@@ -18,3 +18,9 @@ Import a replacement into a fresh directory using `scripts/import-editor.py --so
 The current bundle was staged from the clean editor demo snapshot `e2ee3ff9f6133cd67cd15533109c8020c20a0cdf`. Confirm that this source is admitted to the editor release chain before promoting this website candidate. Deployment and HTTPS/browser acceptance are separate gates. Safari dragging and complete 41-requirement acceptance remain unresolved. A stock Zed capability preview is not custom visual parity; the fork is outside this change.
 
 The how-to uses authored public input and an existing shared KG. New alternatives are document-scoped synonyms. The paired grep synthesis demonstration requires the clients candidate with synonym retrieval, semantic coverage and explicit `--answer` fixes; an older installed binary may behave differently. Configured provider synthesis may send public retrieved text outside the device.
+
+## Public walkthrough media
+
+Six reviewed public MP4 files are served under `/demos/knowledge-work/`. `manifest.json` pins their SHA-256 digests, recorded editor source and editing disclosures. Raw Safari and Zed recordings are excluded. `scripts/test_publication_media.py` verifies the actual publication bytes and required links/disclosures. The homepage links both the editor preview and the walkthrough.
+
+The recorded browser candidate remains `e2ee3ff9f6133cd67cd15533109c8020c20a0cdf`; later pointer changes and the pending Unicode normalization repair are not silently relabelled as recorded. Publication is a public preview, not stable editor/extension release or complete 41-requirement qualification. All eight publication tests, Zola0.22.1 and verification of all132 source/output editor assets passed before publication.
