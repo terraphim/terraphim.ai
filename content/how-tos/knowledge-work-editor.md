@@ -4,6 +4,10 @@ description = "Try Terraphim Editor, then inspect search results with and withou
 date = 2026-10-11
 +++
 
+[Watch the new 80-second story: create a synonym, share it, then search](/how-tos/synonym-search/)
+
+These earlier host recordings remain available as versioned evidence. The new story above follows the current alternative-to-search flow.
+
 [Try Terraphim Editor](/editor/)
 
 Keep alternatives attached to words, sentences and paragraphs. Ghost a passage without losing it, stash notes in Overflow, and use the Lab to inspect possible cuts. The editor runs as WebAssembly in your browser with a bundled local knowledge graph.

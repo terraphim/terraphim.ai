@@ -21,7 +21,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  EDITOR_MANIFEST_SHA256: 3e0510de27b93c5aed5018058b55bd82798ad7ed535fd1c25812aef5a0aadc03
+  EDITOR_MANIFEST_SHA256: e972d1c779cca709ff1a1c8e0b0c543b855d82d7e6fa26fbf14414f84c6fb1d0
   ZOLA_VERSION: "0.22.1"
   CF_PROJECT: terraphim-ai
   OP_API_TOKEN: op://TerraphimPlatform/terraphim-md-book-cloudflare/workers-api-token

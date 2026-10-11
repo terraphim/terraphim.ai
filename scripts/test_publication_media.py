@@ -76,7 +76,7 @@ class PublicationMediaTests(unittest.TestCase):
             self.assertIn(text, page)
         home = (ROOT / 'themes/WarpDrive/templates/index.html').read_text()
         self.assertIn("get_url(path='editor/')", home)
-        self.assertIn("get_url(path='@/how-tos/knowledge-work-editor.md')", home)
+        self.assertIn("get_url(path='@/how-tos/synonym-search.md')", home)
 
 
 if __name__ == '__main__':
