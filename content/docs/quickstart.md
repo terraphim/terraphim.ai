@@ -25,7 +25,7 @@ curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts
 ### Option B: Homebrew (macOS/Linux)
 
 ```bash
-brew tap terraphim/terraphim && brew install terraphim-ai
+brew tap terraphim/terraphim && brew install terraphim-agent
 ```
 
 ### Option C: Cargo

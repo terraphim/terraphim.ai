@@ -10,38 +10,46 @@ Choose the installation method that best suits your needs and platform.
 
 ## Quick Install (Recommended)
 
-The universal installer automatically detects your platform and installs the appropriate version.
+The universal installer detects your platform, resolves the current release
+from the release channel, verifies the download's SHA-256, and unpacks it into
+`~/.local/bin`.
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts/install.sh | bash
 ```
+
+Options:
+
+```bash
+# Also install the CLI and grep tools
+curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts/install.sh | bash --with-cli --with-grep
+
+# Install somewhere else
+curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts/install.sh | bash --install-dir /usr/local/bin
+
+# Require a specific version (fails if the channel serves a different one)
+curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts/install.sh | bash --version 1.21.16
+```
+
+The installer publishes these exit codes: `0` success, `1` usage error,
+`2` manifest unreachable, `3` requested version unavailable, `4` download
+failed, `5` checksum mismatch, `6` installation failed.
 
 ## Package Managers
 
 ### Homebrew (macOS/Linux)
 
 ```bash
-brew tap terraphim/terraphim && brew install terraphim-ai
+brew tap terraphim/terraphim && brew install terraphim-agent
 ```
 
-This installs `terraphim-agent` and `terraphim_server`.
+The tap also carries `terraphim-grep`. There is no `terraphim-ai` formula.
 
 ### Cargo (Rust)
-
-Install using Cargo, Rust's package manager.
 
 ```bash
 # Install agent with interactive REPL and full features
 cargo install terraphim_agent --features repl-full
-```
-
-### Debian/Ubuntu
-
-Download the `.deb` package from the latest release:
-
-```bash
-curl -LO https://github.com/terraphim/terraphim-ai/releases/latest/download/terraphim-server_1.20.5-1_amd64.deb
-sudo dpkg -i terraphim-server_1.20.5-1_amd64.deb
 ```
 
 ## Platform-Specific Guides
@@ -50,33 +58,41 @@ sudo dpkg -i terraphim-server_1.20.5-1_amd64.deb
 
 #### Binary Download
 
-Download the latest release from GitHub:
+Archives are served from `downloads.terraphim.ai`. Substitute the release you
+want for `1.21.16`, or read the current version from the
+[manifest](https://downloads.terraphim.ai/terraphim-agent/stable-v2.json).
 
 ```bash
+VERSION=1.21.16
+
 # x86_64 (GNU)
-curl -LO https://github.com/terraphim/terraphim-ai/releases/latest/download/terraphim-agent-1.20.5-x86_64-unknown-linux-gnu.tar.gz
-tar -xzf terraphim-agent-1.20.5-x86_64-unknown-linux-gnu.tar.gz
+curl -fsSLO "https://downloads.terraphim.ai/terraphim-agent/terraphim-agent-${VERSION}-x86_64-unknown-linux-gnu.tar.gz"
+tar -xzf "terraphim-agent-${VERSION}-x86_64-unknown-linux-gnu.tar.gz"
 sudo mv terraphim-agent /usr/local/bin/
 
 # x86_64 (MUSL / static)
-curl -LO https://github.com/terraphim/terraphim-ai/releases/latest/download/terraphim-agent-1.20.5-x86_64-unknown-linux-musl.tar.gz
+curl -fsSLO "https://downloads.terraphim.ai/terraphim-agent/terraphim-agent-${VERSION}-x86_64-unknown-linux-musl.tar.gz"
 
 # ARM64 (MUSL)
-curl -LO https://github.com/terraphim/terraphim-ai/releases/latest/download/terraphim-agent-1.20.5-aarch64-unknown-linux-musl.tar.gz
+curl -fsSLO "https://downloads.terraphim.ai/terraphim-agent/terraphim-agent-${VERSION}-aarch64-unknown-linux-musl.tar.gz"
+```
 
+Verify the download against the digest in the manifest before installing:
+
+```bash
+curl -fsSL https://downloads.terraphim.ai/terraphim-agent/stable-v2.json \
+  | python3 -c 'import json,sys; m=json.load(sys.stdin); print(m["version"]); print(m["assets"]["x86_64-unknown-linux-gnu"]["sha256"])'
+sha256sum "terraphim-agent-${VERSION}-x86_64-unknown-linux-gnu.tar.gz"
 ```
 
 #### Build from Source
 
 ```bash
-# Clone the repository
-git clone https://github.com/terraphim/terraphim-ai.git
-cd terraphim-ai
+git clone https://github.com/terraphim/terraphim-clients.git
+cd terraphim-clients
 
-# Build all binaries
-cargo build --release
+cargo build --release -p terraphim_agent --bin terraphim-agent
 
-# Install
 sudo cp target/release/terraphim-agent /usr/local/bin/
 ```
 
@@ -85,26 +101,31 @@ sudo cp target/release/terraphim-agent /usr/local/bin/
 #### Binary Download
 
 ```bash
+VERSION=1.21.16
+
 # Apple Silicon (ARM64)
-curl -LO https://github.com/terraphim/terraphim-ai/releases/latest/download/terraphim-agent-1.20.5-aarch64-apple-darwin.tar.gz
-tar -xzf terraphim-agent-1.20.5-aarch64-apple-darwin.tar.gz
+curl -fsSLO "https://downloads.terraphim.ai/terraphim-agent/terraphim-agent-${VERSION}-aarch64-apple-darwin.tar.gz"
+tar -xzf "terraphim-agent-${VERSION}-aarch64-apple-darwin.tar.gz"
 sudo mv terraphim-agent /usr/local/bin/
 
 # Intel (x86_64)
-curl -LO https://github.com/terraphim/terraphim-ai/releases/latest/download/terraphim-agent-1.20.5-x86_64-apple-darwin.tar.gz
+curl -fsSLO "https://downloads.terraphim.ai/terraphim-agent/terraphim-agent-${VERSION}-x86_64-apple-darwin.tar.gz"
 
-# Universal (Fat binary)
-curl -LO https://github.com/terraphim/terraphim-ai/releases/latest/download/terraphim-agent-1.20.5-universal-apple-darwin.tar.gz
+# Universal (runs on both)
+curl -fsSLO "https://downloads.terraphim.ai/terraphim-agent/terraphim-agent-${VERSION}-universal-apple-darwin.tar.gz"
 ```
+
+macOS builds are signed and notarised by Apple; the self-updater verifies an
+Ed25519 signature over every archive before installing it.
 
 #### Build from Source
 
 Requires Xcode command line tools.
 
 ```bash
-git clone https://github.com/terraphim/terraphim-ai.git
-cd terraphim-ai
-cargo build --release
+git clone https://github.com/terraphim/terraphim-clients.git
+cd terraphim-clients
+cargo build --release -p terraphim_agent --bin terraphim-agent
 sudo cp target/release/terraphim-agent /usr/local/bin/
 ```
 
@@ -113,26 +134,35 @@ sudo cp target/release/terraphim-agent /usr/local/bin/
 #### Binary Download
 
 ```powershell
-# Download and extract
-curl -LO https://github.com/terraphim/terraphim-ai/releases/latest/download/terraphim-agent-1.20.5-x86_64-pc-windows-msvc.zip
+$VERSION = "1.21.16"
+curl.exe -fsSLO "https://downloads.terraphim.ai/terraphim-agent/terraphim-agent-$VERSION-x86_64-pc-windows-msvc.zip"
 ```
 
 Extract the zip and add the directory to your PATH.
-
-- [Download for Windows x64](https://github.com/terraphim/terraphim-ai/releases/latest)
 
 #### Build from Source
 
 Requires [Rust for Windows](https://rustup.rs/).
 
 ```powershell
-git clone https://github.com/terraphim/terraphim-ai.git
-cd terraphim-ai
-cargo build --release
-# Binaries will be in target\release\
+git clone https://github.com/terraphim/terraphim-clients.git
+cd terraphim-clients
+cargo build --release -p terraphim_agent --bin terraphim-agent
+# Binary will be in target\release\
 ```
 
-## Library Bindings
+## Server and Library Bindings
+
+The commands above install the client tools (`terraphim-agent`,
+`terraphim-grep`, `terraphim-cli`). The server and the language bindings have
+their own release paths:
+
+### Terraphim server
+
+The server is built and released from
+[terraphim-ai](https://github.com/terraphim/terraphim-ai). Build it from
+source, or use the container images published to the GitHub Container
+Registry.
 
 ### npm (Node.js / Bun)
 
@@ -175,7 +205,10 @@ After installation, verify that Terraphim is working:
 ```bash
 # Check version
 terraphim-agent --version
-# terraphim-agent 1.20.5
+# terraphim-agent 1.21.16
+
+# Confirm the updater can see the channel
+terraphim-agent check-update
 
 # Start the REPL
 terraphim-agent repl
@@ -193,24 +226,31 @@ chmod +x /usr/local/bin/terraphim-agent
 
 ### Command Not Found
 
-Ensure that the installation directory is in your PATH:
+Ensure that the installation directory is in your PATH. The universal
+installer adds `~/.local/bin` to your shell profile:
 
 ```bash
 # For bash
-echo 'export PATH=$PATH:/usr/local/bin' >> ~/.bashrc
+echo 'export PATH=$PATH:$HOME/.local/bin' >> ~/.bashrc
 source ~/.bashrc
 
 # For zsh
-echo 'export PATH=$PATH:/usr/local/bin' >> ~/.zshrc
+echo 'export PATH=$PATH:$HOME/.local/bin' >> ~/.zshrc
 source ~/.zshrc
 ```
+
+### Checksum Mismatch
+
+The installer exits with code `5` if the downloaded archive does not match the
+digest in the release manifest. Re-run the install; if it fails again, please
+open an issue rather than using `--skip-verify`.
 
 ### Rust Version Issues
 
 Ensure that you have a recent Rust version:
 
 ```bash
-rustc --version  # Should be 1.75.0 or later
+rustc --version  # Should be 1.85.0 or later
 rustup update stable
 ```
 

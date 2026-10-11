@@ -144,10 +144,10 @@ Cross-language bindings for using Terraphim from Python, Node.js, and WebAssembl
 
 ```bash
 # Install the agent (interactive REPL + session search)
-cargo install terraphim-agent
+cargo install terraphim_agent --features repl-full
 
 # Install the CLI (JSON output for automation)
-cargo install terraphim-cli
+cargo install terraphim_cli
 ```
 
 Or use the universal installer:
