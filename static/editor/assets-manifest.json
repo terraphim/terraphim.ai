@@ -1,9 +1,11 @@
 {
+  "schema": 1,
+  "sourceHead": "949b5252e89814ed294c1a238cef726663873a76",
   "assets": {
     "alternatives-panel-f7a68a7707d04dfa.css": "a99a407d3f6aa52f48e3013bf865ef4b44bd0b9e4028d9e68c1a6dd32f8a68a8",
     "blocks-b2480c8f9f3d63b3.css": "383c0e9197f015d651363e3abd31fdf67b56a6b4bde72ebe764a7b1e417c5b4c",
     "example.html": "fda475be8b87ff7a0789f167b4906357c3d8d7e7d1fcd0348f8c908d65e731d3",
-    "index.html": "8b1da1a2e375e25a9e64729a28b02e2e4c248f3db8f2b3e3631d63f729af6d37",
+    "index.html": "2bc7bbe7cfa67a414162f594e9eaa07e6328afd716cebfb0a4c0a199a5ca6f30",
     "js/rolegraph-worker.js": "8240803c0aef05acd66b6ec91eaee16e53a556252aa48c8487a4c3bd9a8924d9",
     "lab-3fee6e89acf44fa1.css": "1fe0441a83177e9713ac112fac85336ad3315b3ac755ec8a625e008c4ca1f967",
     "overflow-cc1be2ca3843f438.css": "8fa1a611df91541508b1532d3628addffecec02b2516a3f7a2c98bc385ada218",
@@ -15,12 +17,12 @@
     "rolegraph/terraphim_rolegraph_browser_bg.wasm.d.ts": "f6cc0427ac07ca31fc3882c5f9487347717f887a0c9ebba69a1323eda3a822ea",
     "roles/default.json": "e850422ec72faa06aae0d6c2893a9f1d2e36d60a5aef79bd8f863daa2d71b015",
     "selection-menu-317cedafb0e3952e.css": "7d0790ed1bf0c6e3955e5305d31ace2bd67f6df5f5f2b7be9692f9c79843891e",
-    "terraphim-editor-5cb9eb6aadd51ac8.js": "5b877e8407a7a96a7887daac535db1b988653603a00766728fa531b2ad9f6006",
-    "terraphim-editor-5cb9eb6aadd51ac8_bg.wasm": "d878465a8b4931efe8b67929673ddc872920f71aa6ec5abd02f16ca093eac3f3",
+    "terraphim-editor-257aa4f4cf8c0c34.js": "ead25002c035e02fba7936c7f043475cc573c62b5b6a0d76dba952f2ee5b64eb",
+    "terraphim-editor-257aa4f4cf8c0c34_bg.wasm": "c861c569dbb87eb098e8d5e1614d9579b9d6de3297cda72575693c86144a76ec",
     "terraphim-editor.min.css": "0a6c2cb03d65b43b844ab3cd80614716c362136c1347423861d780ac4e0461a9",
-    "terraphim-editor.min.js": "bd3f19a801ebbc522cb675769233a5d463232c5c16b99f317ce8680bfa3488b9",
-    "terraphim_editor.js": "5b877e8407a7a96a7887daac535db1b988653603a00766728fa531b2ad9f6006",
-    "terraphim_editor_bg.wasm": "d878465a8b4931efe8b67929673ddc872920f71aa6ec5abd02f16ca093eac3f3",
+    "terraphim-editor.min.js": "711819be5ab76ea6daea66352ff252b3c93535054da0140cfa664cfcb2b609d9",
+    "terraphim_editor.js": "ead25002c035e02fba7936c7f043475cc573c62b5b6a0d76dba952f2ee5b64eb",
+    "terraphim_editor_bg.wasm": "c861c569dbb87eb098e8d5e1614d9579b9d6de3297cda72575693c86144a76ec",
     "tokens-36540e1e0e83eb54.css": "71e359d23d7ec44c9c838f74cf77f6e33aa3c33c57757cfc4cfb96e22a09de55",
     "trim-a64aceacb4246fba.css": "fe79acb70b9906e404d30e19b7d5e1cf6589bc0aa155f1c1dc93ed18e6dee81d",
     "vendor/fontawesome/6.5.2/LICENSE.txt": "9b914eae88817d63b576eab5aafde7068c7a1abae125d7cdfb034f1da43a9afc",
@@ -133,6 +135,6 @@
     "vendor/shoelace/2.12.0/third-party-notices/shoelace-style_localize/LICENSE.md": "ac9ffacbfc877b6f4253a481b3c0edbad0c019ac3506a3b51415b336f4a0c054",
     "write-on-6a8fd9449457dd74.css": "bd3b7471c8a7ba32c38927d47eefe26e5680ffa6ec96262380f4cf383340674c"
   },
-  "schema": 1,
-  "sourceHead": "e2ee3ff9f6133cd67cd15533109c8020c20a0cdf"
+  "qualification": "Hash-admitted Unicode Trim preview; not full41 parity",
+  "fullParityAccepted": false
 }
