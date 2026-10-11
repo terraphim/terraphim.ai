@@ -7,6 +7,7 @@ on:
   workflow_dispatch:
 
 env:
+  EDITOR_MANIFEST_SHA256: 1c0c80819b482a93e8cbbadd38ce579c452ba462f6d22973401cfd23e3cb7ca3
   OP_API_TOKEN: op://TerraphimPlatform/terraphim-md-book-cloudflare/workers-api-token
   OP_ACCOUNT_ID: op://TerraphimPlatform/terraphim-md-book-cloudflare/account_id
 
@@ -26,8 +27,16 @@ jobs:
           curl -L https://github.com/getzola/zola/releases/download/v0.22.1/zola-v0.22.1-x86_64-unknown-linux-gnu.tar.gz | tar xz
           sudo mv zola /usr/local/bin
 
+      - name: Verify admitted editor source assets
+        run: |
+          python3 -m unittest discover -s scripts -p test_import_editor.py -v
+          python3 scripts/import-editor.py --verify --destination static/editor --manifest-sha256 "$EDITOR_MANIFEST_SHA256"
+
       - name: Build site
         run: zola build
+
+      - name: Verify generated editor assets before deployment
+        run: python3 scripts/import-editor.py --verify --destination public/editor --manifest-sha256 "$EDITOR_MANIFEST_SHA256"
 
       - name: Load secrets from 1Password
         id: op-load-secrets

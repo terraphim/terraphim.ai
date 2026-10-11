@@ -1,0 +1,515 @@
+/*
+ * Write_On mode layout and corner chrome (issue #7; spec R-2.1, R-7.1, R-7.2)
+ * ===========================================================================
+ *
+ * Consumes the tokens in public/css/tokens.css; no colours, fonts or radii
+ * are hard-coded here. The chrome DOM is built by public/js/chrome.js.
+ *
+ * Plain mode (default): the text and the dim word/char counter in the
+ * top-left corner, nothing more (R-2.1, R-7.1; issue #86), on the same dark
+ * page and centred column as Write_On (the video at 0:00 to 0:05; #107). The toolbar and
+ * the preview pane are hidden unless the chrome sets data-tools="on" on the
+ * editor root (Ctrl+Shift+L, chrome.setTools(), config.tools). The corner
+ * controls carry the `hidden` attribute.
+ *
+ * Write_On mode (data-mode="write-on" on the editor root, .te-app, and on
+ * <body> on the full page only; issue #77): full-bleed dark page, the
+ * writing surface as a centred ~70ch column, no toolbar, no preview pane,
+ * and the corner controls of R-7.2.
+ */
+
+/* ---- Plain mode: text and counter only (R-2.1, R-7.1; issue #86) ----
+   Keyed on the absence of data-tools="on", so the toolbar and the preview
+   are hidden by default; the Write_On rules below hide them regardless. */
+
+.te-app:not([data-mode="write-on"]):not([data-tools="on"]) .toolbar,
+.te-app:not([data-mode="write-on"]):not([data-tools="on"]) .editor-container [slot="end"] {
+    display: none;
+}
+
+/* As in Write_On: a block host leaves only the writing surface in flow. */
+.te-app:not([data-mode="write-on"]):not([data-tools="on"]) sl-split-panel {
+    display: block !important;
+    height: auto;
+}
+
+.te-app:not([data-mode="write-on"]):not([data-tools="on"]) sl-split-panel::part(divider) {
+    display: none;
+}
+
+/* ---- Page layout, Write_On and plain (R-7.1) ----
+   Plain mode lays the text out as Write_On does, as in the video at 0:05:
+   the centred column on the dark page, the counter top-left (issue #107).
+   The tools view (data-tools="on") keeps the Markdown editor's layout. */
+
+/* #app.te-app outranks the full page's inline #app rule. */
+.te-app[data-mode="write-on"],
+#app.te-app[data-mode="write-on"],
+.te-app:not([data-mode="write-on"]):not([data-tools="on"]),
+#app.te-app:not([data-mode="write-on"]):not([data-tools="on"]) {
+    height: auto;
+    min-height: 100vh;
+    padding: 0;
+}
+
+.te-app[data-mode="write-on"] .toolbar,
+.te-app[data-mode="write-on"] .editor-container [slot="end"] {
+    display: none;
+}
+
+/* Shoelace writes grid-template-columns inline on the host; a block host
+   stacks the slots and leaves only the writing surface in flow. */
+.te-app[data-mode="write-on"] sl-split-panel {
+    display: block !important;
+    height: auto;
+}
+
+.te-app[data-mode="write-on"] sl-split-panel::part(divider) {
+    display: none;
+}
+
+.te-app[data-mode="write-on"] .markdown-input.te-surface,
+.te-app:not([data-mode="write-on"]):not([data-tools="on"]) .markdown-input.te-surface {
+    width: auto;
+    height: auto;
+    min-height: calc(100vh - var(--te-page-margin-top) - 6rem);
+    padding-inline: 1.5rem;
+    padding-bottom: 6rem;
+    overflow: visible;
+    outline: none;
+    font-size: var(--te-font-size-body);
+}
+
+.te-app[data-mode="write-on"] .markdown-input.te-surface:empty::before,
+.te-app:not([data-mode="write-on"]):not([data-tools="on"]) .markdown-input.te-surface:empty::before {
+    color: var(--te-color-text-dim);
+    opacity: 1;
+}
+
+/* ---- Corner chrome ---- */
+
+.te-chrome [hidden] {
+    display: none !important;
+}
+
+/* Zero-specificity reset so the per-control rules below win without. */
+:where(.te-chrome) button {
+    margin: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+}
+
+.te-chrome button:focus-visible {
+    outline: 2px solid var(--te-color-accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Top-left counter: dim monospace, visible in both modes, at the same place
+   in each (the video at 0:05 and 0:25). In the tools view it sits in the
+   20px band above the toolbar. */
+.te-chrome-counter {
+    position: fixed;
+    top: 1px;
+    left: 20px;
+    z-index: 20;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.5ch;
+    padding: 0 0.25rem;
+    font-family: var(--te-font-mono);
+    font-size: 0.75rem;
+    line-height: 18px;
+    letter-spacing: 0.02em;
+    color: var(--te-color-text-dim);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+}
+
+.te-chrome-counter:hover .te-chrome-counter-text {
+    text-decoration: underline;
+    text-decoration-color: var(--te-color-accent-soft);
+    text-underline-offset: 3px;
+}
+
+.te-chrome-counter-arrow {
+    visibility: hidden;
+    color: var(--te-color-accent);
+}
+
+.te-chrome-on .te-chrome-counter,
+.te-app:not([data-mode="write-on"]):not([data-tools="on"]) .te-chrome-counter {
+    top: 1.25rem;
+    left: 1.5rem;
+    font-size: 0.8125rem;
+}
+
+.te-chrome-on .te-chrome-counter-arrow {
+    visibility: visible;
+}
+
+.te-chrome-group {
+    position: fixed;
+    /* Keep corner controls above the full-height side panels (z-index 20). */
+    z-index: 21;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    font-family: var(--te-font-mono);
+    font-size: 0.8125rem;
+    line-height: 1;
+    color: var(--te-color-text-dim);
+}
+
+.te-chrome-top-centre { top: 1.25rem; left: 50%; transform: translateX(-50%); }
+.te-chrome-top-right { top: 1.25rem; right: 1.5rem; }
+.te-chrome-bottom-left { bottom: 1.25rem; left: 1.5rem; }
+.te-chrome-bottom-centre { bottom: 1.25rem; left: 50%; transform: translateX(-50%); }
+.te-chrome-bottom-right { bottom: 1.25rem; right: 1.5rem; }
+
+.te-chrome-control {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.75rem;
+    min-height: 1.75rem;
+    padding: 0.25rem 0.375rem;
+    transition: color 120ms ease;
+}
+
+.te-chrome-control:hover {
+    color: var(--te-color-text);
+}
+
+.te-chrome-dots {
+    color: var(--te-color-accent);
+    letter-spacing: 0.15em;
+    font-size: 0.625rem;
+}
+
+.te-chrome-markdown span {
+    padding: 0.125rem 0.3rem;
+    border: 1px solid currentColor;
+    border-radius: 3px;
+    font-size: 0.75rem;
+}
+
+.te-chrome-keyboard,
+.te-chrome-open {
+    font-size: 1rem;
+}
+
+.te-chrome-save {
+    color: var(--te-color-accent);
+    font-size: 1rem;
+}
+
+.te-chrome-lab {
+    padding: 0.3rem 0.9rem;
+    border: 1px dashed var(--te-color-text-dim);
+    border-radius: 999px;
+    letter-spacing: 0.2em;
+    font-size: 0.6875rem;
+}
+
+.te-chrome-lab:hover {
+    border-color: var(--te-color-accent);
+}
+
+.te-chrome-overflow {
+    padding: 0.25rem 0.55rem;
+    border: 1px solid var(--te-color-panel-border);
+    border-radius: 6px;
+    background: var(--te-color-panel);
+    letter-spacing: 0.08em;
+    font-size: 0.6875rem;
+}
+
+/* Lit lavender while the Overflow panel is open, as in the demo (4:05). */
+.te-chrome-overflow[aria-expanded="true"] {
+    border-color: var(--te-color-accent);
+    color: var(--te-color-accent);
+}
+
+/* ---- Shortcut reference (R-7.3), a native <dialog> ---- */
+
+.te-chrome-shortcuts {
+    width: min(28rem, calc(100vw - 2rem));
+    padding: 1rem 1.25rem 1.25rem;
+    border: 1px solid var(--te-color-panel-border);
+    border-radius: var(--te-radius-popover);
+    background: var(--te-color-popover);
+    color: var(--te-color-text);
+    font-family: var(--te-font-mono);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color-scheme: dark;
+}
+
+.te-chrome-shortcuts::backdrop {
+    background: rgba(10, 13, 28, 0.6);
+}
+
+.te-chrome-shortcuts-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.te-chrome-shortcuts h2 {
+    margin: 0;
+    font-family: var(--te-font-display);
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.te-chrome-shortcuts h3 {
+    margin: 1rem 0 0.25rem;
+    font-size: 0.6875rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--te-color-text-dim);
+}
+
+.te-chrome-shortcuts dl {
+    margin: 0;
+}
+
+.te-chrome-shortcut {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.3rem 0.5rem;
+    margin-inline: -0.5rem;
+    border-radius: 4px;
+}
+
+.te-chrome-shortcut:hover {
+    background: var(--te-color-popover-hover);
+}
+
+.te-chrome-shortcut dt,
+.te-chrome-shortcut dd {
+    margin: 0;
+}
+
+.te-chrome-shortcut kbd {
+    font-family: inherit;
+    color: var(--te-color-text-dim);
+}
+
+.te-chrome-shortcut:hover kbd {
+    color: var(--te-color-text);
+}
+
+.te-chrome-shortcuts-close {
+    padding: 0 0.25rem;
+    font-size: 1.25rem;
+    color: var(--te-color-text-dim);
+}
+
+@media (max-width: 40rem) {
+    .te-chrome-group { gap: 0.75rem; }
+    .te-chrome-top-centre { top: 3rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .te-chrome-control { transition: none; }
+}
+
+/* ---- Document notice (issue #6): `.te-warning`, created by editor.js ----
+   Plain mode keeps the browser default; in Write_On the notice sits on a
+   panel in dim text so it reads against the dark page without shouting. */
+
+.te-app[data-mode="write-on"] .te-warning {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin: 0 auto 1rem;
+    max-width: var(--te-measure, 42rem);
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--te-color-panel-border);
+    border-radius: var(--te-radius-popover);
+    background: var(--te-color-panel);
+    color: var(--te-color-text-dim);
+    font-family: var(--te-font-mono);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+}
+
+.te-app[data-mode="write-on"] .te-warning[hidden] {
+    display: none;
+}
+
+.te-app[data-mode="write-on"] .te-warning-text {
+    flex: 1;
+}
+
+.te-app[data-mode="write-on"] .te-warning-dismiss {
+    padding: 0 0.25rem;
+    border: none;
+    background: transparent;
+    color: var(--te-color-text-dim);
+    font: inherit;
+    cursor: pointer;
+}
+
+.te-app[data-mode="write-on"] .te-warning-dismiss:hover,
+.te-app[data-mode="write-on"] .te-warning-dismiss:focus-visible {
+    color: var(--te-color-accent);
+}
+
+/* ---- Inline indicators (issue #8; spec R-3.1 to R-3.5) ----
+   Decoration classes come from public/js/indicators.js (TeIndicatorLayer);
+   the dots and gutter rule live in the out-of-flow `.te-indicators`
+   overlay beside the surface, so they never change line height. Every rule
+   is scoped to Write_On mode: plain mode renders nothing. Design notes:
+   docs/design/indicators.md */
+
+.te-app[data-mode="write-on"] .te-indicator-host {
+    --te-ind-dot: 3px;           /* dot diameter */
+    --te-ind-dot-gap: 3px;       /* spacing ~ one diameter (R-3.2) */
+    --te-ind-row-offset: 2px;    /* dot row below the text box */
+    --te-ind-gutter: 1.25rem;    /* gutter rule distance from the text (video 2:00: ~20px) */
+    position: relative;
+}
+
+/* R-3.1: thin muted underline under word and sentence spans, unchanged on
+   hover. Paragraph spans get no underline (R-3.4). */
+.te-app[data-mode="write-on"] .te-surface .te-ind-word,
+.te-app[data-mode="write-on"] .te-surface .te-ind-sentence {
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--te-color-accent-soft);
+    text-underline-offset: 2px;
+    text-decoration-skip-ink: none;
+}
+
+/* R-3.5: headlines bold, same face and colour, slightly larger: every `#`
+   line (te-heading, issue #84) and headline spans with alternatives. */
+.te-app[data-mode="write-on"] .te-surface .te-heading,
+.te-app:not([data-mode="write-on"]):not([data-tools="on"]) .te-surface .te-heading,
+.te-app[data-mode="write-on"] .te-surface .te-ind-headline {
+    font-weight: 700;
+    font-size: 1.15em;
+}
+
+/* The `#` marker stays in the text but takes no space, so the heading is
+   flush with the body; shown dimmed while the caret is on its line. */
+.te-app[data-mode="write-on"] .te-surface .te-heading-marker,
+.te-app:not([data-mode="write-on"]):not([data-tools="on"]) .te-surface .te-heading-marker {
+    font-size: 0;
+}
+
+.te-app[data-mode="write-on"] .te-surface .te-heading-marker.te-heading-marker--shown,
+.te-app:not([data-mode="write-on"]):not([data-tools="on"]) .te-surface .te-heading-marker.te-heading-marker--shown {
+    font-size: 1.15em;
+}
+
+.te-app[data-mode="write-on"] .te-surface .te-heading-marker.te-heading-marker--shown:not(.te-ghost),
+.te-app:not([data-mode="write-on"]):not([data-tools="on"]) .te-surface .te-heading-marker.te-heading-marker--shown:not(.te-ghost) {
+    color: var(--te-color-text-dim);
+}
+
+.te-indicators {
+    display: none;
+}
+
+.te-app[data-mode="write-on"] .te-indicators {
+    display: block;
+    position: absolute;
+    inset: 0;
+    overflow: visible;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.te-app[data-mode="write-on"] .te-indicators [hidden] {
+    display: none;
+}
+
+/* R-3.2: dot row; centred under a word, ending at the underline's right
+   end for sentences and headlines. Left/top are set by the layer. */
+.te-app[data-mode="write-on"] .te-ind-row {
+    position: absolute;
+    margin-top: var(--te-ind-row-offset);
+}
+
+.te-app[data-mode="write-on"] .te-ind-row--centre {
+    transform: translateX(-50%);
+}
+
+.te-app[data-mode="write-on"] .te-ind-row--end {
+    transform: translateX(-100%);
+}
+
+.te-app[data-mode="write-on"] .te-ind-dots,
+.te-app[data-mode="write-on"] .te-ind-col {
+    display: flex;
+    gap: var(--te-ind-dot-gap);
+}
+
+.te-app[data-mode="write-on"] .te-ind-col {
+    flex-direction: column;
+}
+
+/* R-3.3: dim dots at the soft accent; exactly one lit at the full accent
+   (the 40% colour is below 3:1, see docs/design/indicators.md). */
+.te-app[data-mode="write-on"] .te-ind-dot {
+    display: block;
+    flex: none;
+    width: var(--te-ind-dot);
+    height: var(--te-ind-dot);
+    border-radius: 50%;
+    background: var(--te-color-accent-soft);
+    pointer-events: auto;
+    cursor: default;
+}
+
+.te-app[data-mode="write-on"] .te-ind-dot--active {
+    background: var(--te-color-accent);
+}
+
+/* R-3.4: paragraph rule in the left gutter spanning the paragraph, with a
+   dot column immediately to its left, level with the rule's middle (the
+   video at 2:00; docs/requirements/video-measurements.md). The holder is a
+   zero-width box at the text's left edge; its height is the paragraph's. */
+.te-app[data-mode="write-on"] .te-ind-para {
+    position: absolute;
+    width: 0;
+}
+
+.te-app[data-mode="write-on"] .te-ind-rule {
+    position: absolute;
+    top: 0;
+    right: var(--te-ind-gutter);
+    width: 1px;
+    height: 100%;
+    background: var(--te-color-accent-soft);
+}
+
+.te-app[data-mode="write-on"] .te-ind-para .te-ind-col {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: calc(var(--te-ind-gutter) + 1px + var(--te-ind-dot-gap));
+}
+
+/* Screen-reader descriptions referenced by aria-describedby. */
+.te-ind-descriptions {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+}
