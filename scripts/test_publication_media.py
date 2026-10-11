@@ -24,6 +24,8 @@ class PublicationMediaTests(unittest.TestCase):
     def test_unavailable_windows_download_is_not_advertised(self):
         for name in ['themes/WarpDrive/templates/index.html', 'themes/WarpDrive/static/js/site.js', 'content/docs/installation.md']:
             self.assertNotIn('x86_64-pc-windows-msvc.zip', (ROOT / name).read_text())
+        self.assertNotIn('terraphim-server_{{ rv }}-1_amd64.deb', (ROOT / 'themes/WarpDrive/templates/index.html').read_text())
+        self.assertIn("var base = 'https://downloads.terraphim.ai/terraphim-agent/'", (ROOT / 'themes/WarpDrive/static/js/site.js').read_text())
         self.assertIn('Native Windows archives are unavailable', (ROOT / 'content/docs/installation.md').read_text())
 
     def test_walkthrough_links_and_disclosures(self):

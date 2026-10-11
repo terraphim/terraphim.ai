@@ -118,6 +118,13 @@ def main() -> int:
 
         print(f"{binary}: checked {len(TARGETS)} advertised targets against {CHANNEL_BASE}")
 
+    # Additional homepage downloads not represented by the four common targets.
+    for target in ('universal-apple-darwin', 'x86_64-unknown-linux-musl'):
+        url = f"{CHANNEL_BASE}/terraphim-agent/terraphim-agent-{version}-{target}.tar.gz"
+        size = head_size(url)
+        if size is None or size < MIN_ASSET_BYTES:
+            failures.append(f"Additional homepage download unavailable: {url}")
+
     if failures:
         for failure in failures:
             print(f"::error::{failure}")
