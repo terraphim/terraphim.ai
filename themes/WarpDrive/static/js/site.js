@@ -207,11 +207,6 @@
         name: 'Linux x64',
         file: 'terraphim-agent-' + version + '-x86_64-unknown-linux-gnu.tar.gz'
       };
-    } else if (ua.indexOf('win') !== -1) {
-      platform = {
-        name: 'Windows x64',
-        file: 'terraphim-agent-' + version + '-x86_64-pc-windows-msvc.zip'
-      };
     }
 
     if (platform) {

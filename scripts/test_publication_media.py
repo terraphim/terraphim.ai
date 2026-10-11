@@ -21,6 +21,11 @@ class PublicationMediaTests(unittest.TestCase):
             self.assertEqual(len(data), int(entry['probe']['format']['size']))
         self.assertEqual({p.name for p in MEDIA.iterdir()}, expected)
 
+    def test_unavailable_windows_download_is_not_advertised(self):
+        for name in ['themes/WarpDrive/templates/index.html', 'themes/WarpDrive/static/js/site.js', 'content/docs/installation.md']:
+            self.assertNotIn('x86_64-pc-windows-msvc.zip', (ROOT / name).read_text())
+        self.assertIn('Native Windows archives are unavailable', (ROOT / 'content/docs/installation.md').read_text())
+
     def test_walkthrough_links_and_disclosures(self):
         page = (ROOT / 'content/how-tos/knowledge-work-editor.md').read_text()
         for entry in json.loads((MEDIA / 'manifest.json').read_text())['media']:

@@ -28,7 +28,7 @@ curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts
 curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts/install.sh | bash --install-dir /usr/local/bin
 
 # Require a specific version (fails if the channel serves a different one)
-curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts/install.sh | bash --version 1.21.16
+curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts/install.sh | bash --version 1.21.18
 ```
 
 The installer publishes these exit codes: `0` success, `1` usage error,
@@ -59,11 +59,11 @@ cargo install terraphim_agent --features repl-full
 #### Binary Download
 
 Archives are served from `downloads.terraphim.ai`. Substitute the release you
-want for `1.21.16`, or read the current version from the
+want for `1.21.18`, or read the current version from the
 [manifest](https://downloads.terraphim.ai/terraphim-agent/stable-v2.json).
 
 ```bash
-VERSION=1.21.16
+VERSION=1.21.18
 
 # x86_64 (GNU)
 curl -fsSLO "https://downloads.terraphim.ai/terraphim-agent/terraphim-agent-${VERSION}-x86_64-unknown-linux-gnu.tar.gz"
@@ -101,7 +101,7 @@ sudo cp target/release/terraphim-agent /usr/local/bin/
 #### Binary Download
 
 ```bash
-VERSION=1.21.16
+VERSION=1.21.18
 
 # Apple Silicon (ARM64)
 curl -fsSLO "https://downloads.terraphim.ai/terraphim-agent/terraphim-agent-${VERSION}-aarch64-apple-darwin.tar.gz"
@@ -131,14 +131,9 @@ sudo cp target/release/terraphim-agent /usr/local/bin/
 
 ### Windows
 
-#### Binary Download
+#### WSL installation
 
-```powershell
-$VERSION = "1.21.16"
-curl.exe -fsSLO "https://downloads.terraphim.ai/terraphim-agent/terraphim-agent-$VERSION-x86_64-pc-windows-msvc.zip"
-```
-
-Extract the zip and add the directory to your PATH.
+Native Windows archives are unavailable on the current stable channel. Use the Linux instructions inside WSL, or build from source below.
 
 #### Build from Source
 
@@ -205,7 +200,7 @@ After installation, verify that Terraphim is working:
 ```bash
 # Check version
 terraphim-agent --version
-# terraphim-agent 1.21.16
+# terraphim-agent 1.21.18
 
 # Confirm the updater can see the channel
 terraphim-agent check-update
