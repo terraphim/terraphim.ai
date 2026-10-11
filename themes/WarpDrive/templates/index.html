@@ -31,13 +31,15 @@
   </div>
 
   <div class="hero-actions">
+    <a href="{{ get_url(path='editor/') }}" class="btn btn-ghost">Try Editor preview</a>
+    <a href="{{ get_url(path='@/how-tos/knowledge-work-editor.md') }}" class="btn btn-ghost">Watch knowledge-work demos</a>
     <a href="{{ config.base_url }}/docs/quickstart" class="btn btn-primary">
       <i class="fa-solid fa-bolt" aria-hidden="true"></i>
       Quickstart
     </a>
-    <a href="https://github.com/terraphim/terraphim-clients/releases/tag/v{{ config.extra.release_version | default(value='1.21.16') }}" class="btn btn-ghost">
+    <a href="https://github.com/terraphim/terraphim-clients/releases/tag/v{{ config.extra.release_version | default(value='1.21.18') }}" class="btn btn-ghost">
       <i class="fa-solid fa-rocket" aria-hidden="true"></i>
-      v{{ config.extra.release_version | default(value="1.21.16") }} release
+      v{{ config.extra.release_version | default(value="1.21.18") }} release
     </a>
     <a href="https://github.com/terraphim/terraphim-ai" class="btn btn-ghost">
       <i class="fa-brands fa-github" aria-hidden="true"></i>
@@ -105,8 +107,8 @@
     </div>
     <h2 class="section-title">Core Capabilities</h2>
     <p class="section-subtitle">
-      Nine capabilities the engine ships with today. Each waypoint links to its
-      detailed page.
+      Explore ten capabilities, including the intelligent editor preview. Each waypoint
+      links to its detailed page.
     </p>
 
     <div class="waypoints-grid">
@@ -232,6 +234,20 @@
             </div>
           </div>
           <p class="waypoint-desc">Written in Rust, compiled to WebAssembly. Sub-millisecond search. Memory-safe, thread-safe, running at near-native speed in browser or desktop.</p>
+          <span class="waypoint-cta">Explore capability <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+        </article>
+      </a>
+
+      <a href="{{ get_url(path='@/capabilities/terraphim-editor.md') }}" class="waypoint-link">
+        <article class="waypoint">
+          <div class="waypoint-header">
+            <div class="waypoint-icon"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></div>
+            <div>
+              <span class="waypoint-number">WP-010</span>
+              <h3 class="waypoint-title">Terraphim Editor</h3>
+            </div>
+          </div>
+          <p class="waypoint-desc">Intelligent editor with alternative suggestions powered by your knowledge graph and roles. Compare wording, keep alternatives attached, and save your choices. Try the browser preview.</p>
           <span class="waypoint-cta">Explore capability <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
         </article>
       </a>
@@ -710,7 +726,7 @@
 </section>
 
 <!-- ---- INSTALL ---- -->
-<section class="install" id="install" aria-label="Installation" data-version="{{ config.extra.release_version | default(value='1.21.16') }}">
+<section class="install" id="install" aria-label="Installation" data-version="{{ config.extra.release_version | default(value='1.21.18') }}">
   <div class="install-inner">
     <div class="section-overline">
       <i class="fa-solid fa-download" aria-hidden="true"></i>
@@ -731,7 +747,7 @@
           <span id="platformBtnText">Download</span>
         </a>
       </div>
-      {% set rv = config.extra.release_version | default(value="1.21.16") %}
+      {% set rv = config.extra.release_version | default(value="1.21.18") %}
       {% set dl = "https://downloads.terraphim.ai/terraphim-agent/" %}
       <details class="all-platforms">
         <summary>All platforms</summary>
@@ -742,8 +758,6 @@
           <li><a href="{{ dl }}terraphim-agent-{{ rv }}-x86_64-unknown-linux-gnu.tar.gz"><i class="fa-brands fa-linux" aria-hidden="true"></i> Linux x64 (GNU)</a></li>
           <li><a href="{{ dl }}terraphim-agent-{{ rv }}-x86_64-unknown-linux-musl.tar.gz"><i class="fa-brands fa-linux" aria-hidden="true"></i> Linux x64 (MUSL)</a></li>
           <li><a href="{{ dl }}terraphim-agent-{{ rv }}-aarch64-unknown-linux-musl.tar.gz"><i class="fa-brands fa-linux" aria-hidden="true"></i> Linux ARM64</a></li>
-          <li><a href="{{ dl }}terraphim-agent-{{ rv }}-x86_64-pc-windows-msvc.zip"><i class="fa-brands fa-windows" aria-hidden="true"></i> Windows x64</a></li>
-          <li><a href="{{ dl }}terraphim-server_{{ rv }}-1_amd64.deb"><i class="fa-brands fa-linux" aria-hidden="true"></i> Debian package (amd64)</a></li>
         </ul>
       </details>
     </div>
@@ -814,7 +828,7 @@
                 <span class="prompt-text">curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts/install.sh | bash</span>
                 <button class="copy-btn" data-copy="curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts/install.sh | bash" aria-label="Copy command">copy</button>
               </div>
-              <p class="install-note">Requires WSL. Or <a href="https://downloads.terraphim.ai/terraphim-agent/terraphim-agent-{{ config.extra.release_version | default(value='1.21.16') }}-x86_64-pc-windows-msvc.zip">download the .zip directly</a>.</p>
+              <p class="install-note">Requires WSL. Native Windows archives are unavailable on the current stable channel; use WSL or build from source.</p>
             </div>
           </div>
         </div>
@@ -872,9 +886,9 @@
     </div>
 
     <div class="install-cta">
-      <a href="https://github.com/terraphim/terraphim-clients/releases/tag/v{{ config.extra.release_version | default(value='1.21.16') }}" class="btn btn-primary">
+      <a href="https://github.com/terraphim/terraphim-clients/releases/tag/v{{ config.extra.release_version | default(value='1.21.18') }}" class="btn btn-primary">
         <i class="fa-solid fa-download" aria-hidden="true"></i>
-        Download v{{ config.extra.release_version | default(value="1.21.16") }}
+        Download v{{ config.extra.release_version | default(value="1.21.18") }}
       </a>
       <a href="{{ config.base_url }}/docs/installation" class="btn btn-ghost">
         <i class="fa-solid fa-book" aria-hidden="true"></i>

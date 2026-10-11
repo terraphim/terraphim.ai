@@ -21,6 +21,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
+  EDITOR_MANIFEST_SHA256: 3e0510de27b93c5aed5018058b55bd82798ad7ed535fd1c25812aef5a0aadc03
   ZOLA_VERSION: "0.22.1"
   CF_PROJECT: terraphim-ai
   OP_API_TOKEN: op://TerraphimPlatform/terraphim-md-book-cloudflare/workers-api-token
@@ -42,8 +43,16 @@ jobs:
           sudo mv zola /usr/local/bin
           zola --version
 
+      - name: Verify admitted editor source assets
+        run: |
+          python3 -m unittest discover -s scripts -p 'test_*.py' -v
+          python3 scripts/import-editor.py --verify --destination static/editor --manifest-sha256 "$EDITOR_MANIFEST_SHA256"
+
       - name: Build site
         run: zola build
+
+      - name: Verify generated editor assets before deployment
+        run: python3 scripts/import-editor.py --verify --destination public/editor --manifest-sha256 "$EDITOR_MANIFEST_SHA256"
 
       - name: Load secrets from 1Password
         id: op-load-secrets
@@ -56,6 +65,7 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ env.OP_ACCOUNT_ID }}
 
       - name: Deploy to Cloudflare Pages
+        if: github.ref == 'refs/heads/main'
         id: deploy
         uses: cloudflare/wrangler-action@v3
         with:
@@ -63,7 +73,16 @@ jobs:
           accountId: ${{ env.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy public --project-name=${{ env.CF_PROJECT }} --branch=main
 
+      - name: Deploy qualified branch candidate to preview
+        if: github.ref != 'refs/heads/main'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ env.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ env.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy public --project-name=${{ env.CF_PROJECT }} --branch=editor-publication-preview
+
       - name: Verify the deployed site serves the committed version
+        if: github.ref == 'refs/heads/main'
         env:
           DEPLOY_URL: ${{ steps.deploy.outputs.deployment-url }}
         run: |

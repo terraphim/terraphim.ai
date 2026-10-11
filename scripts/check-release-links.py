@@ -37,7 +37,6 @@ TARGETS = {
     "aarch64-unknown-linux-musl": "linux-aarch64",
     "x86_64-apple-darwin": "macos-x86_64",
     "aarch64-apple-darwin": "macos-aarch64",
-    "x86_64-pc-windows-msvc": "windows-x86_64",
 }
 
 CLI_BINARIES = ("terraphim-agent", "terraphim-cli", "terraphim-grep")
@@ -118,6 +117,13 @@ def main() -> int:
                 failures.append(f"{binary} {label}: {url} is only {size} bytes")
 
         print(f"{binary}: checked {len(TARGETS)} advertised targets against {CHANNEL_BASE}")
+
+    # Additional homepage downloads not represented by the four common targets.
+    for target in ('universal-apple-darwin', 'x86_64-unknown-linux-musl'):
+        url = f"{CHANNEL_BASE}/terraphim-agent/terraphim-agent-{version}-{target}.tar.gz"
+        size = head_size(url)
+        if size is None or size < MIN_ASSET_BYTES:
+            failures.append(f"Additional homepage download unavailable: {url}")
 
     if failures:
         for failure in failures:

@@ -1,0 +1,171 @@
+/*
+ * Overflow panel (issue #12; spec R-6.1, R-6.2, R-6.4)
+ * ====================================================
+ *
+ * The DOM is built by public/js/overflow.js. Consumes the tokens in
+ * public/css/tokens.css; no colours, fonts or radii are hard-coded here.
+ *
+ * A full-height panel flush with the right edge, as in the demo (x=2536 to
+ * 3095 of 3096, top to bottom; docs/requirements/video-measurements.md).
+ * The top-right keyboard glyph and the bottom-right XYZ tag stay where they
+ * are, drawn over the panel (the chrome's z-index is above the panel's), and
+ * the panel's padding keeps its content clear of both; the XYZ tag is lit
+ * while the panel is open (write-on.css). The title
+ * is the cursive display face in lavender; the text area uses the document's
+ * monospace face; the footer hint is dim. While it is open
+ * (<body data-te-overflow="open">) the writing column is centred in the
+ * space left of the panel instead of running underneath it.
+ */
+
+/*
+ * The same 18% of the window as the alternatives panel (R-6.1; measured in
+ * docs/requirements/video-measurements.md), with the same clamp: the 12rem
+ * floor keeps the title and its close button on one line and takes over below
+ * a 1067px window; the 20rem cap is reached at 1778px. Declared on :root so
+ * the writing column's clearance below uses the same value. Below 40rem the
+ * narrow-screen rule replaces the width.
+ */
+:root {
+    --te-overflow-width: clamp(12rem, 18vw, 20rem);
+}
+
+.te-overflow {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 18;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: var(--te-overflow-width);
+    /* Clear of the corner controls: 1.25rem offset plus a 1.75rem control,
+       and a little air, at the top and the bottom. */
+    padding: 3.75rem 1.25rem 4.25rem;
+    background-color: var(--te-color-panel);
+    border-left: 1px solid var(--te-color-panel-border);
+    color: var(--te-color-text);
+    font-family: var(--te-font-mono);
+}
+
+.te-overflow[hidden] {
+    display: none;
+}
+
+.te-overflow-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.te-overflow-title {
+    margin: 0;
+    color: var(--te-color-accent);
+    font-family: var(--te-font-display);
+    font-size: 1.9rem;
+    font-weight: 400;
+    line-height: 1.1;
+}
+
+.te-overflow-tools {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.te-overflow-button {
+    margin: 0;
+    padding: 0.25rem 0.4rem;
+    border: 0;
+    border-radius: 4px;
+    background: none;
+    color: var(--te-color-text-dim);
+    font: inherit;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.te-overflow-button:hover {
+    color: var(--te-color-text);
+    background-color: var(--te-color-popover-hover);
+}
+
+.te-overflow-button:focus-visible {
+    outline: 2px solid var(--te-color-accent);
+    outline-offset: 2px;
+}
+
+.te-overflow-note {
+    margin: 0.5rem 0 0;
+    color: var(--te-color-text-dim);
+    font-size: 0.75rem;
+    line-height: 1.4;
+}
+
+.te-overflow-text {
+    flex: 1 1 auto;
+    min-height: 6rem;
+    margin: 0.5rem 0 0;
+    padding: 0.5rem 0;
+    border: 0;
+    border-top: 1px solid var(--te-color-panel-border);
+    background: transparent;
+    color: var(--te-color-text);
+    caret-color: var(--te-color-accent);
+    font-family: var(--te-font-mono);
+    font-size: 0.875rem;
+    line-height: var(--te-line-height);
+    resize: none;
+    outline: none;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.te-overflow-text::placeholder {
+    color: var(--te-color-text-dim);
+    opacity: 1;
+}
+
+.te-overflow-text::selection {
+    background-color: var(--te-color-accent-soft);
+}
+
+.te-overflow-text:focus-visible {
+    border-top-color: var(--te-color-accent-soft);
+}
+
+.te-overflow-text[readonly] {
+    color: var(--te-color-text-dim);
+}
+
+.te-overflow-hint {
+    margin: 0.5rem 0 0;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--te-color-panel-border);
+    color: var(--te-color-text-dim);
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+}
+
+/* Keep the writing column clear of the open panel on wide screens. */
+@media (min-width: 60rem) {
+    .te-app[data-mode="write-on"][data-te-overflow="open"],
+    #app.te-app[data-mode="write-on"][data-te-overflow="open"] {
+        padding-right: calc(var(--te-overflow-width) + 2rem);
+    }
+}
+
+/* Narrow screens: a bottom sheet across the full width and the lower half
+   of the window. The bottom corner controls stay on top of it, as they do on
+   the full-height panel, and the padding keeps the text clear of them. */
+@media (max-width: 40rem) {
+    .te-overflow {
+        left: 0;
+        width: auto;
+        top: auto;
+        height: 50vh;
+        padding-top: 1rem;
+        border-left: 0;
+        border-top: 1px solid var(--te-color-panel-border);
+    }
+}

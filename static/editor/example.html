@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Terraphim Editor embed example</title>
+  <!-- create() awaits the pinned local component/icon styles. -->
+  <link rel="stylesheet" href="terraphim-editor.min.css">
+  <style>
+    body { margin: 0; font-family: system-ui, sans-serif; }
+    /* The word counter (the Write_On toggle) sits in the viewport's top-left
+       corner, as on the full page; leave it a 20px band. */
+    header { padding: 1.5rem 1.5rem 0.75rem; border-bottom: 1px solid #ddd; }
+    header h1 { margin: 0; font-size: 1rem; }
+    /* Give the host element a height; the editor fills it. */
+    #editor { height: calc(100vh - 4.25rem); padding: 1rem 1rem 0; box-sizing: border-box; }
+  </style>
+</head>
+<body>
+  <header><h1>A host page with one container</h1></header>
+  <div id="editor"></div>
+  <!-- terraphim_editor.js and terraphim_editor_bg.wasm are found next to this script. -->
+  <script src="terraphim-editor.min.js"></script>
+  <script type="module">
+    const editor = await TeraphimEditor.create(document.getElementById('editor'), {
+      value: '# Hello from an embedded editor\n\nType here. Click the word counter for Write_On mode.\n',
+    });
+    window.editor = editor;
+  </script>
+</body>
+</html>
