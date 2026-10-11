@@ -1,0 +1,170 @@
+{
+  "schema": 1,
+  "edition": "synonym-search-story-v1",
+  "durationSeconds": 80.0,
+  "editorSourceHead": "4050ac9a35e1255ebc3f1d7cd50eb0dd97059730",
+  "clientsSourceHead": "f0410af",
+  "voice": {
+    "name": "Emma",
+    "engine": "Kokoro v1.0",
+    "voiceId": "bf_emma",
+    "language": "en-GB",
+    "synthetic": true,
+    "speechRateUnchanged": true
+  },
+  "checks": {
+    "pageErrors": [],
+    "sameRetrievedChunks": true,
+    "sameGraphAndTextAsPriorVerifiedRun": true,
+    "finalMuxAsrWordSimilarity": 1.0,
+    "decodedAudioPeak": 0.7943115234375
+  },
+  "inputs": {
+    "graphSha256": "f8648b16470e764bdff5c95064078419d71e8d41d2ca30d4b1508017c166a45d",
+    "textSha256": "ea78a26e4d5a1105891bed67288a924cbbd5656defc95de4c511f4302b8d0d8f",
+    "binarySha256": "d4d29232e81b098e8ee7e4c939cd4fd35b3fa06efd1e197d83b2542940f3c63b"
+  },
+  "commands": [
+    {
+      "argv": [
+        "terraphim-grep",
+        "concern",
+        "--thesaurus",
+        "knowledge-graph.json",
+        "--paths",
+        "corpus",
+        "-C",
+        "2",
+        "--json"
+      ],
+      "exitCode": 0,
+      "seconds": 0.047
+    },
+    {
+      "argv": [
+        "terraphim-grep",
+        "concern",
+        "--thesaurus",
+        "knowledge-graph.json",
+        "--paths",
+        "corpus",
+        "-C",
+        "2",
+        "--json",
+        "--answer"
+      ],
+      "exitCode": 0,
+      "seconds": 5.991
+    }
+  ],
+  "edits": {
+    "introSeconds": 7,
+    "sourceSetupOmittedSeconds": 0.237,
+    "retainedCaptureSeconds": 73,
+    "speed": 1,
+    "captionsOutsideApp": true,
+    "cliPresentation": "Readable presentation of real subprocess JSON fields; source strings unchanged.",
+    "events": [
+      {
+        "name": "brief_ready",
+        "seconds": 0
+      },
+      {
+        "name": "concern_added",
+        "seconds": 9.262
+      },
+      {
+        "name": "swapped_to_risk",
+        "seconds": 13.012
+      },
+      {
+        "name": "swapped_to_concern",
+        "seconds": 15.013
+      },
+      {
+        "name": "risk_retained",
+        "seconds": 17.025
+      },
+      {
+        "name": "graph_visible",
+        "seconds": 19.093
+      },
+      {
+        "name": "synonyms_syntax_visible",
+        "seconds": 24.045
+      },
+      {
+        "name": "graph_downloaded",
+        "seconds": 30.05
+      },
+      {
+        "name": "text_downloaded",
+        "seconds": 32.029
+      },
+      {
+        "name": "search_results_visible",
+        "seconds": 39.102
+      },
+      {
+        "name": "synthesis_started",
+        "seconds": 51.016
+      },
+      {
+        "name": "synthesis_visible",
+        "seconds": 57.024
+      },
+      {
+        "name": "end",
+        "seconds": 73.002
+      }
+    ]
+  },
+  "qualification": "Public preview of one finite browser workflow. Does not qualify all 41 requirements or the existing extensions. Zed fork separate.",
+  "files": [
+    {
+      "file": "annotated.md",
+      "bytes": 793,
+      "sha256": "036d8e65b847fc03c68814b610be94e2b7a27573188947451348f9f674150e6e"
+    },
+    {
+      "file": "captions.vtt",
+      "bytes": 1704,
+      "sha256": "8c1c3013e992032bcc8fa93c72718303bdc9e492142feaede595c70d2292cf28"
+    },
+    {
+      "file": "knowledge-graph.json",
+      "bytes": 281,
+      "sha256": "f8648b16470e764bdff5c95064078419d71e8d41d2ca30d4b1508017c166a45d"
+    },
+    {
+      "file": "poster.jpg",
+      "bytes": 96969,
+      "sha256": "121b5e01129e4c9ad3f99dd173f89394835e0e717902e48be6efa110eabcd9f6"
+    },
+    {
+      "file": "project-brief.md",
+      "bytes": 265,
+      "sha256": "ea78a26e4d5a1105891bed67288a924cbbd5656defc95de4c511f4302b8d0d8f"
+    },
+    {
+      "file": "synonym-search-story.mp4",
+      "bytes": 2499530,
+      "sha256": "97e88cc7522d5734deedefc07827ebe985ec6e636a2f41ae574b3e4d7e0ac02c"
+    },
+    {
+      "file": "transcript.txt",
+      "bytes": 1540,
+      "sha256": "1eb1999a04add460c1474a2889e7fb12238b0cafd07a77ef6246ad97ce07c9b4"
+    },
+    {
+      "file": "with-synthesis.json",
+      "bytes": 2288,
+      "sha256": "d6381390ae7ce09b91cf406195b01ade90a753aad72594a7c3a1676443bf5b82"
+    },
+    {
+      "file": "without-synthesis.json",
+      "bytes": 1248,
+      "sha256": "302eb12c12e9f8a68daca280ee783c152221214969d630929d4666c5236c5365"
+    }
+  ]
+}

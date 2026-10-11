@@ -1,0 +1,26 @@
+Different words. The same idea.
+British English synthetic voice: Emma (Kokoro bf_emma).
+
+00–07s | One idea. Different words.
+When people use different words for the same idea, useful decisions can become surprisingly hard to find.
+
+07–15s | Start with a project brief
+Here is our community garden brief. It records three risks, and the decisions we have made to deal with each one.
+
+15–26s | Risk ↔ Concern
+I add concern as an alternative to risk. Now I can swap between the two words, choosing the wording that fits without losing the other option.
+
+26–37s | Your alternatives build the graph
+The editor connects those alternatives to one idea in the knowledge graph. Here is the actual synonym definition: risk and concern belong together.
+
+37–46s | Share the graph and the text
+I download that graph and the finished text. Notice that I leave risk in the document. The word concern is absent.
+
+46–58s | Search by the word you remember
+Now I search for concern using the graph I just downloaded. It finds all three risk passages, including the related decisions, even though the wording is different.
+
+58–70s | Evidence first. Synthesis when you want it.
+Without synthesis, I get the original passages and their locations. Adding the answer flag gives me a summary from the same evidence, with source references.
+
+70–80s | Write in your words. Find it in mine.
+The summary keeps decisions distinct from completed actions. From choosing a word to finding a decision, the same knowledge graph keeps the meaning connected.
