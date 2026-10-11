@@ -30,7 +30,7 @@ The editor runs as WebAssembly in your browser. Editing with the bundled graph d
 
 ## See actual saved outputs
 
-[Watch the captioned editor and terraphim-grep walkthroughs](/how-tos/knowledge-work-editor/): Chrome, Safari, Firefox and the existing Zed extension, followed by search with the same shared KG, with and without synthesis. Each video identifies its recorded scope; the current browser build includes the later Unicode normalization repair.
+[Watch the narrated and captioned editor and terraphim-grep walkthroughs](/how-tos/knowledge-work-editor/): Chrome, Safari, Firefox and the existing Zed extension, followed by search with the same shared KG, with and without synthesis. Each video identifies its recorded scope; the current browser build includes the later Unicode normalization repair.
 
 This is a preview. Complete acceptance against all 41 source-video requirements remains open, including Safari dragging and some visual/native cases. The existing Zed extension demonstrates its supported capabilities; the separate Zed fork is outside this publication.
 
