@@ -1,8 +1,8 @@
 {
   "schema": 1,
-  "sourceHead": "affee07596f9856df60afe1dc2848ef988534d60",
-  "manifestSha256": "1c0c80819b482a93e8cbbadd38ce579c452ba462f6d22973401cfd23e3cb7ca3",
-  "assets": 129,
+  "sourceHead": "8659ccf2967518585ec20dd8962a2ca4413126ad",
+  "manifestSha256": "f9b04aabeafb9c304ad192635bd5c586da961e798e96c73df012084ca9662cdf",
+  "assets": 132,
   "fullParityAccepted": false,
   "qualification": "HASH-ADMITTED CANDIDATE; browser/deployment acceptance required"
 }

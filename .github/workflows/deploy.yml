@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  EDITOR_MANIFEST_SHA256: 1c0c80819b482a93e8cbbadd38ce579c452ba462f6d22973401cfd23e3cb7ca3
+  EDITOR_MANIFEST_SHA256: f9b04aabeafb9c304ad192635bd5c586da961e798e96c73df012084ca9662cdf
   OP_API_TOKEN: op://TerraphimPlatform/terraphim-md-book-cloudflare/workers-api-token
   OP_ACCOUNT_ID: op://TerraphimPlatform/terraphim-md-book-cloudflare/account_id
 
@@ -49,9 +49,18 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ env.OP_ACCOUNT_ID }}
 
       - name: Deploy to Cloudflare Pages
+        if: github.ref == 'refs/heads/main'
         id: deploy
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ env.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ env.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy public --project-name=terraphim-ai --branch=main
+
+      - name: Deploy qualified branch candidate to preview
+        if: github.ref != 'refs/heads/main'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ env.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ env.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy public --project-name=terraphim-ai --branch=editor-publication-preview
