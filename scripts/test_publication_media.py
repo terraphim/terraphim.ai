@@ -75,8 +75,8 @@ class PublicationMediaTests(unittest.TestCase):
         for text in ['41 requirements', 'zero cuts', 'overstates', 'document-scoped synonym', 'Zed fork is separate', 'normalization repair']:
             self.assertIn(text, page)
         home = (ROOT / 'themes/WarpDrive/templates/index.html').read_text()
-        self.assertIn("get_url(path='editor/')", home)
-        self.assertIn("get_url(path='@/how-tos/synonym-search.md')", home)
+        self.assertIn('href="/editor/"', home)
+        self.assertIn('href="/how-tos/synonym-search/"', home)
 
 
 if __name__ == '__main__':

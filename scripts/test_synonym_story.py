@@ -45,7 +45,7 @@ class SynonymStoryTests(unittest.TestCase):
     def test_main_story_is_linked_and_scope_is_clear(self):
         page = (ROOT / 'content/how-tos/synonym-search.md').read_text()
         home = (ROOT / 'themes/WarpDrive/templates/index.html').read_text()
-        self.assertIn("@/how-tos/synonym-search.md", home)
+        self.assertIn('href="/how-tos/synonym-search/"', home)
         for text in ['synonyms:: Risk, Concern', '--answer', 'authored public sample input',
                      'synthetic British English', 'does not qualify all 41', 'Zed fork remains separate']:
             self.assertIn(text, page)
