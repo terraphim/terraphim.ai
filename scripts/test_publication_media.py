@@ -28,6 +28,30 @@ class PublicationMediaTests(unittest.TestCase):
         self.assertIn("var base = 'https://downloads.terraphim.ai/terraphim-agent/'", (ROOT / 'themes/WarpDrive/static/js/site.js').read_text())
         self.assertIn('Native Windows archives are unavailable', (ROOT / 'content/docs/installation.md').read_text())
 
+    def test_paced_walkthroughs_are_short_and_continuously_captioned(self):
+        manifest = json.loads((MEDIA / 'manifest.json').read_text())
+        self.assertIn('paced-v2', manifest['edition'])
+        durations = {e['file']: float(e['probe']['format']['duration']) for e in manifest['media']}
+        self.assertLess(durations['grammarly-for-knowledge-work-preview.mp4'], 90)
+        self.assertLess(durations['grep-live-execution-public.mp4'], 25)
+        for entry in manifest['edits']:
+            if 'segments' not in entry:
+                continue
+            cursor = 0
+            source_end = 0
+            for segment in entry['segments']:
+                self.assertAlmostEqual(segment['start'], cursor, places=5)
+                self.assertTrue(segment['text'])
+                self.assertGreater(segment['end'], segment['start'])
+                self.assertGreaterEqual(segment['sourceStart'], source_end)
+                self.assertGreaterEqual(segment['speed'], 1)
+                self.assertLessEqual(segment['speed'], 3)
+                cursor = segment['end']
+                source_end = segment['sourceEnd']
+            self.assertAlmostEqual(cursor, durations[entry['output']], delta=0.1)
+            if entry['output'] != 'grep-live-execution-public.mp4':
+                self.assertLess(durations[entry['output']], 70)
+
     def test_walkthrough_links_and_disclosures(self):
         page = (ROOT / 'content/how-tos/knowledge-work-editor.md').read_text()
         for entry in json.loads((MEDIA / 'manifest.json').read_text())['media']:

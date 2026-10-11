@@ -7,7 +7,7 @@
   "media": [
     {
       "file": "chrome-online-editor.mp4",
-      "sha256": "31046ecaf39ccf98bf23d3bedce5a43e1211e71dd0c1916ea25006cdb70dd72e",
+      "sha256": "92a48e3bd2b79b46475bf1e318cad46335708bf2ed6654f1f928c4cb78f11de4",
       "probe": {
         "programs": [],
         "stream_groups": [],
@@ -15,13 +15,13 @@
           {
             "codec_name": "h264",
             "codec_type": "video",
-            "width": 1140,
-            "height": 720
+            "width": 1440,
+            "height": 1080
           }
         ],
         "format": {
-          "duration": "129.268333",
-          "size": "2518815"
+          "duration": "44.433333",
+          "size": "579757"
         }
       },
       "scope": "finite actual-output demo; full all41 acceptance remains unproved",
@@ -29,7 +29,7 @@
     },
     {
       "file": "firefox-online-editor.mp4",
-      "sha256": "73ed0c0bfe161047fddcaf28fdef502a7456c6e4fda6242d3629420c4eeb66ce",
+      "sha256": "87a137e39bba5bd0bae681a3304a9406fcf8d17d25e56918c49fcb2413307aea",
       "probe": {
         "programs": [],
         "stream_groups": [],
@@ -37,13 +37,13 @@
           {
             "codec_name": "h264",
             "codec_type": "video",
-            "width": 1140,
-            "height": 720
+            "width": 1440,
+            "height": 1080
           }
         ],
         "format": {
-          "duration": "108.320000",
-          "size": "3122042"
+          "duration": "49.033333",
+          "size": "850757"
         }
       },
       "scope": "finite actual-output demo; full all41 acceptance remains unproved",
@@ -51,7 +51,7 @@
     },
     {
       "file": "safari-online-editor-public.mp4",
-      "sha256": "a23a6193492a48bb6640e69719d8fda0f76683d8047b4ca65753e95da43ef2ec",
+      "sha256": "57fc4c0104750e4b2aed9879caac92c5d7d54ec9c7f457fde3d34d32a7d8006f",
       "probe": {
         "programs": [],
         "stream_groups": [],
@@ -59,13 +59,13 @@
           {
             "codec_name": "h264",
             "codec_type": "video",
-            "width": 1140,
-            "height": 720
+            "width": 1440,
+            "height": 1080
           }
         ],
         "format": {
-          "duration": "102.877193",
-          "size": "934702"
+          "duration": "44.600000",
+          "size": "807106"
         }
       },
       "scope": "finite actual-output demo; full all41 acceptance remains unproved",
@@ -73,7 +73,7 @@
     },
     {
       "file": "zed-existing-extension-public.mp4",
-      "sha256": "1a35654d940dac04b598d6a625455ffb9c40838b19e75e673c073b55ccb98c1a",
+      "sha256": "96ced61ac72f4dca0de8f1377e7ff70d408ecfad134c4bafdfb636ae435e6512",
       "probe": {
         "programs": [],
         "stream_groups": [],
@@ -81,13 +81,13 @@
           {
             "codec_name": "h264",
             "codec_type": "video",
-            "width": 1140,
-            "height": 720
+            "width": 1440,
+            "height": 1080
           }
         ],
         "format": {
-          "duration": "208.646455",
-          "size": "894771"
+          "duration": "59.733333",
+          "size": "931049"
         }
       },
       "scope": "finite actual-output demo; full all41 acceptance remains unproved",
@@ -95,7 +95,7 @@
     },
     {
       "file": "grep-live-execution-public.mp4",
-      "sha256": "464b68bb59ca5260aa8d9547e3b7f8af3aa5f576eca87d7abf9ac56ffb65ba1d",
+      "sha256": "4393d99c486a81951a669e6a509f8006e6b169717246ffc6c727b67b01f58549",
       "probe": {
         "programs": [],
         "stream_groups": [],
@@ -103,13 +103,13 @@
           {
             "codec_name": "h264",
             "codec_type": "video",
-            "width": 1318,
-            "height": 1104
+            "width": 1440,
+            "height": 1080
           }
         ],
         "format": {
-          "duration": "45.100000",
-          "size": "1598835"
+          "duration": "21.000000",
+          "size": "595159"
         }
       },
       "scope": "Actual captured terminal subprocesses on Safari clean export; same KG/chunks, only --answer changes. External synthesis is interpretive; policy is not proof of practice.",
@@ -117,7 +117,7 @@
     },
     {
       "file": "grammarly-for-knowledge-work-preview.mp4",
-      "sha256": "421f1d69f1ad72cdd928c42c42f977caebfed1bbeb63713fb00ccf896ee5a6eb",
+      "sha256": "d383d61011ea3895872b79745aa9bccbe0ef4023fb7d9e03412206d70c21802f",
       "probe": {
         "programs": [],
         "stream_groups": [],
@@ -125,20 +125,22 @@
           {
             "codec_name": "h264",
             "codec_type": "video",
-            "width": 1920,
+            "width": 1440,
             "height": 1080
           }
         ],
         "format": {
-          "duration": "202.366667",
-          "size": "4786427"
+          "duration": "77.433333",
+          "size": "1260456"
         }
       },
       "scope": "Chrome online editor, explicit Safari clean-export handoff, actual grep comparison. Candidate preview; not full 41 acceptance or production deployment.",
       "publicDelivery": true
     }
   ],
-  "edits": [
+  "coverageDisclaimer": "These four refreshed captures do not replace the original all41 ledger; no acceptance row promoted.",
+  "edition": "paced-v2: burned-in explanatory text, original raw captures retained",
+  "priorEdits": [
     {
       "input": "safari-online-editor.mp4",
       "output": "safari-online-editor-public.mp4",
@@ -181,5 +183,243 @@
       "reason": "disclosed title cards, chronological source clips, scale/pad to 1920x1080; no fabricated output"
     }
   ],
-  "coverageDisclaimer": "These four refreshed captures do not replace the original all41 ledger; no acceptance row promoted."
+  "edits": [
+    {
+      "output": "chrome-online-editor.mp4",
+      "input": "chrome-online-editor.mp4 (prior edition)",
+      "segments": [
+        {
+          "start": 0,
+          "end": 8.0,
+          "text": "Start with a public project brief: decisions, risks and terminology.",
+          "sourceStart": 8,
+          "sourceEnd": 20,
+          "speed": 1.5
+        },
+        {
+          "start": 8.0,
+          "end": 19.333333,
+          "text": "The shared knowledge graph suggests alternatives. Apply Judgment.",
+          "sourceStart": 20,
+          "sourceEnd": 37,
+          "speed": 1.5
+        },
+        {
+          "start": 19.333333,
+          "end": 29.833333,
+          "text": "Add Assessment as your own wording, then exercise Undo and Redo.",
+          "sourceStart": 37,
+          "sourceEnd": 58,
+          "speed": 2
+        },
+        {
+          "start": 29.833333,
+          "end": 35.833333,
+          "text": "Save and reopen the annotated document. Dialog waiting is cut.",
+          "sourceStart": 78,
+          "sourceEnd": 90,
+          "speed": 2
+        },
+        {
+          "start": 35.833333,
+          "end": 44.4675,
+          "text": "Assessment remains active after reopen. Other alternatives stay attached.",
+          "sourceStart": 112,
+          "sourceEnd": 129.268333,
+          "speed": 2
+        }
+      ],
+      "method": "chronological cuts and disclosed speed changes; captions outside application frame"
+    },
+    {
+      "output": "firefox-online-editor.mp4",
+      "input": "firefox-online-editor.mp4 (prior edition)",
+      "segments": [
+        {
+          "start": 0,
+          "end": 11.333333,
+          "text": "Open the public brief and inspect alternatives from the same knowledge graph.",
+          "sourceStart": 0,
+          "sourceEnd": 17,
+          "speed": 1.5
+        },
+        {
+          "start": 11.333333,
+          "end": 21.833333,
+          "text": "Choose wording and add Assessment. Compare it directly in the document.",
+          "sourceStart": 17,
+          "sourceEnd": 38,
+          "speed": 2
+        },
+        {
+          "start": 21.833333,
+          "end": 28.833333,
+          "text": "Reopen the saved annotated document with Assessment still active.",
+          "sourceStart": 64,
+          "sourceEnd": 78,
+          "speed": 2
+        },
+        {
+          "start": 28.833333,
+          "end": 38.166667,
+          "text": "Set a note aside in Overflow, then return it to the document.",
+          "sourceStart": 78,
+          "sourceEnd": 92,
+          "speed": 1.5
+        },
+        {
+          "start": 38.166667,
+          "end": 49.046667,
+          "text": "Inspect the Lab. This short brief produces zero cuts; no reduction is claimed.",
+          "sourceStart": 92,
+          "sourceEnd": 108.32,
+          "speed": 1.5
+        }
+      ],
+      "method": "chronological cuts and disclosed speed changes; captions outside application frame"
+    },
+    {
+      "output": "safari-online-editor-public.mp4",
+      "input": "safari-online-editor-public.mp4 (prior edition)",
+      "segments": [
+        {
+          "start": 0,
+          "end": 8.666667,
+          "text": "Use the same public brief and shared knowledge graph in Safari.",
+          "sourceStart": 0,
+          "sourceEnd": 13,
+          "speed": 1.5
+        },
+        {
+          "start": 8.666667,
+          "end": 18.666667,
+          "text": "Apply Judgment from the knowledge-graph alternatives.",
+          "sourceStart": 13,
+          "sourceEnd": 33,
+          "speed": 2
+        },
+        {
+          "start": 18.666667,
+          "end": 31.166667,
+          "text": "Create Assessment as your own alternative and make it active.",
+          "sourceStart": 43,
+          "sourceEnd": 68,
+          "speed": 2
+        },
+        {
+          "start": 31.166667,
+          "end": 36.666667,
+          "text": "Save the annotated document. Idle time around the dialog is removed.",
+          "sourceStart": 68,
+          "sourceEnd": 79,
+          "speed": 2
+        },
+        {
+          "start": 36.666667,
+          "end": 44.584795,
+          "text": "Reopen with Assessment preserved. Clean export is verified separately.",
+          "sourceStart": 91,
+          "sourceEnd": 102.877193,
+          "speed": 1.5
+        }
+      ],
+      "method": "chronological cuts and disclosed speed changes; captions outside application frame"
+    },
+    {
+      "output": "zed-existing-extension-public.mp4",
+      "input": "zed-existing-extension-public.mp4 (prior edition)",
+      "segments": [
+        {
+          "start": 0,
+          "end": 12.0,
+          "text": "The existing extension offers completion from the same knowledge graph.",
+          "sourceStart": 0,
+          "sourceEnd": 18,
+          "speed": 1.5
+        },
+        {
+          "start": 12.0,
+          "end": 22.0,
+          "text": "Apply Judgment, then use native Undo and Redo with saved checkpoints.",
+          "sourceStart": 18,
+          "sourceEnd": 48,
+          "speed": 3
+        },
+        {
+          "start": 22.0,
+          "end": 34.5,
+          "text": "Ghost the Risk passage. Its text and anchor are retained in the file.",
+          "sourceStart": 57,
+          "sourceEnd": 82,
+          "speed": 2
+        },
+        {
+          "start": 34.5,
+          "end": 41.166667,
+          "text": "Inspect the saved annotation while exercising native history.",
+          "sourceStart": 96,
+          "sourceEnd": 116,
+          "speed": 3
+        },
+        {
+          "start": 41.166667,
+          "end": 45.5,
+          "text": "The saved ghost includes the exact Risk text and its source anchor.",
+          "sourceStart": 145,
+          "sourceEnd": 158,
+          "speed": 3
+        },
+        {
+          "start": 45.5,
+          "end": 59.715485,
+          "text": "Revive the passage and check Undo/Redo. Stock Zed does not have browser UI parity.",
+          "sourceStart": 166,
+          "sourceEnd": 208.646455,
+          "speed": 3
+        }
+      ],
+      "method": "chronological cuts and disclosed speed changes; captions outside application frame"
+    },
+    {
+      "output": "grep-live-execution-public.mp4",
+      "input": "grep-live-execution-public.mp4 (prior edition)",
+      "segments": [
+        {
+          "start": 0,
+          "end": 8.0,
+          "text": "Without --answer: retrieve source evidence. No generated answer is requested.",
+          "sourceStart": 0,
+          "sourceEnd": 8,
+          "speed": 1
+        },
+        {
+          "start": 8.0,
+          "end": 12.0,
+          "text": "Same query, corpus and KG; add --answer. Provider waiting is compressed.",
+          "sourceStart": 8,
+          "sourceEnd": 14,
+          "speed": 1.5
+        },
+        {
+          "start": 12.0,
+          "end": 21.0,
+          "text": "Read the real synthesis. It overstates a review policy as observed practice.",
+          "sourceStart": 14,
+          "sourceEnd": 23,
+          "speed": 1
+        }
+      ],
+      "method": "chronological cuts and disclosed speed changes; captions outside application frame"
+    },
+    {
+      "output": "grammarly-for-knowledge-work-preview.mp4",
+      "inputs": [
+        "intro 4s",
+        "paced Chrome",
+        "handoff 4s",
+        "paced grep",
+        "outro 4s"
+      ]
+    }
+  ]
 }

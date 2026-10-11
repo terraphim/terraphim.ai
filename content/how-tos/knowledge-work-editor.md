@@ -10,21 +10,21 @@ Keep alternatives attached to words, sentences and paragraphs. Ghost a passage w
 
 ## Grammarly for knowledge work
 
-Follow a public project brief from editing to search using the same knowledge graph. The overview shows the browser editor, explicitly hands off to the clean file exported from Safari, then compares real `terraphim-grep` executions with and without `--answer`.
+Follow a public project brief from editing to search using the same knowledge graph. The 77-second captioned overview shows the browser editor, explicitly hands off to the clean file exported from Safari, then compares real `terraphim-grep` executions with and without `--answer`.
 
 <video controls preload="metadata" playsinline style="width:100%;max-width:960px" aria-label="Editor and terraphim-grep overview"><source src="/demos/knowledge-work/grammarly-for-knowledge-work-preview.mp4" type="video/mp4">[Download the overview](/demos/knowledge-work/grammarly-for-knowledge-work-preview.mp4)</video>
 
 ### Recorded host walkthroughs
 
-- [Chrome: editing, saved annotations and reopen](/demos/knowledge-work/chrome-online-editor.mp4)
-- [Safari: editing, saved annotations and reopen](/demos/knowledge-work/safari-online-editor-public.mp4)
-- [Firefox: editing, saved annotations and reopen](/demos/knowledge-work/firefox-online-editor.mp4)
-- [Existing Zed extension: KG completion, saved history, Ghost and Revive](/demos/knowledge-work/zed-existing-extension-public.mp4)
-- [Real grep execution: evidence without synthesis, then with `--answer`](/demos/knowledge-work/grep-live-execution-public.mp4)
+- [Chrome: editing, saved annotations and reopen — 44s](/demos/knowledge-work/chrome-online-editor.mp4)
+- [Safari: editing, saved annotations and reopen — 45s](/demos/knowledge-work/safari-online-editor-public.mp4)
+- [Firefox: editing, saved annotations and reopen — 49s](/demos/knowledge-work/firefox-online-editor.mp4)
+- [Existing Zed extension: KG completion, saved history, Ghost and Revive — 60s](/demos/knowledge-work/zed-existing-extension-public.mp4)
+- [Real grep execution: evidence without synthesis, then with `--answer` — 21s](/demos/knowledge-work/grep-live-execution-public.mp4)
 
 The browser recordings produced identical saved annotated files. A separately checked Safari clean-export file supplies the grep corpus; the Safari walkthrough does not show that export gesture. Newly authored Assessment registers as a document-scoped synonym; it does not update the shared KG used by the CLI. Zed demonstrates existing extension capabilities; the Zed fork is separate. The brief's Trim preview produced zero cuts, so this recording does not demonstrate text reduction. The generated synthesis overstates a review policy as observed practice; compare that statement with the returned evidence rather than treating it as verified fact.
 
-Safari idle setup was cut; the Zed avatar was masked. The terminal recording caps idle gaps and holds the final result. These are finite walkthroughs, not complete acceptance of all 41 requirements. [Build identities, media hashes and edit disclosures](/demos/knowledge-work/manifest.json) identify the recorded candidate. The current editor preview includes the Unicode normalization repair: canonically equivalent accents, Terraphim Unicode lowercase and Greek sigma equivalence protect exact original spellings during Trim. The videos retain their earlier recorded build identity; they do not demonstrate this later repair.
+All six videos now have explanatory on-screen captions. Idle intervals are cut, actions are accelerated by 1.5–3× where disclosed, and the long terminal end hold is removed. Captions sit outside the application image. Safari setup is cut and the Zed avatar remains masked. Chronological source ranges and speed changes are recorded in the manifest; original captures are retained. These are finite walkthroughs, not complete acceptance of all 41 requirements. [Build identities, media hashes and edit disclosures](/demos/knowledge-work/manifest.json) identify the recorded candidate. The current editor preview includes the Unicode normalization repair: canonically equivalent accents, Terraphim Unicode lowercase and Greek sigma equivalence protect exact original spellings during Trim. The videos retain their earlier recorded build identity; they do not demonstrate this later repair.
 
 This is a preview. The complete source-video requirements are still being qualified; Safari dragging and some visual/native cases remain unresolved. Keyboard pull from Overflow is available. The browser demo does not imply full custom visual parity in the stock Zed extension.
 
