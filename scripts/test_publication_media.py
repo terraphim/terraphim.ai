@@ -52,6 +52,22 @@ class PublicationMediaTests(unittest.TestCase):
             if entry['output'] != 'grep-live-execution-public.mp4':
                 self.assertLess(durations[entry['output']], 70)
 
+    def test_editor_is_listed_as_a_homepage_capability(self):
+        home = (ROOT / 'themes/WarpDrive/templates/index.html').read_text()
+        section = home.split('id="waypoints"', 1)[1].split('</section>', 1)[0]
+        self.assertIn("@/capabilities/terraphim-editor.md", section)
+        self.assertIn('Terraphim Editor', section)
+        self.assertIn('Intelligent editor', section)
+        self.assertIn('alternative suggestions', section)
+        self.assertIn('knowledge graph and roles', section)
+        self.assertEqual(section.count('class="waypoint-link"'), 10)
+        self.assertNotIn('Nine capabilities', section)
+        page = (ROOT / 'content/capabilities/terraphim-editor.md').read_text()
+        for target in ['/editor/', '/how-tos/knowledge-work-editor/']:
+            self.assertIn(target, page)
+        self.assertIn('document-scoped synonyms', page)
+        self.assertIn('preview', page)
+
     def test_walkthrough_links_and_disclosures(self):
         page = (ROOT / 'content/how-tos/knowledge-work-editor.md').read_text()
         for entry in json.loads((MEDIA / 'manifest.json').read_text())['media']:
