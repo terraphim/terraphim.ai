@@ -17,12 +17,12 @@ Follow a public project brief from editing to search using the same knowledge gr
 ### Recorded host walkthroughs
 
 - [Chrome: editing, saved annotations and reopen](/demos/knowledge-work/chrome-online-editor.mp4)
-- [Safari: editing and actual clean export](/demos/knowledge-work/safari-online-editor-public.mp4)
+- [Safari: editing, saved annotations and reopen](/demos/knowledge-work/safari-online-editor-public.mp4)
 - [Firefox: editing, saved annotations and reopen](/demos/knowledge-work/firefox-online-editor.mp4)
 - [Existing Zed extension: KG completion, saved history, Ghost and Revive](/demos/knowledge-work/zed-existing-extension-public.mp4)
 - [Real grep execution: evidence without synthesis, then with `--answer`](/demos/knowledge-work/grep-live-execution-public.mp4)
 
-The browser recordings produced identical saved annotated files. Newly authored Assessment registers as a document-scoped synonym; it does not update the shared KG used by the CLI. Zed demonstrates existing extension capabilities; the Zed fork is separate. The brief's Trim preview produced zero cuts, so this recording does not demonstrate text reduction. The generated synthesis overstates a review policy as observed practice; compare that statement with the returned evidence rather than treating it as verified fact.
+The browser recordings produced identical saved annotated files. A separately checked Safari clean-export file supplies the grep corpus; the Safari walkthrough does not show that export gesture. Newly authored Assessment registers as a document-scoped synonym; it does not update the shared KG used by the CLI. Zed demonstrates existing extension capabilities; the Zed fork is separate. The brief's Trim preview produced zero cuts, so this recording does not demonstrate text reduction. The generated synthesis overstates a review policy as observed practice; compare that statement with the returned evidence rather than treating it as verified fact.
 
 Safari idle setup was cut; the Zed avatar was masked. The terminal recording caps idle gaps and holds the final result. These are finite walkthroughs, not complete acceptance of all 41 requirements. [Build identities, media hashes and edit disclosures](/demos/knowledge-work/manifest.json) identify the recorded candidate. The pending Unicode normalization repair is not included in this candidate.
 
