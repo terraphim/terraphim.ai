@@ -1,0 +1,66 @@
+{
+  "checkedAt": "2026-10-12T14:05:10.901621+00:00",
+  "version": "terraphim-grep 1.21.19",
+  "binarySha256": "ce20e2bf87c6753c717dade4ac7baac98b05d0be9cb39af1f3afbcbf6e5c47de",
+  "nativeApp": "Logseq 2.0.2",
+  "nativeImportVerified": true,
+  "corpus": "graph/pages/Projects",
+  "sourceLines": [
+    3,
+    5,
+    7
+  ],
+  "graphSameAsEditorExport": true,
+  "runs": [
+    {
+      "command": [
+        "terraphim-grep",
+        "concern",
+        "--thesaurus",
+        "baseline-role.json",
+        "--paths",
+        "pages/Projects",
+        "-C",
+        "2",
+        "--json",
+        "--search-only"
+      ],
+      "cwd": "graph",
+      "exitCode": 0,
+      "stdoutFile": "evidence/before-sharing.json",
+      "stderr": "",
+      "chunks": 0
+    },
+    {
+      "command": [
+        "terraphim-grep",
+        "concern",
+        "--thesaurus",
+        "knowledge-graph.json",
+        "--paths",
+        "pages/Projects",
+        "-C",
+        "2",
+        "--json",
+        "--search-only"
+      ],
+      "cwd": "graph",
+      "exitCode": 0,
+      "stdoutFile": "evidence/with-synonym.json",
+      "stderr": "",
+      "chunks": 3
+    }
+  ],
+  "nativeImport": {
+    "method": "Import existing notes \u2192 File to DB graph",
+    "graphName": "Terraphim garden demo",
+    "observed": [
+      "Risk concept has native Alias Concern and synonyms value Risk, Concern",
+      "Community garden launch embeds all three source decisions",
+      "Concern search sidebar displays saved CLI query, 0-to-3 comparison and all three passages"
+    ],
+    "screenshot": "screenshots/logseq-synonyms-and-results.jpg",
+    "accessibilityCapture": "evidence/native-logseq.txt",
+    "scope": "Logseq displays imported notes and saved CLI results; commands run separately against the extracted Markdown."
+  }
+}

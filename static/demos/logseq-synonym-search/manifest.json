@@ -1,0 +1,72 @@
+{
+  "updatedAt": "2026-10-12T14:15:39.900019+00:00",
+  "nativeApp": "Logseq 2.0.2",
+  "description": "A concept page owns synonyms; the project brief supplies three decisions retrieved with the editor-exported graph.",
+  "files": [
+    {
+      "file": "README.md",
+      "sha256": "8a893cbd279b50d696e85e48e11d74be50215cd188f0c08cfa2338c2dc3d6e9e",
+      "bytes": 3160
+    },
+    {
+      "file": "evidence/before-sharing.json",
+      "sha256": "83553136b2b6832f18e1c1228f8ad43f9a180ee1a4e14acd0e871f7bd6407120",
+      "bytes": 345
+    },
+    {
+      "file": "evidence/native-logseq.txt",
+      "sha256": "7999605a32c3dc09d810f05e25889e882d7f8d6af210fcfd8df10e385ec8648f",
+      "bytes": 9140
+    },
+    {
+      "file": "evidence/verification.json",
+      "sha256": "f5d958f9d8bfe3bb1b2c8f2fea11f2ce84a08fecbf29a905ae5049db7f1acb93",
+      "bytes": 1793
+    },
+    {
+      "file": "evidence/with-synonym.json",
+      "sha256": "a8be29f6ca955b6cebd35c9859e862b7c61e39b4b2c550494c8cd826936e4935",
+      "bytes": 1292
+    },
+    {
+      "file": "graph/baseline-role.json",
+      "sha256": "e850422ec72faa06aae0d6c2893a9f1d2e36d60a5aef79bd8f863daa2d71b015",
+      "bytes": 1506
+    },
+    {
+      "file": "graph/knowledge-graph.json",
+      "sha256": "f8648b16470e764bdff5c95064078419d71e8d41d2ca30d4b1508017c166a45d",
+      "bytes": 281
+    },
+    {
+      "file": "graph/logseq/config.edn",
+      "sha256": "46f37aaf21035038c946c4b62690c65df7d3275b44c8f42c643e1946a1264988",
+      "bytes": 118
+    },
+    {
+      "file": "graph/pages/Concern search.md",
+      "sha256": "2b22a679490e2694908f7c26a69d65465bafa8223403b00ac5d1ea0bd3bde1db",
+      "bytes": 566
+    },
+    {
+      "file": "graph/pages/Projects/Community garden launch.md",
+      "sha256": "583e9876b293ab2de064fad238f14cb5bb922d1ea09905bfab7b4e8e073cda68",
+      "bytes": 255
+    },
+    {
+      "file": "graph/pages/Risk.md",
+      "sha256": "db12f7eb57b342878ca8ce74397c976dc4d302de3cae8534408f5ffd54735957",
+      "bytes": 382
+    },
+    {
+      "file": "graph/pages/Start here.md",
+      "sha256": "ffebe59decfb85bbc94b4e830c82ba377f4c6dca78ebf3ae97c0a21c141b0d3e",
+      "bytes": 775
+    },
+    {
+      "file": "screenshots/logseq-synonyms-and-results.jpg",
+      "sha256": "70b28c50a1fddf3a073fb5cdceb58de5b62dc120015a981da9056fe477a62558",
+      "bytes": 390171
+    }
+  ]
+}

@@ -70,6 +70,34 @@ The released binary returned **zero passages** with the baseline graph and **thr
 
 Terraphim’s `synonyms::` convention uses Logseq-compatible Markdown property syntax. Obsidian’s native aliases use YAML `aliases`. This example supplies the same graph exported by the editor explicitly: saving a note does not automatically rebuild the graph or synchronise the vault. Search runs in the CLI; Obsidian displays the notes and saved results. The capture reruns local retrieval only; the video above shows the separate synthesis comparison.
 
+## Try it with a Logseq graph
+
+Prefer linked blocks? Open the same garden project in Logseq. The **Risk** concept page owns the wording relationship and embeds the project brief. Its properties are:
+
+```text
+alias:: Concern
+synonyms:: Risk, Concern
+```
+
+`alias::` gives the page another name inside Logseq. Terraphim’s `synonyms::` property records the words connected by the exported search graph.
+
+<figure><a href="/demos/logseq-synonym-search/screenshots/logseq-synonyms-and-results.jpg"><img src="/demos/logseq-synonym-search/screenshots/logseq-synonyms-and-results.jpg" alt="Logseq showing the Risk concept with its Concern alias and synonyms property, beside saved terraphim-grep results: zero passages before sharing the graph and three after." width="1960" height="1400" loading="lazy" style="width:100%;height:auto"></a><figcaption>The imported graph in Logseq 2.0.2: wording belongs to the concept page; the sidebar shows saved CLI passages.</figcaption></figure>
+
+1. [Download the Logseq example ZIP](/demos/logseq-synonym-search/logseq-synonym-search-example.zip) and extract it.
+2. In Logseq 2.0, choose **Import existing notes → File to DB graph**, then select the included `graph` folder. If you use a Logseq version with file graphs, open that folder directly.
+3. Open **Start here**, then **Risk**. Search for **Concern search** and choose **Open in sidebar** to compare the saved results with the project note.
+
+From a terminal in the extracted `graph` folder, run:
+
+```sh
+terraphim-grep concern --thesaurus baseline-role.json --paths pages/Projects -C 2 --json --search-only
+terraphim-grep concern --thesaurus knowledge-graph.json --paths pages/Projects -C 2 --json --search-only
+```
+
+The first search returns **zero passages**. The shared synonym graph brings back **three decisions**: keep a backup supplier, reserve a covered area and keep a volunteer reserve list. The commands search only the project notes, leaving concept definitions and saved results outside the search.
+
+Compare the [baseline](/demos/logseq-synonym-search/evidence/before-sharing.json) and [synonym search output](/demos/logseq-synonym-search/evidence/with-synonym.json), or follow the [download instructions](/demos/logseq-synonym-search/README.md). The CLI reads the included Markdown files; Logseq 2.0 imports a copy into its database. Use the extracted folder for these commands. [File checksums](/demos/logseq-synonym-search/manifest.json) are included.
+
 ## Try it yourself
 
 1. [Download the complete example ZIP](/demos/synonym-search/synonym-search-example.zip). It includes the project brief, synonym graph and a step-by-step README.

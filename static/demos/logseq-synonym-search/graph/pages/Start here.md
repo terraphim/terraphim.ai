@@ -1,0 +1,9 @@
+- # Different words. The same idea.
+- The team wrote **Risk** in its project brief. You remember **Concern**. Find the decisions without rewriting your notes.
+- ## Explore the example
+  - Open [[Risk]] to see the concept and its wording alternatives.
+  - Open [[Community garden launch]] to read the three risks and decisions.
+  - Open [[Concern search]] to compare the saved command-line results.
+- The search commands target only `pages/Projects`, so the concept definition and this walkthrough cannot supply a literal match.
+- Use the README in this download to run the same search on your computer. The two JSON graphs sit in the graph folder.
+- The native **Concern** page alias takes you to [[Risk]]. Terraphim uses the separate exported graph for command-line search.
