@@ -1256,7 +1256,7 @@ a.waypoint-link:hover .waypoint-cta {
 }
 
 /* ============================================================
-   TOP BAR: unified nav bar, hidden on mobile (<900px)
+   TOP BAR: unified nav bar, hidden below 1280px
    ============================================================ */
 .topbar {
   display: none;
@@ -1313,8 +1313,10 @@ a.waypoint-link:hover .waypoint-cta {
 .topbar-link {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
+  white-space: nowrap;
   height: 52px;
-  padding: 0 1rem;
+  padding: 0 0.75rem;
   font-family: 'Space Grotesk', sans-serif;
   font-size: 0.8rem;
   font-weight: 500;
@@ -1333,8 +1335,8 @@ a.waypoint-link:hover .waypoint-cta {
   content: '';
   position: absolute;
   bottom: 0;
-  left: 1rem;
-  right: 1rem;
+  left: 0.75rem;
+  right: 0.75rem;
   height: 2px;
   background: var(--warp-blue);
   opacity: 0;
@@ -1391,7 +1393,7 @@ a.waypoint-link:hover .waypoint-cta {
 }
 
 /* ============================================================
-   MOBILE NAV (shown below 900px)
+   COMPACT NAV (shown below 1280px)
    ============================================================ */
 .mobile-nav {
   position: fixed;
@@ -1471,6 +1473,9 @@ a.waypoint-link:hover .waypoint-cta {
   border-bottom: 1px solid var(--border);
   z-index: 99;
   padding: 0.5rem 0;
+  max-height: calc(100vh - 52px);
+  max-height: calc(100dvh - 52px);
+  overflow-y: auto;
 }
 
 .nav-mobile-menu.is-open { display: block; }
@@ -1494,7 +1499,7 @@ a.waypoint-link:hover .waypoint-cta {
 }
 
 /* Hide mobile nav on wide screens where topbar shows */
-@media (min-width: 900px) {
+@media (min-width: 1280px) {
   .mobile-nav { display: none; }
   .nav-mobile-menu { display: none !important; }
   .topbar { display: block; }
@@ -2208,8 +2213,6 @@ main { padding-top: 52px; }
   .section { padding: 5rem 3rem; }
   .hero { padding: 6rem 3rem 5rem; }
 
-  /* Wider nav link spacing on large screens */
-  .topbar-link { padding: 0 1.25rem; }
 }
 
 /* ============================================================
@@ -2248,7 +2251,7 @@ main { padding-top: 52px; }
   .deploy-grid { max-width: 1000px; }
 
   .topbar-brand span { font-size: 0.95rem; }
-  .topbar-link { font-size: 0.9rem; padding: 0 1.5rem; }
+  .topbar-link { font-size: 0.9rem; }
   .topbar-logo { height: 28px; }
   .status-label { font-size: 0.75rem; }
 

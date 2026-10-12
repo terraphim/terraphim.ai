@@ -37,7 +37,8 @@ jobs:
 
       - name: Build site
         # Zola fails the build on broken internal links.
-        run: zola build
+        # This artifact is a test preview; production has its own deploy build.
+        run: zola build --base-url http://127.0.0.1:8879
 
       - name: Verify editor, demo outputs and publication downloads
         run: python3 -m unittest discover -s scripts -p 'test_*.py' -v
@@ -57,6 +58,53 @@ jobs:
         with:
           name: site-public
           path: public/
+          retention-days: 7
+
+  navigation:
+    name: Navigation (${{ matrix.browser }})
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: scripts/requirements-browser.txt
+
+      - name: Download test preview
+        uses: actions/download-artifact@v4
+        with:
+          name: site-public
+          path: public
+
+      - name: Install browser test tools
+        run: |
+          python -m pip install -r scripts/requirements-browser.txt
+          python -m playwright install --with-deps ${{ matrix.browser }}
+
+      - name: Verify responsive navigation and keyboard interactions
+        run: |
+          python -m http.server 8879 --bind 127.0.0.1 --directory public > /tmp/navigation-server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          curl --fail --silent --output /dev/null --retry 10 --retry-connrefused --retry-delay 1 --retry-max-time 20 http://127.0.0.1:8879/
+          python scripts/check-navigation.py --base-url http://127.0.0.1:8879 --browser ${{ matrix.browser }} --artifacts navigation-results
+
+      - name: Upload navigation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: navigation-${{ matrix.browser }}
+          path: navigation-results/
           retention-days: 7
 
   release-links:
