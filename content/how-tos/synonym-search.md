@@ -51,6 +51,25 @@ The video shows the generated summary and its references to the same three passa
 
 Editing and local search use your local data. Optional synthesis sends the retrieved passages to your configured model provider.
 
+## Try it with an Obsidian vault
+
+Keep the words that describe a concept in the note that owns it. In this example, **Risk.md** contains the actual `synonyms:: Risk, Concern` property and embeds the community garden brief. The separate brief still says **risk**, never **concern**. The search-results note contains saved passages, with no synonym definition.
+
+<figure><a href="/demos/obsidian-synonym-search/screenshots/03-synonyms-in-knowledge-note.png"><img src="/demos/obsidian-synonym-search/screenshots/03-synonyms-in-knowledge-note.png" alt="Obsidian with synonyms in the Risk knowledge note on the left and saved terraphim-grep results on the right: zero baseline passages, then three with the exported graph." width="2048" height="1600" loading="lazy" style="width:100%;height:auto"></a><figcaption>Captured in Obsidian 1.14.4. The knowledge note owns the synonyms; Obsidian displays saved CLI results.</figcaption></figure>
+
+[Download the Obsidian demo vault ZIP](/demos/obsidian-synonym-search/obsidian-synonym-search-example.zip). Extract it, open the included `obsidian-demo/vault` folder as an Obsidian vault, and open `Notes/Risk.md`. Open `Search results/Concern search.md` alongside it to inspect the saved output. No community plugins are required.
+
+To reproduce the retrieval, install [terraphim-grep v1.21.19](https://github.com/terraphim/terraphim-clients/releases/tag/v1.21.19), open a terminal in the extracted `vault` directory, and run:
+
+```sh
+terraphim-grep concern --thesaurus "Knowledge graph/baseline-role.json" --paths "Notes/Projects" -C 2 --json --search-only
+terraphim-grep concern --thesaurus "Knowledge graph/knowledge-graph.json" --paths "Notes/Projects" -C 2 --json --search-only
+```
+
+The released binary returned **zero passages** with the baseline graph and **three exact risk-and-decision passages** with the exported graph, at lines 7, 10 and 13. The commands search only the project brief directory, excluding the concept definition and saved results. Inspect the [baseline output](/demos/obsidian-synonym-search/evidence/before-sharing.json), [synonym output](/demos/obsidian-synonym-search/evidence/with-synonym.json), [execution receipt](/demos/obsidian-synonym-search/evidence/verification.json) and [file checksums](/demos/obsidian-synonym-search/manifest.json).
+
+Terraphim’s `synonyms::` convention uses Logseq-compatible Markdown property syntax. Obsidian’s native aliases use YAML `aliases`. This example supplies the same graph exported by the editor explicitly: saving a note does not automatically rebuild the graph or synchronise the vault. Search runs in the CLI; Obsidian displays the notes and saved results. The capture reruns local retrieval only; the video above shows the separate synthesis comparison.
+
 ## Try the exact files
 
 - [The graph downloaded in the recording](/demos/synonym-search/knowledge-graph.json)

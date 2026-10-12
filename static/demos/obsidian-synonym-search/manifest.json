@@ -1,0 +1,64 @@
+{
+  "updatedAt": "2026-10-12T13:02:40.435559+00:00",
+  "nativeApp": "Obsidian 1.14.4",
+  "state": "corrected-native-capture-and-cli-verified",
+  "correction": "Raw synonyms:: property is owned by Notes/Risk.md; results contain saved CLI passages. Explicit exported graph; corpus Notes/Projects.",
+  "historicalScreenshots": "../archive/before-obsidian-note-synonyms-20261012/obsidian-demo/screenshots/",
+  "files": [
+    {
+      "file": "README.md",
+      "sha256": "92b831c855bfa88586ecd1334d3992f82f868d9a01e2810b7013321bc919f259",
+      "bytes": 2446
+    },
+    {
+      "file": "evidence/before-sharing.json",
+      "sha256": "bb7bf7613ad04e1183db1b04a2f7d9921433b6844a3f3fddedb2256f27cd7245",
+      "bytes": 345
+    },
+    {
+      "file": "evidence/native-note-and-results.txt",
+      "sha256": "1dd0cbbc32870f421fbefa1da71aa05e25602cb49d79752f67b3e4f096a750be",
+      "bytes": 5779
+    },
+    {
+      "file": "evidence/verification.json",
+      "sha256": "19f0fcbf87ddcb036487725d3b9f3c15f784bde98820b355099b76539247d8ae",
+      "bytes": 2564
+    },
+    {
+      "file": "evidence/with-synonym.json",
+      "sha256": "cabedfb9bfc9e61092ec84d48d3bfc1c80f416856e212432c075a53a3d28cc48",
+      "bytes": 1278
+    },
+    {
+      "file": "vault/Knowledge graph/baseline-role.json",
+      "sha256": "e850422ec72faa06aae0d6c2893a9f1d2e36d60a5aef79bd8f863daa2d71b015",
+      "bytes": 1506
+    },
+    {
+      "file": "vault/Knowledge graph/knowledge-graph.json",
+      "sha256": "f8648b16470e764bdff5c95064078419d71e8d41d2ca30d4b1508017c166a45d",
+      "bytes": 281
+    },
+    {
+      "file": "vault/Notes/Projects/Community garden launch.md",
+      "sha256": "ea78a26e4d5a1105891bed67288a924cbbd5656defc95de4c511f4302b8d0d8f",
+      "bytes": 265
+    },
+    {
+      "file": "vault/Notes/Risk.md",
+      "sha256": "c959395e70985179c55089684991ca3615253da82e41b673a67e696634593d6b",
+      "bytes": 304
+    },
+    {
+      "file": "vault/Search results/Concern search.md",
+      "sha256": "310afc268659ec5eadcc936f05ab2be92f1d900318bb2aa374528478d9216d31",
+      "bytes": 765
+    },
+    {
+      "file": "screenshots/03-synonyms-in-knowledge-note.png",
+      "sha256": "22b13738b1cc81e40c75cfb97542ddcb264278113ebb0e4ccfbd06d8b6cf9276",
+      "bytes": 397349
+    }
+  ]
+}
