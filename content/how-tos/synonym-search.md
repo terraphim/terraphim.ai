@@ -83,6 +83,8 @@ synonyms:: Risk, Concern
 
 <figure><a href="/demos/logseq-synonym-search/screenshots/logseq-synonyms-and-results.jpg"><img src="/demos/logseq-synonym-search/screenshots/logseq-synonyms-and-results.jpg" alt="Logseq showing the Risk concept with its Concern alias and synonyms property, beside saved terraphim-grep results: zero passages before sharing the graph and three after." width="1960" height="1400" loading="lazy" style="width:100%;height:auto"></a><figcaption>The imported graph in Logseq 2.0.2: wording belongs to the concept page; the sidebar shows saved CLI passages.</figcaption></figure>
 
+<figure><a href="/demos/logseq-synonym-search/screenshots/logseq-graph-view.jpg"><img src="/demos/logseq-synonym-search/screenshots/logseq-graph-view.jpg" alt="The local Logseq graph view connects Community garden launch, Risk, Start here and Concern search, with the saved search passages alongside." width="1960" height="1400" loading="lazy" style="width:100%;height:auto"></a><figcaption>Explore the garden brief’s connections in Logseq’s graph view. The arrows show page links; the Risk note holds the synonym definition used by the supplied Terraphim search graph.</figcaption></figure>
+
 1. [Download the Logseq example ZIP](/demos/logseq-synonym-search/logseq-synonym-search-example.zip) and extract it.
 2. In Logseq 2.0, choose **Import existing notes → File to DB graph**, then select the included `graph` folder. If you use a Logseq version with file graphs, open that folder directly.
 3. Open **Start here**, then **Risk**. Search for **Concern search** and choose **Open in sidebar** to compare the saved results with the project note.

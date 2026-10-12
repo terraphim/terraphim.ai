@@ -9,6 +9,8 @@ Your project brief says **Risk**. You remember **Concern**. This example keeps t
 3. Open **Start here**, then **Risk**. Its `synonyms:: Risk, Concern` property belongs to the concept note. The native `alias:: Concern` property also gives that page another name inside Logseq.
 4. Search for **Concern search** and choose **Open in sidebar** to see the saved command-line passages beside the concept and embedded project brief.
 
+5. To explore the note connections, open **Graph view**, choose **Graph settings → All pages**, and select **Community garden launch**. Increase **Link distance** and zoom in to read the labels. The arrows show Logseq page links. The supplied Terraphim graph separately connects the words in the Risk synonym property.
+
 The three examples are concrete decisions: a backup supplier for late timber, a covered area for rain, and a reserve list for volunteer cancellations.
 
 ## Run the search

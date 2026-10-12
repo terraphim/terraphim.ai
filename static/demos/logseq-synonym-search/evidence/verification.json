@@ -62,5 +62,19 @@
     "screenshot": "screenshots/logseq-synonyms-and-results.jpg",
     "accessibilityCapture": "evidence/native-logseq.txt",
     "scope": "Logseq displays imported notes and saved CLI results; commands run separately against the extracted Markdown."
+  },
+  "nativeGraphView": {
+    "app": "Logseq 2.0.2",
+    "mode": "All pages",
+    "selectedPage": "Community garden launch",
+    "visibleLinkedPages": [
+      "Risk",
+      "Start here",
+      "Concern search"
+    ],
+    "linkDistance": 156,
+    "meaning": "Arrows are native Logseq page links; the synonym definition belongs to Risk and agrees with the separately supplied Terraphim thesaurus.",
+    "screenshot": "screenshots/logseq-graph-view.jpg",
+    "accessibilityCapture": "evidence/native-logseq-graph.txt"
   }
 }

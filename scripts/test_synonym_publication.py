@@ -179,17 +179,20 @@ class PublicationTests(unittest.TestCase):
                 self.assertEqual(len(raw), item["bytes"])
                 self.assertEqual(hashlib.sha256(raw).hexdigest(), item["sha256"])
             self.assertEqual(bundle.read("logseq-demo/manifest.json"), (LOGSEQ / "manifest.json").read_bytes())
-        screenshot = (LOGSEQ / "screenshots/logseq-synonyms-and-results.jpg").read_bytes()
-        self.assertTrue(screenshot.startswith(b"\xff\xd8\xff"))
-        self.assertTrue(screenshot.endswith(b"\xff\xd9"))
+        for name in ["logseq-synonyms-and-results.jpg", "logseq-graph-view.jpg"]:
+            self.assertIn("screenshots/" + name, files)
+            screenshot = (LOGSEQ / "screenshots" / name).read_bytes()
+            self.assertTrue(screenshot.startswith(b"\xff\xd8\xff"))
+            self.assertTrue(screenshot.endswith(b"\xff\xd9"))
 
     def test_logseq_walkthrough_is_adjacent_to_obsidian(self):
         self.assertLess(self.html.index('id="try-it-with-an-obsidian-vault"'), self.html.index('id="try-it-with-a-logseq-graph"'))
         self.assertLess(self.html.index('id="try-it-with-a-logseq-graph"'), self.html.index('id="try-it-yourself"'))
-        for name in ["logseq-synonym-search-example.zip", "screenshots/logseq-synonyms-and-results.jpg", "evidence/before-sharing.json", "evidence/with-synonym.json", "README.md", "manifest.json"]:
+        for name in ["logseq-synonym-search-example.zip", "screenshots/logseq-synonyms-and-results.jpg", "screenshots/logseq-graph-view.jpg", "evidence/before-sharing.json", "evidence/with-synonym.json", "README.md", "manifest.json"]:
             self.assertIn("/demos/logseq-synonym-search/" + name, self.html)
         self.assertIn("File to DB graph", self.html)
         self.assertIn("--paths pages/Projects", self.html)
+        self.assertIn("The arrows show page links", self.html)
 
 if __name__ == "__main__":
     unittest.main()

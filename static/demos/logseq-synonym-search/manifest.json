@@ -1,17 +1,22 @@
 {
-  "updatedAt": "2026-10-12T14:15:39.900019+00:00",
+  "updatedAt": "2026-10-12T14:32:09.390265+00:00",
   "nativeApp": "Logseq 2.0.2",
   "description": "A concept page owns synonyms; the project brief supplies three decisions retrieved with the editor-exported graph.",
   "files": [
     {
       "file": "README.md",
-      "sha256": "8a893cbd279b50d696e85e48e11d74be50215cd188f0c08cfa2338c2dc3d6e9e",
-      "bytes": 3160
+      "sha256": "2b43dc4a186f82dc2da0fcab5f4e77278f88bf3d21d4cb07ec0f73dac57a9cbe",
+      "bytes": 3482
     },
     {
       "file": "evidence/before-sharing.json",
       "sha256": "83553136b2b6832f18e1c1228f8ad43f9a180ee1a4e14acd0e871f7bd6407120",
       "bytes": 345
+    },
+    {
+      "file": "evidence/native-logseq-graph.txt",
+      "sha256": "e07ad256bf743c7888d0357a7c2b620e61742a217b939fa77fef8425b953d12b",
+      "bytes": 5133
     },
     {
       "file": "evidence/native-logseq.txt",
@@ -20,8 +25,8 @@
     },
     {
       "file": "evidence/verification.json",
-      "sha256": "f5d958f9d8bfe3bb1b2c8f2fea11f2ce84a08fecbf29a905ae5049db7f1acb93",
-      "bytes": 1793
+      "sha256": "419033306a204cdc765f7b36b4e4fafca083f0e21ec23c563d7b250c3551ea06",
+      "bytes": 2310
     },
     {
       "file": "evidence/with-synonym.json",
@@ -62,6 +67,11 @@
       "file": "graph/pages/Start here.md",
       "sha256": "ffebe59decfb85bbc94b4e830c82ba377f4c6dca78ebf3ae97c0a21c141b0d3e",
       "bytes": 775
+    },
+    {
+      "file": "screenshots/logseq-graph-view.jpg",
+      "sha256": "e892c849aee6ab410f18a1d1c70818d873a80eaae9cb63c8b20ad99026407a3e",
+      "bytes": 250938
     },
     {
       "file": "screenshots/logseq-synonyms-and-results.jpg",

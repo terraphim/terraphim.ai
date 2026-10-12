@@ -1,0 +1,173 @@
+Window: "Graph", App: Logseq.
+0 standard window Graph, Secondary Actions: Raise
+	1 container Graph
+		2 container
+			3 HTML content Graph, URL: lsp://logseq.com/index.html#/graph
+				4 container
+					5 container
+						6 button Skip to main content
+						7 container
+							8 container
+								9 button
+									10 image
+								11 button
+									12 image
+								13 button
+									14 image
+								15 button
+									16 image
+								17 button
+									18 image
+								19 button
+									20 image
+								21 button
+									22 image
+								23 button
+									24 image
+							25 container
+								26 container
+									27 link Terraphim garden demo
+										28 image
+										29 text Terraphim garden demo
+										30 image
+									31 text Navigations
+									32 link Start here
+										33 image
+										34 text Start here
+									35 link Flashcards
+										36 image
+										37 text Flashcards
+									38 link Description: Pages, Value: lsp://logseq.com/index.html#/all-pages
+									39 link Description: Graph view, Value: lsp://logseq.com/index.html#/graph
+									40 container
+										41 text Favorites
+										42 image
+									43 container
+										44 text Recent
+										45 image
+									46 content list
+										47 link Risk
+											48 image
+											49 text Risk
+										50 link Start here
+											51 image
+											52 text Start here
+								53 container
+									54 text 1 selected: Community garden launch
+									55 content list
+										56 button Open Community garden launch
+									57 container Graph canvas
+									58 button Graph settings
+										59 image
+									60 button Time travel
+										61 image
+									62 button Reset graph view
+										63 image
+							64 splitter Description: Right sidebar resize handler, Value: 50
+							65 container
+								66 button Contents
+								67 button Page graph
+								68 button Help
+								69 container
+									70 button Concern search
+										71 image
+										72 text Concern search
+									73 button
+										74 image
+									75 button
+										76 image
+									77 container Concern search
+										78 container
+											79 button Open properties
+											80 container
+												81 container
+													82 link
+													83 link
+												84 container
+													85 text Query:  concern  ·  terraphim-grep 1.21.19
+												86 container
+													87 link
+													88 link
+												89 container
+													90 text Saved CLI output for  [[ Community garden launch ]] , displayed in Logseq.
+												91 container
+													92 link
+													93 link
+												94 container
+													95 text Before sharing the graph:  0 passages .
+												96 container
+													97 link
+													98 link
+												99 container
+													100 text With the exported graph:  3 passages .
+												101 container
+													102 link
+													103 link
+												104 heading Decisions found, Value: 2
+													105 text Decisions found
+												106 container
+													107 container
+														108 link
+														109 link
+													110 container
+														111 text [[ Risk ]] : Timber may arrive late. Decision: Keep a backup supplier. (line 3)
+													112 container
+														113 link
+														114 link
+													115 container
+														116 text [[ Risk ]] : Rain may delay planting. Decision: Reserve a covered area. (line 5)
+													117 container
+														118 link
+														119 link
+													120 container
+														121 text [[ Risk ]] : Volunteers may cancel. Decision: Keep a reserve list. (line 7)
+												122 container
+													123 link
+													124 link
+												125 container
+													126 text Search runs in the CLI against the project notes. Open  [[ Risk ]]  for the concept definition.
+											127 button Linked references 2
+												128 text Linked references
+												129 text 2
+											130 button Add new view
+												131 image
+											132 button Page filter
+												133 image
+											134 button
+												135 image
+											136 button
+												137 image
+											138 button
+												139 image
+											140 image
+											141 pop-up button
+												142 image
+											143 container
+												144 text Start here
+												145 container
+													146 text Explore the example
+													147 container
+														148 link
+														149 link
+														150 container
+															151 text Open  [[ Concern search ]]  to compare the saved command-line results.
+												152 text Risk
+												153 container
+													154 link
+													155 link
+													156 container
+														157 text Compare the saved CLI passages on  [[ Concern search ]] .
+						158 image
+					159 container Notifications
+	160 close button
+	161 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	162 minimise button
+163 menu bar
+	164 Logseq
+	165 File
+	166 Edit
+	167 View
+	168 Window
+	169 Help
+
+The focused UI element is 57 container Graph canvas
