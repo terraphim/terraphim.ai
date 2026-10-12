@@ -15,7 +15,9 @@ terraphim-grep concern --thesaurus "Knowledge graph/baseline-role.json" --paths 
 terraphim-grep concern --thesaurus "Knowledge graph/knowledge-graph.json" --paths "Notes/Projects" -C 2 --json --search-only
 ```
 
-The corrected native screenshot is `screenshots/03-synonyms-in-knowledge-note.png`: `Risk.md` owns the actual property and embeds the brief, beside the results-only note. The captured accessibility tree is retained in `evidence/native-note-and-results.txt`. Earlier screenshots are preserved under `publication/synonym-search/archive/before-obsidian-note-synonyms-20261012/` and excluded from the corrected bundle.
+Outside a Git checkout, this released CLI may print “No git repository found”. The two commands still complete successfully: the baseline returns zero passages and the synonym graph returns three.
+
+The corrected native screenshot is `screenshots/03-synonyms-in-knowledge-note.jpg`: `Risk.md` owns the actual property and embeds the brief, beside the results-only note. The captured accessibility tree is retained in `evidence/native-note-and-results.txt`. Earlier screenshots are preserved under `publication/synonym-search/archive/before-obsidian-note-synonyms-20261012/` and excluded from the corrected bundle.
 
 Terraphim’s custom `synonyms::` convention uses Logseq-compatible Markdown property syntax. Obsidian’s native note aliases use YAML `aliases`; automatic alias import or vault synchronisation is not part of this example.
 

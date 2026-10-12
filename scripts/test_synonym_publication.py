@@ -108,7 +108,7 @@ class PublicationTests(unittest.TestCase):
     def test_obsidian_vault_bundle_matches_reviewed_files(self):
         manifest = json.loads((OBSIDIAN / "manifest.json").read_text())
         files = {item["file"]: item for item in manifest["files"]}
-        self.assertIn("screenshots/03-synonyms-in-knowledge-note.png", files)
+        self.assertIn("screenshots/03-synonyms-in-knowledge-note.jpg", files)
         with zipfile.ZipFile(OBSIDIAN / "obsidian-synonym-search-example.zip") as bundle:
             expected = {"obsidian-demo/" + name for name in files} | {"obsidian-demo/manifest.json"}
             self.assertEqual(set(bundle.namelist()), expected)
@@ -120,8 +120,13 @@ class PublicationTests(unittest.TestCase):
                 self.assertEqual(hashlib.sha256(raw).hexdigest(), item["sha256"])
             self.assertEqual(bundle.read("obsidian-demo/manifest.json"), (OBSIDIAN / "manifest.json").read_bytes())
 
+    def test_obsidian_screenshot_has_jpeg_content(self):
+        raw = (OBSIDIAN / "screenshots/03-synonyms-in-knowledge-note.jpg").read_bytes()
+        self.assertTrue(raw.startswith(b"\xff\xd8\xff"))
+        self.assertTrue(raw.endswith(b"\xff\xd9"))
+
     def test_obsidian_section_explains_scope_and_links_downloads(self):
-        for name in ["obsidian-synonym-search-example.zip", "screenshots/03-synonyms-in-knowledge-note.png",
+        for name in ["obsidian-synonym-search-example.zip", "screenshots/03-synonyms-in-knowledge-note.jpg",
                      "evidence/before-sharing.json", "evidence/with-synonym.json", "manifest.json"]:
             self.assertIn("/demos/obsidian-synonym-search/" + name, self.html)
         self.assertIn('id="try-it-with-an-obsidian-vault"', self.html)

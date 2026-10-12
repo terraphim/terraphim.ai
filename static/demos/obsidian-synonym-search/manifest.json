@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-12T13:02:40.435559+00:00",
+  "updatedAt": "2026-10-12T13:18:57.405165+00:00",
   "nativeApp": "Obsidian 1.14.4",
   "state": "corrected-native-capture-and-cli-verified",
   "correction": "Raw synonyms:: property is owned by Notes/Risk.md; results contain saved CLI passages. Explicit exported graph; corpus Notes/Projects.",
@@ -7,8 +7,8 @@
   "files": [
     {
       "file": "README.md",
-      "sha256": "92b831c855bfa88586ecd1334d3992f82f868d9a01e2810b7013321bc919f259",
-      "bytes": 2446
+      "sha256": "5bb7d86dbd2567117da648c0eb2338b932e263dcaceffd862c86bfa8feb57cfe",
+      "bytes": 2648
     },
     {
       "file": "evidence/before-sharing.json",
@@ -22,7 +22,7 @@
     },
     {
       "file": "evidence/verification.json",
-      "sha256": "19f0fcbf87ddcb036487725d3b9f3c15f784bde98820b355099b76539247d8ae",
+      "sha256": "0bf83214bbbd051387f5dccb5cb2e9f3bc64a85ceadc056de3b40346eb9d613e",
       "bytes": 2564
     },
     {
@@ -56,7 +56,7 @@
       "bytes": 765
     },
     {
-      "file": "screenshots/03-synonyms-in-knowledge-note.png",
+      "file": "screenshots/03-synonyms-in-knowledge-note.jpg",
       "sha256": "22b13738b1cc81e40c75cfb97542ddcb264278113ebb0e4ccfbd06d8b6cf9276",
       "bytes": 397349
     }

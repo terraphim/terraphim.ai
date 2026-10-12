@@ -60,6 +60,6 @@
   "scope": "Raw synonyms property belongs to Risk concept note, not saved results. Existing exported graph is explicit and checked for agreement. Released CLI searches only Notes/Projects; no auto-import or graph rebuild claimed.",
   "nativeCapture": "verified",
   "nativeCaptureAt": "2026-10-12T12:58:28.171838+00:00",
-  "nativeScreenshot": "screenshots/03-synonyms-in-knowledge-note.png",
+  "nativeScreenshot": "screenshots/03-synonyms-in-knowledge-note.jpg",
   "nativeAccessibility": "evidence/native-note-and-results.txt"
 }
