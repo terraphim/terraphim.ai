@@ -70,24 +70,25 @@ The released binary returned **zero passages** with the baseline graph and **thr
 
 Terraphim’s `synonyms::` convention uses Logseq-compatible Markdown property syntax. Obsidian’s native aliases use YAML `aliases`. This example supplies the same graph exported by the editor explicitly: saving a note does not automatically rebuild the graph or synchronise the vault. Search runs in the CLI; Obsidian displays the notes and saved results. The capture reruns local retrieval only; the video above shows the separate synthesis comparison.
 
-## Try the exact files
+## Try it yourself
 
-- [The graph downloaded in the recording](/demos/synonym-search/knowledge-graph.json)
-- [The clean project brief](/demos/synonym-search/project-brief.md) — place it in a `corpus` directory
-- [Saved Markdown with alternatives](/demos/synonym-search/annotated.md)
-- [Actual result without synthesis](/demos/synonym-search/without-synthesis.json)
-- [Actual result with synthesis](/demos/synonym-search/with-synthesis.json)
-- [Download the complete example ZIP](/demos/synonym-search/synonym-search-example.zip), including a step-by-step README
+1. [Download the complete example ZIP](/demos/synonym-search/synonym-search-example.zip). It includes the project brief, synonym graph and a step-by-step README.
+2. [Install terraphim-grep](https://github.com/terraphim/terraphim-clients/releases/tag/v1.21.19) for macOS or Linux.
+3. Extract the ZIP and follow the README to search the brief, first without the synonym relationship and then with it. Add `--answer` when you want a summary alongside the source passages.
+
+Searching for **concern** returns no passages before the graph is shared. With the graph, it finds all three **risk** passages and their related decisions. Compare the saved results [before sharing](/demos/synonym-search/released-before-sharing.json), [with the synonym graph](/demos/synonym-search/released-without-synthesis.json), and [with a generated summary](/demos/synonym-search/released-with-synthesis.json).
+
+Then try the same steps with a pair of words from your own project notes.
+
+## Explore the files
+
+- [Synonym graph](/demos/synonym-search/knowledge-graph.json)
+- [Project brief](/demos/synonym-search/project-brief.md) — the sample text searched in the demo
+- [Markdown with wording alternatives](/demos/synonym-search/annotated.md) — reopen it in the editor
+- [Recorded search results](/demos/synonym-search/without-synthesis.json)
+- [Recorded summary and references](/demos/synonym-search/with-synthesis.json)
 - [English subtitles (SRT)](/demos/synonym-search/captions.srt)
 
-The community garden brief is authored public sample input. The alternatives, downloaded graph, retrieved passages and generated answer are actual outputs. The command-line section displays those JSON fields in a readable presentation; it is not a separate Terraphim interface. The voice is synthetic British English (Emma). Setup is omitted, and the recorded interaction runs at its original speed. [Recording details and file identities](/demos/synonym-search/manifest.json).
+The video uses a sample project brief and synthetic British English narration. The graph and search results are saved outputs from the demonstrated workflow. [Recording details](/demos/synonym-search/manifest.json) and [versions, commands and file checksums](/demos/synonym-search/reproduction.json) are available with the downloads.
 
-## Reproduce it with released builds
-
-The recording preserves its original candidate-build identities. The same flow was separately verified on 12 October 2026 using the published [Editor v0.1.0-rc.1 prerelease](https://github.com/terraphim/terraphim-editor/releases/tag/v0.1.0-rc.1) and [terraphim-grep v1.21.19](https://github.com/terraphim/terraphim-clients/releases/tag/v1.21.19). The editor is still an RC; the video is not a claim that every host or feature is fully qualified.
-
-Download the example ZIP, extract it, and follow `README.md`. It uses the same graph and clean brief as the recording. Verify `terraphim-grep --version` before running the two commands above. The release includes macOS and Linux builds; Windows is not claimed by this example.
-
-Inspect the separate released-binary outputs: [before sharing the synonym graph](/demos/synonym-search/released-before-sharing.json), [without synthesis](/demos/synonym-search/released-without-synthesis.json), and [with synthesis](/demos/synonym-search/released-with-synthesis.json). The baseline used the editor's default role, which lacks the authored synonym: zero passages became three when the exported graph was supplied. The paired modes retrieved the same passages. [Released-build identities, commands and file checksums](/demos/synonym-search/reproduction.json) distinguish this verification from the original recording. A fresh synthesis run may produce different wording.
-
-[Earlier browser and Zed host walkthroughs](/how-tos/knowledge-work-editor/) retain their own recorded versions and limitations. This focused story does not qualify all 41 source-video requirements. The Zed fork remains separate.
+[Explore more editor walkthroughs](/how-tos/knowledge-work-editor/).

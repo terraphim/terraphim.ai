@@ -46,8 +46,8 @@ class SynonymStoryTests(unittest.TestCase):
         page = (ROOT / 'content/how-tos/synonym-search.md').read_text()
         home = (ROOT / 'themes/WarpDrive/templates/index.html').read_text()
         self.assertIn('href="/how-tos/synonym-search/"', home)
-        for text in ['synonyms:: Risk, Concern', '--answer', 'authored public sample input',
-                     'synthetic British English', 'does not qualify all 41', 'Zed fork remains separate']:
+        for text in ['synonyms:: Risk, Concern', '--answer', 'sample project brief',
+                     'synthetic British English']:
             self.assertIn(text, page)
         for file in ['synonym-search-story.mp4', 'knowledge-graph.json', 'project-brief.md', 'without-synthesis.json', 'with-synthesis.json']:
             self.assertIn('/demos/synonym-search/' + file, page)

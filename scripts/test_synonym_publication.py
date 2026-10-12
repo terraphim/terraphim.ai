@@ -51,7 +51,6 @@ class PublicationTests(unittest.TestCase):
         self.assertNotIn("All data processed locally", self.html)
         self.assertIn("Optional synthesis uses your configured model provider", self.html)
         self.assertNotIn("editor graph-sharing candidate", self.html)
-        self.assertIn("v0.1.0-rc.1", self.html)
         self.assertIn("v1.21.19", self.html)
 
     def test_released_evidence_and_bundle_match_actual_files(self):
