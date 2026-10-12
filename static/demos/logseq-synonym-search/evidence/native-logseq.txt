@@ -1,0 +1,290 @@
+Window: "Risk", App: Logseq.
+0 standard window Risk, Secondary Actions: Raise
+	1 container Risk
+		2 container
+			3 HTML content Risk, URL: lsp://logseq.com/index.html#/page/6acce940-747c-47b8-8117-a42515a56b9b
+				4 container
+					5 container
+						6 button Skip to main content
+						7 container
+							8 container
+								9 button
+									10 image
+								11 button
+									12 image
+								13 button
+									14 image
+								15 button
+									16 image
+								17 button
+									18 image
+								19 button
+									20 image
+								21 button
+									22 image
+								23 button
+									24 image
+							25 container
+								26 container
+									27 link Terraphim garden demo
+										28 image
+										29 text Terraphim garden demo
+										30 image
+									31 text Navigations
+									32 link Start here
+										33 image
+										34 text Start here
+									35 link Flashcards
+										36 image
+										37 text Flashcards
+									38 link Description: Pages, Value: lsp://logseq.com/index.html#/all-pages
+									39 link Description: Graph view, Value: lsp://logseq.com/index.html#/graph
+									40 container
+										41 text Favorites
+										42 image
+									43 container
+										44 text Recent
+										45 image
+									46 content list
+										47 link Risk
+											48 image
+											49 text Risk
+										50 link Start here
+											51 image
+											52 text Start here
+								53 container
+									54 container
+										55 link
+										56 button Add icon
+										57 button Set property
+										58 text Risk
+										59 sortable Alias
+											60 container
+												61 button
+													62 image
+												63 link Alias
+													64 text Alias
+										65 text Concern
+										66 sortable synonyms
+											67 container
+												68 button
+												69 link synonyms
+													70 text synonyms
+										71 container
+											72 link
+											73 link
+											74 text Risk, Concern
+										75 button Add property
+											76 image
+											77 text Add property
+									78 container
+										79 container
+											80 link
+											81 link
+										82 container
+											83 text A possible problem that needs a decision. In this project,  concern  is another word for the same idea.
+										84 container
+											85 link
+											86 link
+										87 container
+											88 text These words belong to this concept note. The supplied Terraphim graph connects both words to  risk .
+										89 container
+											90 link
+											91 link
+										92 heading Community garden launch, Value: 2
+											93 text Community garden launch
+										94 container
+											95 container
+												96 link
+												97 link
+											98 text Community garden launch
+											99 button 3, Help: Open block references
+											100 container
+												101 container
+													102 link
+													103 link
+												104 text Goal: Open the garden for spring planting.
+												105 container
+													106 link
+													107 link
+												108 container
+													109 text [[ Risk ]] : Timber may arrive late. Decision: Keep a backup supplier.
+												110 container
+													111 link
+													112 link
+												113 container
+													114 text [[ Risk ]] : Rain may delay planting. Decision: Reserve a covered area.
+												115 container
+													116 link
+													117 link
+												118 container
+													119 text [[ Risk ]] : Volunteers may cancel. Decision: Keep a reserve list.
+										120 container
+											121 link
+											122 link
+										123 container
+											124 text Compare the saved CLI passages on  [[ Concern search ]] .
+									125 button Linked references 9
+										126 text Linked references
+										127 text 9
+									128 button Add new view
+										129 image
+									130 button Page filter
+										131 image
+									132 button
+										133 image
+									134 button
+										135 image
+									136 button
+										137 image
+									138 image
+									139 pop-up button
+										140 image
+									141 container
+										142 text Start here
+										143 container
+											144 container
+												145 link
+												146 link
+												147 container
+													148 text The native  Concern  page alias takes you to  [[ Risk ]] . Terraphim uses the separate exported graph for command-line search.
+											149 text Explore the example
+											150 container
+												151 link
+												152 link
+												153 container
+													154 text Open  [[ Risk ]]  to see the concept and its wording alternatives.
+										155 text Concern search
+										156 container
+											157 container
+												158 link
+												159 link
+												160 container
+													161 text Search runs in the CLI against the project notes. Open  [[ Risk ]]  for the concept definition.
+											162 text Decisions found
+											163 container
+												164 link
+												165 link
+												166 container
+													167 text [[ Risk ]] : Timber may arrive late. Decision: Keep a backup supplier. (line 3)
+											168 container
+												169 link
+												170 link
+												171 container
+													172 text [[ Risk ]] : Rain may delay planting. Decision: Reserve a covered area. (line 5)
+											173 container
+												174 link
+												175 link
+												176 container
+													177 text [[ Risk ]] : Volunteers may cancel. Decision: Keep a reserve list. (line 7)
+									178 button Unlinked references
+									179 button Add new view
+										180 image
+							181 splitter Description: Right sidebar resize handler, Value: 50
+							182 container
+								183 button Contents
+								184 button Page graph
+								185 button Help
+								186 container
+									187 button Concern search
+										188 image
+										189 text Concern search
+									190 button
+										191 image
+									192 button
+										193 image
+									194 container Concern search
+										195 container
+											196 button Open properties
+											197 container
+												198 container
+													199 link
+													200 link
+												201 container
+													202 text Query:  concern  ·  terraphim-grep 1.21.19
+												203 container
+													204 link
+													205 link
+												206 container
+													207 text Saved CLI output for  [[ Community garden launch ]] , displayed in Logseq.
+												208 container
+													209 link
+													210 link
+												211 container
+													212 text Before sharing the graph:  0 passages .
+												213 container
+													214 link
+													215 link
+												216 container
+													217 text With the exported graph:  3 passages .
+												218 container
+													219 link
+													220 link
+												221 heading Decisions found, Value: 2
+													222 text Decisions found
+												223 container
+													224 container
+														225 link
+														226 link
+													227 container
+														228 text [[ Risk ]] : Timber may arrive late. Decision: Keep a backup supplier. (line 3)
+													229 container
+														230 link
+														231 link
+													232 container
+														233 text [[ Risk ]] : Rain may delay planting. Decision: Reserve a covered area. (line 5)
+													234 container
+														235 link
+														236 link
+													237 container
+														238 text [[ Risk ]] : Volunteers may cancel. Decision: Keep a reserve list. (line 7)
+												239 container
+													240 link
+													241 link
+												242 container
+													243 text Search runs in the CLI against the project notes. Open  [[ Risk ]]  for the concept definition.
+											244 button Linked references 2
+												245 text Linked references
+												246 text 2
+											247 button Add new view
+												248 image
+											249 button Page filter
+												250 image
+											251 button
+												252 image
+											253 button
+												254 image
+											255 button
+												256 image
+											257 image
+											258 pop-up button
+												259 image
+											260 container
+												261 text Start here
+												262 container
+													263 text Explore the example
+													264 container
+														265 link
+														266 link
+														267 container
+															268 text Open  [[ Concern search ]]  to compare the saved command-line results.
+												269 text Risk
+												270 container
+													271 link
+													272 link
+													273 container
+														274 text Compare the saved CLI passages on  [[ Concern search ]] .
+						275 image
+					276 container Notifications
+	277 close button
+	278 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	279 minimise button
+280 menu bar
+	281 Logseq
+	282 File
+	283 Edit
+	284 View
+	285 Window
+	286 Help
+
+The focused UI element is 3 HTML content Risk, URL: lsp://logseq.com/index.html#/page/6acce940-747c-47b8-8117-a42515a56b9b

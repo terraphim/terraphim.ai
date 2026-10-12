@@ -1,0 +1,65 @@
+{
+  "verifiedAt": "2026-10-12T12:50:35.613983+00:00",
+  "binary": "/private/tmp/synonym-release-inspection/stage-download/verified-macos-aarch64-grep/terraphim-grep",
+  "version": "terraphim-grep 1.21.19",
+  "binarySha256": "ce20e2bf87c6753c717dade4ac7baac98b05d0be9cb39af1f3afbcbf6e5c47de",
+  "graphSha256": "f8648b16470e764bdff5c95064078419d71e8d41d2ca30d4b1508017c166a45d",
+  "sourceSha256": "ea78a26e4d5a1105891bed67288a924cbbd5656defc95de4c511f4302b8d0d8f",
+  "conceptNoteSha256": "c959395e70985179c55089684991ca3615253da82e41b673a67e696634593d6b",
+  "checks": {
+    "rawSynonymsPropertyInKnowledgeNote": true,
+    "noSynonymDirectiveInResults": true,
+    "knowledgeNoteMatchesGraph": true,
+    "projectBriefHasNoLiteralConcern": true,
+    "zeroBaselineChunks": true,
+    "threeSynonymChunks": true,
+    "onlyProjectBriefSearched": true,
+    "exactSourceExcerpts": true,
+    "noSynthesis": true,
+    "nativeNotePropertyVisible": true,
+    "nativeResultsOnlySavedCliOutput": true
+  },
+  "runs": [
+    {
+      "command": [
+        "/private/tmp/synonym-release-inspection/stage-download/verified-macos-aarch64-grep/terraphim-grep",
+        "concern",
+        "--thesaurus",
+        "Knowledge graph/baseline-role.json",
+        "--paths",
+        "Notes/Projects",
+        "-C",
+        "2",
+        "--json",
+        "--search-only"
+      ],
+      "cwd": "/Users/alex/projects/terraphim/terraphim-editor/publication/synonym-search/obsidian-demo/vault",
+      "exitCode": 0,
+      "output": "evidence/before-sharing.json",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/private/tmp/synonym-release-inspection/stage-download/verified-macos-aarch64-grep/terraphim-grep",
+        "concern",
+        "--thesaurus",
+        "Knowledge graph/knowledge-graph.json",
+        "--paths",
+        "Notes/Projects",
+        "-C",
+        "2",
+        "--json",
+        "--search-only"
+      ],
+      "cwd": "/Users/alex/projects/terraphim/terraphim-editor/publication/synonym-search/obsidian-demo/vault",
+      "exitCode": 0,
+      "output": "evidence/with-synonym.json",
+      "stderr": ""
+    }
+  ],
+  "scope": "Raw synonyms property belongs to Risk concept note, not saved results. Existing exported graph is explicit and checked for agreement. Released CLI searches only Notes/Projects; no auto-import or graph rebuild claimed.",
+  "nativeCapture": "verified",
+  "nativeCaptureAt": "2026-10-12T12:58:28.171838+00:00",
+  "nativeScreenshot": "screenshots/03-synonyms-in-knowledge-note.jpg",
+  "nativeAccessibility": "evidence/native-note-and-results.txt"
+}

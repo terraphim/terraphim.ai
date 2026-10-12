@@ -1,0 +1,9 @@
+- Query: **concern** · **terraphim-grep 1.21.19**
+- Saved CLI output for [[Community garden launch]], displayed in Logseq.
+- Before sharing the graph: **0 passages**.
+- With the exported graph: **3 passages**.
+- ## Decisions found
+  - [[Risk]]: Timber may arrive late. Decision: Keep a backup supplier. (line 3)
+  - [[Risk]]: Rain may delay planting. Decision: Reserve a covered area. (line 5)
+  - [[Risk]]: Volunteers may cancel. Decision: Keep a reserve list. (line 7)
+- Search runs in the CLI against the project notes. Open [[Risk]] for the concept definition.

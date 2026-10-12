@@ -1,0 +1,149 @@
+Window: "Concern search - vault - Obsidian 1.14.4", App: Obsidian.
+0 standard window Concern search - vault - Obsidian 1.14.4, Secondary Actions: Raise
+	1 container Concern search - vault - Obsidian 1.14.4
+		2 container
+			3 HTML content Concern search - vault - Obsidian 1.14.4, URL: app://obsidian.md/index.html
+				4 container
+					5 image
+					6 container Open quick switcher
+						7 image
+					8 container Open graph view
+						9 image
+					10 container Create new canvas
+						11 image
+					12 container Open today's daily note
+						13 image
+					14 container Insert template
+						15 image
+					16 container Open command palette
+						17 image
+					18 container Create new base
+						19 image
+					20 container
+						21 container Risk
+							22 text Risk
+							23 container Close
+								24 image
+						25 container New tab
+							26 image
+						27 image
+						28 container
+							29 button (disabled) Navigate back
+								30 image
+							31 button (disabled) Navigate forward
+								32 image
+							33 container
+								34 container Notes
+									35 text Notes
+								36 text /
+								37 text entry area (settable) Risk
+									38 text Risk
+							39 button Current view: reading Click to edit ⌘+Click to open to the right
+								40 image
+							41 button More options
+								42 image
+							43 container
+								44 text entry area (settable) Risk
+									45 text Risk
+								46 text synonyms:: Risk, Concern
+								47 heading ​ Risk, Value: 1
+									48 image
+									49 text Risk
+								50 text A possible problem that needs a decision. In this project, 
+								51 text concern
+								52 text  is another name for the same concept. The synonym property lives in this knowledge note. The explicit Terraphim graph maps both terms to this concept.
+								53 heading ​ Project note, Value: 2
+									54 image
+									55 text Project note
+								56 text Community garden launch
+								57 container
+									58 heading ​ Community garden launch, Value: 1
+										59 image
+										60 text Community garden launch
+									61 text Goal: Open the garden for spring planting. Risk: Timber may arrive late. Decision: Keep a backup supplier. Risk: Rain may delay planting. Decision: Reserve a covered area. Risk: Volunteers may cancel. Decision: Keep a reserve list.
+								62 container Open link
+									63 image
+					64 container
+						65 container Concern search
+							66 text Concern search
+							67 container Close
+								68 image
+						69 container New tab
+							70 image
+						71 image
+						72 image
+						73 container
+							74 button Navigate back
+								75 image
+							76 button Navigate forward
+								77 image
+							78 container
+								79 container Search results
+									80 text Search results
+								81 text /
+								82 text entry area (settable) Concern search
+									83 text Concern search
+							84 button Current view: reading Click to edit ⌘+Click to open to the right
+								85 image
+							86 button More options
+								87 image
+							88 container Concern search Query: concern · released terraphim-grep 1.21.19 Saved CLI output for Community garden launch.md, displayed in Obsidian. The note says risk, never concern. The graph maps both words to the same concept. This uses an explicit Terraphim graph; it does not automatically import Obsidian aliases or sync your vault. https://terraphim.ai/how-tos/synonym-search/
+								89 container
+									90 text entry area (settable) Concern search
+										91 text Concern search
+									92 text Query: 
+									93 text concern
+									94 text  · released 
+									95 text terraphim-grep 1.21.19
+									96 text Saved CLI output for 
+									97 text Community garden launch.md
+									98 text , displayed in Obsidian.
+									99 table
+										100 row
+											101 column header
+												102 text Same Markdown note
+											103 column header
+												104 text Retrieved passages
+										105 row
+											106 cell
+												107 text Before sharing the graph
+											108 cell
+												109 text 0
+										110 row
+											111 cell
+												112 text With the exported synonyms
+											113 cell
+												114 text 3
+									115 text The note says 
+									116 text risk
+									117 text , never 
+									118 text concern
+									119 text . The graph maps both words to the same concept.
+									120 container
+										121 text Risk: Timber may arrive late. Decision: Keep a backup supplier.  (line 7)
+									122 container
+										123 text Risk: Rain may delay planting. Decision: Reserve a covered area.  (line 10)
+									124 container
+										125 text Risk: Volunteers may cancel. Decision: Keep a reserve list.  (line 13)
+									126 text This uses an explicit Terraphim graph; it does not automatically import Obsidian aliases or sync your vault.
+									127 link Description: https://terraphim.ai/how-tos/synonym-search/, Value: terraphim.ai/how-tos/synonym-search/
+					128 text 0 backlinks
+					129 container Reading
+						130 image
+					131 text 108 words 764 characters
+					132 container Uninitialized
+						133 image
+	134 close button
+	135 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	136 minimise button
+137 menu bar
+	138 Obsidian
+	139 File
+	140 Edit
+	141 Insert
+	142 Format
+	143 View
+	144 Window
+	145 Help
+
+The focused UI element is 88 container Concern search Query: concern · released terraphim-grep 1.21.19 Saved CLI output for Community garden launch.md, displayed in Obsidian. The note says risk, never concern. The graph maps both words to the same concept. This uses an explicit Terraphim graph; it does not automatically import Obsidian aliases or sync your vault. https://terraphim.ai/how-tos/synonym-search/
