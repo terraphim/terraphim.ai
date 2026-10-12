@@ -11,6 +11,8 @@ social_image = "/demos/synonym-search/poster.jpg"
 
 Your project brief says **risk**. Later, you search for **concern**. Terraphim connects the two so a change of wording does not hide the decisions you need.
 
+The inspiration came from [Jason Fried’s original Write_On video](https://x.com/jasonfried/status/2105403067793584590) and its idea of “alternative control”. It prompted Alex Mikhalev to return to Terraphim Editor, a Rust/WebAssembly project he had abandoned two years earlier, with a clear purpose: connect wording alternatives to a reusable knowledge graph and carry that meaning into search.
+
 <video controls preload="metadata" playsinline poster="/demos/synonym-search/poster.jpg" style="width:100%;max-width:1100px" aria-label="Create an alternative, share its graph, and search with it — 80 seconds"><source src="/demos/synonym-search/synonym-search-story.mp4" type="video/mp4"><track kind="captions" src="/demos/synonym-search/captions.vtt" srclang="en" label="English">[Watch the 80-second story](/demos/synonym-search/synonym-search-story.mp4)</video>
 
 [Try Terraphim Editor](/editor/) · [Read the narration](/demos/synonym-search/transcript.txt)
