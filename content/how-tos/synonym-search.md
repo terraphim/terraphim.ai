@@ -5,6 +5,8 @@ date = 2026-10-11
 [taxonomies]
 categories = ["How-tos"]
 tags = ["editor", "knowledge-graph", "search"]
+[extra]
+social_image = "/demos/synonym-search/poster.jpg"
 +++
 
 Your project brief says **risk**. Later, you search for **concern**. Terraphim connects the two so a change of wording does not hide the decisions you need.
@@ -32,12 +34,12 @@ Download the graph and the clean text. This explicitly shares the document's aut
 Use the graph downloaded from that editing session:
 
 ```sh
-terraphim-grep concern --thesaurus knowledge-graph.json --paths corpus -C 2 --json
+terraphim-grep concern --thesaurus knowledge-graph.json --paths corpus -C 2 --search-only --json
 ```
 
 The actual result contains three risk passages and their related decisions, with file and line locations. No generated answer is requested.
 
-Add `--answer` to the same command for synthesis:
+Replace `--search-only` with `--answer` for synthesis:
 
 ```sh
 terraphim-grep concern --thesaurus knowledge-graph.json --paths corpus -C 2 --json --answer
@@ -54,9 +56,17 @@ Editing and local search use your local data. Optional synthesis sends the retri
 - [Saved Markdown with alternatives](/demos/synonym-search/annotated.md)
 - [Actual result without synthesis](/demos/synonym-search/without-synthesis.json)
 - [Actual result with synthesis](/demos/synonym-search/with-synthesis.json)
+- [Download the complete example ZIP](/demos/synonym-search/synonym-search-example.zip), including a step-by-step README
+- [English subtitles (SRT)](/demos/synonym-search/captions.srt)
 
 The community garden brief is authored public sample input. The alternatives, downloaded graph, retrieved passages and generated answer are actual outputs. The command-line section displays those JSON fields in a readable presentation; it is not a separate Terraphim interface. The voice is synthetic British English (Emma). Setup is omitted, and the recorded interaction runs at its original speed. [Recording details and file identities](/demos/synonym-search/manifest.json).
 
-This is a preview of the new export and search flow. It uses the [editor graph-sharing candidate](https://git.terraphim.cloud/terraphim/terraphim-editor/pulls/131) and the [grep synonym/synthesis candidate](https://git.terraphim.cloud/terraphim/terraphim-clients/pulls/385); older installed binaries may differ. A fresh synthesis run may produce different wording.
+## Reproduce it with released builds
+
+The recording preserves its original candidate-build identities. The same flow was separately verified on 12 October 2026 using the published [Editor v0.1.0-rc.1 prerelease](https://github.com/terraphim/terraphim-editor/releases/tag/v0.1.0-rc.1) and [terraphim-grep v1.21.19](https://github.com/terraphim/terraphim-clients/releases/tag/v1.21.19). The editor is still an RC; the video is not a claim that every host or feature is fully qualified.
+
+Download the example ZIP, extract it, and follow `README.md`. It uses the same graph and clean brief as the recording. Verify `terraphim-grep --version` before running the two commands above. The release includes macOS and Linux builds; Windows is not claimed by this example.
+
+Inspect the separate released-binary outputs: [before sharing the synonym graph](/demos/synonym-search/released-before-sharing.json), [without synthesis](/demos/synonym-search/released-without-synthesis.json), and [with synthesis](/demos/synonym-search/released-with-synthesis.json). The baseline used the editor's default role, which lacks the authored synonym: zero passages became three when the exported graph was supplied. The paired modes retrieved the same passages. [Released-build identities, commands and file checksums](/demos/synonym-search/reproduction.json) distinguish this verification from the original recording. A fresh synthesis run may produce different wording.
 
 [Earlier browser and Zed host walkthroughs](/how-tos/knowledge-work-editor/) retain their own recorded versions and limitations. This focused story does not qualify all 41 source-video requirements. The Zed fork remains separate.

@@ -39,6 +39,9 @@ jobs:
         # Zola fails the build on broken internal links.
         run: zola build
 
+      - name: Verify editor, demo outputs and publication downloads
+        run: python3 -m unittest discover -s scripts -p 'test_*.py' -v
+
       - name: Verify the build produced pages
         run: |
           pages=$(find public -name '*.html' | wc -l)

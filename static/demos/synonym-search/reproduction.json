@@ -1,0 +1,152 @@
+{
+  "schema": 1,
+  "verifiedAt": "2026-10-12",
+  "source": "https://terraphim.ai/how-tos/synonym-search/",
+  "editorVersion": "0.1.0-rc.1",
+  "grepVersion": "1.21.19",
+  "editorSourceHead": "05d0aa50151c131db4a3b30b56aba67c00add5fc",
+  "clientsSourceHead": "2d1820e81d2a9458d4d5eca012e7d0e0d2accf49",
+  "editorArchiveSha256": "a514f45276397b93f38d8e14c9e3bde6203bd9c625bc13c81829de31ffa9eb79",
+  "grepMacArmArchiveSha256": "2e9c8fc8b54124458a54120134ae5437f8b7e023df28fc1d515dd059c8f86a3e",
+  "checks": {
+    "graphSha256": "f8648b16470e764bdff5c95064078419d71e8d41d2ca30d4b1508017c166a45d",
+    "textSha256": "ea78a26e4d5a1105891bed67288a924cbbd5656defc95de4c511f4302b8d0d8f",
+    "binarySha256": "ce20e2bf87c6753c717dade4ac7baac98b05d0be9cb39af1f3afbcbf6e5c47de",
+    "binaryVersion": "terraphim-grep 1.21.19",
+    "status": "PASS",
+    "literalConcernAbsent": true,
+    "beforeSharingNoResults": true,
+    "aliasRetrieval": true,
+    "sameRetrievedChunks": true,
+    "sourceExcerptsExact": true,
+    "actualSynthesis": true,
+    "provider": "deepseek/deepseek-v4-flash-0731"
+  },
+  "commands": [
+    [
+      "terraphim-grep",
+      "concern",
+      "--thesaurus",
+      "baseline-role.json",
+      "--paths",
+      "corpus",
+      "-C",
+      "2",
+      "--json",
+      "--search-only"
+    ],
+    [
+      "terraphim-grep",
+      "concern",
+      "--thesaurus",
+      "knowledge-graph.json",
+      "--paths",
+      "corpus",
+      "-C",
+      "2",
+      "--json",
+      "--search-only"
+    ],
+    [
+      "terraphim-grep",
+      "concern",
+      "--thesaurus",
+      "knowledge-graph.json",
+      "--paths",
+      "corpus",
+      "-C",
+      "2",
+      "--json",
+      "--answer"
+    ]
+  ],
+  "bundleFiles": [
+    "README.md",
+    "annotated.md",
+    "baseline-role.json",
+    "knowledge-graph.json",
+    "project-brief.md",
+    "without-synthesis.json",
+    "with-synthesis.json",
+    "released-before-sharing.json",
+    "released-without-synthesis.json",
+    "released-with-synthesis.json",
+    "captions.vtt",
+    "captions.srt",
+    "transcript.txt",
+    "manifest.json",
+    "reproduction.json"
+  ],
+  "files": [
+    {
+      "file": "README.md",
+      "bytes": 3267,
+      "sha256": "f4ac5c7d681ad5a99e688da04575bf21aae2cdc1dfded4395c7a20ee3b5d07fb"
+    },
+    {
+      "file": "annotated.md",
+      "bytes": 793,
+      "sha256": "036d8e65b847fc03c68814b610be94e2b7a27573188947451348f9f674150e6e"
+    },
+    {
+      "file": "baseline-role.json",
+      "bytes": 1506,
+      "sha256": "e850422ec72faa06aae0d6c2893a9f1d2e36d60a5aef79bd8f863daa2d71b015"
+    },
+    {
+      "file": "knowledge-graph.json",
+      "bytes": 281,
+      "sha256": "f8648b16470e764bdff5c95064078419d71e8d41d2ca30d4b1508017c166a45d"
+    },
+    {
+      "file": "project-brief.md",
+      "bytes": 265,
+      "sha256": "ea78a26e4d5a1105891bed67288a924cbbd5656defc95de4c511f4302b8d0d8f"
+    },
+    {
+      "file": "without-synthesis.json",
+      "bytes": 1248,
+      "sha256": "302eb12c12e9f8a68daca280ee783c152221214969d630929d4666c5236c5365"
+    },
+    {
+      "file": "with-synthesis.json",
+      "bytes": 2288,
+      "sha256": "d6381390ae7ce09b91cf406195b01ade90a753aad72594a7c3a1676443bf5b82"
+    },
+    {
+      "file": "released-before-sharing.json",
+      "bytes": 344,
+      "sha256": "c79167288ff37166e9bb9e6c0d19bab2b86454d959db13680e3786349e58b7ae"
+    },
+    {
+      "file": "released-without-synthesis.json",
+      "bytes": 1247,
+      "sha256": "6dd67609b8443b6f750788988d1d2433b83cb8e8016654424fab07ccb073570c"
+    },
+    {
+      "file": "released-with-synthesis.json",
+      "bytes": 2151,
+      "sha256": "722bdd2b8aaf6e5f9910b8fecb84ae39ccb6d7dabd2a61a87b767e5347210352"
+    },
+    {
+      "file": "captions.vtt",
+      "bytes": 1704,
+      "sha256": "8c1c3013e992032bcc8fa93c72718303bdc9e492142feaede595c70d2292cf28"
+    },
+    {
+      "file": "captions.srt",
+      "bytes": 1744,
+      "sha256": "1842758bdc5b65be32400f47d8fb71401759f3826ecaa01621a3e5f03d084173"
+    },
+    {
+      "file": "transcript.txt",
+      "bytes": 1540,
+      "sha256": "1eb1999a04add460c1474a2889e7fb12238b0cafd07a77ef6246ad97ce07c9b4"
+    },
+    {
+      "file": "manifest.json",
+      "bytes": 4236,
+      "sha256": "af6ff6f0719b560d0eee3c71a3ba60ffed81857185ff1817f9839729ad170f9b"
+    }
+  ]
+}
