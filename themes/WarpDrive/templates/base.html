@@ -35,6 +35,31 @@
     {% endblock title %}
   </title>
 
+  {% set share_title = config.title %}
+  {% set share_description = config.description %}
+  {% set share_image = config.base_url ~ "/images/terraphim_logo.png" %}
+  {% if page %}
+    {% set share_title = page.title %}
+    {% if page.description %}{% set share_description = page.description %}{% endif %}
+    {% if page.extra.social_image %}{% set share_image = config.base_url ~ page.extra.social_image %}{% endif %}
+  {% elif section %}
+    {% if section.title %}{% set share_title = section.title %}{% endif %}
+    {% if section.description %}{% set share_description = section.description %}{% endif %}
+  {% endif %}
+  {% set canonical_path = current_path | default(value="/404.html") %}
+    {% set canonical = config.base_url ~ canonical_path %}
+  <link rel="canonical" href="{{ canonical }}">
+  <meta name="description" content="{{ share_description }}">
+  <meta property="og:type" content="{% if page %}article{% else %}website{% endif %}">
+  <meta property="og:url" content="{{ canonical }}">
+  <meta property="og:title" content="{{ share_title }}">
+  <meta property="og:description" content="{{ share_description }}">
+  <meta property="og:image" content="{{ share_image }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ share_title }}">
+  <meta name="twitter:description" content="{{ share_description }}">
+  <meta name="twitter:image" content="{{ share_image }}">
+
   {% if config.extra.analytics.google %}
   <script async src="https://www.googletagmanager.com/gtag/js?id={{ config.extra.analytics.google }}"></script>
   <script>
@@ -71,7 +96,7 @@
       </nav>
       <div class="topbar-status">
         <span class="status-dot s-green" title="System online"></span>
-        <span class="status-label">v{{ config.extra.version }}</span>
+        <span class="status-label" title="Latest Terraphim client release">Clients v{{ config.extra.release_version }}</span>
       </div>
       <button class="topbar-search" id="nav-search-ribbon" title="Search (Ctrl+K)" aria-label="Search">
         <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
@@ -156,7 +181,7 @@
     <div class="footer-brand">Terraphim AI</div>
     <div class="footer-sub">Privacy-Preserving AI Assistant</div>
     {{ macros::social_links(social_config=config.extra.social) }}
-    <div class="footer-coord">Applied Knowledge Systems Ltd // Apache 2.0 // All data processed locally</div>
+    <div class="footer-coord">Applied Knowledge Systems Ltd // Apache 2.0 // Editing and local search run locally. Optional synthesis uses your configured model provider.</div>
   </footer>
 
   <script src="{{ get_url(path='js/warp-tunnel.js', cachebust=true) }}"></script>

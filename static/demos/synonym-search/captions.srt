@@ -1,0 +1,75 @@
+1
+00:00:00,250 --> 00:00:04,443
+When people use different words for the same idea, useful decisions can
+
+2
+00:00:04,443 --> 00:00:06,190
+become surprisingly hard to find.
+
+3
+00:00:07,250 --> 00:00:10,852
+Here is our community garden brief. It records three risks, and the
+
+4
+00:00:10,852 --> 00:00:13,553
+decisions we have made to deal with each one.
+
+5
+00:00:15,250 --> 00:00:18,996
+I add concern as an alternative to risk. Now I can swap
+
+6
+00:00:18,996 --> 00:00:22,742
+between the two words, choosing the wording that fits without losing the
+
+7
+00:00:22,742 --> 00:00:23,366
+other option.
+
+8
+00:00:26,250 --> 00:00:30,840
+The editor connects those alternatives to one idea in the knowledge graph.
+
+9
+00:00:30,840 --> 00:00:35,047
+Here is the actual synonym definition: risk and concern belong together.
+
+10
+00:00:37,250 --> 00:00:41,059
+I download that graph and the finished text. Notice that I leave
+
+11
+00:00:41,059 --> 00:00:43,915
+risk in the document. The word concern is absent.
+
+12
+00:00:46,250 --> 00:00:50,497
+Now I search for concern using the graph I just downloaded. It
+
+13
+00:00:50,497 --> 00:00:54,744
+finds all three risk passages, including the related decisions, even though the
+
+14
+00:00:54,744 --> 00:00:55,805
+wording is different.
+
+15
+00:00:58,250 --> 00:01:02,632
+Without synthesis, I get the original passages and their locations. Adding the
+
+16
+00:01:02,632 --> 00:01:07,014
+answer flag gives me a summary from the same evidence, with source
+
+17
+00:01:07,014 --> 00:01:07,379
+references.
+
+18
+00:01:10,250 --> 00:01:14,735
+The summary keeps decisions distinct from completed actions. From choosing a word
+
+19
+00:01:14,735 --> 00:01:19,219
+to finding a decision, the same knowledge graph keeps the meaning connected.
