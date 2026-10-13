@@ -1,0 +1,23 @@
+A project lesson your coding agent can find next time
+Synthetic British female voice: Emma (Kokoro).
+
+0–9.132s | Keep the lesson for the next run
+A new agent session should not mean explaining the same project instruction again. Here is one lesson from our Harbour project brief.
+
+9.132–21.177s | Save the actual instruction
+I save the validation instruction as memory, with a tag identifying its source. The saved item contains the exact lesson, not just a label saying something was captured.
+
+21.177–31.653s | Read it back in another process
+That command has finished. A new process opens the saved item by its identifier. The same instruction is still there, ready to inspect or export.
+
+31.653–42.681s | Connect the words to the project
+The project role has a small knowledge graph. Validate brief, brief validation, and the check option name the same concept. The note also names the project brief.
+
+42.681–53.402s | Find the lesson by its meaning
+I search for validate brief. The graph retrieves the saved instruction and its source tag. This is the actual stored text, rather than a newly generated answer.
+
+53.402–64.272s | Check when it should stay quiet
+An unrelated question returns no memory. So does the finance role, and a separate empty store. Roles shape retrieval; separate folders hold separate stores.
+
+64.272–77s | Try it on a clean example
+Download the public brief, graph, commands and saved results. Next, we will use the same project to show a failed command, a reviewed correction, and what an agent actually executes.

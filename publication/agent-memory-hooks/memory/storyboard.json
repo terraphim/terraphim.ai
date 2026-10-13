@@ -1,0 +1,79 @@
+{
+  "status": "script-ready-awaiting-released-binary-recording",
+  "voice": {
+    "name": "Emma",
+    "id": "bf_emma",
+    "language": "en-gb",
+    "engine": "Kokoro v1.0 ONNX",
+    "synthetic": true,
+    "speed": 1.0,
+    "processing": "Fixed gain and scheduled silence; no time stretching or pitch change"
+  },
+  "durationSeconds": 77,
+  "presentation": "Readable walkthrough of real saved CLI outputs; source text and numeric outputs unchanged. Every CLI invocation is a separate process.",
+  "beats": [
+    {
+      "start": 0,
+      "end": 9.132,
+      "title": "Keep the lesson for the next run",
+      "text": "A new agent session should not mean explaining the same project instruction again. Here is one lesson from our Harbour project brief.",
+      "audio": "voice/2501289df87f66dc.wav",
+      "audioDuration": 7.732,
+      "audioSha256": "46e27c7d54a757aeb0f45fe8cb839253fd9324338c1da507fecc66b2b5d3c736"
+    },
+    {
+      "start": 9.132,
+      "end": 21.177,
+      "title": "Save the actual instruction",
+      "text": "I save the validation instruction as memory, with a tag identifying its source. The saved item contains the exact lesson, not just a label saying something was captured.",
+      "audio": "voice/64dc57d2da41f227.wav",
+      "audioDuration": 10.644625,
+      "audioSha256": "4c9ff33eb4bb047e40d48f96c25e0f0e8a7827452d74a2690b10d2e430b0299e"
+    },
+    {
+      "start": 21.177,
+      "end": 31.653,
+      "title": "Read it back in another process",
+      "text": "That command has finished. A new process opens the saved item by its identifier. The same instruction is still there, ready to inspect or export.",
+      "audio": "voice/5f16aa3be9bd797c.wav",
+      "audioDuration": 9.076,
+      "audioSha256": "41999eb9b0e5a53c7e2e5e08afb9bfb377cb709d8cd1e90bdd3154d89d13ba29"
+    },
+    {
+      "start": 31.653,
+      "end": 42.681,
+      "title": "Connect the words to the project",
+      "text": "The project role has a small knowledge graph. Validate brief, brief validation, and the check option name the same concept. The note also names the project brief.",
+      "audio": "voice/349f5eb1edd0671a.wav",
+      "audioDuration": 9.628,
+      "audioSha256": "17344a48853863ad6c44e30fba94e06003faafca0824163d4299a78038e1d66b"
+    },
+    {
+      "start": 42.681,
+      "end": 53.402,
+      "title": "Find the lesson by its meaning",
+      "text": "I search for validate brief. The graph retrieves the saved instruction and its source tag. This is the actual stored text, rather than a newly generated answer.",
+      "audio": "voice/6567e11777a6f4dc.wav",
+      "audioDuration": 9.320666666666666,
+      "audioSha256": "1248f078ef6239f923347cc3ada5e281dec0a2725fc5df8d7d6935ac5140a64f"
+    },
+    {
+      "start": 53.402,
+      "end": 64.272,
+      "title": "Check when it should stay quiet",
+      "text": "An unrelated question returns no memory. So does the finance role, and a separate empty store. Roles shape retrieval; separate folders hold separate stores.",
+      "audio": "voice/a8fdad6099b18698.wav",
+      "audioDuration": 9.47,
+      "audioSha256": "672459043a0387e6000fc4c41615926377a4ca0a002ee747f717580d72d2a977"
+    },
+    {
+      "start": 64.272,
+      "end": 77,
+      "title": "Try it on a clean example",
+      "text": "Download the public brief, graph, commands and saved results. Next, we will use the same project to show a failed command, a reviewed correction, and what an agent actually executes.",
+      "audio": "voice/e8cb6e566c74185c.wav",
+      "audioDuration": 10.796,
+      "audioSha256": "05908960e6ac4b43ce5df574f94a18ca80f98615d7c78bb460148bf0bc1a5fa1"
+    }
+  ]
+}

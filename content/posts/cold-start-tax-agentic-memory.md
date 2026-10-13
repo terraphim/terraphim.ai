@@ -1,165 +1,130 @@
 +++
-title="Stop Paying the Cold-Start Tax: Agentic Memory for Teams Running 42 Agents Nightly"
+title="A project lesson your coding agent can find next time"
 date=2026-07-01
+updated=2026-10-13
+description="Save an actual project instruction, recover it in a new process, and retrieve it through a small knowledge graph. Includes a narrated demo and reproducible example."
 
 [taxonomies]
 categories = ["Technical"]
-tags = ["Terraphim", "ai", "agentic-engineering", "memory", "adf", "knowledge-graph", "developer-tools"]
+tags = ["Terraphim", "ai", "agentic-engineering", "memory", "knowledge-graph", "developer-tools"]
 [extra]
 toc = true
 comments = true
 +++
 
-We run forty-two AI agents in our Dark Factory every night. Every one of them used to wake up with amnesia, rediscovering facts we already knew, paying the same token bill twice. Here is what we built to stop paying it -- and the eight-stage frame, named by memco.ai, that finally made the story legible. As of July 2026, the whole pipeline ships as a single `terraphim-agent memory` CLI namespace.
+You explain the project's validation command. The session ends. Next time, the agent needs the same explanation. Keeping the instruction somewhere is useful only if the next run can find the right instruction again.
 
-> Builds on [Teaching AI Agents to Learn from Their Mistakes](/posts/teaching-ai-agents-to-learn-from-mistakes/) and [Knowledge Graph Hooks](/posts/teaching-ai-agents-with-knowledge-graphs/). Maps both into a single lifecycle.
+This walkthrough saves one lesson from a fictional project, opens it in a new process, and retrieves it through a small knowledge graph. You can inspect the exact saved text and repeat the same checks with the downloadable example.
 
 <!-- more -->
 
-## The cold-start tax is a line item, not a metaphor
+<video controls playsinline preload="metadata" poster="/demos/agent-memory/screenshots/poster.jpg" style="width:100%;height:auto;max-width:100%;border-radius:12px" aria-label="Save and retrieve a Harbour project lesson with Terraphim agent">
+  <source src="/demos/agent-memory/agent-memory.mp4" type="video/mp4">
+  <track kind="captions" src="/demos/agent-memory/captions.vtt" srclang="en" label="English" default>
+  Your browser does not support embedded video. <a href="/demos/agent-memory/agent-memory.mp4">Download the video</a>.
+</video>
 
-Last Tuesday an ADF agent spent fourteen thousand tokens working out that our project uses `bun`, not `npm`. We had captured that correction three months ago. The correction was sitting in `~/.config/terraphim/`, two directories away from where the agent was looking, in a file the agent did not know to read.
+[Download the Harbour example](/demos/agent-memory/harbour-memory-example.zip) · [Read the transcript](/demos/agent-memory/transcript.txt)
 
-memco.ai calls this the **cold-start tax**: every agent run begins from zero, paying full token cost for facts the team already owns. They name it well. "Context is rented. Memory is owned." Read their [field guide](https://www.memco.ai/field-guide); it is short and it is right.
+## Start with an instruction worth keeping
 
-The tax compounds. With forty-two agents running through the night against the same repository, the same rediscovery happens forty-two times. Most teams cope by buying bigger context windows. We tried that. Bigger windows do not pay the tax; they just stretch the receipt.
+Harbour is a small public project brief. It records a decision, a risk and an owner. Before publication, its validator checks that all three fields are present. The instruction we want the next session to remember is deliberately specific:
 
-## The second run is the signal
-
-The number that actually matters is the delta between run one and run two of the same task. If memory works, run two costs less. If memory fails, run two costs the same as run one and your "AI strategy" is a slot machine with extra steps.
-
-Here are five tasks from our last seven days of ADF activity, retried within twenty-four hours after a hook-captured correction landed:
-
-| Gitea issue | Run 1 input tokens | Run 2 input tokens | Delta |
-|---|---|---|---|
-| #1873 | 47,200 | 31,800 | -32.6% |
-| #1862 | 28,400 | 19,100 | -32.7% |
-| #1879 | 81,000 | 63,500 | -21.6% |
-| #1858 | 33,900 | 28,200 | -16.8% |
-| #1850 | 52,100 | 47,400 | -9.0% |
-
-Median: 21.6%. Best: 32.7%. Worst: 9%. The 9% case is a fair tell -- that issue's correction sat in a project KG the second-run agent did not consult. We patched the role scope; next attempt should join the others.
-
-The new `second-run` subcommand reads ADF artefacts and computes this delta automatically:
-
-```bash
-$ terraphim-agent memory second-run --issue 1899
-{
-  "gitea_issue": 1899,
-  "runs_compared": 4,
-  "delta": {
-    "tokens_saved": 8400,
-    "retries_avoided": 1,
-    "wall_time_delta_seconds": -45.2,
-    "interpretation": "improved (fewer tokens in later run)"
-  }
-}
+```text
+Validate the Harbour project brief with python3 validate-brief.py --check.
+Keep the source decisions in brief.md intact.
 ```
 
-We had this data and we were not looking at it. That is the marketing failure underneath the engineering one.
+That gives a future agent an action and a boundary. “Remember to be careful” would be much harder to use. The example also includes the brief and validator, so the instruction has something concrete to refer to.
 
-## Eight stages, all green: the lifecycle in our stack
+The first step is to save this actual text. Download and extract the example, then install [terraphim-agent v1.21.20](https://github.com/terraphim/terraphim-clients/releases/tag/v1.21.20). From the example folder, prepare a new, isolated run before entering the manual commands below:
 
-memco names eight stages of an agentic memory lifecycle. We checked our stack against it. All eight are now wired behind a single CLI namespace.
-
-| Stage | What memco names | CLI command | Status |
-|---|---|---|---|
-| 1. Capture | Record the lesson | `terraphim-agent memory capture --provenance-tag <TAG>` | Shipped |
-| 2. Distill | Synthesise into a shape worth keeping | `memory distill` | Shipped |
-| 3. Scope | Attribute the right role / project | `memory scope --role <ROLE> --check` | Shipped |
-| 4. Provenance | Trace it back to where it came from | `memory provenance` | Shipped |
-| 5. Retrieve | Find it again when it matters | `memory retrieve <QUERY>` | Shipped |
-| 6. Apply | Inject it into the next run | `memory apply --prompt <TEXT>` | Shipped |
-| 7. Validate | Check the lesson is still true | `memory validate` | Shipped |
-| 8. Retire | Demote the lessons that have aged out | `memory retire --lesson-id <ID>` | Shipped |
-| -- | Diagnostic | Full reliability readout | `memory rubric --project <PATH>` | Shipped |
-| -- | Inspection | Browse the evolution store | `memory list`, `memory show`, `memory export` | Shipped |
-
-The implementation lives in [terraphim-clients PR #61](https://git.terraphim.cloud/terraphim/terraphim-clients/pulls/61). Thirteen subcommands, ~1200 lines of Rust, built on `terraphim_agent_evolution` from the terraphim registry. No new crates. No new schemas. Pure consolidation.
-
-## The Memory Reliability Rubric: a ten-minute readout
-
-The rubric subcommand scores every captured memory on six dimensions and produces a markdown diagnostic in under a second:
-
-1. **Faithfulness** -- does the memory accurately describe what happened?
-2. **Scope** -- is the role and project boundary correct?
-3. **Provenance** -- can we trace this memory to a session, commit, or hook event?
-4. **Actionability** -- does the memory tell the next agent what to do, or only what happened?
-5. **Decay** -- is the memory still current, or has the codebase moved past it?
-6. **Risk** -- does applying this memory introduce a new failure mode (brittle text substitution, false confidence)?
-
-Example output against a project with two captured items:
-
-```
-$ terraphim-agent memory rubric --project ~/project
-
-# Memory Reliability Rubric Report
-
-| Dimension    | Score | Status        |
-|-------------|-------|---------------|
-| Faithfulness | 0.65 | Adequate      |
-| Scope       | 0.30 | Needs attention |
-| Provenance  | 0.90 | Good          |
-| Actionability | 0.40 | Adequate    |
-| Decay        | 1.00 | Good          |
-| Risk         | 0.40 | Needs attention |
-
-Composite score: 0.59 / 1.00
-
-## Top 3 Items Needing Attention
-
-1. **ab12cd** (composite: 0.57) -- Memory item captured via CLI with provenance: test
-2. **ef34gh** (composite: 0.60) -- Potential risk pattern detected in content
-
-## Recommended Retirements
-
-- **ef34gh**: contains high-risk command pattern (risk: 0.70)
+```sh
+python3 reproduce.py --agent /path/to/terraphim-agent \
+  --output ./harbour-run --prepare-only
+cd harbour-run/fixture
+export TERRAPHIM_DEFAULT_DATA_PATH="$(cd .. && pwd)/data"
+export TERRAPHIM_SETTINGS_PATH="$(cd .. && pwd)/settings"
 ```
 
-## Public commons vs permissioned memory
+Use your actual binary path in the first command and put that same verified binary on your PATH for the remaining commands. Preparation creates the role configuration, settings and `lesson.md`; it has not captured anything yet. To run all checks automatically instead, omit `--prepare-only` and choose a fresh output folder.
 
-Not every lesson belongs to the world. We split memory into two buckets, with a policy file at the repo root:
-
-**Public commons memory** lives in the [terraphim-skills](https://github.com/terraphim/terraphim-skills) repository and as KG terms published via Gitea wiki. Apache-2.0, no PII, no secrets. Anyone can clone, anyone can contribute.
-
-**Permissioned memory** lives in per-project KGs, per-agent corrections, and session transcripts. It stays in `~/.config/terraphim/evolution/cli-agent.json` or per-repo `.terraphim/`. Never leaves the device without an explicit publication step. A scope check in the capture path warns when a permissioned item is about to land in a public location.
-
-This split is what makes the open-source story work without burning operational secrets. It is documented in `MEMORY_POLICY.md` at the terraphim-clients repo root.
-
-## Try it
-
-Install:
-
-```bash
-# Build from source (terraphim-clients repo)
-git clone https://git.terraphim.cloud/terraphim/terraphim-clients.git
-cd terraphim-clients
-cargo build --release -p terraphim_agent
-
-# Capture a memory item
-terraphim-agent memory capture --provenance-tag "session-abc123"
-
-# Browse the store
-terraphim-agent memory list
-
-# Run the reliability rubric
-terraphim-agent memory rubric --project ./my-project
-
-# Check second-run acceleration
-terraphim-agent memory second-run --issue 1234
-
-# Export as JSON
-terraphim-agent memory export --format json --output memory-dump.json
+```sh
+terraphim-agent --format json memory capture \
+  --file lesson.md \
+  --provenance-tag harbour-public-brief-v1
 ```
 
-The full `memory` namespace is shipping in [terraphim-clients PR #61](https://git.terraphim.cloud/terraphim/terraphim-clients/pulls/61). The feature request is [terraphim-ai#1899](https://git.terraphim.cloud/terraphim/terraphim-ai/issues/1899). Thirteen subcommands, one CLI surface, zero new crates.
+Capture returns a memory identifier. We use that identifier to inspect the saved item, rather than treating a successful exit code as the whole result. The saved content is the lesson itself, and the provenance tag identifies which public example supplied it.
 
-## What memco got right, and what we are adding
+`--content` accepts a short instruction directly. `--file` is convenient for a multiline note. Both preserve the supplied text. Missing, blank, unreadable or conflicting inputs fail without creating a substitute placeholder.
 
-memco named the category and wrote the field guide. That is real work and we are crediting them for the vocabulary throughout this post. What we are adding is the engineering substrate: a working eight-stage pipeline in Rust with 13 CLI subcommands, a six-dimension rubric you can run on your own code, a second-run acceleration signal measured from production ADF data, and a forty-two-agent fleet that has been paying the tax in production for long enough to measure the relief.
+## End the process, then open the memory
 
-The cold-start tax is real. The second-run signal is measurable. The lifecycle exists in a single CLI namespace today. Read the field guide. Then check your own stack against the eight stages. If you are missing more than two, you are paying tax you do not need to pay.
+Each command in the demonstration starts a new process. After capture exits, `memory show` opens the saved identifier. `memory list` finds the item, and `memory export` includes the same instruction in JSON.
 
----
+```sh
+terraphim-agent --format json memory show MEMORY_ID
+terraphim-agent --format json memory list
+terraphim-agent memory export --format json --output memories.json
+```
 
-*Discuss on [Twitter](https://twitter.com/terraphim_ai) or open an issue at [git.terraphim.cloud/terraphim/terraphim-ai](https://git.terraphim.cloud/terraphim/terraphim-ai). The Gitea feature request for the consolidated CLI is [#1899](https://git.terraphim.cloud/terraphim/terraphim-ai/issues/1899). PR: [terraphim-clients#61](https://git.terraphim.cloud/terraphim/terraphim-clients/pulls/61).*
+Replace `MEMORY_ID` with the identifier returned by capture. The reproduction script does this automatically and checks that the reopened and exported text exactly matches `lesson.md`.
+
+![A new process displays the exact saved Harbour instruction and its provenance tag](/demos/agent-memory/screenshots/saved-lesson.jpg)
+
+The store has an explicit location. The example sets `TERRAPHIM_DEFAULT_DATA_PATH` to a new folder for that run; the evolution file lives beneath `terraphim/evolution/cli-agent.json`. A second empty folder supplies the independent-store check. This keeps the demonstration separate from your existing memory files.
+
+Without an explicit data root, the agent retains its usual platform configuration-directory location. Changing the root selects another store; it does not silently migrate or merge your previous one.
+
+## Teach the role the words used by the project
+
+Knowing an identifier is useful for inspection. Day to day, you are more likely to ask a question such as “validate brief”. The **Brief Reviewer** role supplies the terminology for that question.
+
+Its small graph has a **Brief validation** concept:
+
+```markdown
+# Brief validation
+synonyms:: validate brief, brief validation, --check
+```
+
+A second concept describes the **Project brief**, including `brief.md`. Both definitions are ordinary Markdown in the download. The saved instruction mentions these concepts, connecting an action with the document it applies to.
+
+The `synonyms::` property makes the relationship visible: “validate brief” and `--check` are labels for the same concept in this project. You can review or change that relationship. Saving a memory does not invent new terminology or update every other role automatically.
+
+This is the same explicit-knowledge principle used in the [editor-to-search example](/how-tos/synonym-search/): record the relationship, then use the configured graph to find relevant work. Here the searched material is an authored memory item.
+
+## Retrieve the instruction, then check the empty cases
+
+With the example's role configuration loaded, this query retrieves the stored lesson:
+
+```sh
+terraphim-agent --config ../config.json memory retrieve 'validate brief' \
+  --role 'Brief Reviewer' --format json
+```
+
+The result includes the original text, its memory identifier, the provenance tag and a matched concept. It is a retrieved instruction, not a generated paraphrase. The viewer can compare it directly with the file that was captured.
+
+![The Brief Reviewer retrieves one saved lesson while unrelated-query, other-role and empty-store controls return zero](/demos/agent-memory/screenshots/retrieval-controls.jpg)
+
+The accompanying controls matter just as much. “Volcanic eruption” returns no memory. The **Finance Reviewer** role, which has budget and grant concepts, does not match the validation query. The same useful query against a separate empty store also returns nothing.
+
+Those observations distinguish useful retrieval from a command that always prints the latest note. Roles shape which concepts are recognised. They are not an access-control system: use separate stores and ordinary filesystem permissions where separation is required.
+
+## What happens inside the CLI
+
+The agent stores the lesson using Terraphim's existing evolution types. During retrieval, the role's thesaurus matches terms, and the role graph ranks memory items by their concept relationships. There is no lexical fallback when a question matches none of the configured concepts.
+
+This graph uses co-occurrence edges, so the example intentionally connects validation with the project brief. A single isolated concept is not enough to assume the same retrieval behavior. Keep the graph and the note inspectable, and test the questions people will actually ask.
+
+`memory apply` can preview proposed context for a prompt. That preview does not execute a command or prove a coding host consumed it. The separate hooks walkthrough will follow the instruction into actual execution. Captured memories and reviewed learning corrections also use different stores; neither is an automatic copy of the other.
+
+## Try the next run yourself
+
+The ZIP contains the public brief, validator, lesson, Markdown concepts, reproduction script and saved outputs. Follow its README to verify the released binary, create an isolated run and compare the positive and negative results. The script checks the saved content, rather than relying on expected screenshots.
+
+[Download and reproduce the memory example](/demos/agent-memory/harbour-memory-example.zip). You can also inspect the [saved outputs and verification manifest](/demos/agent-memory/manifest.json).
+
+The useful result here is modest and concrete: an instruction survives the process that captured it, and the intended project terminology can find it again. Measuring whether that saves tokens or improves later decisions needs a separate experiment.
+
+*Updated 13 October 2026 with a reproducible walkthrough. The broader memory-lifecycle vocabulary was inspired by [memco.ai's field guide](https://www.memco.ai/field-guide). The video uses synthetic British female narration and readable views of actual CLI outputs. The Harbour fixture is public sample data.*
