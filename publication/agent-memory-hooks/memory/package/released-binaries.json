@@ -1,0 +1,62 @@
+{
+  "version": "1.21.20",
+  "releaseUrl": "https://github.com/terraphim/terraphim-clients/releases/tag/v1.21.20",
+  "sourceSha": "d55d373ec2eb100d334712f086dc95a2829856e7",
+  "qualification": "downloaded from public release URLs; SHA256SUMS and embedded signatures verified",
+  "binaries": [
+    {
+      "target": "aarch64-apple-darwin",
+      "archive": "terraphim-agent-1.21.20-aarch64-apple-darwin.tar.gz",
+      "archiveUrl": "https://github.com/terraphim/terraphim-clients/releases/download/v1.21.20/terraphim-agent-1.21.20-aarch64-apple-darwin.tar.gz",
+      "archiveSha256": "e7e075d47e79b03f41f646ca388d8c7104065cfb8ea0966761b1f6ae796166bd",
+      "binarySha256": "bff31dc42d6d1a99bf51291039d7719c6a48c2326e582e5e24eaa1eaf11e17ec",
+      "bytes": 8973418,
+      "embeddedSignature": "PASS"
+    },
+    {
+      "target": "aarch64-unknown-linux-musl",
+      "archive": "terraphim-agent-1.21.20-aarch64-unknown-linux-musl.tar.gz",
+      "archiveUrl": "https://github.com/terraphim/terraphim-clients/releases/download/v1.21.20/terraphim-agent-1.21.20-aarch64-unknown-linux-musl.tar.gz",
+      "archiveSha256": "cf09f161ff42180308509d8e9b43b66c94bedd3801987cd1112b38b3718b5789",
+      "binarySha256": "5ae520c7034dd125dc6ccb0f6a2f7233794e4bef254381f292566827988f9c52",
+      "bytes": 9393380,
+      "embeddedSignature": "PASS"
+    },
+    {
+      "target": "universal-apple-darwin",
+      "archive": "terraphim-agent-1.21.20-universal-apple-darwin.tar.gz",
+      "archiveUrl": "https://github.com/terraphim/terraphim-clients/releases/download/v1.21.20/terraphim-agent-1.21.20-universal-apple-darwin.tar.gz",
+      "archiveSha256": "3b8766759eb227e0e99fe35cf63bbe7d39eb225dfb5b0b89e6a2b32fc3404fda",
+      "binarySha256": "ced47028f352f3be126c1ad013abd5ad04bb0d5f21438a6aa55730f101caded6",
+      "bytes": 18720628,
+      "embeddedSignature": "PASS"
+    },
+    {
+      "target": "x86_64-apple-darwin",
+      "archive": "terraphim-agent-1.21.20-x86_64-apple-darwin.tar.gz",
+      "archiveUrl": "https://github.com/terraphim/terraphim-clients/releases/download/v1.21.20/terraphim-agent-1.21.20-x86_64-apple-darwin.tar.gz",
+      "archiveSha256": "6928d1e60fc30a7a9eb4eec3f6429d5a9774370cea967ff2a9d088c380b1615c",
+      "binarySha256": "61ed0e6737c0011a3a0805ffd9383c189b889f2669458ce4fc7b95260b534e90",
+      "bytes": 9749512,
+      "embeddedSignature": "PASS"
+    },
+    {
+      "target": "x86_64-unknown-linux-gnu",
+      "archive": "terraphim-agent-1.21.20-x86_64-unknown-linux-gnu.tar.gz",
+      "archiveUrl": "https://github.com/terraphim/terraphim-clients/releases/download/v1.21.20/terraphim-agent-1.21.20-x86_64-unknown-linux-gnu.tar.gz",
+      "archiveSha256": "c58f4c384a29e2d5dc43b46c14741b6d083699d03e5ab6b6b15b4f5c1fd9a07f",
+      "binarySha256": "6c1ce6b3c939888021991c400da6281bafacb6ffe9b63c872a895281d633c2f2",
+      "bytes": 10335616,
+      "embeddedSignature": "PASS"
+    },
+    {
+      "target": "x86_64-unknown-linux-musl",
+      "archive": "terraphim-agent-1.21.20-x86_64-unknown-linux-musl.tar.gz",
+      "archiveUrl": "https://github.com/terraphim/terraphim-clients/releases/download/v1.21.20/terraphim-agent-1.21.20-x86_64-unknown-linux-musl.tar.gz",
+      "archiveSha256": "242c3a72849d3e905c3af6359002fb7473c900df2f4c87ccdebe80c0c538e4ce",
+      "binarySha256": "22795761e381a5cf3bac973aa2f255a3749acd9677c3dddbe54ff776d2645655",
+      "bytes": 10189950,
+      "embeddedSignature": "PASS"
+    }
+  ]
+}

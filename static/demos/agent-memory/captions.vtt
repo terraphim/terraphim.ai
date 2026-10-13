@@ -1,0 +1,46 @@
+WEBVTT
+
+00:00:00.200 --> 00:00:04.066
+A new agent session should not mean explaining the same project
+
+00:00:04.066 --> 00:00:07.932
+instruction again. Here is one lesson from our Harbour project brief.
+
+00:00:09.332 --> 00:00:14.654
+I save the validation instruction as memory, with a tag identifying its source. The
+
+00:00:14.654 --> 00:00:19.977
+saved item contains the exact lesson, not just a label saying something was captured.
+
+00:00:21.377 --> 00:00:25.733
+That command has finished. A new process opens the saved item by
+
+00:00:25.733 --> 00:00:30.453
+its identifier. The same instruction is still there, ready to inspect or export.
+
+00:00:31.853 --> 00:00:36.489
+The project role has a small knowledge graph. Validate brief, brief validation, and
+
+00:00:36.489 --> 00:00:41.481
+the check option name the same concept. The note also names the project brief.
+
+00:00:42.881 --> 00:00:47.369
+I search for validate brief. The graph retrieves the saved instruction and its
+
+00:00:47.369 --> 00:00:52.202
+source tag. This is the actual stored text, rather than a newly generated answer.
+
+00:00:53.602 --> 00:00:58.337
+An unrelated question returns no memory. So does the finance role, and
+
+00:00:58.337 --> 00:01:03.072
+a separate empty store. Roles shape retrieval; separate folders hold separate stores.
+
+00:01:04.472 --> 00:01:08.071
+Download the public brief, graph, commands and saved results. Next,
+
+00:01:08.071 --> 00:01:11.669
+we will use the same project to show a failed
+
+00:01:11.669 --> 00:01:15.268
+command, a reviewed correction, and what an agent actually executes.

@@ -1,0 +1,72 @@
+{
+  "edition": "agent-memory-20261013",
+  "qualification": "released-binary",
+  "durationSeconds": 77,
+  "release": "1.21.20",
+  "voice": {
+    "name": "Emma",
+    "engine": "Kokoro ONNX",
+    "locale": "en-GB",
+    "synthetic": true,
+    "speechRateUnchanged": true
+  },
+  "render": {
+    "qualification": "released-binary",
+    "sourceRun": "/private/tmp/harbour-memory-released-macos-20261013",
+    "binarySha256": "bff31dc42d6d1a99bf51291039d7719c6a48c2326e582e5e24eaa1eaf11e17ec",
+    "outputPresentation": "Excerpts from actual CLI JSON, preserving source strings and numbers. No simulated terminal execution.",
+    "durationSeconds": 77,
+    "scenes": 7,
+    "candidatePreview": false
+  },
+  "probe": {
+    "streams": [
+      {
+        "type": "video",
+        "codec": "h264"
+      },
+      {
+        "type": "audio",
+        "codec": "aac"
+      }
+    ],
+    "durationSeconds": 77.0
+  },
+  "files": [
+    {
+      "file": "agent-memory.mp4",
+      "sha256": "c7565a87355da35f278649b3a041cd9a0ce7b75ce4f2fb0943868c479dff0f69",
+      "bytes": 1911762
+    },
+    {
+      "file": "captions.vtt",
+      "sha256": "b58c07b01f2a95d7c30e81353e27d51be9faba70f1c0c4a72844beecd237ae9e",
+      "bytes": 1586
+    },
+    {
+      "file": "harbour-memory-example.zip",
+      "sha256": "df88316ce57c972a4c8f0c458149b94d10e071cc54cc4f25fba82bdb00f43606",
+      "bytes": 17442
+    },
+    {
+      "file": "screenshots/poster.jpg",
+      "sha256": "c68229aa51121987ee37c1e950abdd9a5ff773d924300745eae803acaba3b510",
+      "bytes": 98313
+    },
+    {
+      "file": "screenshots/retrieval-controls.jpg",
+      "sha256": "71e1a182e226c7c5df4cd7f4f885d27349f74b8485fbeb80e36b569a1264a389",
+      "bytes": 93292
+    },
+    {
+      "file": "screenshots/saved-lesson.jpg",
+      "sha256": "45337fd0c1bdfd51f7c4190264c0902beb0883d8cef4ab2c02107a661660fe79",
+      "bytes": 130036
+    },
+    {
+      "file": "transcript.txt",
+      "sha256": "41f32a267d4c29f78abf24ee4d6b2cea3fb7649c670e89f5f1dcdb8416f3cf2d",
+      "bytes": 1559
+    }
+  ]
+}
