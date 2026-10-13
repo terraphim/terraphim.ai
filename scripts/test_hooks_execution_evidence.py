@@ -27,7 +27,7 @@ class HooksExecutionEvidenceTests(unittest.TestCase):
                 self.assertIsNone(z.testzip())
                 self.assertTrue(all(not n.startswith('/') and '..' not in Path(n).parts for n in z.namelist()))
                 z.extractall(tmp)
-            for args in [['node','reproduction/verify.mjs','recorded-run'],['node','--test','tests/execution-trace.test.mjs']]:
+            for args in [['node','reproduction/verify.mjs','recorded-run'],['node','--test','tests/execution-trace.test.mjs','tests/verify-evidence.test.mjs']]:
                 run=subprocess.run(args,cwd=tmp,capture_output=True,text=True)
                 self.assertEqual(run.returncode,0,run.stdout+run.stderr)
     def test_page_explains_execution_and_downloads(self):

@@ -110,7 +110,7 @@ The included adapter records an execution ID alongside the host’s session and 
 - The tool’s exit status and combined output.
 - The output file, its execution ID, byte length and SHA-256.
 
-The validator embeds the same execution ID in its printed result and saved file. The verifier checks those values against the native host events and rehashes the graph and output. A stale file, mismatched command, missing artifact or altered bytes fails verification. A blocked call is retained without being labelled executed.
+The validator embeds the same execution ID in its printed result and saved file. The verifier checks those values against the native host events and rehashes the graph and output. A stale file, mismatched command, unmatched host call, missing artifact or altered bytes fails verification. A blocked call is retained without being labelled executed.
 
 [Inspect the execution receipt](/demos/hooks-execution-evidence/execution-receipt.json), [saved result](/demos/hooks-execution-evidence/validation.json) and [run verification](/demos/hooks-execution-evidence/verification.json).
 
@@ -133,7 +133,7 @@ python3 reproduction/reproduce.py \
 
 Use your configured model identifier if it differs. The script uses a new folder for the fixture, settings, learning store and project-local adapter. It does not install global hooks or select a paid fallback. The recorded run used the existing Kimi coding-plan route.
 
-Run `node reproduction/verify.mjs /absolute/path/to/a-new-harbour-run` to check the saved evidence. Read `evidence/verification.json`, the host events and each execution’s `receipt.json` and `validation.json`. The ZIP also includes 14 regression tests, runnable with `node --test tests/execution-trace.test.mjs`. The script fails if the host does not perform the expected command or the saved outputs do not match. You can inspect the source before running it; only the two local validator commands are permitted by the fixture's host configuration.
+Run `node reproduction/verify.mjs /absolute/path/to/a-new-harbour-run` to check the saved evidence. Read `evidence/verification.json`, the host events and each execution’s `receipt.json` and `validation.json`. The ZIP also includes 22 regression tests, runnable with `node --test tests/*.test.mjs`. The script fails if the host does not perform the expected command or the saved outputs do not match. You can inspect the source before running it; only the two local validator commands are permitted by the fixture's host configuration.
 
 ## Keep the scope of the example visible
 

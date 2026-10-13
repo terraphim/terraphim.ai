@@ -5,7 +5,7 @@
   "adapter": "2.0.0",
   "durationSeconds": 65.6,
   "executionId": "19578f09-a59a-4e80-be31-7d319b0c9368",
-  "tests": 14,
+  "tests": 22,
   "voice": {
     "name": "Emma",
     "engine": "Kokoro",
@@ -55,8 +55,8 @@
     },
     {
       "file": "terraphim-hooks-execution-evidence-v2.zip",
-      "sha256": "e47a676c27920f3979dc23d9cc24def25307b36572c453b6a5e6f74ed163ea8e",
-      "bytes": 32471
+      "sha256": "533cfeb6d91101f48c1d72a0bf745285a645b8cef4006a877593b9071ef81a36",
+      "bytes": 33728
     },
     {
       "file": "transcript.txt",
