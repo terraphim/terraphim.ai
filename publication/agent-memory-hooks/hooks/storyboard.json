@@ -1,0 +1,77 @@
+{
+  "title": "A failed command, a saved correction, and the next run",
+  "durationSeconds": 75,
+  "voice": {
+    "name": "Emma",
+    "id": "bf_emma",
+    "locale": "en-gb",
+    "engine": "Kokoro ONNX",
+    "synthetic": true,
+    "processing": "Fixed gain and scheduled silence; no time stretching or pitch change"
+  },
+  "beats": [
+    {
+      "start": 0,
+      "end": 9.575,
+      "title": "One wrong flag",
+      "text": "The Harbour brief needs checking. In a real coding session, the agent uses a misspelled flag. The validator fails, with exit code two.",
+      "audio": "voice/bad0a08847a137dc.wav",
+      "audioDuration": 8.174625,
+      "audioSha256": "213f8e94b96e57d3933a8d516e1b9f96b6c5d6e48fc70b102a694f045af0995d"
+    },
+    {
+      "start": 9.575,
+      "end": 18.354,
+      "title": "Keep the failure that happened",
+      "text": "The project adapter passes that actual tool result to Terraphim. A saved learning now contains the command and its error.",
+      "audio": "voice/ce6d7a2756191e29.wav",
+      "audioDuration": 7.379333333333333,
+      "audioSha256": "2a462357d0cc4a02da1c85a1a0fd4ccd4ab3a96c2a5ed22104a4687f21086b28"
+    },
+    {
+      "start": 18.354,
+      "end": 31.027,
+      "title": "Review, then promote",
+      "text": "I record the correction and explicitly promote it to a tool preference. Compilation produces one rule. This review step matters: a captured failure alone does not activate a replacement.",
+      "audio": "voice/f3bde5a82c37a918.wav",
+      "audioDuration": 11.273333333333333,
+      "audioSha256": "711842fdec9632c84818c1a8e131c1192265c97ff929387c802862f28836b1bf"
+    },
+    {
+      "start": 31.027,
+      "end": 41.859,
+      "title": "Hook output is not execution",
+      "text": "Without rewriting, the hook keeps the typo and warns. With rewriting enabled, it returns the corrected command. This JSON has not executed anything yet.",
+      "audio": "voice/d0bd0d86536766b5.wav",
+      "audioDuration": 9.432,
+      "audioSha256": "81e7404e468d38f1a937e38486df32316966b08aed962579929b25ccbee03968"
+    },
+    {
+      "start": 41.859,
+      "end": 53.945,
+      "title": "A fresh host run applies it",
+      "text": "A new coding session tries the same typo. The included OpenCode adapter applies the returned command. The real tool event now records the correct flag and exit code zero.",
+      "audio": "voice/ec8edda1eb08ffd7.wav",
+      "audioDuration": 10.686,
+      "audioSha256": "7287805f718df3e7b839dd9080b0124dd1be598fc3e71f9f7e0819b5942d2758"
+    },
+    {
+      "start": 53.945,
+      "end": 64.4,
+      "title": "Inspect the result on disk",
+      "text": "The validator writes this result file. Unrelated commands and an unrelated role remain unchanged. These are actual outputs from the released binary.",
+      "audio": "voice/40574a95452b9fa0.wav",
+      "audioDuration": 9.054666666666666,
+      "audioSha256": "c92b32a8b6b7882df5abc86bb28662f4b4d5c473b4a2d88f9f8904c37e964bce"
+    },
+    {
+      "start": 64.4,
+      "end": 75,
+      "title": "Try the public fixture",
+      "text": "Download the brief, adapter, saved traces and reproduction script. Follow one reviewed correction all the way from failure to a command that actually runs.",
+      "audio": "voice/2b85beee1296d458.wav",
+      "audioDuration": 9.054666666666666,
+      "audioSha256": "89f0f2498ffb3f8a8210012e7528088c47f5fb6cc7d826304570ba812b07162b"
+    }
+  ]
+}

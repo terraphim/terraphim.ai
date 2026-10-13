@@ -1,0 +1,49 @@
+WEBVTT
+
+00:00:00.200 --> 00:00:04.110
+The Harbour brief needs checking. In a real coding session, the
+
+00:00:04.110 --> 00:00:08.375
+agent uses a misspelled flag. The validator fails, with exit code two.
+
+00:00:09.775 --> 00:00:13.465
+The project adapter passes that actual tool result to Terraphim.
+
+00:00:13.465 --> 00:00:17.154
+A saved learning now contains the command and its error.
+
+00:00:18.554 --> 00:00:22.053
+I record the correction and explicitly promote it to
+
+00:00:22.053 --> 00:00:25.940
+a tool preference. Compilation produces one rule. This review step
+
+00:00:25.940 --> 00:00:29.827
+matters: a captured failure alone does not activate a replacement.
+
+00:00:31.227 --> 00:00:35.943
+Without rewriting, the hook keeps the typo and warns. With rewriting enabled,
+
+00:00:35.943 --> 00:00:40.659
+it returns the corrected command. This JSON has not executed anything yet.
+
+00:00:42.059 --> 00:00:45.375
+A new coding session tries the same typo. The
+
+00:00:45.375 --> 00:00:49.060
+included OpenCode adapter applies the returned command. The real tool
+
+00:00:49.060 --> 00:00:52.745
+event now records the correct flag and exit code zero.
+
+00:00:54.145 --> 00:00:58.672
+The validator writes this result file. Unrelated commands and an unrelated
+
+00:00:58.672 --> 00:01:03.200
+role remain unchanged. These are actual outputs from the released binary.
+
+00:01:04.600 --> 00:01:09.127
+Download the brief, adapter, saved traces and reproduction script. Follow one reviewed
+
+00:01:09.127 --> 00:01:13.655
+correction all the way from failure to a command that actually runs.

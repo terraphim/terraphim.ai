@@ -1,0 +1,23 @@
+A failed command, a saved correction, and the next run
+Synthetic British female voice: Emma (Kokoro).
+
+0–9.575s | One wrong flag
+The Harbour brief needs checking. In a real coding session, the agent uses a misspelled flag. The validator fails, with exit code two.
+
+9.575–18.354s | Keep the failure that happened
+The project adapter passes that actual tool result to Terraphim. A saved learning now contains the command and its error.
+
+18.354–31.027s | Review, then promote
+I record the correction and explicitly promote it to a tool preference. Compilation produces one rule. This review step matters: a captured failure alone does not activate a replacement.
+
+31.027–41.859s | Hook output is not execution
+Without rewriting, the hook keeps the typo and warns. With rewriting enabled, it returns the corrected command. This JSON has not executed anything yet.
+
+41.859–53.945s | A fresh host run applies it
+A new coding session tries the same typo. The included OpenCode adapter applies the returned command. The real tool event now records the correct flag and exit code zero.
+
+53.945–64.4s | Inspect the result on disk
+The validator writes this result file. Unrelated commands and an unrelated role remain unchanged. These are actual outputs from the released binary.
+
+64.4–75s | Try the public fixture
+Download the brief, adapter, saved traces and reproduction script. Follow one reviewed correction all the way from failure to a command that actually runs.
