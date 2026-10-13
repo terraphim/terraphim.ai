@@ -1,7 +1,7 @@
 +++
 title="A failed command, a saved correction, and the next run"
 date=2026-04-15
-updated=2026-10-14
+updated=2026-10-13
 description="Capture a real command failure, review its correction, and verify what an OpenCode hook changes and executes. Includes a narrated demo and reproducible public fixture."
 [taxonomies]
 categories = ["Tutorials"]
@@ -125,4 +125,4 @@ Use public sample data for this release's learning capture. Tests with deliberat
 
 [Download the example and saved outputs](/demos/agent-hooks/harbour-hooks-example.zip) to follow the whole chain: a failure that happened, a correction someone reviewed, and a later command whose result can be checked.
 
-*Updated 14 October 2026. The video uses synthetic British female narration and readable excerpts from actual released-binary and host outputs. The Harbour project is fictional public sample data.*
+*Updated 13 October 2026. The video uses synthetic British female narration and readable excerpts from actual released-binary and host outputs. The Harbour project is fictional public sample data.*

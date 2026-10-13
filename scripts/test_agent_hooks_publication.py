@@ -55,7 +55,7 @@ class AgentHooksPublicationTests(unittest.TestCase):
     def test_article_preserves_scope_and_downloads(self):
         page = (ROOT / 'content/how-tos/command-rewriting-howto.md').read_text()
         self.assertIn('date=2026-04-15', page)
-        self.assertIn('updated=2026-10-14', page)
+        self.assertIn('updated=2026-10-13', page)
         for name in ['agent-hooks.mp4','captions.vtt','transcript.txt','harbour-hooks-example.zip']:
             self.assertIn('/demos/agent-hooks/' + name, page)
             self.assertTrue((MEDIA / name).is_file())
