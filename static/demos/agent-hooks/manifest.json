@@ -1,0 +1,68 @@
+{
+  "edition": "agent-hooks-20261013",
+  "qualification": "released-binary",
+  "durationSeconds": 75,
+  "release": "1.21.19",
+  "host": "OpenCode 2.0.20",
+  "voice": {
+    "name": "Emma",
+    "engine": "Kokoro ONNX",
+    "locale": "en-GB",
+    "synthetic": true,
+    "speechRateUnchanged": true
+  },
+  "manualPromotion": true,
+  "adapterRequired": true,
+  "render": {
+    "qualification": "released-binary",
+    "identities": {
+      "terraphim_agent": "terraphim-agent 1.21.19",
+      "binary_sha256": "78542870b76e2a90fa7b2a767ba7fd6126b32304a925feb83e16db01faf0f4d1",
+      "host": "opencode v2.0.20",
+      "model": "kimi-code-plan-global/k3",
+      "note": "Only public fixture sent to the coding model. Hook processing is local; no blanket no-network claim."
+    },
+    "durationSeconds": 75,
+    "source": "evidence/fresh-run",
+    "outputPresentation": "Readable excerpts preserving actual source values; no simulated terminal execution.",
+    "manualPromotion": true,
+    "adapterRequired": true
+  },
+  "files": [
+    {
+      "file": "agent-hooks.mp4",
+      "sha256": "2c5cd802c6c0f9223f2df0c0ade39afcf93a496592ac07bf192fb2d2be7cd906",
+      "bytes": 1670771
+    },
+    {
+      "file": "captions.vtt",
+      "sha256": "9cfb9bc6759539ae8c0c8648c085e7778491b756ab6ebe888904375376b296ad",
+      "bytes": 1576
+    },
+    {
+      "file": "harbour-hooks-example.zip",
+      "sha256": "f17baaaf504380209e9574d0990336d517a66f974a6f9bf27bbbab704c9acb71",
+      "bytes": 30326
+    },
+    {
+      "file": "screenshots/executed-result.jpg",
+      "sha256": "c5216ee5e77668289e4f5120fd3d34d51f2ad156c68b5a82c6cd40bfed49a825",
+      "bytes": 79598
+    },
+    {
+      "file": "screenshots/hook-output.jpg",
+      "sha256": "dee70fc14ce70ae409032211ec4560ed716024b5f0c4cabb40a5dcbc215f6e5e",
+      "bytes": 89396
+    },
+    {
+      "file": "screenshots/poster.jpg",
+      "sha256": "2994137b31f736bfcf17dbda20ad9f843ceba3b057db312ad7f6bf6f97a67b76",
+      "bytes": 90467
+    },
+    {
+      "file": "transcript.txt",
+      "sha256": "c0d1fe56b0778d3fdb020c87dca679be9315c9c50a308a80602487a0ad251d42",
+      "bytes": 1474
+    }
+  ]
+}

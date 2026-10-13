@@ -10,6 +10,8 @@ toc = true
 comments = true
 +++
 
+> This is the February 2026 announcement for v1.8.1. For the tested failure → reviewed correction → execution flow, follow the [current command-rewriting guide](/how-tos/command-rewriting-howto/).
+
 We are announcing **native hook support** for terraphim-agent v1.8.1. This feature captures failed commands from AI agents (Claude Code, Codex, OpenCode) and learns from them, creating a personal knowledge base of mistakes and corrections. No more jq dependency, no more bash wrappers: just `terraphim-agent learn hook`.
 
 <!-- more -->
