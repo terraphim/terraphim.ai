@@ -1,4 +1,6 @@
 """Bind hook claims to actual captured failures, correction and executed output."""
+import ast
+import re
 import hashlib
 import json
 from pathlib import Path
@@ -51,6 +53,23 @@ class AgentHooksPublicationTests(unittest.TestCase):
             for row in z.read('SHA256SUMS').decode().splitlines():
                 digest, name = row.split('  ', 1)
                 self.assertEqual(hashlib.sha256(z.read(name)).hexdigest(), digest)
+
+    def test_host_prompt_delimits_an_allowed_command(self):
+        with zipfile.ZipFile(MEDIA / 'harbour-hooks-example.zip') as z:
+            tree = ast.parse(z.read('reproduce.py').decode())
+            prompt = next(ast.literal_eval(n.value) for n in tree.body
+                          if isinstance(n, ast.Assign)
+                          and any(isinstance(t, ast.Name) and t.id == 'prompt' for t in n.targets))
+            commands = re.findall(r'```sh\n([^`]+)\n```', prompt)
+            self.assertEqual(commands, ['python3 validate-brief.py --chek'])
+            config = json.loads(z.read('fixture/opencode.json'))
+            allowed = {p['resource'] for p in config['permissions']
+                       if p['action'] == 'shell' and p['effect'] == 'allow'}
+            self.assertEqual(allowed, {'python3 validate-brief.py --chek',
+                                       'python3 validate-brief.py --check'})
+            self.assertIn(commands[0], allowed)
+            self.assertNotIn(commands[0] + ' .', allowed)
+            self.assertIn('Do not repair it or add arguments, punctuation', prompt)
 
     def test_article_preserves_scope_and_downloads(self):
         page = (ROOT / 'content/how-tos/command-rewriting-howto.md').read_text()
