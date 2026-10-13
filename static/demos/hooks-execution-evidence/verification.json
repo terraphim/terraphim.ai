@@ -1,0 +1,26 @@
+{
+  "pass": true,
+  "execution_id": "19578f09-a59a-4e80-be31-7d319b0c9368",
+  "matched_rule": {
+    "id": 1,
+    "ruleset_sha256": "1dddb2556cf1e96c8c9227252b4a88112483e7d86b82f32955d5fb9eac12085a",
+    "original": "python3 validate-brief.py --chek",
+    "corrected": "python3 validate-brief.py --check"
+  },
+  "artifact": {
+    "path": "evidence/executions/19578f09-a59a-4e80-be31-7d319b0c9368/validation.json",
+    "sha256": "f1ea21199933d87a38798375e93c3ef94746709b049ee64eb57be4e9bd7794f9",
+    "size_bytes": 165,
+    "execution_id": "19578f09-a59a-4e80-be31-7d319b0c9368"
+  },
+  "baseline_exit": 2,
+  "corrected_exit": 0,
+  "host_attempted": "python3 validate-brief.py --chek",
+  "host_executed": "python3 validate-brief.py --check",
+  "manual_promotion": true,
+  "native_adapter_required": true,
+  "rewrite_off_preserves_input": true,
+  "unrelated_command_preserved": true,
+  "unrelated_role_preserved": true,
+  "privacy_claim": "Public fixture only; known v1.21.19 redaction limitations are documented separately."
+}

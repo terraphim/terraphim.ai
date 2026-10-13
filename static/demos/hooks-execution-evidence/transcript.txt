@@ -1,0 +1,20 @@
+What the model requested. What actually ran.
+Synthetic British female narration: Emma (Kokoro).
+
+0–9.4s | A typo becomes a real failure
+The model asks for a command with a typo. OpenCode runs it, and the validator exits with an error. That failure becomes a saved learning.
+
+9.4–20.1s | A correction becomes an explicit rule
+We check the correction and compile it with Terraphim. The exported knowledge graph uses synonyms syntax. Saving a suggestion alone does not switch rewriting on.
+
+20.1–30.9s | The hook rewrites. The tool executes.
+In a fresh session, the model requests the typo again. Terraphim returns the correction. The adapter applies it, and OpenCode executes the corrected command.
+
+30.9–41.7s | Which rule changed this command?
+The execution record keeps the original request, the final command, and rule one. A hash identifies the exact compiled graph used for this execution.
+
+41.7–53.4s | The result belongs to this execution
+The tool exits successfully. Its result and saved file carry the same execution identifier. The receipt also records the file hash, so changed bytes are detected.
+
+53.4–65.6s | One execution. Evidence you can inspect.
+Regression tests pass. A separate verifier checks the real host events, rule snapshot, result and file together. Download the example to repeat the run and inspect the evidence.

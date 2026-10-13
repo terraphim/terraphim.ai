@@ -75,9 +75,9 @@ class AgentHooksPublicationTests(unittest.TestCase):
         page = (ROOT / 'content/how-tos/command-rewriting-howto.md').read_text()
         self.assertIn('date=2026-04-15', page)
         self.assertIn('updated=2026-10-13', page)
-        for name in ['agent-hooks.mp4','captions.vtt','transcript.txt','harbour-hooks-example.zip']:
-            self.assertIn('/demos/agent-hooks/' + name, page)
-            self.assertTrue((MEDIA / name).is_file())
+        for name in ['hooks-execution-evidence.mp4','captions.vtt','transcript.txt','terraphim-hooks-execution-evidence-v2.zip']:
+            self.assertIn('/demos/hooks-execution-evidence/' + name, page)
+            self.assertTrue((ROOT / 'static/demos/hooks-execution-evidence' / name).is_file())
         self.assertIn('explicit human review', page)
         self.assertIn('included project-local adapter', page)
         self.assertIn('It has not executed Python', page)

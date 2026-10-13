@@ -1,0 +1,77 @@
+{
+  "qualification": "released-binary-with-included-adapter-source",
+  "agent": "1.21.19",
+  "opencode": "2.0.20",
+  "adapter": "2.0.0",
+  "durationSeconds": 65.6,
+  "executionId": "19578f09-a59a-4e80-be31-7d319b0c9368",
+  "tests": 14,
+  "voice": {
+    "name": "Emma",
+    "engine": "Kokoro",
+    "locale": "en-GB",
+    "synthetic": true
+  },
+  "files": [
+    {
+      "file": "captions.vtt",
+      "sha256": "b24bccba090d8e52f1b9a5cc21ac425e3beda39302036315bf95a1ffac5f3252",
+      "bytes": 1452
+    },
+    {
+      "file": "execution-receipt.json",
+      "sha256": "1568cf53d7f0a8d0f13bcfe5a7c870c2b65e759b2c92e33aea05d0a5059b0eec",
+      "bytes": 2106
+    },
+    {
+      "file": "hooks-execution-evidence.mp4",
+      "sha256": "0893ed0db38ab7693cb0ed5a740f408480793c47e0a5e56f11e0f15fe4abe769",
+      "bytes": 1570273
+    },
+    {
+      "file": "identities.json",
+      "sha256": "b17fce1125efeb07588822193285f4ae0511a1396d2e34f8a544d04f8eff2b18",
+      "bytes": 321
+    },
+    {
+      "file": "poster.png",
+      "sha256": "27118b5c7148567104765decada7680660b3ab453c943ebd8fb9e957e88e0293",
+      "bytes": 71394
+    },
+    {
+      "file": "reproduce.md",
+      "sha256": "9f7d5e64b2b54fb92ecd1391d9ab6468abf3bbc9f0154e160ff0086fb439ba7d",
+      "bytes": 4465
+    },
+    {
+      "file": "rule-and-command.png",
+      "sha256": "2424b3c72aff3615867a1bd3edde0f34c85677c3947460b13cc393854b334548",
+      "bytes": 91255
+    },
+    {
+      "file": "saved-result.png",
+      "sha256": "ac7f46e7dac71071f4125fab74ff3a6c4519b3d4981af090444d7be4c24f6161",
+      "bytes": 88476
+    },
+    {
+      "file": "terraphim-hooks-execution-evidence-v2.zip",
+      "sha256": "e47a676c27920f3979dc23d9cc24def25307b36572c453b6a5e6f74ed163ea8e",
+      "bytes": 32471
+    },
+    {
+      "file": "transcript.txt",
+      "sha256": "5a56465f1874f9f99f8016b41482c0808150f68e8f9f5c9ad8d9b0b2f9ac2cb2",
+      "bytes": 1353
+    },
+    {
+      "file": "validation.json",
+      "sha256": "f1ea21199933d87a38798375e93c3ef94746709b049ee64eb57be4e9bd7794f9",
+      "bytes": 165
+    },
+    {
+      "file": "verification.json",
+      "sha256": "46a24fc901832138f7ee5d77b22672cabaff7b59109b38ed49e6dfe7fafde012",
+      "bytes": 1024
+    }
+  ]
+}
