@@ -1,0 +1,7 @@
+{
+  "terraphim_agent": "terraphim-agent 1.21.19",
+  "binary_sha256": "78542870b76e2a90fa7b2a767ba7fd6126b32304a925feb83e16db01faf0f4d1",
+  "host": "opencode v2.0.20",
+  "model": "kimi-code-plan-global/k3",
+  "note": "Only public fixture sent to the coding model. Hook processing is local; no blanket no-network claim."
+}

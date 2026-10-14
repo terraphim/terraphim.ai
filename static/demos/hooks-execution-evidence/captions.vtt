@@ -1,0 +1,49 @@
+WEBVTT
+
+00:00:00.250 --> 00:00:02.822
+The model asks for a command with a
+
+00:00:02.822 --> 00:00:05.394
+typo. OpenCode runs it, and the validator exits
+
+00:00:05.394 --> 00:00:08.288
+with an error. That failure becomes a saved learning.
+
+00:00:09.650 --> 00:00:12.653
+We check the correction and compile it with
+
+00:00:12.653 --> 00:00:15.656
+Terraphim. The exported knowledge graph uses synonyms syntax.
+
+00:00:15.656 --> 00:00:19.035
+Saving a suggestion alone does not switch rewriting on.
+
+00:00:20.350 --> 00:00:25.072
+In a fresh session, the model requests the typo again. Terraphim returns
+
+00:00:25.072 --> 00:00:29.795
+the correction. The adapter applies it, and OpenCode executes the corrected command.
+
+00:00:31.150 --> 00:00:35.858
+The execution record keeps the original request, the final command, and rule
+
+00:00:35.858 --> 00:00:40.566
+one. A hash identifies the exact compiled graph used for this execution.
+
+00:00:41.950 --> 00:00:45.126
+The tool exits successfully. Its result and saved
+
+00:00:45.126 --> 00:00:48.700
+file carry the same execution identifier. The receipt also
+
+00:00:48.700 --> 00:00:52.273
+records the file hash, so changed bytes are detected.
+
+00:00:53.650 --> 00:00:57.145
+Regression tests pass. A separate verifier checks the real
+
+00:00:57.145 --> 00:01:00.640
+host events, rule snapshot, result and file together. Download
+
+00:01:00.640 --> 00:01:04.523
+the example to repeat the run and inspect the evidence.
