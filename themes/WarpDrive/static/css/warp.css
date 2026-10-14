@@ -1725,6 +1725,10 @@ main { padding-top: 52px; }
   color: var(--warp-bright);
 }
 
+.article-box .prose :not(pre) > code {
+  overflow-wrap: anywhere;
+}
+
 .prose pre {
   background: oklch(0.08 0.02 260);
   border: 1px solid var(--border);

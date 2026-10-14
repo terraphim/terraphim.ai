@@ -14,7 +14,7 @@ from playwright.sync_api import sync_playwright
 
 WIDTHS = (320, 390, 768, 899, 900, 1024, 1200, 1279, 1280, 1366, 1440,
           1799, 1800, 1920, 2560)
-PAGES = ("/", "/how-tos/synonym-search/")
+PAGES = ("/", "/how-tos/synonym-search/", "/how-tos/command-rewriting-howto/")
 DESTINATIONS = (
     ("Home", "/"), ("Editor", "/editor/"),
     ("Capabilities", "/capabilities"), ("How-tos", "/how-tos"),
@@ -47,7 +47,11 @@ GEOMETRY = """() => {
   });
   const links = selector => [...document.querySelectorAll(selector)]
     .map(el => ({text:el.textContent.trim(), href:el.href}));
+  const inlineCode = [...document.querySelectorAll('.article-box .prose code')]
+    .filter(el => !el.closest('pre')).map(el => ({text:el.textContent,
+      fragments:[...el.getClientRects()].map(r => ({left:r.left,right:r.right}))}));
   return {width:innerWidth, clientWidth:document.documentElement.clientWidth,
+    scrollWidth:document.documentElement.scrollWidth, inlineCode,
     desktop, mobile, controls, desktopLinks:links('.topbar-link'),
     mobileLinks:links('.nav-mobile-menu a'),
     version:document.querySelector('.status-label').textContent.trim(),
@@ -59,6 +63,12 @@ GEOMETRY = """() => {
 def geometry_errors(data, base_url):
     """Assert observable layout rather than CSS declarations."""
     errors = []
+    if data["scrollWidth"] > data["clientWidth"] + 1:
+        errors.append("Page content extends beyond the viewport")
+    for code in data["inlineCode"]:
+        if any(r["left"] < -1 or r["right"] > data["clientWidth"] + 1
+               for r in code["fragments"]):
+            errors.append(f"Inline code extends beyond the viewport: {code['text']}")
     if data["desktop"] != (data["width"] >= 1280) or data["mobile"] == data["desktop"]:
         errors.append("Wrong header mode or multiple visible headers")
     previous = None
@@ -201,6 +211,10 @@ def main():
                         settle(page)
                         data = page.evaluate(GEOMETRY)
                         errors = geometry_errors(data, args.base_url)
+                        if path == "/how-tos/command-rewriting-howto/" and not any(
+                                code["text"] == "evidence/executions/<execution_id>/validation.json"
+                                for code in data["inlineCode"]):
+                            errors.append("Hooks article execution-path regression fixture is missing")
                         if data["stylesheet"] != urljoin(args.base_url.rstrip("/") + "/", "css/warp.css"):
                             errors.append("Rendered stylesheet is not from the site under test")
                         loaded = any("Space Grotesk" in f["family"] and f["status"] == "loaded"

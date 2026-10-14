@@ -1,7 +1,7 @@
 # Responsive navigation checks
 
 These checks exercise the generated site in Chromium, Firefox and WebKit on the
-homepage and synonym-search tutorial at 15 widths from 320 to 2,560 CSS pixels,
+homepage, synonym-search tutorial and hooks walkthrough at 15 widths from 320 to 2,560 CSS pixels,
 with web fonts loaded and with font downloads blocked.
 
 Use **Zola 0.22.1**, matching CI. Newer Zola versions may require a separate
@@ -28,7 +28,8 @@ load production CSS instead of the patch. The checker rejects a stylesheet from
 another origin and records the served stylesheet SHA-256 in `navigation.json`.
 It also checks exact navigation destinations, including their origins.
 
-Checks cover single-line desktop text, visible non-overlapping controls,
+Checks cover page and inline-code overflow (including the hooks execution-file path),
+single-line desktop text, visible non-overlapping controls,
 compact/desktop selection, preserved links and actual keyboard actions: search
 input focus, Escape to close search, opening and scrolling the compact menu to
 Donate, and navigating to Editor. The open compact menu is resized to desktop
