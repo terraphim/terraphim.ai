@@ -1,0 +1,76 @@
+{
+  "title": "Concern search in a saved Kilo session",
+  "executionDate": "2026-10-14",
+  "recordingDate": "2026-10-15",
+  "kind": "saved-run replay",
+  "freshExecution": false,
+  "catalogInstall": false,
+  "durationSeconds": 44,
+  "narration": false,
+  "burnedCaptions": true,
+  "versions": {
+    "kilo": "7.8.8",
+    "editor": "0.1.3",
+    "grep": "1.21.20",
+    "continueMcpAdapter": "0.1.1"
+  },
+  "outputs": {
+    "without-synthesis.json": {
+      "envelopeSha256": "687d29eab5f3c60e885247f92f861b103e3ab45b9fc07c8c52b6304e6b5207d7",
+      "extraction": "output field unchanged; JSON formatting only"
+    },
+    "with-synthesis.json": {
+      "envelopeSha256": "45a18016378a245bc215677529c6d9d0632fdf986204da0a2f660a2ea8a801b1",
+      "extraction": "output field unchanged; JSON formatting only"
+    }
+  },
+  "sourceReceiptSha256": "75b3e8ad17dae4389b7b62997c157d91ee9a79eb85168182f0bbdeaaa0613cec",
+  "independentReviewSha256": "0e53cff577b59679150cd575fa994888aefefe4705ec27e5561d79e4998e2bdf",
+  "files": [
+    {
+      "file": "README.md",
+      "bytes": 2516,
+      "sha256": "913ab94009d7bf63917d6c16b722d9f2c99128b4b52358a07cd5a0d7cfc4b8a8"
+    },
+    {
+      "file": "annotated.md",
+      "bytes": 710,
+      "sha256": "c5c197d43874075b145d79eb4caaad0ce7c40ee72d0bac96d8877bcc8c27eec2"
+    },
+    {
+      "file": "captions.vtt",
+      "bytes": 408,
+      "sha256": "f7146c43cfd7927cdaf39cef70c499aa63f6c32f753121531ddad40fa60fcc63"
+    },
+    {
+      "file": "corpus/editor-risk-clean.md",
+      "bytes": 184,
+      "sha256": "384def8b064660a9a989561b36580bd6dd076474807c1bb572173df1b3e92c94"
+    },
+    {
+      "file": "kilo-native-replay-captioned.mp4",
+      "bytes": 923009,
+      "sha256": "29db304f09b6064d2b7352f23675e146449c7fbafd92cf9eb1053fe8a5a102c8"
+    },
+    {
+      "file": "knowledge-graph.json",
+      "bytes": 281,
+      "sha256": "f8648b16470e764bdff5c95064078419d71e8d41d2ca30d4b1508017c166a45d"
+    },
+    {
+      "file": "poster.jpg",
+      "bytes": 205369,
+      "sha256": "78f12ab89735716e4e60e511286d4eb9c37d8f5acca43eccfe6b7393908a09ef"
+    },
+    {
+      "file": "with-synthesis.json",
+      "bytes": 2115,
+      "sha256": "da519e30dbef7a91da122121d3c5ff8353f5f2fd380f7219227477ac37000cea"
+    },
+    {
+      "file": "without-synthesis.json",
+      "bytes": 1223,
+      "sha256": "ee070c5ac36da740a8e6451da3e40bc88cfd521f7ebcc9686d9d348b74679dcf"
+    }
+  ]
+}
