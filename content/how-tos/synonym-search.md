@@ -15,7 +15,7 @@ The inspiration came from [Jason Fried’s original Write_On video](https://x.co
 
 <video controls preload="metadata" playsinline poster="/demos/synonym-search/poster.jpg" style="width:100%;max-width:1100px" aria-label="Create an alternative, share its graph, and search with it — 80 seconds"><source src="/demos/synonym-search/synonym-search-story.mp4" type="video/mp4"><track kind="captions" src="/demos/synonym-search/captions.vtt" srclang="en" label="English">[Watch the 80-second story](/demos/synonym-search/synonym-search-story.mp4)</video>
 
-[Try Terraphim Editor](/editor/) · [Read the narration](/demos/synonym-search/transcript.txt)
+[Try Terraphim Editor](/editor/) · [Install for VS Code](https://marketplace.visualstudio.com/items?itemName=applied-knowledge-systems.terraphim-it) · [Read the narration](/demos/synonym-search/transcript.txt)
 
 ## Choose the words that fit
 
@@ -50,6 +50,16 @@ terraphim-grep concern --thesaurus knowledge-graph.json --paths corpus -C 2 --js
 The video shows the generated summary and its references to the same three passages. Decisions remain decisions: the source does not establish whether they have been carried out. Check the evidence alongside any generated answer.
 
 Editing and local search use your local data. Optional synthesis sends the retrieved passages to your configured model provider.
+
+## See the same workflow in Kilo
+
+This supplier brief says **Risk**. Search for **Concern** using its exported graph, and both retrieval and synthesis find the same three passages. The generated answer points back to the brief's decisions and actions.
+
+<video controls preload="metadata" playsinline poster="/demos/kilo-synonym-search/poster.jpg" style="width:100%;max-width:1100px" aria-label="Saved Kilo session: compare synonym search and cited synthesis — 44 seconds"><source src="/demos/kilo-synonym-search/kilo-native-replay-captioned.mp4" type="video/mp4"><track kind="captions" src="/demos/kilo-synonym-search/captions.vtt" srclang="en" label="English">[Watch the captioned replay](/demos/kilo-synonym-search/kilo-native-replay-captioned.mp4)</video>
+
+*A 44-second replay of saved tool results in Kilo, with captions and no audio.* It shows the saved Risk/Concern alternative, source lines and cited summary. The Kilo skills are under marketplace review; this is a configured integration.
+
+[Download the brief, graph and actual results](/demos/kilo-synonym-search/kilo-synonym-search-example.zip) · [Kilo setup guide](https://terraphim-skills.md/docs/kilo/) · [Recorded versions and checksums](/demos/kilo-synonym-search/manifest.json)
 
 ## Try it with an Obsidian vault
 
