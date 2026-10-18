@@ -37,9 +37,9 @@
       <i class="fa-solid fa-bolt" aria-hidden="true"></i>
       Quickstart
     </a>
-    <a href="https://github.com/terraphim/terraphim-clients/releases/tag/v{{ config.extra.release_version | default(value='1.21.18') }}" class="btn btn-ghost">
+    <a href="https://github.com/terraphim/terraphim-clients/releases/tag/v{{ config.extra.release_version | default(value='1.21.22') }}" class="btn btn-ghost">
       <i class="fa-solid fa-rocket" aria-hidden="true"></i>
-      v{{ config.extra.release_version | default(value="1.21.18") }} release
+      v{{ config.extra.release_version | default(value="1.21.22") }} release
     </a>
     <a href="https://github.com/terraphim/terraphim-ai" class="btn btn-ghost">
       <i class="fa-brands fa-github" aria-hidden="true"></i>
@@ -726,7 +726,7 @@
 </section>
 
 <!-- ---- INSTALL ---- -->
-<section class="install" id="install" aria-label="Installation" data-version="{{ config.extra.release_version | default(value='1.21.18') }}">
+<section class="install" id="install" aria-label="Installation" data-version="{{ config.extra.release_version | default(value='1.21.22') }}">
   <div class="install-inner">
     <div class="section-overline">
       <i class="fa-solid fa-download" aria-hidden="true"></i>
@@ -747,7 +747,7 @@
           <span id="platformBtnText">Download</span>
         </a>
       </div>
-      {% set rv = config.extra.release_version | default(value="1.21.18") %}
+      {% set rv = config.extra.release_version | default(value="1.21.22") %}
       {% set dl = "https://downloads.terraphim.ai/terraphim-agent/" %}
       <details class="all-platforms">
         <summary>All platforms</summary>
@@ -886,9 +886,9 @@
     </div>
 
     <div class="install-cta">
-      <a href="https://github.com/terraphim/terraphim-clients/releases/tag/v{{ config.extra.release_version | default(value='1.21.18') }}" class="btn btn-primary">
+      <a href="https://github.com/terraphim/terraphim-clients/releases/tag/v{{ config.extra.release_version | default(value='1.21.22') }}" class="btn btn-primary">
         <i class="fa-solid fa-download" aria-hidden="true"></i>
-        Download v{{ config.extra.release_version | default(value="1.21.18") }}
+        Download v{{ config.extra.release_version | default(value="1.21.22") }}
       </a>
       <a href="{{ config.base_url }}/docs/installation" class="btn btn-ghost">
         <i class="fa-solid fa-book" aria-hidden="true"></i>

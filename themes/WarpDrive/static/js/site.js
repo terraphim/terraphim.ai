@@ -180,7 +180,7 @@
   var platformDetect = document.getElementById('platformDetect');
 
   if (installSection && platformDetect) {
-    var version = installSection.getAttribute('data-version') || '1.21.18';
+    var version = installSection.getAttribute('data-version') || '1.21.22';
     var base = 'https://downloads.terraphim.ai/terraphim-agent/';
     var platform = null;
 
