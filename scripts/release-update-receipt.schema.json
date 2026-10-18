@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://terraphim.ai/schemas/release-update-receipt.schema.json",
+  "title": "Release updater receipts",
+  "description": "One schema covering the three updater receipt types: discovery, update (apply) and proposal. Emitted per run; recorded as CI artifacts.",
+  "type": "object",
+  "required": ["receiptType", "target", "outcome"],
+  "properties": {
+    "receiptType": {"enum": ["discovery", "update", "proposal", "readback"]},
+    "target": {"type": "string"},
+    "checked_at": {"type": "string"},
+    "admitted": {
+      "type": "object",
+      "additionalProperties": {"type": "string"},
+      "description": "component name -> admitted release tag"
+    },
+    "input_digests": {
+      "type": "object",
+      "additionalProperties": {"type": "string"},
+      "description": "source label -> sha256 of the raw input actually read"
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path"],
+        "properties": {
+          "path": {"type": "string"},
+          "original_sha256": {"type": "string"},
+          "proposed_sha256": {"type": "string"},
+          "changed": {"type": "boolean"},
+          "status": {"type": "string"}
+        }
+      }
+    },
+    "outcome": {
+      "enum": ["unchanged", "applied", "drift", "proposed", "reused",
+               "refused", "failed", "pending"]
+    },
+    "reason": {"type": "string"},
+    "repository": {"type": "string"},
+    "branch": {"type": "string"},
+    "commit_sha": {"type": ["string", "null"]},
+    "commit_verified": {"type": ["boolean", "null"]},
+    "pr_number": {"type": ["integer", "null"]},
+    "pr_url": {"type": ["string", "null"]},
+    "dispatched_workflows": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "workflow dispatch identities; dispatch is not success"
+    },
+    "run": {
+      "type": "object",
+      "description": "workflow run identities for traceability",
+      "properties": {
+        "workflow": {"type": "string"},
+        "run_id": {"type": ["integer", "string"]},
+        "attempt": {"type": ["integer", "string"]},
+        "tooling_commit": {"type": "string"}
+      }
+    }
+  },
+  "additionalProperties": true
+}
