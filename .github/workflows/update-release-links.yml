@@ -1,0 +1,82 @@
+name: Update release links
+
+# Repository-local release updater: discovers admitted release/channel
+# inputs, proposes a normal reviewed PR on bot/release-updater, and dispatches
+# validate.yml at the generated branch. See docs/release-link-updater.md.
+# Discovery payload is a wake-up only — actual state is always re-read.
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+  repository_dispatch:
+    types:
+      - terraphim-release-published
+
+concurrency:
+  group: release-updater-${{ github.repository }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  discover:
+    name: Discover admitted releases
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Collect release snapshot
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 scripts/update_release.py \
+            --target website --check \
+            --snapshot-out snapshot.json \
+            --receipt discovery-receipt.json || test $? -eq 1
+
+      - name: Upload discovery artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-update-discovery
+          path: |
+            snapshot.json
+            discovery-receipt.json
+          retention-days: 30
+
+  propose:
+    name: Propose update PR
+    needs: discover
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Download discovery artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: release-update-discovery
+
+      - name: Propose update PR
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 scripts/release_update_pr.py \
+            --repo "${{ github.repository }}" \
+            --target website \
+            --snapshot snapshot.json \
+            --validation-workflow validate.yml \
+            --receipt proposal-receipt.json
+
+      - name: Upload proposal receipt
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-update-proposal
+          path: proposal-receipt.json
+          retention-days: 30

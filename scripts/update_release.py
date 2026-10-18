@@ -417,6 +417,7 @@ def snapshot_to_dict(snap: ReleaseSnapshot) -> dict:
                        for n, c in snap.components.items()},
         "channels": {b: dataclasses.asdict(m) for b, m in snap.channels.items()},
         "input_digests": snap.input_digests,
+        "skipped": snap.skipped,
     }
 
 
@@ -861,6 +862,9 @@ def _cmd(args: argparse.Namespace) -> int:
             snap = load_snapshot(Path(args.snapshot))
         else:
             snap = collect_snapshot(timeout_seconds=args.timeout)
+        if args.snapshot_out:
+            Path(args.snapshot_out).write_text(
+                json.dumps(snapshot_to_dict(snap), indent=2) + "\n")
         target = TargetRepository(args.target)
         root = Path(args.root or ".").resolve()
         plan = plan_updates(root, target, snap)
@@ -871,6 +875,7 @@ def _cmd(args: argparse.Namespace) -> int:
             "checked_at": snap.checked_at,
             "admitted": plan.admitted,
             "input_digests": snap.input_digests,
+            "skipped": snap.skipped,
             "files": [{"path": f.path, "original_sha256": f.original_sha256,
                        "proposed_sha256": f.proposed_sha256,
                        "changed": f.original_sha256 != f.proposed_sha256}
@@ -915,6 +920,8 @@ def main(argv=None) -> int:
     ap.add_argument("--check", action="store_true",
                     help="report drift without writing; exit 1 on drift")
     ap.add_argument("--snapshot", help="recorded ReleaseSnapshot JSON")
+    ap.add_argument("--snapshot-out",
+                    help="write the collected snapshot JSON here")
     ap.add_argument("--receipt", help="write run receipt JSON here")
     ap.add_argument("--target", choices=[t.value for t in TargetRepository],
                     default=TargetRepository.WEBSITE.value)
