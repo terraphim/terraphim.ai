@@ -28,7 +28,7 @@ curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts
 curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts/install.sh | bash --install-dir /usr/local/bin
 
 # Require a specific version (fails if the channel serves a different one)
-curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts/install.sh | bash --version 1.21.18
+curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts/install.sh | bash --version 1.21.22
 ```
 
 The installer publishes these exit codes: `0` success, `1` usage error,
@@ -59,11 +59,11 @@ cargo install terraphim_agent --features repl-full
 #### Binary Download
 
 Archives are served from `downloads.terraphim.ai`. Substitute the release you
-want for `1.21.18`, or read the current version from the
+want for `1.21.22`, or read the current version from the
 [manifest](https://downloads.terraphim.ai/terraphim-agent/stable-v2.json).
 
 ```bash
-VERSION=1.21.18
+VERSION=1.21.22
 
 # x86_64 (GNU)
 curl -fsSLO "https://downloads.terraphim.ai/terraphim-agent/terraphim-agent-${VERSION}-x86_64-unknown-linux-gnu.tar.gz"
@@ -101,7 +101,7 @@ sudo cp target/release/terraphim-agent /usr/local/bin/
 #### Binary Download
 
 ```bash
-VERSION=1.21.18
+VERSION=1.21.22
 
 # Apple Silicon (ARM64)
 curl -fsSLO "https://downloads.terraphim.ai/terraphim-agent/terraphim-agent-${VERSION}-aarch64-apple-darwin.tar.gz"
@@ -200,7 +200,7 @@ After installation, verify that Terraphim is working:
 ```bash
 # Check version
 terraphim-agent --version
-# terraphim-agent 1.21.18
+# terraphim-agent 1.21.22
 
 # Confirm the updater can see the channel
 terraphim-agent check-update

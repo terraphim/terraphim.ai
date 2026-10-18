@@ -10,11 +10,11 @@ paginate_by = 10
 
 Stay up-to-date with the latest Terraphim AI releases.
 
-## Latest Release: v1.21.16
+## Latest Release: v1.21.22
 
-**Released:** 25 September 2026
+**Released:** 15 October 2026
 
-[GitHub Releases](https://github.com/terraphim/terraphim-clients/releases/tag/v1.21.16) | [Release Notes](https://github.com/terraphim/terraphim-clients/releases/tag/v1.21.16)
+[GitHub Releases](https://github.com/terraphim/terraphim-clients/releases/tag/v1.21.22) | [Release Notes](https://github.com/terraphim/terraphim-clients/releases/tag/v1.21.22)
 
 ### Self-Update (recommended)
 
@@ -48,14 +48,14 @@ are still served for pre-1.21.15 clients.
 Download the latest archive for your platform directly:
 
 ```bash
-curl -fsSLO "https://downloads.terraphim.ai/terraphim-agent/terraphim-agent-1.21.16-x86_64-unknown-linux-gnu.tar.gz"
-tar -xzf terraphim-agent-1.21.16-*.tar.gz
+curl -fsSLO "https://downloads.terraphim.ai/terraphim-agent/terraphim-agent-1.21.22-x86_64-unknown-linux-gnu.tar.gz"
+tar -xzf terraphim-agent-1.21.22-*.tar.gz
 sudo mv terraphim-agent /usr/local/bin/
 ```
 
 ### Available Binaries
 
-v1.21.16 ships across three client tools:
+v1.21.22 ships across three client tools:
 
 - **`terraphim-agent`** — full CLI + REPL + TUI
 - **`terraphim-grep`** — intelligent hybrid search with RLM fallback
@@ -71,11 +71,14 @@ Platforms:
 | macOS Apple Silicon | ✓ | ✓ | ✓ |
 | macOS Intel | ✓ | ✓ | ✓ |
 | macOS Universal | ✓ | ✓ | — |
-| Windows x64 | ✓ | ✓ | ✓ |
+| Windows x64 | — | — | — |
+
+Native Windows archives are unavailable on the current stable channel. Use WSL
+or [build from source](/docs/installation/#windows).
 
 All Linux and macOS archives are **Ed25519-signed** and verified on install by the self-updater. macOS universal binaries are additionally **notarised** by Apple.
 
-### What's New
+### Installation and release integrity
 
 **Public install path corrected**
 - The universal installer now resolves release versions from the channel manifests rather than from version-less GitHub assets, so it installs the current release instead of an older one
@@ -128,7 +131,7 @@ View complete release history on [GitHub Releases (terraphim-clients)](https://g
 
 Stable releases are recommended for production use. They are thoroughly tested and signed. The self-updater fetches signed archives from `downloads.terraphim.ai` by default.
 
-**Latest Stable:** v1.21.16
+**Latest Stable:** v1.21.22
 
 ### Development
 
