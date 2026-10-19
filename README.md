@@ -11,7 +11,7 @@ separate releases.
 
 | Component | Release | Use |
 | --- | --- | --- |
-| Core project | [v2026.5.30](https://github.com/terraphim/terraphim-ai/releases/tag/v2026.05.30) | Stable core/source release |
+| Core project | [v1.21.3](https://github.com/terraphim/terraphim-ai/releases/tag/v1.21.3) | Stable core/source release |
 | CLI clients | [v1.21.22](https://github.com/terraphim/terraphim-clients/releases/tag/v1.21.22) | Stable `terraphim-grep`, agent and client tools |
 | Terraphim Editor | [v0.1.0-rc.4](https://github.com/terraphim/terraphim-editor/releases/tag/v0.1.0-rc.4) | Browser editor prerelease |
 | VS Code extension | [0.1.7](https://github.com/terraphim/terraphim-ai/releases/tag/terraphim_vscode-v0.1.7) | Prerelease VSIX for compatible editors |
