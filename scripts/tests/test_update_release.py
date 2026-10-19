@@ -42,6 +42,13 @@ class AdmissionTests(unittest.TestCase):
         # core selector excludes prefixed tags in the same repository
         self.assertEqual(snap.components["core"].tag, "v1.21.3")
 
+    def test_core_pinned_to_1x_series(self):
+        # the fixture's terraphim-ai list includes the date-versioned
+        # v2026.05.30 release; the 1.x product series must still win
+        snap = snapshot("complete.json")
+        self.assertEqual(snap.components["core"].tag, "v1.21.3")
+        self.assertEqual(str(snap.components["core"].version), "1.21.3")
+
     def test_incomplete_channels_skip_clients_only(self):
         snap = snapshot("incomplete-channels.json")
         self.assertNotIn("clients", snap.components)

@@ -128,10 +128,16 @@ class ComponentSelector:
     tag_prefix: str          # tag must start with this prefix
     allow_prerelease: bool
     display_strip_v: bool    # render "0.1.7" rather than "v0.1.7"
+    series_major: Optional[int] = None
+    # if set, only versions with this major are admitted; the repository
+    # carries more than one release series on the same tag prefix
 
 
 COMPONENTS: tuple = (
-    ComponentSelector("core", "terraphim/terraphim-ai", "", False, False),
+    # terraphim-ai publishes two unprefixed series (v1.x.y and date-versioned
+    # vYYYY.MM.DD); the live product line is the 1.x series
+    ComponentSelector("core", "terraphim/terraphim-ai", "", False, False,
+                      series_major=1),
     ComponentSelector("clients", "terraphim/terraphim-clients", "", False, False),
     ComponentSelector("editor", "terraphim/terraphim-editor", "", True, False),
     ComponentSelector("vscode", "terraphim/terraphim-ai", "terraphim_vscode-", True, True),
@@ -330,6 +336,8 @@ def _release_to_component(sel: ComponentSelector, rel: dict) -> Optional[Compone
     version = Version.parse(suffix)
     if version is None:
         return None
+    if sel.series_major is not None and version.major != sel.series_major:
+        return None  # different release series on the same tag prefix
     if rel.get("draft"):
         return None
     if rel.get("prerelease") and not sel.allow_prerelease:
