@@ -64,9 +64,23 @@ class ProposalReceipt:
 Transport = Callable[[Request], Any]
 
 
-def live_transport(token: str, timeout: int = 30) -> Transport:
+class _NoRedirect(urllib.request.HTTPRedirectHandler):
+    """Refuse redirects: following them would forward the bearer token to
+    whatever host the redirect names."""
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None
+
+
+_OPENER = urllib.request.build_opener(_NoRedirect)
+
+
+def live_transport(token: str, timeout: int = 30,
+                   api_base: str = API_BASE,
+                   graphql_url: str = GRAPHQL_URL) -> Transport:
+    """api_base/graphql_url are injectable for tests; production uses the
+    GitHub constants."""
     def call(req: Request) -> Any:
-        url = GRAPHQL_URL if req.graphql else f"{API_BASE}{req.url}"
+        url = graphql_url if req.graphql else f"{api_base}{req.url}"
         data = json.dumps(req.body).encode() if req.body is not None else None
         r = urllib.request.Request(url, data=data, method=req.method, headers={
             "Authorization": f"Bearer {token}",
@@ -75,7 +89,7 @@ def live_transport(token: str, timeout: int = 30) -> Transport:
             "User-Agent": USER_AGENT,
         })
         try:
-            with urllib.request.urlopen(r, timeout=timeout) as resp:
+            with _OPENER.open(r, timeout=timeout) as resp:
                 raw = resp.read().decode("utf-8")
                 return json.loads(raw) if raw else {}
         except urllib.error.HTTPError as e:

@@ -305,6 +305,15 @@ class ApplySafetyTests(unittest.TestCase):
             self.assertEqual((self.root / f).stat().st_mtime_ns, m,
                              f"{f} rewritten on a no-op run")
 
+    def test_apply_preserves_file_mode(self):
+        # mkstemp creates 0600 temps; replacement must keep 0644
+        readme = self.root / "README.md"
+        readme.chmod(0o644)
+        u.apply_plan(
+            u.plan_updates(self.root, u.TargetRepository.WEBSITE, self.snap),
+            self.root)
+        self.assertEqual(readme.stat().st_mode & 0o777, 0o644)
+
 
     def test_other_repo_targets_only_touch_readme(self):
         for name, target in (("terraphim-ai", u.TargetRepository.TERRAPHIM_AI),

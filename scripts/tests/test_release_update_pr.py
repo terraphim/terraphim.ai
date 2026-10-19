@@ -4,7 +4,9 @@
 An injected transport records the exact request sequence and returns
 scripted responses. No mock GitHub service: live integration is a
 separate gate."""
+import http.server
 import sys
+import threading
 import unittest
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -199,6 +201,32 @@ class ProposalTests(unittest.TestCase):
             base64.b64decode(
                 inp["fileChanges"]["additions"][0]["contents"]),
             b"readme bytes")
+
+
+class TransportTests(unittest.TestCase):
+    def test_live_transport_refuses_redirects(self):
+        # a 3xx from the API base must surface as an error rather than be
+        # followed with the bearer token to the redirect target
+        seen = []
+
+        class Handler(http.server.BaseHTTPRequestHandler):
+            def do_GET(self):
+                seen.append(dict(self.headers))
+                self.send_response(301)
+                self.send_header("Location", "http://127.0.0.1:1/other")
+                self.end_headers()
+
+            def log_message(self, *a):
+                pass
+
+        srv = http.server.HTTPServer(("127.0.0.1", 0), Handler)
+        threading.Thread(target=srv.serve_forever, daemon=True).start()
+        self.addCleanup(srv.shutdown)
+        t = pr.live_transport("secret-token",
+                              api_base=f"http://127.0.0.1:{srv.server_port}")
+        with self.assertRaises(RuntimeError) as cm:
+            t(pr.Request("GET", "/repos/x"))
+        self.assertIn("301", str(cm.exception))
 
 
 if __name__ == "__main__":

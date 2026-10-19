@@ -822,6 +822,7 @@ def apply_plan(plan: UpdatePlan, root: Path,
             if f.proposed_sha256 == f.original_sha256:
                 continue  # byte-identical: no write needed
             fd, tmp = tempfile.mkstemp(dir=str(p.parent), prefix=".relupd-")
+            os.fchmod(fd, p.stat().st_mode)  # mkstemp is 0600; keep the mode
             with os.fdopen(fd, "wb") as fh:
                 fh.write(f.proposed_bytes)
             staged.append((p, tmp, current))
