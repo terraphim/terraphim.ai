@@ -2,10 +2,12 @@
 """Regression tests for scripts/update_release.py using real filesystem
 inputs captured from actual source revisions and recorded release/channel
 JSON. No mocked services."""
+import http.server
 import json
 import shutil
 import sys
 import tempfile
+import threading
 import unittest
 from pathlib import Path
 
@@ -52,6 +54,44 @@ class AdmissionTests(unittest.TestCase):
             with self.assertRaises(u.RejectedInput):
                 u.plan_updates(root, u.TargetRepository.WEBSITE,
                                snapshot("downgrade.json"))
+
+    def _snapshot_with(self, mutate) -> u.ReleaseSnapshot:
+        body = json.loads((FIX / "snapshot" / "complete.json").read_text())
+        mutate(body)
+        fd = tempfile.NamedTemporaryFile(
+            "w", suffix=".json", delete=False)
+        with fd:
+            json.dump(body, fd)
+        self.addCleanup(Path(fd.name).unlink)
+        return u.load_snapshot(Path(fd.name))
+
+    def test_windows_target_rejected(self):
+        def add_windows(body):
+            body["channels"]["terraphim-agent"]["assets"][
+                "x86_64-pc-windows-msvc"] = {
+                "path": "terraphim-agent/x.zip",
+                "sha256": "0" * 64, "size": 1}
+        snap = self._snapshot_with(add_windows)
+        self.assertNotIn("clients", snap.components)
+        self.assertIn("Windows", snap.skipped["clients"])
+        # unrelated components still admit
+        self.assertIn("core", snap.components)
+
+    def test_missing_published_at_unadmitted(self):
+        def blank_date(body):
+            for r in body["repositories"]["terraphim/terraphim-ai"]:
+                if r["tag_name"] == "v1.21.3":
+                    r["published_at"] = ""
+        snap = self._snapshot_with(blank_date)
+        self.assertNotIn("core", snap.components)
+
+    def test_untrusted_release_url_unadmitted(self):
+        def evil_url(body):
+            for r in body["repositories"]["terraphim/terraphim-ai"]:
+                if r["tag_name"] == "v1.21.3":
+                    r["html_url"] = "javascript:alert(1) | x | [y](z)"
+        snap = self._snapshot_with(evil_url)
+        self.assertNotIn("core", snap.components)
 
 
 class WebsiteFieldTests(unittest.TestCase):
@@ -187,6 +227,24 @@ class ReadmeRegionTests(unittest.TestCase):
         with self.assertRaises(u.RejectedInput):
             u.plan_updates(self.root, u.TargetRepository.WEBSITE, self.snap)
 
+    def test_inverted_markers_rejected(self):
+        u.apply_plan(
+            u.plan_updates(self.root, u.TargetRepository.WEBSITE, self.snap),
+            self.root)
+        p = self.root / "README.md"
+        # swap marker order so END precedes START
+        text = p.read_text()
+        i_start = text.index(u.README_MARKER_START)
+        i_end = text.index(u.README_MARKER_END)
+        assert i_start < i_end
+        inverted = (text[:i_start] + u.README_MARKER_END
+                    + text[i_start + len(u.README_MARKER_START):i_end]
+                    + u.README_MARKER_START
+                    + text[i_end + len(u.README_MARKER_END):])
+        p.write_text(inverted)
+        with self.assertRaises(u.RejectedInput):
+            u.plan_updates(self.root, u.TargetRepository.WEBSITE, self.snap)
+
 
 class ApplySafetyTests(unittest.TestCase):
     def setUp(self):
@@ -204,6 +262,50 @@ class ApplySafetyTests(unittest.TestCase):
             u.apply_plan(plan, self.root)
         self.assertEqual(readme.read_bytes(), before + b"\nlocal edit\n")
 
+    def test_mid_apply_failure_restores_replaced_files(self):
+        # a fault on the second replace must restore the first file;
+        # stale several fields first so the plan is multi-file
+        for rel in ("config.toml", "content/releases.md",
+                    "content/docs/installation.md"):
+            p = self.root / rel
+            p.write_text(p.read_text().replace("1.21.22", "1.21.20"))
+        plan = u.plan_updates(self.root, u.TargetRepository.WEBSITE, self.snap)
+        changed = [f for f in plan.files
+                   if f.original_sha256 != f.proposed_sha256]
+        self.assertGreater(len(changed), 1)  # need a multi-file plan
+        originals = {f.path: (self.root / f.path).read_bytes()
+                     for f in plan.files}
+        calls = []
+
+        def fault_on_second(src, dst):
+            calls.append(dst)
+            if len(calls) == 2:
+                raise OSError("injected replace failure")
+            import os as _os
+            _os.replace(src, dst)
+
+        with self.assertRaises(u.OperationalFailure):
+            u.apply_plan(plan, self.root, _replace=fault_on_second)
+        for rel, orig in originals.items():
+            self.assertEqual((self.root / rel).read_bytes(), orig,
+                             f"{rel} not restored")
+
+    def test_unchanged_files_not_rewritten(self):
+        u.apply_plan(
+            u.plan_updates(self.root, u.TargetRepository.WEBSITE, self.snap),
+            self.root)
+        mtimes = {f: (self.root / f).stat().st_mtime_ns
+                  for f in ("config.toml", "content/releases.md", "README.md")}
+        out = u.apply_plan(
+            u.plan_updates(self.root, u.TargetRepository.WEBSITE, self.snap),
+            self.root)
+        self.assertEqual(out["outcome"], "unchanged")
+        self.assertTrue(all(f["status"] == "unchanged" for f in out["files"]))
+        for f, m in mtimes.items():
+            self.assertEqual((self.root / f).stat().st_mtime_ns, m,
+                             f"{f} rewritten on a no-op run")
+
+
     def test_other_repo_targets_only_touch_readme(self):
         for name, target in (("terraphim-ai", u.TargetRepository.TERRAPHIM_AI),
                              ("terraphim-clients", u.TargetRepository.TERRAPHIM_CLIENTS)):
@@ -213,6 +315,39 @@ class ApplySafetyTests(unittest.TestCase):
             u.apply_plan(plan, root)
             text = (root / "README.md").read_text()
             self.assertEqual(text.count(u.README_MARKER_START), 1)
+
+
+class HttpTests(unittest.TestCase):
+    def test_authorization_scoped_to_github_hosts(self):
+        h = u._request_headers("https://api.github.com/repos/x", "tok")
+        self.assertEqual(h.get("Authorization"), "Bearer tok")
+        for url in ("https://downloads.terraphim.ai/x/stable-v2.json",
+                    "https://github.com.evil.example/x",
+                    "https://evil.example/x"):
+            self.assertNotIn(
+                "Authorization", u._request_headers(url, "tok"), url)
+
+    def test_redirect_refused(self):
+        seen = []
+
+        class Handler(http.server.BaseHTTPRequestHandler):
+            def do_GET(self):
+                seen.append(dict(self.headers))
+                self.send_response(301)
+                self.send_header("Location", "http://127.0.0.1/other")
+                self.end_headers()
+
+            def log_message(self, *a):
+                pass
+
+        srv = http.server.HTTPServer(("127.0.0.1", 0), Handler)
+        threading.Thread(target=srv.serve_forever, daemon=True).start()
+        self.addCleanup(srv.shutdown)
+        url = f"http://127.0.0.1:{srv.server_port}/x"
+        with self.assertRaises(u.OperationalFailure) as cm:
+            u._http_get_json(url, "secret-token", u.time.monotonic() + 30)
+        self.assertIn("301", str(cm.exception))
+        self.assertNotIn("Authorization", seen[0])
 
 
 class CliTests(unittest.TestCase):
@@ -237,6 +372,13 @@ class CliTests(unittest.TestCase):
         code = u.main(["--snapshot", str(FIX / "snapshot" / "downgrade.json"),
                        "--root", str(self.root), "--target", "website"])
         self.assertEqual(code, u.EXIT_REJECTED)
+
+    def test_malformed_snapshot_exit_operational(self):
+        bad = Path(self.tmp.name) / "bad.json"
+        bad.write_text("[]")
+        self.assertEqual(u.main(["--snapshot", str(bad), "--root",
+                                 str(self.root), "--target", "website"]),
+                         u.EXIT_OPERATIONAL)
 
     def test_receipt_written(self):
         receipt = Path(self.tmp.name) / "receipt.json"

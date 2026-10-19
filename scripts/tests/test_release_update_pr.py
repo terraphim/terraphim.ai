@@ -77,11 +77,18 @@ def base_transport(t: FakeTransport,
                             "reason": "valid" if verified else "unsigned"}})
     t.set(("GET", f"/repos/{REPO}/pulls"),
           [open_pr] if open_pr else [])
-    if open_pr is None:
-        t.set(("POST", f"/repos/{REPO}/pulls"),
-              {"number": 7, "html_url": "https://github.com/x/pull/7"})
+    t.set(("POST", f"/repos/{REPO}/pulls"),
+          {"number": 7, "html_url": "https://github.com/x/pull/7"})
+    t.set(("POST", f"/repos/{REPO}/issues/7/labels"), {})
     t.set(("POST", f"/repos/{REPO}/actions/workflows/ci.yml/dispatches"), {})
     t.set(("POST", f"/repos/{REPO}/issues/7/comments"), {})
+
+
+def our_pr(number=7):
+    """An open updater PR as the API returns it: labelled, sentinel body."""
+    return {"number": number, "html_url": f"https://x/{number}",
+            "base": {"ref": "main"},
+            "labels": [{"name": pr.PR_LABEL}], "body": pr.PR_SENTINEL}
 
 
 class ProposalTests(unittest.TestCase):
@@ -99,8 +106,7 @@ class ProposalTests(unittest.TestCase):
 
     def test_reuse_existing_pr(self):
         t = FakeTransport()
-        base_transport(t, branch_head=PROPOSAL_SHA,
-                       open_pr={"number": 7, "html_url": "https://x/7"})
+        base_transport(t, branch_head=PROPOSAL_SHA, open_pr=our_pr())
         r = pr.propose_update(REPO, plan(), transport=t)
         self.assertEqual(r.outcome, "reused")
         self.assertEqual(r.pr_number, 7)
@@ -110,8 +116,7 @@ class ProposalTests(unittest.TestCase):
 
     def test_expected_head_mismatch_refuses_and_comments(self):
         t = FakeTransport()
-        base_transport(t, branch_head=PROPOSAL_SHA,
-                       open_pr={"number": 7, "html_url": "https://x/7"})
+        base_transport(t, branch_head=PROPOSAL_SHA, open_pr=our_pr())
         r = pr.propose_update(REPO, plan(), expected_head="9" * 40,
                               transport=t)
         self.assertEqual(r.outcome, "refused")
@@ -123,7 +128,7 @@ class ProposalTests(unittest.TestCase):
     def test_foreign_actor_refuses_and_comments(self):
         t = FakeTransport()
         base_transport(t, branch_head=FOREIGN_SHA, branch_actor="alice",
-                       open_pr={"number": 7, "html_url": "https://x/7"})
+                       open_pr=our_pr())
         r = pr.propose_update(REPO, plan(), transport=t)
         self.assertEqual(r.outcome, "refused")
         self.assertIn("unexpected actor", r.reason)
@@ -151,6 +156,35 @@ class ProposalTests(unittest.TestCase):
         r = pr.propose_update(REPO, plan(changed=False), transport=t)
         self.assertEqual(r.outcome, "unchanged")
         self.assertEqual(t.calls, [])
+
+    def test_expected_head_blocks_branch_creation(self):
+        # branch absent but the recorded base head has moved: refuse before
+        # creating the update branch
+        t = FakeTransport()
+        base_transport(t, branch_head=None)
+        r = pr.propose_update(REPO, plan(), expected_head="9" * 40,
+                              transport=t)
+        self.assertEqual(r.outcome, "refused")
+        self.assertIn("not created", r.reason)
+        self.assertFalse(any(c.method == "POST" and "git/refs" in c.url
+                             for c in t.calls))
+        self.assertFalse(any(c.graphql for c in t.calls))
+
+    def test_foreign_pr_not_reused(self):
+        # an open PR on the same branch without our label/sentinel is not
+        # adopted: a fresh labelled PR is created instead
+        t = FakeTransport()
+        base_transport(t, branch_head=PROPOSAL_SHA,
+                       open_pr={"number": 42, "html_url": "https://x/42",
+                                "base": {"ref": "main"},
+                                "labels": [], "body": "human work"})
+        r = pr.propose_update(REPO, plan(), transport=t)
+        self.assertEqual(r.outcome, "proposed")
+        self.assertEqual(r.pr_number, 7)
+        self.assertTrue(any(c.method == "POST" and c.url.endswith("/pulls")
+                            for c in t.calls))
+        self.assertTrue(any(c.method == "POST" and "labels" in c.url
+                            for c in t.calls))
 
     def test_commit_uses_expected_head_and_base64(self):
         t = FakeTransport()

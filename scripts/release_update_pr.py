@@ -28,6 +28,7 @@ USER_AGENT = "terraphim-release-updater/1 (+https://terraphim.ai)"
 
 UPDATE_BRANCH = "bot/release-updater"
 PR_TITLE = "chore(release): update release links (auto)"
+PR_SENTINEL = "<!-- release-updater:managed -->"
 PR_LABEL = "release-updater"
 EXPECTED_ACTOR = "github-actions[bot]"
 
@@ -138,16 +139,37 @@ def _commit_verified(t: Transport, repo: str, sha: str) -> bool:
     return bool(v.get("verified")) and v.get("reason") == "valid"
 
 
-def _find_open_pr(t: Transport, repo: str, branch: str) -> Optional[dict]:
+def _is_our_pr(pr: dict, base: Optional[str]) -> bool:
+    """Only reuse/comment on PRs we created: labelled or sentinel-bodied,
+    and targeting the expected base branch."""
+    if base is not None and (pr.get("base") or {}).get("ref") != base:
+        return False
+    labels = {l.get("name") for l in pr.get("labels") or []}
+    return PR_LABEL in labels or PR_SENTINEL in (pr.get("body") or "")
+
+
+def _find_open_pr(t: Transport, repo: str, branch: str,
+                  base: Optional[str] = None) -> Optional[dict]:
     owner = repo.split("/")[0]
     prs = t(Request("GET", f"/repos/{repo}/pulls?head={owner}:{branch}&state=open"))
-    return prs[0] if prs else None
+    for pr in prs:
+        if _is_our_pr(pr, base):
+            return pr
+    return None
 
 
 def _create_pr(t: Transport, repo: str, branch: str, title: str, body: str,
                base: str) -> dict:
-    return t(Request("POST", f"/repos/{repo}/pulls",
-                     {"title": title, "head": branch, "base": base, "body": body}))
+    if PR_SENTINEL not in body:
+        body = body + "\n\n" + PR_SENTINEL
+    pr = t(Request("POST", f"/repos/{repo}/pulls",
+                   {"title": title, "head": branch, "base": base, "body": body}))
+    try:
+        t(Request("POST", f"/repos/{repo}/issues/{pr['number']}/labels",
+                  {"labels": [PR_LABEL]}))
+    except RuntimeError:
+        pass  # labelling is best-effort; the body sentinel still identifies it
+    return pr
 
 
 def _comment(t: Transport, repo: str, pr_number: int, body: str) -> None:
@@ -184,6 +206,11 @@ def propose_update(repo: str, plan, expected_head: Optional[str] = None,
 
     if head is None:
         base_sha = _head_sha(t, repo, base)
+        if expected_head is not None and base_sha != expected_head:
+            r.outcome = "refused"
+            r.reason = (f"default branch {base_sha[:10]} moved from expected "
+                        f"{expected_head[:10]}; update branch not created")
+            return r
         _create_branch(t, repo, UPDATE_BRANCH, base_sha)
         head = base_sha
     else:
@@ -191,7 +218,7 @@ def propose_update(repo: str, plan, expected_head: Optional[str] = None,
         if _commit_actor(t, repo, head) != expected_actor:
             r.outcome = "refused"
             r.reason = f"update branch head {head[:10]} authored by unexpected actor"
-            pr = _find_open_pr(t, repo, UPDATE_BRANCH)
+            pr = _find_open_pr(t, repo, UPDATE_BRANCH, base)
             if pr:
                 r.pr_number, r.pr_url = pr["number"], pr["html_url"]
                 _comment(t, repo, pr["number"],
@@ -199,18 +226,18 @@ def propose_update(repo: str, plan, expected_head: Optional[str] = None,
                          "contains commits from an unexpected actor. "
                          "A human must resolve the branch state.")
             return r
-
-    if expected_head is not None and head != expected_head:
-        r.outcome = "refused"
-        r.reason = (f"branch head {head[:10]} moved from expected "
-                    f"{expected_head[:10]}")
-        pr = _find_open_pr(t, repo, UPDATE_BRANCH)
-        if pr:
-            r.pr_number, r.pr_url = pr["number"], pr["html_url"]
-            _comment(t, repo, pr["number"],
-                     "Release updater refused to write: the update branch head "
-                     "moved since the proposal snapshot. A human must resolve.")
-        return r
+        if expected_head is not None and head != expected_head:
+            r.outcome = "refused"
+            r.reason = (f"branch head {head[:10]} moved from expected "
+                        f"{expected_head[:10]}")
+            pr = _find_open_pr(t, repo, UPDATE_BRANCH, base)
+            if pr:
+                r.pr_number, r.pr_url = pr["number"], pr["html_url"]
+                _comment(t, repo, pr["number"],
+                         "Release updater refused to write: the update branch "
+                         "head moved since the proposal snapshot. "
+                         "A human must resolve.")
+            return r
 
     commit_sha = _create_commit(
         t, repo, UPDATE_BRANCH, head,
@@ -226,7 +253,7 @@ def propose_update(repo: str, plan, expected_head: Optional[str] = None,
                     "no unsigned PR admitted")
         return r
 
-    pr = _find_open_pr(t, repo, UPDATE_BRANCH)
+    pr = _find_open_pr(t, repo, UPDATE_BRANCH, base)
     reused = pr is not None
     if not pr:
         body = pr_body or _default_body(plan, commit_sha)

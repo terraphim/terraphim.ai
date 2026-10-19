@@ -20,6 +20,7 @@ import sys
 import tempfile
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
@@ -85,7 +86,7 @@ class Version:
 
     @staticmethod
     def parse(text: str) -> Optional["Version"]:
-        m = re.match(r"^v?(\d+)\.(\d+)\.(\d+)(?:-([0-9A-Za-z.-]+))?$", text)
+        m = re.match(r"^v?(\d{1,10})\.(\d{1,10})\.(\d{1,10})(?:-([0-9A-Za-z.-]+))?$", text)
         if not m:
             return None
         pre = tuple(m.group(4).split(".")) if m.group(4) else ()
@@ -226,19 +227,33 @@ class CurrentVersions:
 # HTTP (bounded retries, Retry-After honoured)
 
 
+class _NoRedirect(urllib.request.HTTPRedirectHandler):
+    """Refuse redirects: following them would forward the Authorization
+    header to whatever host the redirect names."""
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None
+
+
+_OPENER = urllib.request.build_opener(_NoRedirect)
+
+
+def _request_headers(url: str, token: Optional[str]) -> dict:
+    headers = {"Accept": "application/vnd.github+json", "User-Agent": USER_AGENT}
+    host = urllib.parse.urlsplit(url).hostname or ""
+    if token and host.endswith(".github.com") or token and host == "github.com":
+        headers["Authorization"] = f"Bearer {token}"
+    return headers
+
+
 def _http_get_json(url: str, token: Optional[str], deadline: float) -> Any:
     last_err: Optional[Exception] = None
     for attempt in range(1, MAX_ATTEMPTS + 1):
         remaining = deadline - time.monotonic()
         if remaining <= 0:
             raise OperationalFailure(f"discovery budget exhausted before {url}")
-        req = urllib.request.Request(url, headers={
-            "Accept": "application/vnd.github+json",
-            "User-Agent": USER_AGENT,
-            **({"Authorization": f"Bearer {token}"} if token else {}),
-        })
+        req = urllib.request.Request(url, headers=_request_headers(url, token))
         try:
-            with urllib.request.urlopen(req, timeout=min(REQUEST_TIMEOUT_S, remaining)) as resp:
+            with _OPENER.open(req, timeout=min(REQUEST_TIMEOUT_S, remaining)) as resp:
                 return json.loads(resp.read().decode("utf-8"))
         except urllib.error.HTTPError as e:
             last_err = e
@@ -290,6 +305,8 @@ def collect_snapshot(timeout_seconds: int = DISCOVERY_BUDGET_S,
 
 
 def _parse_channel(binary: str, body: dict) -> ChannelManifest:
+    if not isinstance(body, dict):
+        raise RejectedInput(f"clients channel {binary} manifest is not an object")
     version = body.get("version")
     released_at = body.get("released_at") or body.get("releasedAt") or ""
     notes = body.get("notes_url") or body.get("notesURL") or ""
@@ -302,6 +319,8 @@ def _parse_channel(binary: str, body: dict) -> ChannelManifest:
 
 
 def _release_to_component(sel: ComponentSelector, rel: dict) -> Optional[ComponentRelease]:
+    if not isinstance(rel, dict):
+        return None
     tag = rel.get("tag_name") or ""
     if not tag.startswith(sel.tag_prefix):
         return None
@@ -315,11 +334,19 @@ def _release_to_component(sel: ComponentSelector, rel: dict) -> Optional[Compone
         return None
     if rel.get("prerelease") and not sel.allow_prerelease:
         return None
+    published = str(rel.get("published_at") or "")
+    try:
+        datetime.fromisoformat(published.replace("Z", "+00:00"))
+    except ValueError:
+        return None  # malformed metadata: unadmitted rather than crash later
+    url = str(rel.get("html_url") or "")
+    if url != f"https://github.com/{sel.repository}/releases/tag/{tag}":
+        return None  # untrusted link target: never interpolated into output
     return ComponentRelease(
         component=sel.name, repository=sel.repository, tag=tag, version=version,
         prerelease=bool(rel.get("prerelease")),
-        published_at=rel.get("published_at") or "",
-        url=rel.get("html_url") or "",
+        published_at=published,
+        url=url,
         asset_names=tuple(sorted(a.get("name", "") for a in rel.get("assets", []))),
         api_url=rel.get("url") or "")
 
@@ -365,12 +392,12 @@ def _check_channel_gate(clients: ComponentRelease, channels: dict) -> None:
             raise RejectedInput(
                 f"clients channel {binary} notesURL does not reference {clients.tag}")
         actual = set(ch.targets)
+        if any("windows" in t for t in actual):
+            raise RejectedInput(f"clients channel {binary} admits a native Windows target")
         if actual != expected:
             raise RejectedInput(
                 f"clients channel {binary} target set mismatch: "
                 f"missing={sorted(expected - actual)} extra={sorted(actual - expected)}")
-        if any("windows" in t for t in actual):
-            raise RejectedInput(f"clients channel {binary} admits a native Windows target")
         for t in actual:
             d = ch.descriptors.get(t)
             if not isinstance(d, dict) or not (d.get("url") or d.get("path")) or \
@@ -687,6 +714,9 @@ def _readme_region(readme: bytes, snapshot: ReleaseSnapshot) -> bytes:
     end_n = text.count(README_MARKER_END)
     if start_n != end_n or start_n > 1:
         raise RejectedInput("README.md: duplicate or unbalanced downloads markers")
+    if start_n == 1 and \
+            text.index(README_MARKER_END) < text.index(README_MARKER_START):
+        raise RejectedInput("README.md: downloads END marker precedes START")
 
     if start_n == 0:
         # Pre-migration: exactly one Current downloads heading whose block
@@ -775,11 +805,13 @@ def plan_updates(root: Path, target: TargetRepository,
         files=tuple(files))
 
 
-def apply_plan(plan: UpdatePlan, root: Path) -> dict:
-    """Verify original hashes, stage via temp+os.replace, restore on failure."""
+def apply_plan(plan: UpdatePlan, root: Path,
+               _replace: Callable = os.replace) -> dict:
+    """Verify original hashes, stage via temp+os.replace, restore on failure.
+    `_replace` injects a fault seam for tests; production uses os.replace."""
     root = Path(root)
-    staged: list = []
-    results = []
+    staged: list = []    # (path, temp_path, original_bytes) not yet swapped in
+    replaced: list = []  # paths already swapped in, need restore on failure
     try:
         for f in plan.files:
             p = root / f.path
@@ -787,18 +819,19 @@ def apply_plan(plan: UpdatePlan, root: Path) -> dict:
             if _sha(current) != f.original_sha256:
                 raise OperationalFailure(
                     f"{f.path}: original hash mismatch; refusing to overwrite")
+            if f.proposed_sha256 == f.original_sha256:
+                continue  # byte-identical: no write needed
             fd, tmp = tempfile.mkstemp(dir=str(p.parent), prefix=".relupd-")
             with os.fdopen(fd, "wb") as fh:
                 fh.write(f.proposed_bytes)
             staged.append((p, tmp, current))
         for p, tmp, _ in staged:
-            os.replace(tmp, str(p))
-            results.append({"path": str(p.relative_to(root)), "status": "applied"})
+            _replace(tmp, str(p))
+            replaced.append(p)
     except Exception as e:
-        for p, tmp, orig in staged:
-            if Path(tmp).exists():
-                os.replace(tmp, str(p))
-                p.write_bytes(orig)  # belt-and-braces restore
+        orig = {p: b for p, _, b in staged}
+        for p in replaced:
+            p.write_bytes(orig[p])
         raise OperationalFailure(f"apply failed, originals restored: {e}") from e
     finally:
         for _, tmp, _ in staged:
@@ -810,7 +843,10 @@ def apply_plan(plan: UpdatePlan, root: Path) -> dict:
         "checked_at": plan.checked_at,
         "admitted": plan.admitted,
         "outcome": "applied" if plan.changed else "unchanged",
-        "files": results,
+        "files": [{"path": f.path,
+                   "status": "unchanged" if f.original_sha256 == f.proposed_sha256
+                            else "applied"}
+                  for f in plan.files],
     }
 
 
@@ -865,7 +901,10 @@ def _cmd(args: argparse.Namespace) -> int:
     except OperationalFailure as e:
         print(f"operational failure: {e}", file=sys.stderr)
         return EXIT_OPERATIONAL
-    except (OSError, json.JSONDecodeError, KeyError) as e:
+    except (OSError, json.JSONDecodeError, KeyError,
+            ValueError, AttributeError, TypeError) as e:
+        # malformed upstream data or structural surprises are operational
+        # failures (exit 3), never silent drift (exit 1) or tracebacks
         print(f"operational failure: {e}", file=sys.stderr)
         return EXIT_OPERATIONAL
 

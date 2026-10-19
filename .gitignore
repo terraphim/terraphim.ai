@@ -6,3 +6,7 @@ public/
 .cached-context
 .docs/
 crates/
+
+__pycache__/
+*.pyc
+scripts/**/.relupd-*

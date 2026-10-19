@@ -1794,7 +1794,7 @@
     "url": "https://api.github.com/repos/terraphim/terraphim-clients/releases/413699482",
     "assets_url": "https://api.github.com/repos/terraphim/terraphim-clients/releases/413699482/assets",
     "upload_url": "https://uploads.github.com/repos/terraphim/terraphim-clients/releases/413699482/assets{?name,label}",
-    "html_url": "https://github.com/terraphim/terraphim-clients/releases/tag/v1.21.22",
+    "html_url": "https://github.com/terraphim/terraphim-clients/releases/tag/v1.21.20",
     "id": 413699482,
     "author": {
      "login": "AlexMikhalev",
