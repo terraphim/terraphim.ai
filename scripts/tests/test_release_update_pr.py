@@ -80,8 +80,9 @@ def base_transport(t: FakeTransport,
     t.set(("PUT", f"/repos/{REPO}/contents/README.md"),
           {"commit": {"sha": NEW_COMMIT}})
     t.set(("GET", f"/repos/{REPO}/commits/{NEW_COMMIT}"),
-          {"parents": [{"sha": head}],
-           "verification": {"verified": verified,
+          {"parents": [{"sha": head}]})
+    t.set(("GET", f"/repos/{REPO}/git/commits/{NEW_COMMIT}"),
+          {"verification": {"verified": verified,
                             "reason": "valid" if verified else "unsigned"}})
     t.set(("GET", f"/repos/{REPO}/pulls"),
           [open_pr] if open_pr else [])
@@ -214,8 +215,7 @@ class ProposalTests(unittest.TestCase):
         t = FakeTransport()
         base_transport(t, branch_head=PROPOSAL_SHA)
         t.set(("GET", f"/repos/{REPO}/commits/{NEW_COMMIT}"),
-              {"parents": [{"sha": "0" * 40}],
-               "verification": {"verified": True, "reason": "valid"}})
+              {"parents": [{"sha": "0" * 40}]})
         r = pr.propose_update(REPO, plan(), transport=t, require_signed=True)
         self.assertEqual(r.outcome, "refused")
         self.assertIn("moved", r.reason)

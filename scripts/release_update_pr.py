@@ -147,10 +147,23 @@ def _create_commit(t: Transport, repo: str, branch: str, expected_head: str,
     return resp["data"]["createCommitOnBranch"]["commit"]["oid"]
 
 
-def _commit_verified(t: Transport, repo: str, sha: str) -> bool:
-    c = t(Request("GET", f"/repos/{repo}/commits/{sha}"))
-    v = c.get("verification") or {}
-    return bool(v.get("verified")) and v.get("reason") == "valid"
+def _commit_verified(t: Transport, repo: str, sha: str,
+                     attempts: int = 3, delay: float = 1.0) -> bool:
+    """Signature readback via the Git Data endpoint: /git/commits returns the
+    PGP signature and verification eagerly, while the repo /commits view can
+    report verification:null for the same signed commit."""
+    import time as _time
+    for attempt in range(attempts):
+        c = t(Request("GET", f"/repos/{repo}/git/commits/{sha}"))
+        v = c.get("verification") or {}
+        if bool(v.get("verified")) and v.get("reason") == "valid":
+            return True
+        if attempt + 1 < attempts and v.get("verified") is False \
+                and v.get("reason") == "unsigned":
+            break  # conclusively unsigned: no point polling
+        if attempt + 1 < attempts:
+            _time.sleep(delay)
+    return False
 
 
 def _commit_parents(t: Transport, repo: str, sha: str) -> list:
