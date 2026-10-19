@@ -5,20 +5,20 @@ project website, with [Zola](https://www.getzola.org/). It includes product
 guides, release information and the browser editor preview.
 
 ## Current downloads
-
-Verified release links as of 18 October 2026. Core services and CLI clients have
+<!-- terraphim-downloads:start -->
+Verified release links as of 19 October 2026. Core services and CLI clients have
 separate releases.
 
 | Component | Release | Use |
 | --- | --- | --- |
-| Core project | [v1.21.3](https://github.com/terraphim/terraphim-ai/releases/tag/v1.21.3) | Stable core/source release |
+| Core project | [v2026.5.30](https://github.com/terraphim/terraphim-ai/releases/tag/v2026.05.30) | Stable core/source release |
 | CLI clients | [v1.21.22](https://github.com/terraphim/terraphim-clients/releases/tag/v1.21.22) | Stable `terraphim-grep`, agent and client tools |
 | Terraphim Editor | [v0.1.0-rc.4](https://github.com/terraphim/terraphim-editor/releases/tag/v0.1.0-rc.4) | Browser editor prerelease |
 | VS Code extension | [0.1.7](https://github.com/terraphim/terraphim-ai/releases/tag/terraphim_vscode-v0.1.7) | Prerelease VSIX for compatible editors |
 | Cursor plugin | [v0.2.7](https://github.com/terraphim/terraphim-cursor-plugin/releases/tag/v0.2.7) | Native Cursor plugin; separate from the VSIX catalogue |
 | Stock Zed extension | [v0.2.1](https://github.com/terraphim/zed-terraphim/releases/tag/v0.2.1) | GitHub download; official Zed catalogue submission remains pending |
 | Continue integration | [0.1.1](https://github.com/terraphim/terraphim-ai/releases/tag/terraphim_continue-v0.1.1) | Continue integration package |
-
+<!-- terraphim-downloads:end -->
 For future stable releases, use [latest core
 downloads](https://github.com/terraphim/terraphim-ai/releases/latest) or [latest
 CLI client
