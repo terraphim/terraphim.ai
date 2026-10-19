@@ -116,3 +116,24 @@ jobs:
 
       - name: Verify advertised downloads exist on the public channel
         run: python3 scripts/check-release-links.py
+
+  release-drift-check:
+    name: Check release-link drift
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Detect drift between managed fields and admitted releases
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/update_release.py --target website --check --receipt drift-receipt.json
+
+      - name: Upload drift receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-drift-receipt
+          path: drift-receipt.json
+          retention-days: 30
