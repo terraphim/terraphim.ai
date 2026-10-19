@@ -74,8 +74,14 @@ def base_transport(t: FakeTransport,
               {"object": {"sha": branch_head}})
         t.set(("GET", f"/repos/{REPO}/commits/{branch_head}"),
               {"author": {"login": branch_actor}})
+    head = branch_head or MAIN_SHA
+    t.set(("GET", f"/repos/{REPO}/contents/README.md"),
+          {"sha": "f" * 40})
+    t.set(("PUT", f"/repos/{REPO}/contents/README.md"),
+          {"commit": {"sha": NEW_COMMIT}})
     t.set(("GET", f"/repos/{REPO}/commits/{NEW_COMMIT}"),
-          {"verification": {"verified": verified,
+          {"parents": [{"sha": head}],
+           "verification": {"verified": verified,
                             "reason": "valid" if verified else "unsigned"}})
     t.set(("GET", f"/repos/{REPO}/pulls"),
           [open_pr] if open_pr else [])
@@ -188,19 +194,47 @@ class ProposalTests(unittest.TestCase):
         self.assertTrue(any(c.method == "POST" and "labels" in c.url
                             for c in t.calls))
 
-    def test_commit_uses_expected_head_and_base64(self):
+    def test_single_file_commit_via_contents_api(self):
+        # single-file plans commit via PUT /contents (GitHub-signed) with
+        # base64 content and the file sha on the update branch
         t = FakeTransport()
         base_transport(t, branch_head=PROPOSAL_SHA)
         pr.propose_update(REPO, plan(), transport=t)
-        gql = next(c for c in t.calls if c.graphql)
-        inp = gql.body["variables"]["input"]
-        self.assertEqual(inp["expectedHeadOid"], PROPOSAL_SHA)
-        self.assertEqual(inp["branch"]["repositoryNameWithOwner"], REPO)
+        put = next(c for c in t.calls if c.method == "PUT")
+        self.assertEqual(put.url, f"/repos/{REPO}/contents/README.md")
+        self.assertEqual(put.body["branch"], pr.UPDATE_BRANCH)
+        self.assertEqual(put.body["sha"], "f" * 40)
         import base64
-        self.assertEqual(
-            base64.b64decode(
-                inp["fileChanges"]["additions"][0]["contents"]),
-            b"readme bytes")
+        self.assertEqual(base64.b64decode(put.body["content"]), b"readme bytes")
+        self.assertFalse(any(c.graphql for c in t.calls))
+
+    def test_parent_mismatch_after_contents_commit_refuses(self):
+        # a moved branch between the head check and the PUT is caught by the
+        # parent readback and refused
+        t = FakeTransport()
+        base_transport(t, branch_head=PROPOSAL_SHA)
+        t.set(("GET", f"/repos/{REPO}/commits/{NEW_COMMIT}"),
+              {"parents": [{"sha": "0" * 40}],
+               "verification": {"verified": True, "reason": "valid"}})
+        r = pr.propose_update(REPO, plan(), transport=t, require_signed=True)
+        self.assertEqual(r.outcome, "refused")
+        self.assertIn("moved", r.reason)
+        self.assertFalse(any(c.method == "POST" and c.url.endswith("/pulls")
+                             for c in t.calls))
+
+    def test_multi_file_signed_plan_refuses(self):
+        f1 = u.PlannedFile(path="README.md", original_sha256="0" * 64,
+                           proposed_sha256="1" * 64, proposed_bytes=b"a")
+        f2 = u.PlannedFile(path="OTHER.md", original_sha256="0" * 64,
+                           proposed_sha256="1" * 64, proposed_bytes=b"b")
+        p = u.UpdatePlan(target="terraphim-clients",
+                         checked_at="2026-10-18T00:00:00Z",
+                         admitted={"clients": "v1.21.22"}, files=(f1, f2))
+        t = FakeTransport()
+        base_transport(t, branch_head=PROPOSAL_SHA)
+        r = pr.propose_update(REPO, p, transport=t, require_signed=True)
+        self.assertEqual(r.outcome, "refused")
+        self.assertIn("one", r.reason)
 
 
 class TransportTests(unittest.TestCase):

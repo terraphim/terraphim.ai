@@ -153,6 +153,36 @@ def _commit_verified(t: Transport, repo: str, sha: str) -> bool:
     return bool(v.get("verified")) and v.get("reason") == "valid"
 
 
+def _commit_parents(t: Transport, repo: str, sha: str) -> list:
+    c = t(Request("GET", f"/repos/{repo}/commits/{sha}"))
+    return [p["sha"] for p in c.get("parents", [])]
+
+
+def _file_sha_on_branch(t: Transport, repo: str, path: str,
+                        branch: str) -> Optional[str]:
+    try:
+        f = t(Request("GET", f"/repos/{repo}/contents/{path}?ref={branch}"))
+        return f.get("sha")
+    except RuntimeError as e:
+        if "404" in str(e):
+            return None
+        raise
+
+
+def _commit_via_contents(t: Transport, repo: str, branch: str, path: str,
+                         content: bytes, file_sha: str, message: str) -> str:
+    """Signed single-file commit via the REST Contents API: commits created
+    through this endpoint are auto-signed by GitHub's web-flow key, unlike
+    createCommitOnBranch which produces unsigned commits."""
+    resp = t(Request("PUT", f"/repos/{repo}/contents/{path}", {
+        "message": message,
+        "content": base64.b64encode(content).decode(),
+        "sha": file_sha,
+        "branch": branch,
+    }))
+    return resp["commit"]["sha"]
+
+
 def _is_our_pr(pr: dict, base: Optional[str]) -> bool:
     """Only reuse/comment on PRs we created: labelled or sentinel-bodied,
     and targeting the expected base branch."""
@@ -253,11 +283,34 @@ def propose_update(repo: str, plan, expected_head: Optional[str] = None,
                          "A human must resolve.")
             return r
 
-    commit_sha = _create_commit(
-        t, repo, UPDATE_BRANCH, head,
-        f"chore(release): update release links ({plan.checked_at[:10]})",
-        additions)
-    r.commit_sha = commit_sha
+    message = f"chore(release): update release links ({plan.checked_at[:10]})"
+    if len(additions) == 1:
+        # signed commit via the REST Contents API (web-flow signature)
+        path, content = additions[0]
+        file_sha = _file_sha_on_branch(t, repo, path, UPDATE_BRANCH)
+        if file_sha is None:
+            r.outcome = "refused"
+            r.reason = f"{path} absent on {UPDATE_BRANCH}; cannot sign update"
+            return r
+        commit_sha = _commit_via_contents(
+            t, repo, UPDATE_BRANCH, path, content, file_sha, message)
+        r.commit_sha = commit_sha
+        # Contents API has no expectedHeadOid; prove the new commit sits
+        # directly on the head we checked
+        if _commit_parents(t, repo, commit_sha) != [head]:
+            r.outcome = "refused"
+            r.reason = (f"commit {commit_sha[:10]} landed on a moved branch "
+                        f"head (expected {head[:10]})")
+            return r
+    else:
+        if require_signed:
+            r.outcome = "refused"
+            r.reason = (f"signed commits via the Contents API support one "
+                        f"file per run; plan touches {len(additions)} files")
+            return r
+        commit_sha = _create_commit(
+            t, repo, UPDATE_BRANCH, head, message, additions)
+        r.commit_sha = commit_sha
 
     verified = _commit_verified(t, repo, commit_sha)
     r.commit_verified = verified
