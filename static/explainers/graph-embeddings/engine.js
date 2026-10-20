@@ -25,6 +25,12 @@
     return l < q ? [l, q] : [q, l - q];
   }
 
+  // aho_corasick uses ascii_case_insensitive(true): only A-Z folds to a-z.
+  // toLowerCase() would fold Unicode (é<-É), which Rust does not.
+  function asciiFold(s) {
+    return s.replace(/[A-Z]/g, (ch) => String.fromCharCode(ch.charCodeAt(0) + 32));
+  }
+
   // Leftmost-longest, ASCII case-insensitive multi-pattern scan.
   // Equivalent output to aho_corasick with MatchKind::LeftmostLongest:
   // at each leftmost position, the longest pattern that matches wins;
@@ -32,7 +38,7 @@
   class AhoLite {
     constructor(thesaurusData) {
       this.patterns = Object.entries(thesaurusData)
-        .map(([k, v]) => [k.toLowerCase(), v.id])
+        .map(([k, v]) => [asciiFold(k), v.id])
         .sort((a, b) => b[0].length - a[0].length);
       this.nterm = {};
       for (const v of Object.values(thesaurusData)) {
@@ -41,7 +47,7 @@
     }
 
     findMatches(text) {
-      const t = text.toLowerCase();
+      const t = asciiFold(text);
       const out = [];
       let i = 0;
       while (i < t.length) {

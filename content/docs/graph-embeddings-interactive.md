@@ -77,8 +77,8 @@ concept sequence update live.
   <div class="tge-controls">
     <input type="text" id="tge-matcher-input" aria-label="Text to scan with the Aho-Corasick automaton">
   </div>
-  <div class="tge-text" id="tge-matcher-text" aria-live="polite"></div>
-  <div class="tge-chips" id="tge-matcher-chips" aria-label="Matched concept sequence"></div>
+  <div class="tge-text" id="tge-matcher-text"></div>
+  <div class="tge-chips" id="tge-matcher-chips" role="status" aria-live="polite" aria-atomic="true"></div>
   <p class="tge-caption">Try <span class="tge-mono">a consensus algorithm</span> vs
   <span class="tge-mono">a consensus</span>: <code>consensus algorithm</code> wins as one match,
   not two. That is LeftmostLongest. Overlapping terms collapse into a single concept id —
@@ -117,8 +117,11 @@ times and watch the graph accrete; then index your own sentence (only thesaurus 
   <svg id="main-graph-svg" class="tge-graph" viewBox="0 0 820 520" role="img" aria-label="Main knowledge graph view"></svg>
   <p class="tge-caption">Edge thickness ∝ total document count on that pair. Loops are real:
   <code>partition tolerance → partition tolerance</code> and <code>leader → leader</code> appear
-  when the same concept is matched twice in a row. Re-indexing a document first removes all of
-  its contributions — replace semantics, so indexing is idempotent.</p>
+  when the same concept is matched twice in a row. Re-indexing removes a document's
+  contributions before re-counting — replace semantics. Honest caveat: removal decrements
+  node rank once per <em>edge</em>, while insertion counts once per pair <em>occurrence</em>,
+  so a document that repeats the same directed pair leaves a small rank residual on re-index.
+  That is the Rust implementation's real behaviour, ported faithfully — not smoothed over.</p>
 </div>
 
 ## Scene three: asking a question

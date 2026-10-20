@@ -133,5 +133,28 @@ for (const q of corpus.queries) {
 // OOV honest failure
 eq("OOV returns empty", g.queryGraph("kubernetes docker swarm"), []);
 
+// ASCII-only case folding (aho_corasick ascii_case_insensitive):
+// "CAFÉ" must NOT match pattern "café" — É is not ASCII.
+{
+  const ac = new engine.AhoLite({
+    "café": { id: 50, nterm: "café" },
+    state: { id: 51, nterm: "state" },
+  });
+  eq("ASCII fold: CAFÉ does not match café", ac.findMatches("CAFÉ"), []);
+  eq("ASCII fold: STATE matches state", ac.findMatches("STATE").map((m) => m.id), [51]);
+}
+
+// Rust parity: removal decrements once per EDGE while insertion increments
+// per pair OCCURRENCE (lib.rs:946-981 vs 996-1007). A doc repeating a directed
+// pair keeps residual node rank on re-index — a source quirk ported
+// faithfully, not idempotent in that case.
+{
+  const r = new engine.RoleGraphLite(corpus.thesaurus);
+  r.insertDocument("rep", "raft consensus raft consensus");
+  const fresh1 = r.nodes.get(1).rank; // 3
+  r.insertDocument("rep", "raft consensus raft consensus");
+  eq("repeated-edge re-index parity (residual +1)", r.nodes.get(1).rank, fresh1 + 1);
+}
+
 console.log(failures === 0 ? "\nALL CHECKS PASSED" : `\n${failures} FAILURES`);
 process.exit(failures === 0 ? 0 : 1);

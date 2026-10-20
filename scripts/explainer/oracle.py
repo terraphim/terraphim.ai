@@ -22,16 +22,20 @@ def magic_unpair(z):
     l = z - q * q
     return (l, q) if l < q else (q, l - q)
 
+def ascii_fold(s):
+    # aho_corasick ascii_case_insensitive(true): only A-Z folds, not Unicode.
+    return s.translate({c: c + 32 for c in range(ord("A"), ord("Z") + 1)})
+
 class AhoLite:
     """Leftmost-longest, ASCII case-insensitive multi-pattern scan."""
     def __init__(self, data):
         self.patterns = sorted(
-            [(k.lower(), v["id"]) for k, v in data.items()], key=lambda p: -len(p[0])
+            [(ascii_fold(k), v["id"]) for k, v in data.items()], key=lambda p: -len(p[0])
         )
         self.nterm = {v["id"]: v["nterm"] for v in data.values()}
 
     def find_matches(self, text):
-        t = text.lower()
+        t = ascii_fold(text)
         out, i, n = [], 0, len(t)
         while i < n:
             for pat, cid in self.patterns:

@@ -12,6 +12,7 @@
   const $$ = (sel, el) => [...(el || document).querySelectorAll(sel)];
   const esc = (s) =>
     s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  const escAttr = (s) => esc(s).replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 
   // Deterministic hand-tuned layout (id -> [x,y]) in a 820x520 viewBox.
   const POS = {
@@ -214,7 +215,7 @@
     let html = "", last = 0;
     for (const m of matches) {
       html += esc(text.slice(last, m.start));
-      html += `<mark title="→ #${m.id} ${esc(ntermOf[m.id] || "")}">${esc(text.slice(m.start, m.end))}</mark>`;
+      html += `<mark title="→ #${m.id} ${escAttr(ntermOf[m.id] || "")}">${esc(text.slice(m.start, m.end))}</mark>`;
       last = m.end;
     }
     html += esc(text.slice(last));
@@ -266,7 +267,7 @@
       `<div class="tge-chips">${chipsFor(matches)}</div>` +
       `<div class="tge-mono" style="font-size:.8rem;color:var(--text-dim);margin-top:.4rem">` +
       `→ ${pairs.length} directed edge${pairs.length === 1 ? "" : "s"}: ` +
-      pairs.map(([a, b]) => `(${ntermOf[a] || a} → ${ntermOf[b] || b})`).join(", ") + `</div>`;
+      pairs.map(([a, b]) => `(${esc(ntermOf[a] || a)} → ${esc(ntermOf[b] || b)})`).join(", ") + `</div>`;
     renderQueue();
     renderGraph($("#main-graph-svg"), { newNodes: new Set(matches) });
     flowEdges($("#main-graph-svg"), touched);
