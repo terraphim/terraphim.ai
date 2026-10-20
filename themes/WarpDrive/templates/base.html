@@ -1,4 +1,5 @@
-{% import 'macros.html' as macros %}
+{# Macro calls are inlined in this file: newer template engines used by Zola
+   reject {% import %} in templates involved in extends chains. #}
 
 <!DOCTYPE html>
 <html lang="{{ lang }}">
@@ -158,7 +159,7 @@
   </div>
 
   {% block pagination %}
-  {% if paginator.previous or paginator.next %}
+  {% if paginator is defined and (paginator.previous or paginator.next) %}
   <div class="list-pagination">
     {% if paginator.previous %}
     <a href="{{ paginator.previous }}">
@@ -181,7 +182,48 @@
   <footer class="footer">
     <div class="footer-brand">Terraphim AI</div>
     <div class="footer-sub">Privacy-Preserving AI Assistant</div>
-    {{ macros::social_links(social_config=config.extra.social) }}
+    <div class="footer-links">
+      {% if config.extra.social.github %}
+      <a href="https://github.com/{{ config.extra.social.github }}" target="_blank" rel="noopener">
+        <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub
+      </a>
+      {% endif %}
+      {% if config.extra.social.discord %}
+      <a href="https://discord.gg/{{ config.extra.social.discord }}" target="_blank" rel="noopener">
+        <i class="fa-brands fa-discord" aria-hidden="true"></i> Discord
+      </a>
+      {% endif %}
+      {% if config.extra.social.discourse %}
+      <a href="https://{{ config.extra.social.discourse }}" target="_blank" rel="noopener">
+        <i class="fa-brands fa-discourse" aria-hidden="true"></i> Discourse
+      </a>
+      {% endif %}
+      {% if config.extra.social.twitter %}
+      <a href="https://twitter.com/{{ config.extra.social.twitter }}" target="_blank" rel="noopener">
+        <i class="fa-brands fa-x-twitter" aria-hidden="true"></i> Twitter
+      </a>
+      {% endif %}
+      {% if config.extra.social.linkedin %}
+        <a href="https://www.linkedin.com/in/{{ config.extra.social.linkedin }}" target="_blank" rel="noopener">
+        <i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn
+      </a>
+      {% endif %}
+      {% if config.extra.social.reddit %}
+      <a href="https://www.reddit.com/r/{{ config.extra.social.reddit }}" target="_blank" rel="noopener">
+        <i class="fa-brands fa-reddit" aria-hidden="true"></i> Reddit
+      </a>
+      {% endif %}
+      {% if config.extra.social.email %}
+      <a href="mailto:{{ config.extra.social.email }}">
+        <i class="fa-solid fa-envelope" aria-hidden="true"></i> Email
+      </a>
+      {% endif %}
+      {% if config.generate_feeds %}
+      <a href="{{ config.base_url }}/{{ config.feed_filenames | first }}" target="_blank" rel="noopener">
+        <i class="fa-solid fa-rss" aria-hidden="true"></i> RSS
+      </a>
+      {% endif %}
+    </div>
     <div class="footer-coord">Applied Knowledge Systems Ltd // Apache 2.0 // Editing and local search run locally. Optional synthesis uses your configured model provider.</div>
   </footer>
 

@@ -1,2 +1,27 @@
-{%- import "macros/create_data_json.html" as create_data -%}
-[{{ create_data::from_section(section="_index.md") }}]
+{# Two-level inline expansion of the old recursive from_section macro —
+   this content tree has no sections deeper than root -> subsection. #}
+{%- set_global first = true -%}
+{%- set root = get_section(path="_index.md") -%}
+[
+{%- for post in root.pages -%}
+{%- if not post.draft -%}
+{%- if first -%}{%- set_global first = false -%}{%- else -%},{%- endif -%}
+{"title": {{ post.title | striptags | json_encode | safe }},
+"url": {{ post.permalink | json_encode | safe }},
+"body": {{ post.content | json_encode | safe }}
+}
+{%- endif -%}
+{%- endfor -%}
+{%- for subsection_path in root.subsections -%}
+{%- set subsection = get_section(path=subsection_path) -%}
+{%- for post in subsection.pages -%}
+{%- if not post.draft -%}
+{%- if first -%}{%- set_global first = false -%}{%- else -%},{%- endif -%}
+{"title": {{ post.title | striptags | json_encode | safe }},
+"url": {{ post.permalink | json_encode | safe }},
+"body": {{ post.content | json_encode | safe }}
+}
+{%- endif -%}
+{%- endfor -%}
+{%- endfor -%}
+]

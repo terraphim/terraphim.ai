@@ -18,14 +18,28 @@
 <div class="article-layout">
   <div class="article-container">
     <article class="article-box">
-      {{ macros::page_meta(page=page) }}
+      <div class="article-meta">
+        {% if page.date %}
+        <span><i class="fa-regular fa-calendar" aria-hidden="true"></i> {{ page.date | date(format='%d %B %Y') }}</span>
+        {% endif %}
+        {% if page.reading_time %}
+        <span><i class="fa-regular fa-clock" aria-hidden="true"></i> {{ page.reading_time }} min read</span>
+        {% endif %}
+        {% if page.word_count %}
+        <span><i class="fa-solid fa-pen" aria-hidden="true"></i> {{ page.word_count }} words</span>
+        {% endif %}
+      </div>
       {% if page.taxonomies.categories or page.taxonomies.tags %}
       <div class="post-card-tags" style="margin-bottom: 1.5rem;">
         {% if page.taxonomies.categories %}
-        {{ macros::render_categories(categories=page.taxonomies.categories) }}
+        {% for category in page.taxonomies.categories %}
+        <a class="tag-pill category" href="{{ get_taxonomy_url(kind='categories', name=category) }}">{{ category }}</a>
+        {% endfor %}
         {% endif %}
         {% if page.taxonomies.tags %}
-        {{ macros::render_tags(tags=page.taxonomies.tags) }}
+        {% for tag in page.taxonomies.tags %}
+        <a class="tag-pill tag" href="{{ get_taxonomy_url(kind='tags', name=tag) }}">{{ tag }}</a>
+        {% endfor %}
         {% endif %}
       </div>
       {% endif %}
@@ -55,14 +69,28 @@
 {% else %}
 <div class="article-container">
   <article class="article-box">
-    {{ macros::page_meta(page=page) }}
+    <div class="article-meta">
+      {% if page.date %}
+      <span><i class="fa-regular fa-calendar" aria-hidden="true"></i> {{ page.date | date(format='%d %B %Y') }}</span>
+      {% endif %}
+      {% if page.reading_time %}
+      <span><i class="fa-regular fa-clock" aria-hidden="true"></i> {{ page.reading_time }} min read</span>
+      {% endif %}
+      {% if page.word_count %}
+      <span><i class="fa-solid fa-pen" aria-hidden="true"></i> {{ page.word_count }} words</span>
+      {% endif %}
+    </div>
     {% if page.taxonomies.categories or page.taxonomies.tags %}
     <div class="post-card-tags" style="margin-bottom: 1.5rem;">
       {% if page.taxonomies.categories %}
-      {{ macros::render_categories(categories=page.taxonomies.categories) }}
+      {% for category in page.taxonomies.categories %}
+      <a class="tag-pill category" href="{{ get_taxonomy_url(kind='categories', name=category) }}">{{ category }}</a>
+      {% endfor %}
       {% endif %}
       {% if page.taxonomies.tags %}
-      {{ macros::render_tags(tags=page.taxonomies.tags) }}
+      {% for tag in page.taxonomies.tags %}
+      <a class="tag-pill tag" href="{{ get_taxonomy_url(kind='tags', name=tag) }}">{{ tag }}</a>
+      {% endfor %}
       {% endif %}
     </div>
     {% endif %}

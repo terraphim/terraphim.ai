@@ -1,2 +1,39 @@
-{%- import "macros/create_data.html" as create_data -%}
-[{{ create_data::from_section(section="_index.md") }}]
+{# Two-level inline expansion of the old recursive from_section macro —
+   this content tree has no sections deeper than root -> subsection. #}
+{%- set_global first = true -%}
+{%- set root = get_section(path="_index.md") -%}
+[
+{%- for post in root.pages -%}
+{%- if not post.draft -%}
+{%- if first -%}{%- set_global first = false -%}{%- else -%},{%- endif -%}
+{"localId": {{ post.permalink | striptags | json_encode | safe}},
+{{ "https://atomicdata.dev/properties/name" | json_encode | safe }} : {{ post.title | striptags | json_encode | safe }},
+{{ config.base_url ~ "/properties/" ~ "url" | json_encode | safe }} : {{ post.permalink | striptags | json_encode | safe }},
+{{ "https://atomicdata.dev/properties/description" | json_encode | safe }} : {{ post.content  | json_encode | safe }},
+{{ config.base_url ~ "/properties/" ~ "date" | json_encode | safe }} : {{ post.date | json_encode | safe }},
+{{ config.base_url ~ "/properties/" ~ "tags" | json_encode | safe }} : {{ post.taxonomies | json_encode | safe }},
+"https://atomicdata.dev/properties/isA": [
+    "https://atomicdata.dev/classes/Article"
+  ]
+}
+{%- endif -%}
+{%- endfor -%}
+{%- for subsection_path in root.subsections -%}
+{%- set subsection = get_section(path=subsection_path) -%}
+{%- for post in subsection.pages -%}
+{%- if not post.draft -%}
+{%- if first -%}{%- set_global first = false -%}{%- else -%},{%- endif -%}
+{"localId": {{ post.permalink | striptags | json_encode | safe}},
+{{ "https://atomicdata.dev/properties/name" | json_encode | safe }} : {{ post.title | striptags | json_encode | safe }},
+{{ config.base_url ~ "/properties/" ~ "url" | json_encode | safe }} : {{ post.permalink | striptags | json_encode | safe }},
+{{ "https://atomicdata.dev/properties/description" | json_encode | safe }} : {{ post.content  | json_encode | safe }},
+{{ config.base_url ~ "/properties/" ~ "date" | json_encode | safe }} : {{ post.date | json_encode | safe }},
+{{ config.base_url ~ "/properties/" ~ "tags" | json_encode | safe }} : {{ post.taxonomies | json_encode | safe }},
+"https://atomicdata.dev/properties/isA": [
+    "https://atomicdata.dev/classes/Article"
+  ]
+}
+{%- endif -%}
+{%- endfor -%}
+{%- endfor -%}
+]
