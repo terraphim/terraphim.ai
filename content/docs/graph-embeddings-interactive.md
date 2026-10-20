@@ -21,6 +21,7 @@ is staged. The counters you watch increment are the same counters the Rust code 
 <strong>How to read this page.</strong> Each scene has controls. Press buttons, type queries,
 index your own sentence. If a number is on screen, it was computed in your browser a moment
 ago. Where the comparison side is simulated rather than real, it says so on the panel.
+<span class="tge-kbd-hint">Esc clears highlights and ledgers; your indexed data stays.</span>
 </div>
 
 ## Two retrieval worlds, one question

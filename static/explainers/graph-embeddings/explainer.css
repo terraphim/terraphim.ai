@@ -68,6 +68,17 @@
 .tge-node.new circle { animation: tge-pop 0.45s var(--ease-out); }
 @keyframes tge-pop { from { transform: scale(0.3); } to { transform: scale(1); } }
 .tge-node { transform-box: fill-box; transform-origin: center; }
+.tge-packet { stroke: var(--warp-bright); stroke-opacity: 0.95; stroke-width: 2.5; fill: none; pointer-events: none; }
+.tge-text { overflow: hidden; }
+.tge-cursor-scan {
+  position: absolute; top: 0.6rem; bottom: 0.6rem; left: 0.8rem; width: 2px;
+  background: var(--warp-bright); opacity: 0.9; pointer-events: none;
+  animation: tge-scan 0.9s var(--ease-out) 1 forwards;
+}
+@keyframes tge-scan {
+  from { left: 0.8rem; opacity: 0.9; }
+  to { left: calc(100% - 1rem); opacity: 0; }
+}
 
 /* --- matcher --- */
 .tge-text {
@@ -156,5 +167,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .tge-edge, .tge-node circle, .tge-node text, .tge-dot, .tge-btn { transition: none; }
-  .tge-node.new circle { animation: none; }
+  .tge-node.new circle, .tge-cursor-scan { animation: none; }
+  .tge-cursor-scan { display: none; }
 }

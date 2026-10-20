@@ -111,6 +111,31 @@
     return [(x1 + x2) / 2 - (y2 - y1) * 0.12, (y1 + y2) / 2 + (x2 - x1) * 0.12];
   }
 
+  // Ported from sx-map-canvas edge painting: a "packet" travels each touched
+  // edge so the counter increment is *seen*, not just stated. Overlay a cloned
+  // path and march a dash along it via WAAPI stroke-dashoffset; skipped under
+  // prefers-reduced-motion.
+  function flowEdges(svg, eids) {
+    if (reduced) return;
+    eids.forEach((eid, i) => {
+      const base = svg.querySelector(`path[data-edge="${eid}"]`);
+      if (!base || !base.animate) return;
+      const packet = base.cloneNode(false);
+      packet.removeAttribute("marker-end");
+      packet.removeAttribute("data-edge");
+      packet.setAttribute("class", "tge-packet");
+      packet.setAttribute("aria-hidden", "true");
+      base.parentNode.appendChild(packet);
+      const len = packet.getTotalLength();
+      packet.style.strokeDasharray = `16 ${len}`;
+      packet.style.strokeDashoffset = String(len);
+      packet.animate(
+        [{ strokeDashoffset: len }, { strokeDashoffset: -16 }],
+        { duration: 750, delay: i * 90, easing: "cubic-bezier(0.23,1,0.32,1)", fill: "forwards" }
+      ).onfinish = () => packet.remove();
+    });
+  }
+
   /* ---------- Scene 1: two worlds ---------- */
 
   // Deterministic fake vector layout, labelled illustrative.
@@ -194,6 +219,10 @@
     }
     html += esc(text.slice(last));
     out.innerHTML = html + '<span class="tge-cursor" aria-hidden="true"></span>';
+    // Single-pass sweep: re-inserting the element restarts the CSS animation.
+    if (!reduced) {
+      out.appendChild(Object.assign(document.createElement("span"), { className: "tge-cursor-scan" }));
+    }
     $("#tge-matcher-chips").innerHTML = matches.length
       ? matches.map((m, i) =>
           `<span class="tge-chip${i < matches.length - 1 ? " arrow" : ""}"><b>#${m.id}</b> ${esc(ntermOf[m.id] || "")}</span>`
@@ -231,6 +260,7 @@
     if (!next) return;
     next.indexed = true;
     const { matches, pairs } = indexDoc(next.id, next.text, next.title);
+    const touched = pairs.map(([a, b]) => magicPair(a, b));
     $("#tge-index-matches").innerHTML =
       `<div class="tge-mono" style="font-size:.8rem;color:var(--text-dim)">matched sequence for ${esc(next.id)}</div>` +
       `<div class="tge-chips">${chipsFor(matches)}</div>` +
@@ -239,6 +269,7 @@
       pairs.map(([a, b]) => `(${ntermOf[a] || a} → ${ntermOf[b] || b})`).join(", ") + `</div>`;
     renderQueue();
     renderGraph($("#main-graph-svg"), { newNodes: new Set(matches) });
+    flowEdges($("#main-graph-svg"), touched);
     renderStats();
     markQueueRow(next.id);
   }
@@ -346,10 +377,12 @@
       if (existing) { existing.text = text; existing.indexed = true; }
       else corpus.documents.push({ id, title: "Your sentence", text, indexed: true });
       const { matches, pairs } = indexDoc(id, text, "Your sentence");
+      const touched = pairs.map(([a, b]) => magicPair(a, b));
       $("#tge-index-matches").innerHTML =
         `<div class="tge-mono" style="font-size:.8rem;color:var(--text-dim)">your sentence</div>` +
         `<div class="tge-chips">${matches.length ? chipsFor(matches) : '<span class="tge-chip">no thesaurus terms — nothing indexed</span>'}</div>`;
-      renderQueue(); renderGraph($("#main-graph-svg"), { newNodes: new Set(matches) }); renderStats();
+      renderQueue(); renderGraph($("#main-graph-svg"), { newNodes: new Set(matches) });
+      flowEdges($("#main-graph-svg"), touched); renderStats();
       markQueueRow(id);
     });
 
@@ -359,6 +392,16 @@
     $("#tge-query-input").addEventListener("keydown", (e) => { if (e.key === "Enter") runQuery(e.target.value); });
 
     $("#tge-syn-add").addEventListener("click", addSynonym);
+
+    // Esc clears transient view state (highlights, ledgers) — indexed data is kept.
+    document.addEventListener("keydown", (e) => {
+      if (e.key !== "Escape" || e.target.matches("input, textarea")) return;
+      $("#tge-results").innerHTML = "";
+      $("#tge-index-matches").innerHTML = "";
+      $("#tge-why").innerHTML = "";
+      renderGraph($("#main-graph-svg"), {});
+      renderGraph($("#world-graph-svg"), {});
+    });
 
     // Lazy init: scenes animate only when near the viewport.
     if ("IntersectionObserver" in window) {
