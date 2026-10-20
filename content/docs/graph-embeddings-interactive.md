@@ -99,9 +99,10 @@ Here is the whole trick, and it is smaller than you expect. When a document is i
 3. `node.rank += 1` for both endpoints; `edge.doc_hash[doc] += 1` counts how often that pair
    appeared in that document.
 
-That is the embedding. A concept is embedded **in a neighbourhood** — the synonyms that map to
-it and the concepts that appear next to it — not in a vector space. Press "Index next" a few
-times and watch the graph accrete; then index your own sentence (only thesaurus terms count).
+That is the embedding. **What a concept "is" here: a node plus its edges in conceptual
+space** — the synonyms that map to it and the concepts that appear next to it — not a point
+in a vector space. Press "Index next" a few times and watch the graph accrete; then index
+your own sentence (only thesaurus terms count).
 
 <div class="tge-scene" id="scene-indexer">
   <h3>Build the graph <span class="tge-tag real">real algorithm</span></h3>
