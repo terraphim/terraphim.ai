@@ -21,10 +21,10 @@ This post shows that machinery applied to the two places a checklist earns its k
 
 The usual pattern for "checklists" in agent workflows is a paragraph in a system prompt that the model promises to honour. That is a probabilistic check enforced by the thing being checked. Terraphim inverts it: the checklist lives outside the model, in the same structure that powers [graph embeddings](/docs/graph-embeddings/) elsewhere on this site.
 
-A checklist item set looks like this in the knowledge graph. This is a real file from the rewrite graph on this machine:
+A checklist item set looks like this in the knowledge graph. This is `bun install.md` from the rewrite graph on this machine (committed verbatim at `.terraphim/rewrite/bun install.md` in this site's repository):
 
 ```markdown
-# bun install
+# bun add
 
 Install dependencies using Bun package manager.
 
@@ -79,6 +79,17 @@ terraphim-grep "checklist" --haystack all --paths . \
 ```
 
 Zero KG hits, four plain lexical chunks, and an explicit admission that graph confidence was too low to claim concept coverage. The tool does not pretend the checklist applied. If you want "checklist" to be a graph concept, you write it into a `kg/*.md` file with a `synonyms::` line and rebuild; the gap is a text edit, not a retraining run. The project-local variant of this workflow (a `.terraphim/` directory in your repo with its own role thesaurus) is documented in the [terraphim-grep offline setup](/posts/skill-spotlight-terraphim-grep/) and the concepts can be enriched with code anchors mined by ast-grep.
+
+### Reproduce it
+
+The artefacts behind these outputs are committed. This site's repository carries a `.terraphim/` directory: `kg/` holds the concept files used above (`validation gate`, `judge-verdicts`, `hook`, `grounding gate` and friends), `rewrite/` holds the hook checklist, and `thesaurus.json` is the compiled 39-entry public subset of the working role. Run the same command against it:
+
+```bash
+terraphim-grep "quality gate" --haystack all --paths . \
+  --thesaurus .terraphim/thesaurus.json -n 8 -C 1 --json
+```
+
+Same eight concepts, same honest `kg_hits: 0` on the "checklist" control. For larger published checklist graphs, `docs/src/kg/checklists/` in the terraphim-ai repository carries the code review and security concepts.
 
 ## After the LLM Call: The Hook Is a Findings Checklist
 
