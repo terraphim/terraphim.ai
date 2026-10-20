@@ -1,0 +1,59 @@
+{
+  "state": "prepared",
+  "canonical": "https://terraphim.ai/docs/graph-embeddings-interactive/",
+  "x": {
+    "account": "alex_mikhalev",
+    "articleTitle": "Graph embeddings you can watch being built",
+    "articleFile": "gei-x-article.md",
+    "thread": [
+      "A Terraphim graph embedding is not a vector. It is a node plus its directed edges and integer counters. New interactive page runs the actual Rust terraphim_rolegraph crate, compiled to WASM, in your browser — the same code paths the Rust tests exercise.",
+      "Aho-Corasick matching live: type text, watch thesaurus terms fire with concept ids. 'raft quorum consensus' -> #1 raft, #6 quorum, #2 consensus in a single pass.",
+      "Index 8 documents step by step: adjacent concept matches become directed edges, counters increment. End state: 10 concepts, 23 edges — including a title-match self-loop that is exactly what Rust's Document::to_string() semantics predict.",
+      "Query 'consensus': doc-membership earns 19 = node 7 + edge 1 + doc 2, plus node 7 + edge 1 + doc 1 through a second edge. Every point of the sum is a named node, a named edge, a count.",
+      "Honest failures included: 'byzantine fault tolerance' matches no thesaurus term and returns empty while the vector panel still scores. Add a synonym and the automaton rebuild is measured live in single-digit ms.",
+      "Compared honestly with node2vec, GCN, TransE, Cleora and API vector DBs across training, update cost, explainability, determinism, memory — plus the hybrid retrieval already implemented (TriggerIndex TF-IDF fallback, BM25 + KG). Try it: https://terraphim.ai/docs/graph-embeddings-interactive/"
+    ]
+  },
+  "mastodon": {
+    "account": "alexmikhalev@mastodon.social",
+    "body": "New interactive explainer: a Terraphim graph embedding is a node plus its edges and integer counters, not a vector — and the page proves it by running the real Rust terraphim_rolegraph crate compiled to WASM in your browser. Live Aho-Corasick matching, step-by-step indexing, a query ledger that decomposes every rank, honest empty results on out-of-vocabulary terms, and a real comparison with node2vec, GCN, TransE, Cleora and vector DBs.\n\nhttps://terraphim.ai/docs/graph-embeddings-interactive/"
+  },
+  "discourse": {
+    "title": "Graph embeddings, explained interactively — real Rust crate in WASM",
+    "file": "gei-discourse.md"
+  },
+  "githubDiscussions": {
+    "title": "Interactive explainer: Terraphim graph embeddings (real Rust crate compiled to WASM)",
+    "body": "New interactive page: https://terraphim.ai/docs/graph-embeddings-interactive/\n\nA Terraphim graph embedding is a node plus its directed edges and integer counters — not a point in a vector space. The page demonstrates this with the actual terraphim_rolegraph Rust crate compiled to WebAssembly running in the browser: live Aho-Corasick matching over the thesaurus, step-by-step indexing of a real corpus (10 concepts, 23 directed edges), and a query ledger that decomposes every score into named node + named edge + document counts.\n\nHonesty in both directions: out-of-vocabulary queries return an empty set rather than a fuzzy guess, synonym additions trigger a real automaton rebuild measured in milliseconds, and the comparison with node2vec, GCN, TransE, Cleora and dense vector DBs includes where the graph loses. It also references the hybrid retrieval already implemented: query_graph_with_trigger_fallback (TF-IDF trigger index) and search_sessions_hybrid (BM25 + KG boosts).\n\nEverything on screen is the real algorithm — the same code paths the crate's tests exercise."
+  },
+  "discord": {
+    "channel": "#terraphim (Applied Knowledge Systems)",
+    "file": "gei-discord.md"
+  },
+  "redditTerraphimAI": {
+    "title": "Interactive explainer: Terraphim graph embeddings running the real Rust crate in WASM",
+    "body": "Maintainer here. New interactive page on terraphim.ai: https://terraphim.ai/docs/graph-embeddings-interactive/\n\nA Terraphim graph embedding is not a point in a vector space — it is a node plus its directed edges and integer counters. Instead of describing that, the page runs the actual terraphim_rolegraph Rust crate compiled to WebAssembly in your browser. Type text and a real Aho-Corasick automaton returns concept ids; index the corpus step by step and adjacent matches become directed edges (10 concepts, 23 edges); query 'consensus' and the ledger decomposes doc-membership's 19 points into named node + edge + document contributions.\n\nThe honesty runs both ways: 'byzantine fault tolerance' returns an empty set rather than a fuzzy answer, and adding a synonym triggers a real automaton rebuild measured in milliseconds. The page compares node2vec, GCN, TransE, Cleora and API vector DBs across update cost, explainability, determinism and memory — and points at the hybrid retrieval already implemented (query_graph_with_trigger_fallback TF-IDF fallback; search_sessions_hybrid BM25 + KG)."
+  },
+  "youtube": {
+    "state": "SKIPPED_NO_ASSET",
+    "note": "No narrated walkthrough video. Skip unless one is created."
+  },
+  "linkedin": {
+    "state": "DRAFT_ONLY",
+    "personal": "A graph embedding does not have to be a vector. In Terraphim it is a node plus its directed edges and integer counters — and our new interactive page proves it by running the actual Rust terraphim_rolegraph crate, compiled to WebAssembly, in your browser. Live Aho-Corasick matching, step-by-step indexing, a query ledger that decomposes every rank into named edges, and an honest comparison with node2vec, GCN, TransE, Cleora and vector databases — including where the graph loses.\n\nhttps://terraphim.ai/docs/graph-embeddings-interactive/",
+    "company": "New interactive explainer: Terraphim graph embeddings run the real Rust crate compiled to WASM in the browser — deterministic, explainable, auditable retrieval compared honestly with learned graph embeddings and dense vector search.\n\nhttps://terraphim.ai/docs/graph-embeddings-interactive/"
+  },
+  "medium": {
+    "account": "Terraphim AI publication (verify)",
+    "file": "gei-medium.md",
+    "canonicalUrl": "https://terraphim.ai/docs/graph-embeddings-interactive/",
+    "state": "draft"
+  },
+  "dev": {
+    "account": "AlexMikhalev (verify)",
+    "file": "gei-dev.md",
+    "canonicalUrl": "https://terraphim.ai/docs/graph-embeddings-interactive/",
+    "state": "draft"
+  },
+  "publicationTiming": "Immediate: user-requested promotion"
+}

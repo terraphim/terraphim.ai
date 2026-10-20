@@ -1,0 +1,62 @@
+{
+  "article": "https://terraphim.ai/docs/graph-embeddings-interactive/",
+  "giteaIssue": "terraphim.ai#8 / terraphim.ai#9",
+  "method": "kimi-webbridge authenticated browser (CDP focus emulation + Input.insertText + DOM clicks; Discord via /api/v9 with in-page token after composer Enter was swallowed); GitHub Discussion via gh API",
+  "channels": {
+    "x": {
+      "status": "live",
+      "article": "https://x.com/alex_mikhalev/status/2112566613023109499",
+      "threadRoot": "https://x.com/alex_mikhalev/status/2112565593446740253",
+      "posts": 6,
+      "receipt": "published/x-thread.json"
+    },
+    "discord": {
+      "status": "live",
+      "channel": "Applied Knowledge Systems #terraphim",
+      "receipt": "published/discord.json"
+    },
+    "discourse": {
+      "status": "live",
+      "url": "https://terraphim.discourse.group/t/graph-embeddings-explained-interactively-real-rust-crate-in-wasm/31",
+      "receipt": "published/discourse.json"
+    },
+    "githubDiscussions": {
+      "status": "live",
+      "url": "https://github.com/orgs/terraphim/discussions/30",
+      "repo": "terraphim/terraphim-project, Show and tell",
+      "receipt": "published/github-discussion.json"
+    },
+    "dev": {
+      "status": "live",
+      "url": "https://dev.to/alexmikhalev/graph-embeddings-you-can-watch-being-built-2oi8",
+      "canonicalVerified": "https://terraphim.ai/docs/graph-embeddings-interactive/",
+      "receipt": "published/dev.json"
+    },
+    "medium": {
+      "status": "live",
+      "url": "https://alexmikhalev.medium.com/graph-embeddings-explained-interactively-8484df51315b",
+      "canonicalVerified": "https://terraphim.ai/docs/graph-embeddings-interactive/",
+      "method": "Medium import story",
+      "receipt": "published/medium.json"
+    },
+    "mastodon": {
+      "status": "live",
+      "url": "https://mastodon.social/@alexmikhalev/117473905543455485",
+      "receipt": "published/mastodon.json"
+    },
+    "redditTerraphimAI": {
+      "status": "live",
+      "url": "https://www.reddit.com/r/TerraphimAI/comments/1xauy19/",
+      "receipt": "published/reddit.json"
+    },
+    "linkedin": {
+      "status": "draft-only",
+      "note": "copy prepared in gei-channels.json; prior campaign boundary keeps LinkedIn unpublished unless explicitly authorised"
+    },
+    "youtube": { "status": "skipped", "note": "no narrated walkthrough asset" },
+    "brandX": { "status": "skipped", "note": "prior campaign boundary" },
+    "r/rust": { "status": "parked", "note": "prior campaign boundary" }
+  },
+  "paidPromotion": "none",
+  "completedAt": "2026-10-20 ~16:4x local"
+}

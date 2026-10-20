@@ -1,0 +1,6 @@
+{
+  "publishedAt": "2026-10-20 ~16:1x local",
+  "url": "https://github.com/orgs/terraphim/discussions/30",
+  "repo": "terraphim/terraphim-project, Show and tell",
+  "method": "gh api graphql createDiscussion"
+}

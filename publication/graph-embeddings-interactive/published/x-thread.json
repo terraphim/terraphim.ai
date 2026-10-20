@@ -1,0 +1,16 @@
+{
+  "publishedAt": "2026-10-20 ~16:3x local",
+  "account": "alex_mikhalev",
+  "type": "6-post reply-chain thread + X Article",
+  "method": "kimi-webbridge: CDP focus emulation + Input.insertText + DOM clicks; each reply posted through its parent's own reply composer",
+  "posts": [
+    {"n": 1, "url": "https://x.com/alex_mikhalev/status/2112565593446740253"},
+    {"n": 2, "url": "https://x.com/alex_mikhalev/status/2112565781922030082", "replyTo": "2112565593446740253"},
+    {"n": 3, "url": "https://x.com/alex_mikhalev/status/2112565865983983965", "replyTo": "2112565781922030082"},
+    {"n": 4, "url": "https://x.com/alex_mikhalev/status/2112565943746621841", "replyTo": "2112565865983983965"},
+    {"n": 5, "url": "https://x.com/alex_mikhalev/status/2112566031835353296", "replyTo": "2112565943746621841"},
+    {"n": 6, "url": "https://x.com/alex_mikhalev/status/2112566105692647839", "replyTo": "2112566031835353296"}
+  ],
+  "article": {"url": "https://x.com/alex_mikhalev/status/2112566613023109499", "title": "Graph embeddings you can watch being built"},
+  "note": "'Success! Your Article has been published' confirmation; thread posts verified as new status links after each reply."
+}

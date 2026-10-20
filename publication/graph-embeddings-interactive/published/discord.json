@@ -1,0 +1,8 @@
+{
+  "publishedAt": "2026-10-20 16:18 local",
+  "channel": "#terraphim (Applied Knowledge Systems)",
+  "url": "https://discord.com/channels/852545081613615144/852550167130931230/1562122870971306015",
+  "messageId": "1562122870971306015",
+  "method": "kimi-webbridge: staged via DOM fill, sent via Discord /api/v9 messages POST with in-page session token (CDP Enter key events were swallowed by the composer)",
+  "readback": "message element present in channel DOM, exact copy match"
+}
