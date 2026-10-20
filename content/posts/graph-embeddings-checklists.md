@@ -31,7 +31,7 @@ Install dependencies using Bun package manager.
 synonyms:: npm install, yarn install, pnpm install, npm i, yarn add, pnpm add
 ```
 
-The heading is the normalised term, the item the checklist approves. The `synonyms::` line is the checklist itself: every surface form that must be recognised and dealt with. Compile the directory of such files into `thesaurus.json` and you get the "Terraphim Engineer" role used below, currently 219 entries. Rebuilding the automaton after an edit takes about 20 ms, a figure we verified in [Why Graph Embeddings Matter](/posts/why-graph-embeddings-matter/), so the checklist is cheap to change and free to consult.
+The filename gives the normalised term the hook reports back (the suggestion in the findings output below is `bun install`, matching `bun install.md`), while the heading names the approved form inside the file. The `synonyms::` line is the checklist itself: every surface form that must be recognised and dealt with. Compile the directory of such files into `thesaurus.json` and you get the "Terraphim Engineer" role used below, currently 219 entries. Rebuilding the automaton after an edit takes about 20 ms, a figure we verified in [Why Graph Embeddings Matter](/posts/why-graph-embeddings-matter/), so the checklist is cheap to change and free to consult.
 
 ## Before the LLM Call: Retrieval as Checklist Execution
 
