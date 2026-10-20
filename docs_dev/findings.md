@@ -118,6 +118,27 @@ article around the hook/findings contract instead.
 - Git flow seen in log: `post/<slug>` branches, PRs merged on GitHub
   (origin is github.com:terraphim/terraphim.ai); Gitea tracks the task
 
+## Public-artefact audit (added in second pass)
+
+- `docs/src/kg/` in terraphim-ai is public on BOTH github/main and
+  gitea origin/main; `docs/src/kg/checklists/` holds code_review.md and
+  security.md (already public, cited in the post).
+- The article's 219-entry `~/.config/terraphim/thesaurus.json` is private
+  config; `terraphim_server/fixtures/haystack/Engineer_thesaurus.json` in
+  terraphim-ai is a different 42-entry fixture (0 common terms).
+- Resolution: committed `.terraphim/` to terraphim.ai — `kg/` (9 public-safe
+  concept files copied verbatim from the working KG), `rewrite/` (9 hook
+  checklist files verbatim), `thesaurus.json` (39 entries, role name
+  "Terraphim Engineer"), README with regenerate script.
+- Reproduction verified: `.terraphim/thesaurus.json` gives kg_hits 8 and the
+  identical 8-concept expansion on "quality gate"; "checklist" control still
+  honestly reports kg_hits 0.
+- Accuracy fix: real `bun install.md` heading is `# bun add` (was quoted
+  as `# bun install`); article corrected to quote the file verbatim.
+- terraphim-ai has dual remotes: origin=gitea, github=github. gitea main is
+  337 commits ahead of github main (73 the other way) — divergence predates
+  this work; flagged, not addressed here.
+
 ## Skill mapping (jsm = jeffreys-skills.md + terraphim stack)
 
 jsm: planning, de-slopify, session-search, structural-pr-review (PR phase),
