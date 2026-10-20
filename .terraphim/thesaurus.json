@@ -1,0 +1,161 @@
+{
+  "name": "Terraphim Engineer",
+  "data": {
+    "kls quality framework": {
+      "id": 100,
+      "nterm": "KLS quality framework"
+    },
+    "krogstie lindland sindre": {
+      "id": 100,
+      "nterm": "KLS quality framework"
+    },
+    "conceptual model quality": {
+      "id": 100,
+      "nterm": "KLS quality framework"
+    },
+    "kls framework": {
+      "id": 100,
+      "nterm": "KLS quality framework"
+    },
+    "model quality assessment": {
+      "id": 100,
+      "nterm": "KLS quality framework"
+    },
+    "gated lifecycle": {
+      "id": 101,
+      "nterm": "gated lifecycle"
+    },
+    "grounding gate": {
+      "id": 102,
+      "nterm": "grounding gate"
+    },
+    "safety gate": {
+      "id": 102,
+      "nterm": "grounding gate"
+    },
+    "kg grounding": {
+      "id": 102,
+      "nterm": "grounding gate"
+    },
+    "hook": {
+      "id": 103,
+      "nterm": "hook"
+    },
+    "judge-checklist": {
+      "id": 104,
+      "nterm": "judge-checklist"
+    },
+    "scores": {
+      "id": 104,
+      "nterm": "judge-checklist"
+    },
+    "reasoning": {
+      "id": 104,
+      "nterm": "judge-checklist"
+    },
+    "improvements": {
+      "id": 104,
+      "nterm": "judge-checklist"
+    },
+    "verdict": {
+      "id": 104,
+      "nterm": "judge-checklist"
+    },
+    "semantic score": {
+      "id": 104,
+      "nterm": "judge-checklist"
+    },
+    "pragmatic score": {
+      "id": 104,
+      "nterm": "judge-checklist"
+    },
+    "syntactic score": {
+      "id": 104,
+      "nterm": "judge-checklist"
+    },
+    "average score": {
+      "id": 104,
+      "nterm": "judge-checklist"
+    },
+    "task_id": {
+      "id": 104,
+      "nterm": "judge-checklist"
+    },
+    "model": {
+      "id": 104,
+      "nterm": "judge-checklist"
+    },
+    "timestamp": {
+      "id": 104,
+      "nterm": "judge-checklist"
+    },
+    "judge-gated practice": {
+      "id": 105,
+      "nterm": "judge-gated practice"
+    },
+    "judge-verdicts": {
+      "id": 106,
+      "nterm": "judge-verdicts"
+    },
+    "accept": {
+      "id": 106,
+      "nterm": "judge-verdicts"
+    },
+    "improve": {
+      "id": 106,
+      "nterm": "judge-verdicts"
+    },
+    "reject": {
+      "id": 106,
+      "nterm": "judge-verdicts"
+    },
+    "escalate": {
+      "id": 106,
+      "nterm": "judge-verdicts"
+    },
+    "accepted": {
+      "id": 106,
+      "nterm": "judge-verdicts"
+    },
+    "rejected": {
+      "id": 106,
+      "nterm": "judge-verdicts"
+    },
+    "pass": {
+      "id": 106,
+      "nterm": "judge-verdicts"
+    },
+    "fail": {
+      "id": 106,
+      "nterm": "judge-verdicts"
+    },
+    "needs improvement": {
+      "id": 106,
+      "nterm": "judge-verdicts"
+    },
+    "quality gate": {
+      "id": 106,
+      "nterm": "judge-verdicts"
+    },
+    "quality check": {
+      "id": 106,
+      "nterm": "judge-verdicts"
+    },
+    "validation gate": {
+      "id": 107,
+      "nterm": "validation gate"
+    },
+    "vector embeddings": {
+      "id": 108,
+      "nterm": "vector embeddings"
+    },
+    "embedding rag": {
+      "id": 108,
+      "nterm": "vector embeddings"
+    },
+    "semantic search": {
+      "id": 108,
+      "nterm": "vector embeddings"
+    }
+  }
+}
