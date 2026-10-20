@@ -63,7 +63,7 @@ The catch is discipline. Left to itself, an agent uses whatever model it started
 
 The third lever makes the cheap route the default: an LLM proxy between the agent and every provider, routing each request by what it contains or how fast each lane currently is.
 
-Ours sits on localhost, exposes OpenAI and Anthropic compatible endpoints, and decides where each request goes:
+Ours is `terraphim-llm-proxy`, shared with our [GitHub Sponsors](https://github.com/sponsors/terraphim) supporters. It sits on localhost, exposes OpenAI and Anthropic compatible endpoints, and decides where each request goes:
 
 - **Keyword routing.** The proxy matches prompt content against a markdown taxonomy using Aho-Corasick string matching (microsecond overhead, the same crate our knowledge graph uses). A prompt that says "think step by step about this architecture" routes to the `think` chain regardless of the model ID the client requested. In our logs, three consecutive requests landed on three different providers under three different scenarios, transparently to the client.
 - **Speed and price routing.** Eligible candidates can be ranked by time to first token, or by cost class: free lanes first, then subscription, then metered. Per scenario you choose whether latency or price wins. Agent idle time waiting on a rate limit is a real cost, just billed in hours rather than tokens.
@@ -82,4 +82,4 @@ What we can claim is mechanism: retrieval that filters before the expensive mode
 - [terraphim-grep and role-aware search](https://terraphim.ai/posts/skill-spotlight-terraphim-grep/)
 - [Disciplined engineering: the V-model for AI agents](https://terraphim.ai/posts/disciplined-engineering-ai-systems/)
 
-The grep tooling is in [terraphim-clients](https://github.com/terraphim/terraphim-clients). If you want this running inside your team rather than as homework, we do it as part of our consulting work at [zestic.ai](https://zestic.ai).
+The grep tooling is in [terraphim-clients](https://github.com/terraphim/terraphim-clients). The routing proxy from section 3 is `terraphim-llm-proxy`, shared with [GitHub Sponsors](https://github.com/sponsors/terraphim) supporters. If you want this running inside your team rather than as homework, we do it as part of our consulting work at [zestic.ai](https://zestic.ai).
