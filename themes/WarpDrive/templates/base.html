@@ -49,6 +49,7 @@
   {% set canonical_path = current_path | default(value="/404.html") %}
     {% set canonical = config.base_url ~ canonical_path %}
   <link rel="canonical" href="{{ canonical }}">
+  <link rel="alternate" type="application/rss+xml" title="Terraphim AI" href="{{ get_url(path='rss.xml') }}">
   <meta name="description" content="{{ share_description }}">
   <meta property="og:type" content="{% if page %}article{% else %}website{% endif %}">
   <meta property="og:url" content="{{ canonical }}">
