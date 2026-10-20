@@ -1,0 +1,16 @@
+{
+  "publishedAt": "2026-10-20T12:1x (BST)",
+  "account": "alex_mikhalev",
+  "type": "6-post thread",
+  "method": "kimi-webbridge DOM: focus + CDP Input.insertText, reply-chain per post",
+  "posts": [
+    {"n": 1, "url": "https://x.com/alex_mikhalev/status/2112515759293510135"},
+    {"n": 2, "url": "https://x.com/alex_mikhalev/status/2112516057957384599", "replyTo": "2112515759293510135"},
+    {"n": 3, "url": "https://x.com/alex_mikhalev/status/2112516872801509734", "replyTo": "2112516057957384599"},
+    {"n": 4, "url": "https://x.com/alex_mikhalev/status/2112517022127214665", "replyTo": "2112516872801509734"},
+    {"n": 5, "url": "https://x.com/alex_mikhalev/status/2112517072873726134", "replyTo": "2112517022127214665"},
+    {"n": 6, "url": "https://x.com/alex_mikhalev/status/2112517124946329690", "replyTo": "2112517072873726134"}
+  ],
+  "article": {"url": "https://x.com/alex_mikhalev/status/2112517998372077811", "title": "Graph embeddings for checklists", "cover": "5:2 screenshot of the published post"},
+  "note": "First attempt attached posts 3-6 to root (wrong reply button resolved). Those four posts were deleted via DOM and reposted as a correct chain. X Article editor required focus emulation + trusted CDP clicks; two stray '(Needs title)' drafts deleted. Published article read back: title and body render correctly."
+}
