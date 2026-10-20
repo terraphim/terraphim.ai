@@ -1,12 +1,13 @@
 /* Graph embeddings explainer — scene controllers.
- * One shared RoleGraphLite instance; every number on the Terraphim side is
- * computed live by engine.js (a faithful port of terraphim_rolegraph).
- * The "dense vectors" panel is a labelled illustrative simulation.
+ * Every number on the Terraphim side is computed by the real
+ * terraphim_rolegraph crate compiled to WebAssembly (engine.js is only a
+ * thin JSON adapter). The "dense vectors" panel is a labelled
+ * illustrative simulation.
  */
 (function () {
   "use strict";
 
-  const { magicPair, magicUnpair, AhoLite, RoleGraphLite } = window.TGEngine;
+  const { magicPair, magicUnpair, RoleGraph } = window.TGEngine;
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const $ = (sel, el) => (el || document).querySelector(sel);
   const $$ = (sel, el) => [...(el || document).querySelectorAll(sel)];
@@ -27,7 +28,7 @@
   let corpus, graph, ntermOf;
 
   function rebuildGraph() {
-    graph = new RoleGraphLite(corpus.thesaurus);
+    graph = new RoleGraph(corpus.thesaurus);
     ntermOf = graph.ac.nterm;
     for (const d of corpus.documents) {
       if (d.indexed) graph.insertDocument(d.id, d.text, d.title);
@@ -325,7 +326,7 @@
     }
     const t0 = performance.now();
     corpus.thesaurus.data[input] = { id: 4, nterm: "leader" };
-    graph.ac = new AhoLite(corpus.thesaurus.data);
+    graph.addSynonym(input, 4, "leader");
     ntermOf = graph.ac.nterm;
     const ms = (performance.now() - t0).toFixed(2);
     $("#tge-syn-time").textContent = `${ms} ms (measured)`;
@@ -340,8 +341,23 @@
   /* ---------- wiring ---------- */
 
   async function init() {
-    const res = await fetch("/explainers/graph-embeddings/corpus.json");
-    corpus = await res.json();
+    try {
+      await window.TGEngine.init();
+      const res = await fetch("/explainers/graph-embeddings/corpus.json");
+      if (!res.ok) throw new Error(`corpus fetch: HTTP ${res.status}`);
+      corpus = await res.json();
+    } catch (error) {
+      console.error("Graph explainer failed to initialise", error);
+      $$(".tge-scene").forEach((s) => s.setAttribute("aria-disabled", "true"));
+      const host = $("#scene-worlds");
+      if (host) {
+        host.insertAdjacentHTML(
+          "afterbegin",
+          '<div class="tge-note red" role="alert">The live RoleGraph demo could not be loaded — the WebAssembly module failed to initialise.</div>'
+        );
+      }
+      return;
+    }
     // Start fully indexed — scene 1 must show a live graph. The indexer
     // scene lets visitors reset and rebuild step by step.
     corpus.documents.forEach((d) => (d.indexed = true));

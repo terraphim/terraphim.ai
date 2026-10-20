@@ -1,0 +1,8 @@
+{
+  "core_commit": "77ffd9e75ae9eaee9bb7ffea42fc2c4cc7cc82f6",
+  "built_at": "2026-10-20T14:26:43Z",
+  "rustc": "rustc 1.99.0 (b940084d7 2026-09-28)",
+  "wasm_pack": "0.13.1",
+  "wasm_sha256": "4f77e8e7b5750b27b500ccd0868bc626efb07b5d34e32ad3dc0ff1af770af4bf",
+  "note": "terraphim_rolegraph must have the wasm32 target-gated tokio/automata deps"
+}

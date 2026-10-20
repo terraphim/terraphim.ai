@@ -41,3 +41,10 @@ A [Zola](https://www.getzola.org/) static site for https://terraphim.ai. No root
 ## Editing constraints
 - The WarpDrive theme uses an OKLCH colour system. Accent colour is amber (`oklch(0.72 0.16 70)`). CSS variable names still say `--warp-blue` but values are amber.
 - Platform detection JS reads `data-version` from the install section and constructs GitHub asset URLs — keep `release_version` in sync with actual GitHub releases.
+
+## Graph-embeddings explainer (`/docs/graph-embeddings-interactive/`)
+- The Terraphim side runs the **real `terraphim_rolegraph` crate compiled to WASM** — `static/explainers/graph-embeddings/wasm/` (wasm-pack `web` target). `engine.js` is only a JSON adapter; never reimplement algorithm logic in JS.
+- Wrapper crate source: `scripts/explainer/rolegraph-wasm/` (canonical home: `crates/terraphim_rolegraph/wasm/` in terraphim-core). Rebuild: `./scripts/explainer/build-wasm.sh /path/to/terraphim-core`.
+- `terraphim_rolegraph`'s Cargo.toml target-gates `tokio = "full"` and automata's `tokio-runtime`/`remote-loading` to non-wasm targets — required for wasm32.
+- Conformance: `node scripts/explainer/check.js` diffs the nodejs wasm build (`scripts/explainer/wasm-node/`) against `scripts/explainer/goldens.json` from `scripts/explainer/oracle.py` — regenerate goldens after corpus changes.
+- The crate matches `Document::to_string()` = `title + body`; titles that contain thesaurus terms contribute nodes/edges (self-loops are normal).
