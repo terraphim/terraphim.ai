@@ -6,7 +6,8 @@ use wasm_bindgen::prelude::*;
 #[wasm_bindgen(start)]
 pub fn init() {
     console_error_panic_hook::set_once();
-    wasm_logger::init(wasm_logger::Config::default());
+    // Info only: the crate's debug! logs would echo visitor-typed text.
+    wasm_logger::init(wasm_logger::Config::new(log::Level::Info));
     log::info!("Terraphim RoleGraph WASM bindings initialized");
 }
 
@@ -67,8 +68,10 @@ impl RoleGraphWasm {
         self.inner.remove_document(doc_id)
     }
 
-    /// All LeftmostLongest matches with byte spans:
-    /// `[{id, nterm, start, end}]`.
+    /// All LeftmostLongest matches: `[{id, nterm, start, end}]`.
+    /// `start`/`end` are UTF-16 code-unit offsets — JS `String.slice`
+    /// indices — converted from the matcher crate's UTF-8 byte offsets
+    /// so multibyte text does not corrupt highlighting.
     pub fn find_matches(&self, text: &str) -> Result<String, JsValue> {
         let out: Vec<serde_json::Value> = self
             .inner
@@ -82,11 +85,13 @@ impl RoleGraphWasm {
                     .get(&id)
                     .map(|v| v.to_string())
                     .unwrap_or_default();
+                let start = text[..m.start()].encode_utf16().count();
+                let end = start + text[m.start()..m.end()].encode_utf16().count();
                 serde_json::json!({
                     "id": id,
                     "nterm": nterm,
-                    "start": m.start(),
-                    "end": m.end(),
+                    "start": start,
+                    "end": end,
                 })
             })
             .collect();

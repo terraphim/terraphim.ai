@@ -19,8 +19,10 @@ export class RoleGraphWasm {
      */
     add_synonym(synonym: string, concept_id: bigint, nterm: string): void;
     /**
-     * All LeftmostLongest matches with byte spans:
-     * `[{id, nterm, start, end}]`.
+     * All LeftmostLongest matches: `[{id, nterm, start, end}]`.
+     * `start`/`end` are UTF-16 code-unit offsets — JS `String.slice`
+     * indices — converted from the matcher crate's UTF-8 byte offsets
+     * so multibyte text does not corrupt highlighting.
      */
     find_matches(text: string): string;
     /**

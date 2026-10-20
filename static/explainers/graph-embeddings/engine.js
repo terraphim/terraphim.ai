@@ -12,15 +12,29 @@ const TGEngine = (() => {
 
   const GLUE = "/explainers/graph-embeddings/wasm/terraphim_rolegraph_wasm.js";
   let wasm = null;
+  let initPromise = null;
 
   // In the browser: dynamic-import the wasm-pack `web` bundle. In Node
   // (conformance checks): pass the pre-required `nodejs` pkg as `mod`.
+  // A failed init is not cached — a transient fetch/instantiate error
+  // stays retryable.
   async function init(mod) {
-    if (!wasm) {
-      wasm = mod || (await import(GLUE));
-      if (!mod) await wasm.default();
+    if (wasm) return wasm;
+    if (initPromise) return initPromise;
+
+    initPromise = (async () => {
+      const candidate = mod || (await import(GLUE));
+      if (!mod) await candidate.default();
+      wasm = candidate;
+      return wasm;
+    })();
+
+    try {
+      return await initPromise;
+    } catch (error) {
+      initPromise = null;
+      throw error;
     }
-    return wasm;
   }
 
   const magicPair = (x, y) => Number(wasm.magic_pair_js(BigInt(x), BigInt(y)));

@@ -135,6 +135,17 @@ async function main() {
     eq("LeftmostLongest covers 19 chars", [m[0].start, m[0].end], [2, 21]);
   }
 
+  // Spans are UTF-16 code-unit offsets (JS slice indices), not UTF-8
+  // bytes — the real crate returns byte offsets, the wrapper converts.
+  {
+    const m = g.ac.findMatches("😀 raft");
+    // 😀 = 2 UTF-16 units + 1 space => raft at [3, 7)
+    eq("UTF-16 span: emoji before match", m.map((x) => [x.start, x.end]), [[3, 7]]);
+    const m2 = g.ac.findMatches("café quorum"); // é = 1 UTF-16 unit
+    eq("UTF-16 span: accented text", m2.map((x) => x.id), [6]);
+    eq("UTF-16 span: accented offsets", [m2[0].start, m2[0].end], [5, 11]);
+  }
+
   // OOV honest failure
   eq("OOV returns empty", g.queryGraph("kubernetes docker swarm"), []);
 

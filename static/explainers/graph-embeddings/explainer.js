@@ -341,9 +341,23 @@
   /* ---------- wiring ---------- */
 
   async function init() {
-    await window.TGEngine.init();
-    const res = await fetch("/explainers/graph-embeddings/corpus.json");
-    corpus = await res.json();
+    try {
+      await window.TGEngine.init();
+      const res = await fetch("/explainers/graph-embeddings/corpus.json");
+      if (!res.ok) throw new Error(`corpus fetch: HTTP ${res.status}`);
+      corpus = await res.json();
+    } catch (error) {
+      console.error("Graph explainer failed to initialise", error);
+      $$(".tge-scene").forEach((s) => s.setAttribute("aria-disabled", "true"));
+      const host = $("#scene-worlds");
+      if (host) {
+        host.insertAdjacentHTML(
+          "afterbegin",
+          '<div class="tge-note red" role="alert">The live RoleGraph demo could not be loaded — the WebAssembly module failed to initialise.</div>'
+        );
+      }
+      return;
+    }
     // Start fully indexed — scene 1 must show a live graph. The indexer
     // scene lets visitors reset and rebuild step by step.
     corpus.documents.forEach((d) => (d.indexed = true));
