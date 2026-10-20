@@ -1,84 +1,24 @@
 #!/usr/bin/env bash
-# Fetch the latest GitHub release and update all version references site-wide.
-# Run before `zola build` to keep release links current.
+# Update release links across managed site fields and the README downloads
+# region. Delegates to scripts/update_release.py (Python standard library);
+# the exit status is propagated unchanged.
 #
-# Files updated:
+# Files updated (active fields only; history and development version are
+# preserved):
 #   config.toml              - release_version
-#   content/releases.md      - version headings and date
-#   content/docs/installation.md - download URLs and version comments
-#   content/docs/quickstart.md   - version strings in example output
+#   content/releases.md      - active Latest Release heading/date/links/examples
+#   content/docs/installation.md - active download URLs and version examples
+#   content/docs/quickstart.md   - active version strings in examples (none today)
 #   themes/WarpDrive/templates/index.html - default() fallbacks
 #   themes/WarpDrive/static/js/site.js    - JS fallback version
+#   README.md                - managed downloads region (marker-guarded)
 #
-# Usage: ./scripts/update-release.sh
-# Requires: gh (GitHub CLI), sed
+# Usage: ./scripts/update-release.sh [--check] [--snapshot F] [--receipt F]
+#          [--target website|terraphim-ai|terraphim-clients] [--root DIR]
+#          [--timeout SECONDS]
+# Requires: python3. Optional: gh/GITHUB_TOKEN for authenticated API reads.
 
 set -euo pipefail
 
-REPO="terraphim/terraphim-ai"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-ROOT_DIR="$(dirname "$SCRIPT_DIR")"
-CONFIG="$ROOT_DIR/config.toml"
-RELEASES_MD="$ROOT_DIR/content/releases.md"
-INSTALL_MD="$ROOT_DIR/content/docs/installation.md"
-QUICKSTART_MD="$ROOT_DIR/content/docs/quickstart.md"
-INDEX_HTML="$ROOT_DIR/themes/WarpDrive/templates/index.html"
-SITE_JS="$ROOT_DIR/themes/WarpDrive/static/js/site.js"
-
-# Fetch latest release from GitHub
-LATEST=$(gh api "repos/$REPO/releases/latest" --jq '.tag_name' 2>/dev/null)
-if [ -z "$LATEST" ]; then
-  echo "ERROR: Could not fetch latest release from GitHub" >&2
-  exit 1
-fi
-
-# Strip leading 'v' for the version number
-VERSION="${LATEST#v}"
-RELEASE_DATE=$(gh api "repos/$REPO/releases/latest" --jq '.published_at[:10]' 2>/dev/null)
-RELEASE_DATE_PRETTY=$(date -d "$RELEASE_DATE" "+%-d %B %Y" 2>/dev/null \
-  || date -j -f "%Y-%m-%d" "$RELEASE_DATE" "+%-d %B %Y" 2>/dev/null \
-  || echo "$RELEASE_DATE")
-
-# GNU sed (Linux) vs BSD sed (macOS)
-if sed --version >/dev/null 2>&1; then
-  sed_inplace() { sed -i "$@"; }
-else
-  sed_inplace() { sed -i '' "$@"; }
-fi
-
-# Read current version from config.toml
-CURRENT=$(grep '^release_version' "$CONFIG" | sed 's/.*= *"\(.*\)"/\1/')
-
-if [ "$CURRENT" = "$VERSION" ]; then
-  echo "Already at latest: v$VERSION"
-  exit 0
-fi
-
-echo "Updating release: v$CURRENT -> v$VERSION (released $RELEASE_DATE_PRETTY)"
-
-# Update config.toml
-sed_inplace "s/^release_version = \".*\"/release_version = \"$VERSION\"/" "$CONFIG"
-
-# Update releases.md: version references and date
-sed_inplace "s/Latest Release: v[0-9][0-9.]*/Latest Release: v$VERSION/" "$RELEASES_MD"
-sed_inplace "s/Latest Stable:\*\* v[0-9][0-9.]*/Latest Stable:** v$VERSION/" "$RELEASES_MD"
-sed_inplace "s/\*\*Released:\*\* .*/\*\*Released:\*\* $RELEASE_DATE_PRETTY/" "$RELEASES_MD"
-
-# Update installation.md and quickstart.md: replace old version in download URLs and comments
-for f in "$INSTALL_MD" "$QUICKSTART_MD" "$RELEASES_MD"; do
-  if [ -f "$f" ]; then
-    sed_inplace "s/$CURRENT/$VERSION/g" "$f"
-  fi
-done
-
-# Update index.html template: default() fallback values
-if [ -f "$INDEX_HTML" ]; then
-  sed_inplace "s/$CURRENT/$VERSION/g" "$INDEX_HTML"
-fi
-
-# Update site.js: JS fallback version
-if [ -f "$SITE_JS" ]; then
-  sed_inplace "s/$CURRENT/$VERSION/g" "$SITE_JS"
-fi
-
-echo "Updated all version references: v$CURRENT -> v$VERSION"
+exec python3 "$SCRIPT_DIR/update_release.py" "$@"

@@ -1,0 +1,901 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- ---- HERO ---- -->
+<section class="hero" id="hero">
+  <img src="{{ get_url(path='images/terraphim_logo.png') }}" alt="" class="hero-logo" aria-hidden="true">
+  <div class="hero-overline">
+    <i class="fa-solid fa-satellite" aria-hidden="true"></i>
+    Local-First Knowledge Navigation
+  </div>
+  <h1 class="hero-title">
+    Navigate Your<br>Knowledge at<br><span class="accent">Warp Speed</span>
+  </h1>
+  <p class="hero-subtitle">
+    Terraphim is a local-first knowledge graph search engine built in Rust and WebAssembly.
+    Your data never leaves your machine. Aho-Corasick pattern matching across role-based
+    knowledge graphs, at native speed.
+  </p>
+
+  <div class="hero-install">
+    <div class="hero-install-label">Install terraphim-agent</div>
+    <div class="command-line hero-command">
+      <span class="prompt-symbol">$</span>
+      <span class="prompt-text">cargo install terraphim_agent --features repl-full</span>
+      <button class="copy-btn" data-copy="cargo install terraphim_agent --features repl-full" aria-label="Copy install command">copy</button>
+    </div>
+    <div class="hero-install-alt">
+      or <a href="{{ config.base_url }}/docs/installation" class="inline-link">Homebrew, curl, binary downloads</a>
+    </div>
+  </div>
+
+  <div class="hero-actions">
+    <a href="/editor/" class="btn btn-ghost">Try Editor preview</a>
+    <a href="/how-tos/synonym-search/" class="btn btn-ghost">Watch the 80-second story</a>
+    <a href="{{ config.base_url }}/docs/quickstart" class="btn btn-primary">
+      <i class="fa-solid fa-bolt" aria-hidden="true"></i>
+      Quickstart
+    </a>
+    <a href="https://github.com/terraphim/terraphim-clients/releases/tag/v{{ config.extra.release_version | default(value='1.21.22') }}" class="btn btn-ghost">
+      <i class="fa-solid fa-rocket" aria-hidden="true"></i>
+      v{{ config.extra.release_version | default(value="1.21.22") }} release
+    </a>
+    <a href="https://github.com/terraphim/terraphim-ai" class="btn btn-ghost">
+      <i class="fa-brands fa-github" aria-hidden="true"></i>
+      GitHub
+    </a>
+  </div>
+  <div class="scroll-hint" aria-hidden="true">
+    <span>Scroll to charge</span>
+    <div class="scroll-chevrons">
+      <i class="fa-solid fa-chevron-down"></i>
+      <i class="fa-solid fa-chevron-down"></i>
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
+  </div>
+</section>
+
+<!-- ---- HYPERDRIVE STATS ---- -->
+<section class="hyperdrive" id="hyperdrive" aria-label="Hyperdrive status">
+  <div class="hyperdrive-panel">
+    <div class="hyperdrive-header">
+      <i class="fa-solid fa-bolt" aria-hidden="true"></i>
+      <h2>Hyperdrive Charge</h2>
+      <span class="charge-pct" id="chargePct">0%</span>
+    </div>
+
+    <div class="gauge">
+      <div class="gauge-fill" id="gaugeFill"></div>
+      <div class="gauge-segments">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat">
+        <span class="stat-label">Search Latency</span>
+        <span class="stat-value blue">&lt; 1ms</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Pattern Engine</span>
+        <span class="stat-value amber">Graph Embeddings</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Runtime</span>
+        <span class="stat-value green">WASM + Native</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Workspace Crates</span>
+        <span class="stat-value blue">52+</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Telemetry</span>
+        <span class="stat-value green">Zero</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ---- WAYPOINTS / CORE CAPABILITIES ---- -->
+<section class="section" id="waypoints" aria-label="Core capabilities">
+  <div class="section-inner">
+    <div class="section-overline">
+      <i class="fa-solid fa-route" aria-hidden="true"></i>
+      Navigation Waypoints
+    </div>
+    <h2 class="section-title">Core Capabilities</h2>
+    <p class="section-subtitle">
+      Explore ten capabilities, including the intelligent editor preview. Each waypoint
+      links to its detailed page.
+    </p>
+
+    <div class="waypoints-grid">
+      <a href="{{ get_url(path='@/capabilities/local-first.md') }}" class="waypoint-link">
+        <article class="waypoint">
+          <div class="waypoint-header">
+            <div class="waypoint-icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></div>
+            <div>
+              <span class="waypoint-number">WP-001</span>
+              <h3 class="waypoint-title">Local-First Architecture</h3>
+            </div>
+          </div>
+          <p class="waypoint-desc">Your data never leaves your machine. Indexing, searching, and graph traversal all happen on-device. No cloud, no exfiltration, no telemetry.</p>
+          <span class="waypoint-cta">Explore capability <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+        </article>
+      </a>
+
+      <a href="{{ get_url(path='@/capabilities/graph-embeddings.md') }}" class="waypoint-link">
+        <article class="waypoint">
+          <div class="waypoint-header">
+            <div class="waypoint-icon"><i class="fa-solid fa-bezier-curve" aria-hidden="true"></i></div>
+            <div>
+              <span class="waypoint-number">WP-002</span>
+              <h3 class="waypoint-title">Graph Embeddings</h3>
+            </div>
+          </div>
+          <p class="waypoint-desc">Deterministic, explainable graph-based embeddings. No neural vectors, no GPUs. Every match traces back to a concept in the thesaurus.</p>
+          <span class="waypoint-cta">Explore capability <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+        </article>
+      </a>
+
+      <a href="{{ get_url(path='@/capabilities/knowledge-graph.md') }}" class="waypoint-link">
+        <article class="waypoint">
+          <div class="waypoint-header">
+            <div class="waypoint-icon"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i></div>
+            <div>
+              <span class="waypoint-number">WP-003</span>
+              <h3 class="waypoint-title">Knowledge Graph Engine</h3>
+            </div>
+          </div>
+          <p class="waypoint-desc">Role-configured knowledge graphs with Aho-Corasick multi-pattern matching. Thousands of patterns matched simultaneously in a single pass.</p>
+          <span class="waypoint-cta">Explore capability <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+        </article>
+      </a>
+
+      <a href="{{ get_url(path='@/capabilities/terraphim-agent.md') }}" class="waypoint-link">
+        <article class="waypoint">
+          <div class="waypoint-header">
+            <div class="waypoint-icon"><i class="fa-solid fa-robot" aria-hidden="true"></i></div>
+            <div>
+              <span class="waypoint-number">WP-004</span>
+              <h3 class="waypoint-title">terraphim-agent CLI</h3>
+            </div>
+          </div>
+          <p class="waypoint-desc">Search-first AI agent. Session search across Claude Code and Cursor history, learning capture from failed commands, command rewriting via thesaurus.</p>
+          <span class="waypoint-cta">Explore capability <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+        </article>
+      </a>
+
+      <a href="{{ get_url(path='@/capabilities/mcp-server.md') }}" class="waypoint-link">
+        <article class="waypoint">
+          <div class="waypoint-header">
+            <div class="waypoint-icon"><i class="fa-solid fa-plug" aria-hidden="true"></i></div>
+            <div>
+              <span class="waypoint-number">WP-005</span>
+              <h3 class="waypoint-title">MCP Server</h3>
+            </div>
+          </div>
+          <p class="waypoint-desc">Native Model Context Protocol server. Connect your AI assistant to local knowledge graphs. KG-boosted file search, token tracking, role-based context.</p>
+          <span class="waypoint-cta">Explore capability <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+        </article>
+      </a>
+
+      <a href="{{ get_url(path='@/capabilities/hooks.md') }}" class="waypoint-link">
+        <article class="waypoint">
+          <div class="waypoint-header">
+            <div class="waypoint-icon"><i class="fa-solid fa-code-branch" aria-hidden="true"></i></div>
+            <div>
+              <span class="waypoint-number">WP-006</span>
+              <h3 class="waypoint-title">Hooks System</h3>
+            </div>
+          </div>
+          <p class="waypoint-desc">Pre and post tool-use hooks for AI coding assistants. Capture failed commands, inject knowledge graph context, automate learning from sessions.</p>
+          <span class="waypoint-cta">Explore capability <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+        </article>
+      </a>
+
+      <a href="{{ get_url(path='@/capabilities/multi-haystack.md') }}" class="waypoint-link">
+        <article class="waypoint">
+          <div class="waypoint-header">
+            <div class="waypoint-icon"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></div>
+            <div>
+              <span class="waypoint-number">WP-007</span>
+              <h3 class="waypoint-title">Multi-Haystack Search</h3>
+            </div>
+          </div>
+          <p class="waypoint-desc">One query, many sources. Search local files, Confluence, Jira, Discourse, email, and global code via grepapp — ranked by the role's knowledge graph.</p>
+          <span class="waypoint-cta">Explore capability <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+        </article>
+      </a>
+
+      <a href="{{ get_url(path='@/capabilities/kg-file-search.md') }}" class="waypoint-link">
+        <article class="waypoint">
+          <div class="waypoint-header">
+            <div class="waypoint-icon"><i class="fa-solid fa-magnifying-glass-chart" aria-hidden="true"></i></div>
+            <div>
+              <span class="waypoint-number">WP-008</span>
+              <h3 class="waypoint-title">KG-Boosted File Search</h3>
+            </div>
+          </div>
+          <p class="waypoint-desc">File search augmented with knowledge graph context. Find files by their semantic relationship to domain concepts and role-specific vocabulary.</p>
+          <span class="waypoint-cta">Explore capability <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+        </article>
+      </a>
+
+      <a href="{{ get_url(path='@/capabilities/rust-wasm.md') }}" class="waypoint-link">
+        <article class="waypoint">
+          <div class="waypoint-header">
+            <div class="waypoint-icon"><i class="fa-brands fa-rust" aria-hidden="true"></i></div>
+            <div>
+              <span class="waypoint-number">WP-009</span>
+              <h3 class="waypoint-title">Rust / WASM Runtime</h3>
+            </div>
+          </div>
+          <p class="waypoint-desc">Written in Rust, compiled to WebAssembly. Sub-millisecond search. Memory-safe, thread-safe, running at near-native speed in browser or desktop.</p>
+          <span class="waypoint-cta">Explore capability <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+        </article>
+      </a>
+
+      <a href="{{ get_url(path='@/capabilities/terraphim-editor.md') }}" class="waypoint-link">
+        <article class="waypoint">
+          <div class="waypoint-header">
+            <div class="waypoint-icon"><i class="fa-solid fa-pen-to-square" aria-hidden="true"></i></div>
+            <div>
+              <span class="waypoint-number">WP-010</span>
+              <h3 class="waypoint-title">Terraphim Editor</h3>
+            </div>
+          </div>
+          <p class="waypoint-desc">Intelligent editor with alternative suggestions powered by your knowledge graph and roles. Compare wording, keep alternatives attached, and save your choices. Try the browser preview.</p>
+          <span class="waypoint-cta">Explore capability <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+        </article>
+      </a>
+    </div>
+
+    <p class="section-footnote">
+      Curious how it started? Read the <a class="inline-link" href="{{ get_url(path='@/capabilities/origin-story.md') }}">origin story</a> —
+      from The Pattern (Redis Hackathon Platinum winner) through Kaggle and Oxford to Terraphim AI.
+    </p>
+  </div>
+</section>
+
+<!-- ---- HONEST COMPARISON ---- -->
+<section class="comparison" id="comparison" aria-label="Feature comparison">
+  <div class="comparison-inner">
+    <div class="section-overline">
+      <i class="fa-solid fa-scale-balanced" aria-hidden="true"></i>
+      Honest Comparison
+    </div>
+    <h2 class="section-title">What You Keep vs What They Take</h2>
+    <p class="section-subtitle">
+      Feature-by-feature: Terraphim (local) vs typical cloud search products.
+    </p>
+
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th scope="col">Capability</th>
+          <th scope="col" class="col-centre">Terraphim</th>
+          <th scope="col" class="col-centre">Cloud</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="feature-name">Runs on your hardware</td>
+          <td class="cell-centre"><i class="fa-solid fa-check" aria-label="Yes"></i></td>
+          <td class="cell-centre"><i class="fa-solid fa-xmark" aria-label="No"></i></td>
+        </tr>
+        <tr>
+          <td class="feature-name">Data stays on device</td>
+          <td class="cell-centre"><i class="fa-solid fa-check" aria-label="Yes"></i></td>
+          <td class="cell-centre"><i class="fa-solid fa-xmark" aria-label="No"></i></td>
+        </tr>
+        <tr>
+          <td class="feature-name">Works offline</td>
+          <td class="cell-centre"><i class="fa-solid fa-check" aria-label="Yes"></i></td>
+          <td class="cell-centre"><i class="fa-solid fa-xmark" aria-label="No"></i></td>
+        </tr>
+        <tr>
+          <td class="feature-name">Zero telemetry</td>
+          <td class="cell-centre"><i class="fa-solid fa-check" aria-label="Yes"></i></td>
+          <td class="cell-centre"><i class="fa-solid fa-xmark" aria-label="No"></i></td>
+        </tr>
+        <tr>
+          <td class="feature-name">No account required</td>
+          <td class="cell-centre"><i class="fa-solid fa-check" aria-label="Yes"></i></td>
+          <td class="cell-centre"><i class="fa-solid fa-xmark" aria-label="No"></i></td>
+        </tr>
+        <tr>
+          <td class="feature-name">No API key</td>
+          <td class="cell-centre"><i class="fa-solid fa-check" aria-label="Yes"></i></td>
+          <td class="cell-centre"><i class="fa-solid fa-xmark" aria-label="No"></i></td>
+        </tr>
+        <tr>
+          <td class="feature-name">Open source</td>
+          <td class="cell-centre"><i class="fa-solid fa-check" aria-label="Yes"></i></td>
+          <td class="cell-centre"><i class="fa-solid fa-xmark" aria-label="No"></i></td>
+        </tr>
+        <tr>
+          <td class="feature-name">Knowledge graphs</td>
+          <td class="cell-centre"><i class="fa-solid fa-check" aria-label="Yes"></i></td>
+          <td class="cell-centre"><i class="fa-solid fa-minus" aria-label="Partial"></i></td>
+        </tr>
+        <tr>
+          <td class="feature-name">MCP integration</td>
+          <td class="cell-centre"><i class="fa-solid fa-check" aria-label="Yes"></i></td>
+          <td class="cell-centre"><i class="fa-solid fa-minus" aria-label="Partial"></i></td>
+        </tr>
+        <tr>
+          <td class="feature-name">Role-based profiles</td>
+          <td class="cell-centre"><i class="fa-solid fa-check" aria-label="Yes"></i></td>
+          <td class="cell-centre"><i class="fa-solid fa-xmark" aria-label="No"></i></td>
+        </tr>
+        <tr>
+          <td class="feature-name">Multi-source indexing</td>
+          <td class="cell-centre"><i class="fa-solid fa-check" aria-label="Yes"></i></td>
+          <td class="cell-centre"><i class="fa-solid fa-check" aria-label="Yes"></i></td>
+        </tr>
+        <tr>
+          <td class="feature-name">Token usage tracking</td>
+          <td class="cell-centre"><i class="fa-solid fa-check" aria-label="Yes"></i></td>
+          <td class="cell-centre"><i class="fa-solid fa-minus" aria-label="Partial"></i></td>
+        </tr>
+        <tr>
+          <td class="feature-name">Vendor lock-in</td>
+          <td class="cell-centre"><i class="fa-solid fa-xmark" aria-label="No"></i></td>
+          <td class="cell-centre"><i class="fa-solid fa-check" aria-label="Yes"></i></td>
+        </tr>
+        <tr>
+          <td class="feature-name">Recurring subscription</td>
+          <td class="cell-centre"><i class="fa-solid fa-xmark" aria-label="No"></i></td>
+          <td class="cell-centre"><i class="fa-solid fa-check" aria-label="Yes"></i></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Tally</td>
+          <td class="cell-centre" style="color: var(--green);">12 / 2</td>
+          <td class="cell-centre" style="color: var(--red);">3 / 11</td>
+        </tr>
+      </tfoot>
+    </table>
+    <div class="table-legend">
+      <i class="fa-solid fa-check" style="color: var(--green);"></i> = yes &nbsp;
+      <i class="fa-solid fa-xmark" style="color: var(--red);"></i> = no &nbsp;
+      <i class="fa-solid fa-minus" style="color: var(--text-dim);"></i> = partial &nbsp;
+      // rows 13-14: lower is better
+    </div>
+  </div>
+</section>
+
+<!-- ---- SYSTEM READOUTS ---- -->
+{% set bench = load_data(path="content/data/benchmarks.json") %}
+{% set inference = bench.metrics.inference_ns %}
+{% set search_latency = bench.metrics.search_latency_ms %}
+{% set throughput = bench.metrics.index_throughput_mibps %}
+{% set graph_footprint = bench.metrics.graph_footprint_mb %}
+{% set build_100 = bench.metrics.index_build_100_terms_us %}
+{% set build_1000 = bench.metrics.index_build_1000_terms_ms %}
+<section class="section" id="systems" aria-label="System readouts">
+  <div class="section-inner">
+    <div class="section-overline">
+      <i class="fa-solid fa-server" aria-hidden="true"></i>
+      System Readouts
+    </div>
+    <h2 class="section-title">Ship Systems</h2>
+    <p class="section-subtitle">What the engine actually does, with numbers from the <a class="inline-link" href="https://docs.terraphim.ai">benchmark suite</a>.</p>
+
+    <div class="systems-layout">
+      <div class="systems-grid">
+        <div class="system-card">
+          <div class="system-card-header">
+            <i class="fa-solid fa-microchip" aria-hidden="true"></i>
+            <h3>Computation Core</h3>
+          </div>
+          <div class="system-card-body">
+            <p>Rust compiled to native or WebAssembly. Aho-Corasick automata match every pattern in a single pass — O(n) in text length, independent of pattern count.</p>
+            <div class="metric">
+              <span class="metric-label">{{ inference.label }}</span>
+              <span class="metric-value">{{ inference.value }} {{ inference.unit }}</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">{{ search_latency.label }}</span>
+              <span class="metric-value">{{ search_latency.value }} {{ search_latency.unit }}</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">{{ throughput.label }}</span>
+              <span class="metric-value">{{ throughput.value }} {{ throughput.unit }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="system-card">
+          <div class="system-card-header">
+            <i class="fa-solid fa-memory" aria-hidden="true"></i>
+            <h3>Memory Subsystem</h3>
+          </div>
+          <div class="system-card-body">
+            <p>No float vectors, no dense embeddings, no GPU allocation. Rust's zero-cost abstractions, deterministic allocation, graphs held in compressed representations.</p>
+            <div class="metric">
+              <span class="metric-label">{{ graph_footprint.label }}</span>
+              <span class="metric-value">{{ graph_footprint.value }} {{ graph_footprint.unit }}</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">{{ build_100.label }}</span>
+              <span class="metric-value">{{ build_100.value }} {{ build_100.unit }}</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">{{ build_1000.label }}</span>
+              <span class="metric-value">{{ build_1000.value }} {{ build_1000.unit }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="system-card">
+          <div class="system-card-header">
+            <i class="fa-solid fa-lock" aria-hidden="true"></i>
+            <h3>Privacy Shield</h3>
+          </div>
+          <div class="system-card-body">
+            <p>All operations execute locally. No network calls for search, indexing, or graph traversal. Your data never leaves the device.</p>
+            <div class="metric">
+              <span class="metric-label">Network calls (search)</span>
+              <span class="metric-value">0</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Telemetry</span>
+              <span class="metric-value">None</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">Third-party services</span>
+              <span class="metric-value">None required</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="indicators-stack">
+        <div class="indicator-panel">
+          <div class="indicator-panel-title">
+            <i class="fa-solid fa-circle-nodes" aria-hidden="true"></i>
+            What runs on your box
+          </div>
+          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Search engine</span><span class="indicator-val">Aho-Corasick</span></div>
+          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Graph engine</span><span class="indicator-val">RoleGraph</span></div>
+          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Agent protocol</span><span class="indicator-val">MCP server</span></div>
+          <div class="indicator-row"><div class="indicator-dot blue"></div><span class="indicator-name">Runtime</span><span class="indicator-val">Rust + WASM</span></div>
+          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Hook system</span><span class="indicator-val">Native</span></div>
+          <div class="indicator-row"><div class="indicator-dot amber"></div><span class="indicator-name">Deployment</span><span class="indicator-val">Desktop / CLI / Server</span></div>
+        </div>
+
+        <div class="indicator-panel">
+          <div class="indicator-panel-title">
+            <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
+            Measured performance
+          </div>
+          <div class="indicator-row"><div class="indicator-dot blue"></div><span class="indicator-name">{{ inference.label }}</span><span class="indicator-val">{{ inference.value }} {{ inference.unit }}</span></div>
+          <div class="indicator-row"><div class="indicator-dot blue"></div><span class="indicator-name">Search latency</span><span class="indicator-val">{{ search_latency.value }} {{ search_latency.unit }}</span></div>
+          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Index 100 terms</span><span class="indicator-val">{{ build_100.value }} {{ build_100.unit }}</span></div>
+          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Index 1,000 terms</span><span class="indicator-val">{{ build_1000.value }} {{ build_1000.unit }}</span></div>
+          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Graph RAM</span><span class="indicator-val">{{ graph_footprint.value }} {{ graph_footprint.unit }}</span></div>
+        </div>
+
+        <div class="indicator-panel">
+          <div class="indicator-panel-title">
+            <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+            Privacy posture
+          </div>
+          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Data at rest</span><span class="indicator-val">Local</span></div>
+          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Network access</span><span class="indicator-val">None required</span></div>
+          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Account required</span><span class="indicator-val">No</span></div>
+          <div class="indicator-row"><div class="indicator-dot green"></div><span class="indicator-name">Licence</span><span class="indicator-val">Apache-2.0 OSS</span></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="section-footnote">
+      Last measured <time datetime="{{ bench.generated_at }}">{{ bench.generated_at | date(format="%Y-%m-%d") }}</time>
+      from Criterion benchmarks in <code class="inline-code">crates/terraphim_automata/benches</code>.
+      Run them yourself: <code class="inline-code">cargo bench</code>.
+      {% if bench.source.workflow_run %}&middot; <a class="inline-link" href="{{ bench.source.workflow_run }}">View CI run</a>{% endif %}
+    </p>
+  </div>
+</section>
+
+<!-- ---- ROLES ---- -->
+<section class="section" id="roles" aria-label="Knowledge graph roles">
+  <div class="section-inner">
+    <div class="section-overline">
+      <i class="fa-solid fa-users" aria-hidden="true"></i>
+      Crew Stations
+    </div>
+    <h2 class="section-title">Role-Based Knowledge Graphs</h2>
+    <p class="section-subtitle">Each role brings its own vocabulary, relationships, and domain expertise.</p>
+
+    <div class="roles-grid">
+      <article class="role-card">
+        <div class="role-header">
+          <div class="role-icon"><i class="fa-solid fa-terminal" aria-hidden="true"></i></div>
+          <h3 class="role-name">System Operator</h3>
+        </div>
+        <p class="role-desc">Infrastructure and operations focused. Monitors system health, manages deployments, navigates operational knowledge spanning runbooks, incident reports, and system documentation.</p>
+        <div class="role-tags">
+          <span class="role-tag">Infrastructure</span>
+          <span class="role-tag">Monitoring</span>
+          <span class="role-tag">Runbooks</span>
+          <span class="role-tag">Incidents</span>
+        </div>
+      </article>
+
+      <article class="role-card">
+        <div class="role-header">
+          <div class="role-icon"><i class="fa-solid fa-wrench" aria-hidden="true"></i></div>
+          <h3 class="role-name">Engineer</h3>
+        </div>
+        <p class="role-desc">Design and development focused. Traverses codebases, API documentation, architecture decision records, and technical specifications through domain-specific pattern matching.</p>
+        <div class="role-tags">
+          <span class="role-tag">Architecture</span>
+          <span class="role-tag">APIs</span>
+          <span class="role-tag">Code</span>
+          <span class="role-tag">Specifications</span>
+        </div>
+      </article>
+
+      <article class="role-card">
+        <div class="role-header">
+          <div class="role-icon"><i class="fa-solid fa-chart-bar" aria-hidden="true"></i></div>
+          <h3 class="role-name">Analyst</h3>
+        </div>
+        <p class="role-desc">Research and intelligence focused. Navigates across datasets, reports, and analytical frameworks. Discovers hidden connections between concepts using multi-pattern graph queries.</p>
+        <div class="role-tags">
+          <span class="role-tag">Research</span>
+          <span class="role-tag">Reports</span>
+          <span class="role-tag">Datasets</span>
+          <span class="role-tag">Intelligence</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ---- COMMUNITY ---- -->
+<section class="section" id="community" aria-label="Join the community">
+  <div class="section-inner">
+    <div class="section-overline">
+      <i class="fa-solid fa-users" aria-hidden="true"></i>
+      Community
+    </div>
+    <h2 class="section-title">Join the Conversation</h2>
+    <p class="section-subtitle">
+      Connect with developers, share knowledge, and help shape the future of local-first AI tooling.
+    </p>
+
+    <div class="waypoints-grid">
+      {% if config.extra.social.discord %}
+      <a href="https://discord.gg/{{ config.extra.social.discord }}" target="_blank" rel="noopener" class="waypoint-link">
+        <article class="waypoint">
+          <div class="waypoint-header">
+            <div class="waypoint-icon"><i class="fa-brands fa-discord" aria-hidden="true"></i></div>
+            <div>
+              <span class="waypoint-number">COM-01</span>
+              <h3 class="waypoint-title">Discord</h3>
+            </div>
+          </div>
+          <p class="waypoint-desc">Real-time chat for questions, debugging help, and feature discussions. The fastest way to get support from the team and community.</p>
+          <span class="waypoint-cta">Join Discord <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+        </article>
+      </a>
+      {% endif %}
+
+      {% if config.extra.social.discourse %}
+      <a href="https://{{ config.extra.social.discourse }}" target="_blank" rel="noopener" class="waypoint-link">
+        <article class="waypoint">
+          <div class="waypoint-header">
+            <div class="waypoint-icon"><i class="fa-brands fa-discourse" aria-hidden="true"></i></div>
+            <div>
+              <span class="waypoint-number">COM-02</span>
+              <h3 class="waypoint-title">Discourse</h3>
+            </div>
+          </div>
+          <p class="waypoint-desc">Long-form discussions, tutorials, and knowledge sharing. Post use cases, integration guides, and deep technical explorations.</p>
+          <span class="waypoint-cta">Browse forums <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+        </article>
+      </a>
+      {% endif %}
+
+      {% if config.extra.social.reddit %}
+      <a href="https://www.reddit.com/r/{{ config.extra.social.reddit }}" target="_blank" rel="noopener" class="waypoint-link">
+        <article class="waypoint">
+          <div class="waypoint-header">
+            <div class="waypoint-icon"><i class="fa-brands fa-reddit" aria-hidden="true"></i></div>
+            <div>
+              <span class="waypoint-number">COM-03</span>
+              <h3 class="waypoint-title">Reddit</h3>
+            </div>
+          </div>
+          <p class="waypoint-desc">Community-driven news, demos, and project showcases. Share what you build, upvote features, discuss privacy-first architecture.</p>
+          <span class="waypoint-cta">Visit subreddit <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+        </article>
+      </a>
+      {% endif %}
+
+      {% if config.extra.social.github %}
+      <a href="https://github.com/{{ config.extra.social.github }}" target="_blank" rel="noopener" class="waypoint-link">
+        <article class="waypoint">
+          <div class="waypoint-header">
+            <div class="waypoint-icon"><i class="fa-brands fa-github" aria-hidden="true"></i></div>
+            <div>
+              <span class="waypoint-number">COM-04</span>
+              <h3 class="waypoint-title">GitHub</h3>
+            </div>
+          </div>
+          <p class="waypoint-desc">Source code, issues, pull requests, and release notes. Report bugs, propose features, and contribute code to the project.</p>
+          <span class="waypoint-cta">Star on GitHub <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+        </article>
+      </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<!-- ---- DEPLOY ---- -->
+<section class="section" id="deploy" aria-label="Deployment targets">
+  <div class="section-inner">
+    <div class="section-overline">
+      <i class="fa-solid fa-rocket" aria-hidden="true"></i>
+      Launch Platforms
+    </div>
+    <h2 class="section-title">Deploy Everywhere</h2>
+    <p class="section-subtitle">One engine. Eight deployment targets. Always local-first.</p>
+
+    <div class="deploy-grid">
+      <article class="deploy-card">
+        <div class="deploy-icon"><i class="fa-solid fa-terminal" aria-hidden="true"></i></div>
+        <div class="deploy-content">
+          <h3 class="deploy-title">Command Line</h3>
+          <p class="deploy-desc">Install <code class="inline-code">terraphim-agent</code> and <code class="inline-code">terraphim-cli</code> from Cargo, Homebrew, or curl. Native Rust, zero runtime deps.</p>
+          <span class="deploy-badge rust">Rust CLI</span>
+        </div>
+      </article>
+
+      <article class="deploy-card">
+        <div class="deploy-icon"><i class="fa-solid fa-desktop" aria-hidden="true"></i></div>
+        <div class="deploy-content">
+          <h3 class="deploy-title">Desktop Application</h3>
+          <p class="deploy-desc">Native Tauri desktop app. Full system integration, file-system access, offline-first. <a class="inline-link" href="https://github.com/terraphim/terraphim-ai-desktop">Separate repository</a>.</p>
+          <span class="deploy-badge native">Tauri</span>
+        </div>
+      </article>
+
+      <article class="deploy-card">
+        <div class="deploy-icon"><i class="fa-solid fa-server" aria-hidden="true"></i></div>
+        <div class="deploy-content">
+          <h3 class="deploy-title">HTTP Server</h3>
+          <p class="deploy-desc">REST API for search, config, chat, and document management. Integrates with Confluence, Jira, Discourse, email, local files, and grepapp.</p>
+          <span class="deploy-badge rust">REST API</span>
+        </div>
+      </article>
+
+      <article class="deploy-card">
+        <div class="deploy-icon"><i class="fa-solid fa-plug" aria-hidden="true"></i></div>
+        <div class="deploy-content">
+          <h3 class="deploy-title">MCP Server</h3>
+          <p class="deploy-desc">Model Context Protocol server for Claude, Cursor, and any MCP-capable assistant. Exposes search, role-aware KG context, and token tracking.</p>
+          <span class="deploy-badge native">MCP</span>
+        </div>
+      </article>
+
+      <article class="deploy-card">
+        <div class="deploy-icon"><i class="fa-solid fa-puzzle-piece" aria-hidden="true"></i></div>
+        <div class="deploy-content">
+          <h3 class="deploy-title">Browser Extension</h3>
+          <p class="deploy-desc">Knowledge graph search in your browser, WASM-powered, runs in the extension sandbox. <a class="inline-link" href="https://github.com/terraphim/terraphim-ai/tree/main/browser_extensions/INSTALL.md">Install now</a>.</p>
+          <span class="deploy-badge wasm">WASM</span>
+        </div>
+      </article>
+
+      <article class="deploy-card">
+        <div class="deploy-icon"><i class="fa-brands fa-node-js" aria-hidden="true"></i></div>
+        <div class="deploy-content">
+          <h3 class="deploy-title">Node / npm</h3>
+          <p class="deploy-desc"><code class="inline-code">@terraphim/autocomplete</code> on npm. Aho-Corasick matching and knowledge-graph autocomplete for Node and browser apps, compiled to WASM.</p>
+          <span class="deploy-badge wasm">npm + WASM</span>
+        </div>
+      </article>
+
+      <article class="deploy-card">
+        <div class="deploy-icon"><i class="fa-brands fa-python" aria-hidden="true"></i></div>
+        <div class="deploy-content">
+          <h3 class="deploy-title">Python</h3>
+          <p class="deploy-desc"><code class="inline-code">terraphim-automata</code> on PyPI. Python bindings to the Aho-Corasick automata crate via PyO3. Drop-in for data pipelines and notebooks.</p>
+          <span class="deploy-badge native">PyO3</span>
+        </div>
+      </article>
+
+      <article class="deploy-card">
+        <div class="deploy-icon"><i class="fa-solid fa-microchip" aria-hidden="true"></i></div>
+        <div class="deploy-content">
+          <h3 class="deploy-title">Edge &amp; Embedded</h3>
+          <p class="deploy-desc">15-20 MB graph footprint runs on Raspberry Pi, edge devices, and modest cloud instances. Docker and Debian packages available from each release.</p>
+          <span class="deploy-badge rust">ARM64 / Debian</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ---- INSTALL ---- -->
+<section class="install" id="install" aria-label="Installation" data-version="{{ config.extra.release_version | default(value='1.21.22') }}">
+  <div class="install-inner">
+    <div class="section-overline">
+      <i class="fa-solid fa-download" aria-hidden="true"></i>
+      Get Started
+    </div>
+    <h2 class="section-title">Install Terraphim</h2>
+    <p class="section-subtitle">One command. No sign-up. No API key. Choose your platform.</p>
+
+    <!-- Platform detection banner (populated by JS) -->
+    <div class="platform-detect" id="platformDetect" hidden>
+      <div class="platform-detect-inner">
+        <div class="platform-detect-info">
+          <i class="fa-solid fa-microchip" aria-hidden="true"></i>
+          <span>Detected: <strong id="platformName">your platform</strong></span>
+        </div>
+        <a id="platformDownload" href="#" class="btn btn-primary btn-sm">
+          <i class="fa-solid fa-download" aria-hidden="true"></i>
+          <span id="platformBtnText">Download</span>
+        </a>
+      </div>
+      {% set rv = config.extra.release_version | default(value="1.21.22") %}
+      {% set dl = "https://downloads.terraphim.ai/terraphim-agent/" %}
+      <details class="all-platforms">
+        <summary>All platforms</summary>
+        <ul class="platform-list">
+          <li><a href="{{ dl }}terraphim-agent-{{ rv }}-aarch64-apple-darwin.tar.gz"><i class="fa-brands fa-apple" aria-hidden="true"></i> macOS ARM64 (Apple Silicon)</a></li>
+          <li><a href="{{ dl }}terraphim-agent-{{ rv }}-x86_64-apple-darwin.tar.gz"><i class="fa-brands fa-apple" aria-hidden="true"></i> macOS x64 (Intel)</a></li>
+          <li><a href="{{ dl }}terraphim-agent-{{ rv }}-universal-apple-darwin.tar.gz"><i class="fa-brands fa-apple" aria-hidden="true"></i> macOS Universal</a></li>
+          <li><a href="{{ dl }}terraphim-agent-{{ rv }}-x86_64-unknown-linux-gnu.tar.gz"><i class="fa-brands fa-linux" aria-hidden="true"></i> Linux x64 (GNU)</a></li>
+          <li><a href="{{ dl }}terraphim-agent-{{ rv }}-x86_64-unknown-linux-musl.tar.gz"><i class="fa-brands fa-linux" aria-hidden="true"></i> Linux x64 (MUSL)</a></li>
+          <li><a href="{{ dl }}terraphim-agent-{{ rv }}-aarch64-unknown-linux-musl.tar.gz"><i class="fa-brands fa-linux" aria-hidden="true"></i> Linux ARM64</a></li>
+        </ul>
+      </details>
+    </div>
+
+    <!-- Group 1: Install the Application -->
+    <div class="install-groups">
+      <div class="install-group">
+        <h3 class="install-group-title">
+          <i class="fa-solid fa-rocket" aria-hidden="true"></i>
+          Install the Application
+        </h3>
+        <div class="install-methods">
+          <div class="install-method">
+            <div class="install-method-header">
+              <i class="fa-solid fa-bolt" aria-hidden="true"></i>
+              <h4>Quick Install</h4>
+            </div>
+            <div class="install-block">
+              <div class="command-line">
+                <span class="prompt-symbol">$</span>
+                <span class="prompt-text">curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts/install.sh | bash</span>
+                <button class="copy-btn" data-copy="curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts/install.sh | bash" aria-label="Copy command">copy</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="install-method">
+            <div class="install-method-header">
+              <i class="fa-brands fa-apple" aria-hidden="true"></i>
+              <h4>Homebrew</h4>
+            </div>
+            <div class="install-block">
+              <div class="command-line">
+                <span class="prompt-symbol">$</span>
+                <span class="prompt-text">brew tap terraphim/terraphim && brew install terraphim-agent</span>
+                <button class="copy-btn" data-copy="brew tap terraphim/terraphim && brew install terraphim-agent" aria-label="Copy command">copy</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="install-method">
+            <div class="install-method-header">
+              <i class="fa-brands fa-rust" aria-hidden="true"></i>
+              <h4>Cargo</h4>
+            </div>
+            <div class="install-block">
+              <div class="command-line">
+                <span class="prompt-symbol">$</span>
+                <span class="prompt-text">cargo install terraphim_agent --features repl-full</span>
+                <button class="copy-btn" data-copy="cargo install terraphim_agent --features repl-full" aria-label="Copy command">copy</button>
+              </div>
+              <div class="command-line">
+                <span class="prompt-symbol">$</span>
+                <span class="prompt-text">cargo install terraphim_cli</span>
+                <button class="copy-btn" data-copy="cargo install terraphim_cli" aria-label="Copy command">copy</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="install-method">
+            <div class="install-method-header">
+              <i class="fa-brands fa-windows" aria-hidden="true"></i>
+              <h4>Windows</h4>
+            </div>
+            <div class="install-block">
+              <div class="command-line">
+                <span class="prompt-symbol">&gt;</span>
+                <span class="prompt-text">curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts/install.sh | bash</span>
+                <button class="copy-btn" data-copy="curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts/install.sh | bash" aria-label="Copy command">copy</button>
+              </div>
+              <p class="install-note">Requires WSL. Native Windows archives are unavailable on the current stable channel; use WSL or build from source.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Group 2: Library Bindings -->
+      <div class="install-group">
+        <h3 class="install-group-title">
+          <i class="fa-solid fa-plug" aria-hidden="true"></i>
+          Library Bindings
+        </h3>
+        <p class="install-group-desc">Embed Terraphim's autocomplete and knowledge graph engine in your own applications.</p>
+        <div class="install-methods">
+          <div class="install-method">
+            <div class="install-method-header">
+              <i class="fa-brands fa-npm" aria-hidden="true"></i>
+              <h4>Node.js / Bun</h4>
+            </div>
+            <div class="install-block">
+              <div class="command-line">
+                <span class="prompt-symbol">$</span>
+                <span class="prompt-text">npm install @terraphim/autocomplete</span>
+                <button class="copy-btn" data-copy="npm install @terraphim/autocomplete" aria-label="Copy command">copy</button>
+              </div>
+              <p class="install-note">Native NAPI bindings for autocomplete and knowledge graph search.</p>
+            </div>
+          </div>
+
+          <div class="install-method">
+            <div class="install-method-header">
+              <i class="fa-brands fa-python" aria-hidden="true"></i>
+              <h4>Python</h4>
+            </div>
+            <div class="install-block">
+              <div class="command-line">
+                <span class="prompt-symbol">$</span>
+                <span class="prompt-text">pip install terraphim-automata</span>
+                <button class="copy-btn" data-copy="pip install terraphim-automata" aria-label="Copy command">copy</button>
+              </div>
+              <p class="install-note">PyO3 bindings for text matching and autocomplete. Python 3.9+.</p>
+            </div>
+          </div>
+
+          <div class="install-method">
+            <div class="install-method-header">
+              <i class="fa-brands fa-chrome" aria-hidden="true"></i>
+              <h4>Browser Extension</h4>
+            </div>
+            <div class="install-block">
+              <p class="install-note">WASM-powered knowledge graph search in your browser. Coming to Chrome Web Store. <a href="https://github.com/terraphim/terraphim-ai/tree/main/browser_extensions/INSTALL.md">Install in developer mode</a>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="install-cta">
+      <a href="https://github.com/terraphim/terraphim-clients/releases/tag/v{{ config.extra.release_version | default(value='1.21.22') }}" class="btn btn-primary">
+        <i class="fa-solid fa-download" aria-hidden="true"></i>
+        Download v{{ config.extra.release_version | default(value="1.21.22") }}
+      </a>
+      <a href="{{ config.base_url }}/docs/installation" class="btn btn-ghost">
+        <i class="fa-solid fa-book" aria-hidden="true"></i>
+        Installation Guide
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
