@@ -1,0 +1,42 @@
+{
+  "thesaurus": {
+    "name": "Systems Engineer",
+    "data": {
+      "raft": { "id": 1, "nterm": "raft" },
+      "raft protocol": { "id": 1, "nterm": "raft" },
+      "consensus": { "id": 2, "nterm": "consensus" },
+      "consensus algorithm": { "id": 2, "nterm": "consensus" },
+      "leader election": { "id": 3, "nterm": "leader election" },
+      "election": { "id": 3, "nterm": "leader election" },
+      "leader": { "id": 4, "nterm": "leader" },
+      "log replication": { "id": 5, "nterm": "log replication" },
+      "replication": { "id": 5, "nterm": "log replication" },
+      "quorum": { "id": 6, "nterm": "quorum" },
+      "majority": { "id": 6, "nterm": "quorum" },
+      "partition tolerance": { "id": 7, "nterm": "partition tolerance" },
+      "network partition": { "id": 7, "nterm": "partition tolerance" },
+      "split brain": { "id": 7, "nterm": "partition tolerance" },
+      "distributed systems": { "id": 8, "nterm": "distributed systems" },
+      "distributed system": { "id": 8, "nterm": "distributed systems" },
+      "paxos": { "id": 9, "nterm": "paxos" },
+      "state machine": { "id": 10, "nterm": "state machine" },
+      "replicated state machine": { "id": 10, "nterm": "state machine" }
+    }
+  },
+  "documents": [
+    { "id": "doc-raft", "title": "Raft notes", "text": "Raft is a consensus algorithm. The leader election picks a leader. Log replication keeps the replicated log consistent." },
+    { "id": "doc-paxos", "title": "Paxos notes", "text": "Paxos is another consensus algorithm requiring a quorum for each decision." },
+    { "id": "doc-cap", "title": "CAP theorem", "text": "In distributed systems, partition tolerance means the network partition cannot break consensus." },
+    { "id": "doc-leader", "title": "Leader duties", "text": "The leader sends heartbeats; without a leader, a new election starts." },
+    { "id": "doc-quorum", "title": "Quorum reads", "text": "A quorum of replicas must acknowledge log replication before the leader commits." },
+    { "id": "doc-splitbrain", "title": "Split brain", "text": "A split brain happens when partition tolerance is violated and two leaders emerge." },
+    { "id": "doc-rsm", "title": "State machines", "text": "A replicated state machine applies the same log replication to each state machine." },
+    { "id": "doc-membership", "title": "Membership", "text": "In distributed systems a quorum elects the leader; consensus needs a majority." }
+  ],
+  "queries": [
+    "consensus",
+    "leader election",
+    "raft consensus",
+    "byzantine fault tolerance"
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "state": "prepared",
+  "canonical": "https://terraphim.ai/posts/graph-embeddings-checklists/",
+  "x": {
+    "account": "alex_mikhalev",
+    "articleTitle": "Graph embeddings for checklists",
+    "articleBody": "A checklist is an enumerated set of terms that must be checked. Vector embeddings return fuzzy neighbours; they cannot enumerate a fixed set and report which members fired. A knowledge graph can.\n\nI wrote up the machinery that wraps a Terraphim checklist around an LLM call. Before the call, terraphim-grep expands a query through a role thesaurus: 'quality gate' matched eight concepts in 53 ms, in files containing none of the query words. A control query reports kg_hits: 0 and says so. After the call, terraphim-agent hook returns a machine-readable findings list instead of a silent rewrite, and learn/memory feeds corrections back into the synonym set.\n\nEvery command output in the post is real, and the 39-entry public subset of the graph is committed in the site repo so you can run the same commands.\n\nWhich checklist in your agent setup would you rather see enforced by an automaton than by a system-prompt promise?\n\nhttps://terraphim.ai/posts/graph-embeddings-checklists/",
+    "thread": [
+      "A checklist is an enumerated set of terms that must be checked. Nearest neighbours can't enumerate; a knowledge graph can. nterm is the checklist head, synonyms:: are the items, and the Aho-Corasick automaton reports which items fired.",
+      "Before the LLM call: terraphim-grep 'quality gate' with a role thesaurus expanded into eight concepts (accept, fail, escalate, pass, judge-verdicts...) and matched chunks in files containing neither 'quality' nor 'gate'. 53 ms, no embedding model.",
+      "The honest empty case matters too: the control query 'checklist' returned kg_hits: 0 with an explicit sufficiency explanation. A checklist that can't say 'not covered' isn't a checklist.",
+      "After the LLM call: terraphim-agent hook --hook-type pre-tool-use returns a findings list ({matched_term: npm install, suggested_replacement: bun install}). A check that audits, not a silent rewrite.",
+      "Honest caveat included in the post: terraphim-agent replace in this build reports changed:true while returning the input unchanged. The findings-based hook is the contract; verify outputs, not flags.",
+      "Every artefact is public: the site's repo carries .terraphim/ with the kg concepts, the rewrite checklist and the compiled 39-entry thesaurus. Commands and outputs: https://terraphim.ai/posts/graph-embeddings-checklists/"
+    ],
+    "articleFile": "gec-x-article.md"
+  },
+  "mastodon": {
+    "account": "Alex (verify current account)",
+    "body": "A checklist is an enumerated set of terms; vector search returns fuzzy neighbours. I wrote up graph embeddings as the checklist mechanism around an LLM call: terraphim-grep expands the query before it, terraphim-agent hook returns findings after it, and corrections feed back as new synonyms.\n\nhttps://terraphim.ai/posts/graph-embeddings-checklists/"
+  },
+  "discourse": {
+    "title": "Graph embeddings for checklists",
+    "body": "New post on terraphim.ai: a checklist is an enumerated set of terms, so it belongs in the Aho-Corasick automaton rather than a vector index or a system-prompt promise.\n\nBefore the LLM call, terraphim-grep with a role thesaurus expanded 'quality gate' into eight concepts and matched chunks in files containing none of the query words; the 'checklist' control honestly reported kg_hits: 0. After the call, terraphim-agent hook returns a machine-readable findings list, and learn/memory feeds corrections back into the synonym set.\n\nThe post quotes real outputs only, including one caveat: in this build terraphim-agent replace reports changed:true without substituting, so the findings-based hook is the contract. The public 39-entry graph subset is committed in the site repo.\n\nhttps://terraphim.ai/posts/graph-embeddings-checklists/\n\nWhich checklist in your agent setup would you enforce with an automaton rather than a prompt?"
+  },
+  "githubDiscussions": {
+    "title": "Graph embeddings for checklists",
+    "body": "New post: https://terraphim.ai/posts/graph-embeddings-checklists/\n\nA checklist is an enumerated set of terms that must be checked. Vector embeddings return fuzzy neighbours; a knowledge graph can enumerate and name the edge that fired. The post walks the checklist lifecycle around an LLM call: terraphim-grep with a role thesaurus expands the query into concept terms before it (eight concepts for 'quality gate' in 53 ms), terraphim-agent hook returns a findings checklist after it, and learn/memory feeds corrections back into the synonyms.\n\nAll quoted outputs are real, including one honest caveat about terraphim-agent replace in this build. The site repo now carries a .terraphim/ directory (kg concepts, rewrite checklist, 39-entry thesaurus) so the commands reproduce.\n\nWhich checklist in your agent setup would you enforce with an automaton rather than a prompt?"
+  },
+  "discord": {
+    "channel": "#terraphim",
+    "body": "New post on terraphim.ai: graph embeddings as checklists around an LLM call. terraphim-grep expands the query through a role thesaurus before the call ('quality gate' -> 8 concepts, 53 ms, honest kg_hits: 0 on the control), terraphim-agent hook returns a findings checklist after it, and corrections feed back as new synonyms. All outputs real; the public graph subset is committed in the site repo.\n\nhttps://terraphim.ai/posts/graph-embeddings-checklists/"
+  },
+  "redditTerraphimAI": {
+    "title": "Graph embeddings for checklists",
+    "body": "Maintainer here. New post on terraphim.ai: a checklist is an enumerated set of terms that must be checked, so it lives in the Aho-Corasick automaton rather than a vector index or a system-prompt promise.\n\nThe post demonstrates the lifecycle around an LLM call with real outputs: terraphim-grep with a role thesaurus expands 'quality gate' into eight concepts and matches files containing none of the query words; a control query honestly reports kg_hits: 0; terraphim-agent hook --hook-type pre-tool-use returns a findings list (npm install -> bun install); and learn/memory captures corrections that become new synonyms.\n\nOne caveat included honestly: in this build terraphim-agent replace reports changed:true without substituting, so the findings-based hook is the contract. The .terraphim/ graph behind the demos is committed in the site repo.\n\nhttps://terraphim.ai/posts/graph-embeddings-checklists/"
+  },
+  "youtube": {
+    "state": "SKIPPED_NO_ASSET",
+    "note": "No narrated walkthrough video was produced for this post. Skip unless one is created."
+  },
+  "linkedin": {
+    "state": "DRAFT_ONLY",
+    "personal": "A checklist is an enumerated set of terms that must be checked. Vector embeddings return fuzzy neighbours; a knowledge graph can enumerate. I wrote up how Terraphim wraps a deterministic checklist around an LLM call: terraphim-grep expands the query through a role thesaurus before it, terraphim-agent hook returns a findings checklist after it, and corrections feed back as new synonyms.\n\nhttps://terraphim.ai/posts/graph-embeddings-checklists/",
+    "company": "New post: graph embeddings for checklists. terraphim-grep expands queries through a role thesaurus before the LLM call; terraphim-agent hooks return machine-readable findings after it; learn/memory feeds corrections back into the graph. Reproducible: the .terraphim/ graph is committed in the site repo.\n\nhttps://terraphim.ai/posts/graph-embeddings-checklists/"
+  },
+  "medium": {
+    "account": "Terraphim AI publication (verify)",
+    "file": "gec-medium.md",
+    "canonicalUrl": "https://terraphim.ai/posts/graph-embeddings-checklists/",
+    "state": "draft"
+  },
+  "dev": {
+    "account": "AlexMikhalev (verify)",
+    "file": "gec-dev.md",
+    "canonicalUrl": "https://terraphim.ai/posts/graph-embeddings-checklists/",
+    "state": "draft"
+  },
+  "publicationTiming": "Immediate: user-requested promotion, 2026-10-20"
+}

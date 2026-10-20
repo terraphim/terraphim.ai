@@ -1,0 +1,65 @@
+{
+  "article": "https://terraphim.ai/posts/graph-embeddings-checklists/",
+  "giteaIssue": "terraphim.ai#7",
+  "method": "kimi-webbridge authenticated browser (Postiz has no providers configured); GitHub Discussion via gh API",
+  "channels": {
+    "x": {
+      "status": "live",
+      "article": "https://x.com/alex_mikhalev/status/2112517998372077811",
+      "threadRoot": "https://x.com/alex_mikhalev/status/2112515759293510135",
+      "posts": 6,
+      "receipt": "published/x-thread.json",
+      "verified": "post 6 renders with full 6-tweet chain"
+    },
+    "discord": {
+      "status": "live",
+      "channel": "Applied Knowledge Systems #terraphim",
+      "receipt": "published/discord.json"
+    },
+    "discourse": {
+      "status": "live",
+      "url": "https://terraphim.discourse.group/t/graph-embeddings-for-checklists/30",
+      "receipt": "published/discourse.json"
+    },
+    "githubDiscussions": {
+      "status": "live",
+      "url": "https://github.com/orgs/terraphim/discussions/29",
+      "repo": "terraphim/terraphim-project, Show and tell"
+    },
+    "dev": {
+      "status": "live",
+      "url": "https://dev.to/alexmikhalev/graph-embeddings-for-checklists-lgc",
+      "canonicalVerified": "https://terraphim.ai/posts/graph-embeddings-checklists/",
+      "receipt": "published/dev.json"
+    },
+    "medium": {
+      "status": "live",
+      "url": "https://alexmikhalev.medium.com/graph-embeddings-for-checklists-7820299a4af7",
+      "canonicalVerified": "https://terraphim.ai/posts/graph-embeddings-checklists/",
+      "method": "Medium import story",
+      "receipt": "published/medium.json"
+    },
+    "mastodon": {
+      "status": "live",
+      "url": "https://mastodon.social/@alexmikhalev/117473209576093723",
+      "receipt": "published/mastodon.json"
+    },
+    "redditTerraphimAI": {
+      "status": "live",
+      "url": "https://www.reddit.com/r/TerraphimAI/comments/1xaqpct/graph_embeddings_for_checklists/",
+      "receipt": "published/reddit.json"
+    },
+    "linkedin": {
+      "status": "draft-only",
+      "note": "copy prepared in gec-channels.json; prior campaign boundary keeps LinkedIn unpublished unless explicitly authorised"
+    },
+    "youtube": {
+      "status": "skipped",
+      "note": "no narrated walkthrough asset"
+    },
+    "brandX": { "status": "skipped", "note": "prior campaign boundary" },
+    "r/rust": { "status": "parked", "note": "prior campaign boundary" }
+  },
+  "paidPromotion": "none",
+  "completedAt": "2026-10-20 ~14:0x local"
+}

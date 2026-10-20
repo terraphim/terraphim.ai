@@ -27,7 +27,14 @@
     <h2 class="post-card-title">
       <a href="{{ page.permalink }}">{{ page.title }}</a>
     </h2>
-    {{ macros::post_card_meta(page=page) }}
+    <div class="post-card-meta">
+      {% if page.date %}
+      <span><i class="fa-regular fa-calendar" aria-hidden="true"></i> {{ page.date | date(format='%d %b %Y') }}</span>
+      {% endif %}
+      {% if page.reading_time %}
+      <span><i class="fa-regular fa-clock" aria-hidden="true"></i> {{ page.reading_time }} min</span>
+      {% endif %}
+    </div>
     {% if page.summary %}
     <div class="post-card-summary">{{ page.summary | safe }}</div>
     {% elif page.description %}
@@ -38,7 +45,9 @@
     </a>
     {% if page.taxonomies.categories %}
     <div class="post-card-tags">
-      {{ macros::render_categories(categories=page.taxonomies.categories) }}
+      {% for category in page.taxonomies.categories %}
+      <a class="tag-pill category" href="{{ get_taxonomy_url(kind='categories', name=category) }}">{{ category }}</a>
+      {% endfor %}
     </div>
     {% endif %}
   </article>
