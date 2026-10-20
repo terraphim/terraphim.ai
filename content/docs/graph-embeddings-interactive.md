@@ -218,7 +218,7 @@ Add a synonym right now. The Terraphim column measures the real rebuild time in 
   `byzantine fault tolerance` query above returns an empty set while the vector panel cheerfully
   returns neighbours. Domain coverage is an authoring problem, not a learning problem.
 - **Frequency bias.** `node.rank` counts co-occurrences, not importance. Popular concepts
-  dominate. Hybrid search already exists to soften this and is implemented, not proposed:
+  dominate. Hybrid search already exists to soften this:
   `query_graph_with_trigger_fallback` falls back to a `TriggerIndex` (TF-IDF over trigger
   descriptions) inside the rolegraph itself — exposed in the editor bridge as the
   `fallback` query mode — and `search_sessions_hybrid` in `terraphim_sessions` fuses BM25
