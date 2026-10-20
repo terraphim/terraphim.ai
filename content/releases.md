@@ -94,30 +94,27 @@ All Linux and macOS archives are **Ed25519-signed** and verified on install by t
 
 ### Installation
 
-{{< tabs >}}
-{{< tab "Self-update" >}}
+#### Self-update
 ```bash
 # Already have terraphim-agent?  Update in-place.
 terraphim-agent update
 terraphim-grep update
 ```
-{{< /tab >}}
-{{< tab "Universal installer" >}}
+
+#### Universal installer
 ```bash
 curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts/install.sh | bash
 ```
-{{< /tab >}}
-{{< tab "Cargo" >}}
+
+#### Cargo
 ```bash
 cargo install terraphim_agent --features repl-full
 ```
-{{< /tab >}}
-{{< tab "Homebrew" >}}
+
+#### Homebrew
 ```bash
 brew tap terraphim/terraphim && brew install terraphim-agent
 ```
-{{< /tab >}}
-{{< /tabs >}}
 
 [Installation Guide](/docs/installation)
 
