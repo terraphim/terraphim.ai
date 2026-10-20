@@ -14,8 +14,9 @@ toc = true
 
 Most pages about embeddings show you a picture of some dots and ask you to trust the maths.
 This one is different: **the Terraphim side of every demo below runs the real algorithm** —
-a faithful JavaScript port of `terraphim_rolegraph` — on a real thesaurus and corpus. Nothing
-is staged. The counters you watch increment are the same counters the Rust code increments.
+the actual `terraphim_rolegraph` Rust crate, compiled to WebAssembly and executing in your
+browser — on a real thesaurus and corpus. Nothing is staged or ported: the counters you watch
+increment are the same code paths the Rust tests exercise.
 
 <div class="tge-note">
 <strong>How to read this page.</strong> Each scene has controls. Press buttons, type queries,
@@ -90,6 +91,8 @@ concept sequence update live.
 Here is the whole trick, and it is smaller than you expect. When a document is indexed:
 
 1. The automaton scans it once, producing the matched concept sequence you saw above.
+   (The crate matches `title + body` — `Document::to_string()` — which is why "Raft notes"
+   adds a `raft → raft` self-loop: the title itself matches.)
 2. Each **consecutive pair** `(a, b)` becomes a directed edge `magic_pair(a, b)` — an integer
    key computed by a Cantor-style pairing function, so `(raft → consensus)` and
    `(consensus → raft)` are different edges.
@@ -121,7 +124,7 @@ times and watch the graph accrete; then index your own sentence (only thesaurus 
   contributions before re-counting — replace semantics. Honest caveat: removal decrements
   node rank once per <em>edge</em>, while insertion counts once per pair <em>occurrence</em>,
   so a document that repeats the same directed pair leaves a small rank residual on re-index.
-  That is the Rust implementation's real behaviour, ported faithfully — not smoothed over.</p>
+  That is the Rust implementation's real behaviour, running live — not smoothed over.</p>
 </div>
 
 ## Scene three: asking a question

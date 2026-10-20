@@ -60,7 +60,9 @@ class RoleGraphLite:
     def insert_document(self, doc_id, text, title=None):
         self.remove_document_contributions(doc_id)
         self.documents[doc_id] = {"id": doc_id, "title": title or doc_id}
-        matches = self.find_node_ids(text)
+        # Document::to_string() = "{title} {body}" — the real crate matches
+        # the title too, so a title mentioning a thesaurus term contributes.
+        matches = self.find_node_ids(f"{title or doc_id} {text}")
         for a, b in zip(matches, matches[1:]):
             self.add_or_update_document(doc_id, a, b)
 
