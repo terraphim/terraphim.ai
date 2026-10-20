@@ -72,27 +72,35 @@ replacement). That IS a checklist: enumerated, deterministic, auditable.
 Hook types available: pre-tool-use, post-tool-use, pre-commit,
 prepare-commit-msg; `--with-guard` defaults true for pre-tool-use only.
 
-## Caveat / possible bug to verify
+## Caveats — validated and reported (terraphim-clients)
 
-`terraphim-agent replace` reports `replacements: 1, changed: true` yet the
-`result` field is byte-identical to `original` ("npm install react" → same).
-The findings-based `hook` path works; `replace` either no-ops the rewrite or
-reports incorrectly. Verify before the article claims replace rewrites;
-if confirmed, capture via `terraphim-agent learn capture` and phrase the
-article around the hook/findings contract instead.
+1. **CONFIRMED BUG → terraphim-clients#401.** `terraphim-agent replace`
+   counts matches (`replacements:1, changed:true`) but `result`/stdout is
+   byte-identical to `original` — the substitution never lands. Reproduced
+   via stdin, arg form, `--role "Terraphim Engineer"`, `--boundary word`;
+   `suggest "Claude Code"` confirms the term is in the graph (sim 1.00).
+   The `hook` findings path is the working contract.
+2. **CONFIRMED BUG → terraphim-clients#402.** `sessions search` works (19
+   results for "checklist") but emits **8999 WARN lines**, all
+   `missing field 'uuid'` from `terraphim_session_analyzer::parser` on
+   unrecognised newer Claude Code JSONL event types (`atis-latch`,
+   `cost-state`). One WARN per line hides real warnings.
+3. **CONFIRMED → terraphim-clients#403.** `search` on role
+   "Terraphim Engineer" returns nothing because fff's file picker requires
+   a git root: `~/.config/terraphim/docs/src` exists but is not under git,
+   so zero results + one WARN. A content haystack should not need git.
+   (Control: `--role "Personal Assistant"` returned real results — the
+   search path itself works when the haystack resolves.)
 
 ## learn / sessions
 
 - `terraphim-agent learn query "checklist"` returns global learnings
   (exit-1 commands) incl. prior gtr/gh CLI failures — evidence the store works.
-- `terraphim-agent sessions search` works but emits noisy JSONL parse WARNs
-  (atis-latch / cost-state lines missing `uuid`) — mention only if needed;
-  worth a `learn capture` if it recurs.
-- `terraphim-agent search "checklist" --role "Terraphim Engineer"` from
-  `~/.config/terraphim` printed nothing usable (only a fff WARN about
-  docs/src not being a git repo). Plan the article around `terraphim-grep`
-  for retrieval and `terraphim-agent` for post-call checklist duties
-  (hook, learn, memory).
+- `terraphim-agent sessions search` emits 8999 `uuid` WARNs — filed as
+  terraphim-clients#402.
+- `terraphim-agent search` returns results for roles whose haystacks
+  resolve (Personal Assistant worked); Terraphim Engineer role's haystack
+  is a non-git dir — filed as terraphim-clients#403.
 
 ## Related published posts to link (internal cross-links)
 
