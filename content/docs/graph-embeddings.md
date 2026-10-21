@@ -6,6 +6,8 @@ date = 2026-04-04
 
 # Graph Embeddings
 
+> **Try it live:** [Graph Embeddings, Explained Interactively](/docs/graph-embeddings-interactive/) runs the actual `terraphim_rolegraph` Rust crate compiled to WebAssembly in your browser — matching, indexing and scoring with no server round-trips.
+
 Terraphim uses a fundamentally different approach to semantic search compared to traditional vector embeddings. Instead of dense numerical vectors, Terraphim leverages **graph structure embeddings** where ranking is determined by the number of synonyms and related concepts connected to a query term in the knowledge graph.
 
 ## What are Graph Embeddings in Terraphim?
