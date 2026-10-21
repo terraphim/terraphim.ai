@@ -3,6 +3,12 @@
   "giteaIssue": "terraphim.ai#7",
   "method": "kimi-webbridge authenticated browser (Postiz has no providers configured); GitHub Discussion via gh API",
   "channels": {
+    "bluesky": {
+      "status": "live (backfilled 2026-10-20)",
+      "account": "alexmikhalev.bsky.social",
+      "url": "https://bsky.app/profile/alexmikhalev.bsky.social/post/3myemr5b4lp2h",
+      "note": "channel added to standard promotion set after initial campaign; post made via AT Protocol API"
+    },
     "x": {
       "status": "live",
       "article": "https://x.com/alex_mikhalev/status/2112517998372077811",
@@ -57,8 +63,14 @@
       "status": "skipped",
       "note": "no narrated walkthrough asset"
     },
-    "brandX": { "status": "skipped", "note": "prior campaign boundary" },
-    "r/rust": { "status": "parked", "note": "prior campaign boundary" }
+    "brandX": {
+      "status": "skipped",
+      "note": "prior campaign boundary"
+    },
+    "r/rust": {
+      "status": "parked",
+      "note": "prior campaign boundary"
+    }
   },
   "paidPromotion": "none",
   "completedAt": "2026-10-20 ~14:0x local"

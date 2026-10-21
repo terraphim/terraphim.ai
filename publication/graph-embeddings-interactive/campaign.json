@@ -3,6 +3,13 @@
   "giteaIssue": "terraphim.ai#8 / terraphim.ai#9",
   "method": "kimi-webbridge authenticated browser (CDP focus emulation + Input.insertText + DOM clicks; Discord via /api/v9 with in-page token after composer Enter was swallowed); GitHub Discussion via gh API",
   "channels": {
+    "bluesky": {
+      "status": "live",
+      "account": "alexmikhalev.bsky.social",
+      "posts": 5,
+      "note": "channel added to standard set; backfilled recent news (explainer, checklists, tokens, book, skills RC)",
+      "receipt": "published/bluesky.json"
+    },
     "x": {
       "status": "live",
       "article": "https://x.com/alex_mikhalev/status/2112566613023109499",
@@ -53,9 +60,18 @@
       "status": "draft-only",
       "note": "copy prepared in gei-channels.json; prior campaign boundary keeps LinkedIn unpublished unless explicitly authorised"
     },
-    "youtube": { "status": "skipped", "note": "no narrated walkthrough asset" },
-    "brandX": { "status": "skipped", "note": "prior campaign boundary" },
-    "r/rust": { "status": "parked", "note": "prior campaign boundary" }
+    "youtube": {
+      "status": "skipped",
+      "note": "no narrated walkthrough asset"
+    },
+    "brandX": {
+      "status": "skipped",
+      "note": "prior campaign boundary"
+    },
+    "r/rust": {
+      "status": "parked",
+      "note": "prior campaign boundary"
+    }
   },
   "paidPromotion": "none",
   "completedAt": "2026-10-20 ~16:4x local"
