@@ -4,11 +4,34 @@
   "did": "did:plc:f4lgyeu2nssnpcmggsbyegvm",
   "method": "AT Protocol app-password session (com.atproto.server.createSession), posts via com.atproto.repo.createRecord with link facets",
   "posts": [
-    {"url": "https://bsky.app/profile/alexmikhalev.bsky.social/post/3myemr2txtd2m", "about": "interactive graph embeddings explainer"},
-    {"url": "https://bsky.app/profile/alexmikhalev.bsky.social/post/3myemr5b4lp2h", "about": "graph embeddings for checklists post"},
-    {"url": "https://bsky.app/profile/alexmikhalev.bsky.social/post/3myemr7ktxk2k", "about": "3 ways to save money on tokens post"},
-    {"url": "https://bsky.app/profile/alexmikhalev.bsky.social/post/3myemrbv4w52p", "about": "Context Engineering book announcement"},
-    {"url": "https://bsky.app/profile/alexmikhalev.bsky.social/post/3myemre7op723", "about": "Terraphim Skills 54 agent workflows RC"}
+    {
+      "url": "https://bsky.app/profile/alexmikhalev.bsky.social/post/3myemr2txtd2m",
+      "about": "interactive graph embeddings explainer"
+    },
+    {
+      "url": "https://bsky.app/profile/alexmikhalev.bsky.social/post/3myemr5b4lp2h",
+      "about": "graph embeddings for checklists post"
+    },
+    {
+      "url": "https://bsky.app/profile/alexmikhalev.bsky.social/post/3myemr7ktxk2k",
+      "about": "3 ways to save money on tokens post"
+    },
+    {
+      "url": "https://bsky.app/profile/alexmikhalev.bsky.social/post/3myemrbv4w52p",
+      "about": "Context Engineering book announcement"
+    },
+    {
+      "url": "https://bsky.app/profile/alexmikhalev.bsky.social/post/3myemre7op723",
+      "about": "Terraphim Skills 54 agent workflows RC"
+    },
+    {
+      "url": "https://bsky.app/profile/alexmikhalev.bsky.social/post/3myene24bsw2d",
+      "about": "explainer, tagged #rust #rustlang for feed pickup"
+    },
+    {
+      "url": "https://bsky.app/profile/alexmikhalev.bsky.social/post/3myenectzxr22",
+      "about": "explainer, tagged #knowledgegraph #aiagents for feed pickup"
+    }
   ],
   "communities": {
     "pinnedFeed": "Rustlang (at://did:plc:io2xfl2j44cepiys7cli5dkf/app.bsky.feed.generator/rustlang, 321 likes) pinned to saved feeds",
@@ -20,7 +43,7 @@
       "All about AI - Agents, Coding, Safety, Models (3mikonx2bhn2b)",
       "AI Infrastructure & Agents (3mjvexbbn762p)"
     ],
-    "note": "Bluesky has no groups; reach is via custom feeds and starter packs. Rust + knowledge-graph + AI-agents are the adjacent communities."
+    "note": "Bluesky has no groups; reach is via custom feeds and starter packs. Rust + knowledge-graph + AI-agents are the adjacent communities. Two follow-up posts carry #rust #rustlang and #knowledgegraph #aiagents tag facets for feed indexing."
   },
   "readback": "all 5 posts returned AT URIs from createRecord; feed visible on profile timeline"
 }
