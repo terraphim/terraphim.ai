@@ -36,9 +36,14 @@ straight from the menu bar.
 
 ## Your keys, your costs
 
-The subscription unlocks the app — upstream usage is billed by your own
-providers at their rates. Every listener is loopback-only; nothing
-leaves your machine except the requests you send to your providers.
+A single one-time purchase unlocks the app — no subscription, no seat
+limits, no renewal. Upstream usage is billed by your own providers at
+their rates; Terraphim never marks up a token. Intelligent scenario
+routing sends each prompt to the cheapest model that can handle it —
+published routing research shows cost reductions of over 2x at ~95% of
+flagship quality — so the app pays for itself out of saved tokens.
+Every listener is loopback-only; nothing leaves your machine except the
+requests you send to your providers.
 
 ## Links
 

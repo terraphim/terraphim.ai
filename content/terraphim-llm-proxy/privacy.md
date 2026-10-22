@@ -45,12 +45,12 @@ you. Their handling of that traffic is governed by their own privacy
 policies (z.ai, OpenRouter, Groq, Cerebras, Kimi, MiniMax, DeepSeek,
 OpenAI, xAI, or any other provider you configure).
 
-## Purchases and subscriptions
+## Purchases
 
-Purchases and the seven-day introductory trial are processed entirely
-by Apple's App Store (StoreKit 2). Apple — not Terraphim — receives and
-processes your payment information. The app receives only an opaque
-transaction token confirming entitlement.
+The app is a one-time purchase processed entirely by Apple's App Store.
+Apple — not Terraphim — receives and processes your payment
+information. The app contains no in-app purchases, no subscription
+checks and no licence servers.
 
 ## Permissions the app requests
 
