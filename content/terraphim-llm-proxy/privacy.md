@@ -1,0 +1,71 @@
++++
+title = "Terraphim LLM Proxy — Privacy Policy"
+description = "Privacy policy for the Terraphim desktop application (cloud.terraphim.desktop)"
+date = 2026-10-22
+weight = 10
+
+[taxonomies]
+categories = ["Legal"]
+
+[extra]
+toc = false
++++
+
+**Effective date: 22 October 2026.** Applies to the Terraphim macOS
+application (`cloud.terraphim.desktop`), distributed via the Mac App
+Store and direct download.
+
+## The short version
+
+Terraphim collects **no data whatsoever**. There is no account system,
+no telemetry, no analytics, no crash reporting, and no third-party
+tracking SDK. Your credentials never leave your Mac except inside the
+requests you deliberately send to the LLM providers you configured.
+
+## What stays on your device
+
+- **API keys and OAuth tokens** are stored exclusively in the macOS
+  Keychain — never in configuration files, never transmitted to
+  Terraphim or any third party.
+- **Settings** (provider choices, route pins, keyword remaps and
+  synonyms) are stored as a plain file inside the app's sandbox
+  container on your Mac.
+- **Prompts and completions** pass through the embedded proxy in memory
+  and are forwarded only to the upstream providers you configured.
+  Terraphim does not log, persist or transmit them elsewhere.
+- **Metrics** shown in the operator dashboard are computed in-process
+  and served only on loopback (`127.0.0.1`) listeners bound to your
+  machine.
+
+## What leaves your device
+
+Only the requests you send through the proxy, to the LLM providers you
+chose — over TLS, bearing the credentials those providers issued to
+you. Their handling of that traffic is governed by their own privacy
+policies (z.ai, OpenRouter, Groq, Cerebras, Kimi, MiniMax, DeepSeek,
+OpenAI, xAI, or any other provider you configure).
+
+## Purchases and subscriptions
+
+Purchases and the seven-day introductory trial are processed entirely
+by Apple's App Store (StoreKit 2). Apple — not Terraphim — receives and
+processes your payment information. The app receives only an opaque
+transaction token confirming entitlement.
+
+## Permissions the app requests
+
+| Entitlement | Why |
+|---|---|
+| `app-sandbox` | The app runs sandboxed. |
+| `files.user-selected.read-write` | Only files you explicitly choose (e.g. settings export). |
+| `network.client` | Outbound calls to your configured LLM providers. |
+| `network.server` | Loopback-only listeners for the local proxy endpoint and the dashboard's metrics feed. |
+
+## Contact
+
+Questions, corrections or requests: open an issue on
+[GitHub](https://github.com/terraphim/terraphim-ai/issues) or write to
+the maintainers via the repository.
+
+If this policy changes, the updated version is published at this URL
+before the change ships.
