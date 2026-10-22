@@ -1,5 +1,5 @@
 +++
-title = "Terraphim LLM Proxy"
+title = "Terraphim Proxy"
 description = "One menu-bar proxy for every LLM provider — intelligent graph-embedding routing, Keychain credentials, and a live operator dashboard"
 weight = 20
 sort_by = "weight"
@@ -8,7 +8,7 @@ sort_by = "weight"
 toc = true
 +++
 
-**Terraphim** is a menu-bar app for macOS that turns all of your AI
+**Terraphim Proxy** is a menu-bar app for macOS that turns all of your AI
 provider subscriptions and API keys into a single, intelligent,
 OpenAI-compatible endpoint on your machine.
 
@@ -21,7 +21,7 @@ config files.
 
 ## Route by intent, not by model name
 
-Terraphim builds a knowledge graph over your prompt — graph-embedding
+Terraphim Proxy builds a knowledge graph over your prompt — graph-embedding
 keyword detection recognises requests to review, explain, plan, search
 or debug — then picks the model you pinned for that scenario. Remap any
 keyword to a different capability and define your own synonyms; changes
@@ -38,7 +38,7 @@ straight from the menu bar.
 
 A single one-time purchase unlocks the app — no subscription, no seat
 limits, no renewal. Upstream usage is billed by your own providers at
-their rates; Terraphim never marks up a token. Intelligent scenario
+their rates; Terraphim Proxy never marks up a token. Intelligent scenario
 routing sends each prompt to the cheapest model that can handle it —
 published routing research shows cost reductions of over 2x at ~95% of
 flagship quality — so the app pays for itself out of saved tokens.

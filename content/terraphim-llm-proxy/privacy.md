@@ -1,6 +1,6 @@
 +++
-title = "Terraphim LLM Proxy — Privacy Policy"
-description = "Privacy policy for the Terraphim desktop application (cloud.terraphim.desktop)"
+title = "Terraphim Proxy — Privacy Policy"
+description = "Privacy policy for the Terraphim Proxy desktop application (cloud.terraphim.desktop)"
 date = 2026-10-22
 weight = 10
 
@@ -11,13 +11,13 @@ categories = ["Legal"]
 toc = false
 +++
 
-**Effective date: 22 October 2026.** Applies to the Terraphim macOS
+**Effective date: 22 October 2026.** Applies to the Terraphim Proxy macOS
 application (`cloud.terraphim.desktop`), distributed via the Mac App
 Store and direct download.
 
 ## The short version
 
-Terraphim collects **no data whatsoever**. There is no account system,
+Terraphim Proxy collects **no data whatsoever**. There is no account system,
 no telemetry, no analytics, no crash reporting, and no third-party
 tracking SDK. Your credentials never leave your Mac except inside the
 requests you deliberately send to the LLM providers you configured.
@@ -26,13 +26,13 @@ requests you deliberately send to the LLM providers you configured.
 
 - **API keys and OAuth tokens** are stored exclusively in the macOS
   Keychain — never in configuration files, never transmitted to
-  Terraphim or any third party.
+  Terraphim Proxy or any third party.
 - **Settings** (provider choices, route pins, keyword remaps and
   synonyms) are stored as a plain file inside the app's sandbox
   container on your Mac.
 - **Prompts and completions** pass through the embedded proxy in memory
   and are forwarded only to the upstream providers you configured.
-  Terraphim does not log, persist or transmit them elsewhere.
+  Terraphim Proxy does not log, persist or transmit them elsewhere.
 - **Metrics** shown in the operator dashboard are computed in-process
   and served only on loopback (`127.0.0.1`) listeners bound to your
   machine.
@@ -48,7 +48,7 @@ OpenAI, xAI, or any other provider you configure).
 ## Purchases
 
 The app is a one-time purchase processed entirely by Apple's App Store.
-Apple — not Terraphim — receives and processes your payment
+Apple — not Terraphim Proxy — receives and processes your payment
 information. The app contains no in-app purchases, no subscription
 checks and no licence servers.
 
