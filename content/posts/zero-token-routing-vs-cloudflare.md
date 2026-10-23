@@ -83,6 +83,15 @@ The inverse is the actual saving: the free OpenRouter lane answered the trivial 
 
 Obsessive optimisation inside the call is necessary. It is not sufficient. The cheapest token is still the one you never spend — including the ones you would have spent *deciding*.
 
+## How to get the proxy
+
+Two routes, depending on whether you want the binary or the source:
+
+- **Terraphim Proxy v0.1.45 (the app)** — notarised macOS DMG for direct download today; Mac App Store submission in review. Demo: [terraphim.ai/video/terraphim-proxy-review-demo.mp4](https://terraphim.ai/video/terraphim-proxy-review-demo.mp4).
+- **Source access — sponsor tier, limited time.** `terraphim-llm-proxy` is currently sponsor-gated on GitHub. The **$10/month** tier at [github.com/sponsors/terraphim](https://github.com/sponsors/terraphim) grants repository access: multi-provider routing (Groq, Cerebras, DeepSeek, OpenRouter, z.ai, MiniMax, xAI, Codex), pattern-based semantic routing, sub-millisecond routing overhead, plus the knowledge-graph embedding engine. Everything ships under **FSL-1.1-MIT** — the Functional Source License converts to plain MIT two years after each release, so sponsor access today becomes an open-source guarantee on a timer, not a perpetual toll. The sponsor gate is a limited-time arrangement: once the repository goes fully public, this route to early access closes. ($15/month covers all private repositories.)
+
+The arithmetic from above applies directly: if a $10/month tier saves you from spending frontier-model tokens on routing decisions — or lands one free-lane fallback during an outage — it pays for itself in the first bad week.
+
 ---
 
-*Terraphim Proxy v0.1.45 is out now: notarised macOS DMG for direct download, Mac App Store submission in review. Demo video: [terraphim.ai/video/terraphim-proxy-review-demo.mp4](https://terraphim.ai/video/terraphim-proxy-review-demo.mp4). Source: [terraphim-llm-proxy](https://github.com/terraphim/terraphim-llm-proxy) (FSL-1.1-MIT).*
+*FSL-1.1-MIT licensed. Sponsors: [github.com/sponsors/terraphim](https://github.com/sponsors/terraphim). App: notarised DMG now, App Store in review.*
