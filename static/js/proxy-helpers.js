@@ -54,7 +54,7 @@
      is handed back to this origin (server-side allowlist includes
      https://terraphim.ai). */
   function signInUrl(returnTo) {
-    return API + '/auth/oauth/github?return_to=' + encodeURIComponent(returnTo);
+    return API + '/api/auth/signin/github?return_to=' + encodeURIComponent(returnTo);
   }
 
   /* Extract the JWT the OAuth callback hands back in the fragment
