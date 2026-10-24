@@ -1,7 +1,7 @@
 +++
 title = "Terraphim Proxy — Privacy Policy"
 description = "Privacy policy for the Terraphim Proxy desktop application (cloud.terraphim.desktop)"
-date = 2026-10-22
+date = 2026-10-24
 weight = 10
 
 [taxonomies]
@@ -11,16 +11,21 @@ categories = ["Legal"]
 toc = false
 +++
 
-**Effective date: 22 October 2026.** Applies to the Terraphim Proxy macOS
+**Effective date: 24 October 2026.** Applies to the Terraphim Proxy macOS
 application (`cloud.terraphim.desktop`), distributed via the Mac App
 Store and direct download.
 
 ## The short version
 
-Terraphim Proxy collects **no data whatsoever**. There is no account system,
-no telemetry, no analytics, no crash reporting, and no third-party
-tracking SDK. Your credentials never leave your Mac except inside the
-requests you deliberately send to the LLM providers you configured.
+The Terraphim Proxy **application** collects **no data whatsoever**. There
+is no account system, no telemetry, no analytics, no crash reporting, and
+no third-party tracking SDK in the app. Your credentials never leave your
+Mac except inside the requests you deliberately send to the LLM providers
+you configured.
+
+Buying a direct download does create a small server-side record — kept by
+the Terraphim Skills marketplace, not by the app — described under
+*Purchases* below.
 
 ## What stays on your device
 
@@ -47,10 +52,20 @@ OpenAI, xAI, or any other provider you configure).
 
 ## Purchases
 
-The app is a one-time purchase processed entirely by Apple's App Store.
-Apple — not Terraphim Proxy — receives and processes your payment
-information. The app contains no in-app purchases, no subscription
-checks and no licence servers.
+**Mac App Store.** The app is a one-time purchase processed entirely by
+Apple's App Store. Apple — not Terraphim Proxy — receives and processes
+your payment information. The app contains no in-app purchases, no
+subscription checks and no licence servers.
+
+**Direct download.** Direct-download purchases are processed by Stripe
+via the Terraphim Skills marketplace (`api.terraphim-skills.md`). Stripe
+— not Terraphim — receives and processes your payment information. The
+marketplace stores the email address on your account, the fact of the
+purchase, and which releases you have downloaded; those records are used
+solely for entitlement checks and refund adjudication, as described in
+the [Refund policy](/terraphim-llm-proxy/refunds/). The application
+itself still collects nothing — this record lives entirely on the
+marketplace side.
 
 ## Permissions the app requests
 
