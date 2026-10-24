@@ -6,53 +6,69 @@
          -> [{version, asset_name, size_bytes, sha256, published_at}]
             (a wrapped {"releases": [...]} shape is tolerated)
      GET /api/products/terraphim-proxy/releases/{version}/{asset}
-         -> artefact bytes + X-SHA256 header; 402 {"error":"purchase_required"}. */
+         -> artefact bytes + X-SHA256 header; 402 {"error":"purchase_required"}.
+
+   Sign-in is a round trip: links carry ?return_to=<this page>, the OAuth
+   callback lands back here with the JWT in the fragment (#token=<jwt>),
+   which captureToken() moves into localStorage and strips from the
+   address bar. Requires /js/proxy-helpers.js loaded first. */
 (function () {
   'use strict';
-  var API = 'https://api.terraphim-skills.md';
-  var BUY_URL = '/terraphim-llm-proxy/#your-keys-your-costs';
-  var SIGNIN_URL = API + '/auth/oauth/github';
-
+  var H = window.ProxyHelpers;
   var banner = document.getElementById('proxy-dl-banner');
   var notice = document.getElementById('proxy-dl-notice');
   var wrap = document.getElementById('proxy-dl-wrap');
-  if (!notice || !wrap) { return; }
+  if (!H || !notice || !wrap) { return; }
 
-  try {
-    if (new URLSearchParams(window.location.search).get('checkout') === 'success' && banner) {
-      banner.hidden = false;
-    }
-  } catch (e) { /* malformed query — ignore */ }
+  var BUY_URL = '/terraphim-llm-proxy/#your-keys-your-costs';
+
+  /* Move a JWT handed back in the URL fragment (or, forward-compat, the
+     query) into localStorage, then scrub it from the address bar and
+     history — a JWT must never linger in either. */
+  function captureToken() {
+    var tok = H.tokenFromLocation(window.location);
+    if (!tok) { return; }
+    try { localStorage.setItem('terraphim_token', tok); } catch (e) { return; }
+    try {
+      var q = new URLSearchParams(window.location.search);
+      q.delete('token');
+      var qs = q.toString();
+      var hash = H.stripTokenFromHash(window.location.hash);
+      var clean = window.location.origin + window.location.pathname +
+        (qs ? '?' + qs : '') + (hash ? '#' + hash : '');
+      history.replaceState(null, '', clean);
+    } catch (e) { /* replaceState unavailable — token is stored anyway */ }
+  }
 
   function getToken() {
     try { return localStorage.getItem('terraphim_token'); } catch (e) { return null; }
   }
 
-  function esc(s) {
-    return String(s === null || s === undefined ? '' : s)
-      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  function signInHref() {
+    var back = window.location.origin + window.location.pathname + window.location.search;
+    return H.signInUrl(back);
   }
 
-  function humanSize(bytes) {
-    var n = Number(bytes);
-    if (!isFinite(n) || n < 0) { return '—'; }
-    var units = ['B', 'KB', 'MB', 'GB'];
-    var i = 0;
-    while (n >= 1024 && i < units.length - 1) { n /= 1024; i++; }
-    return (i === 0 ? String(n) : n.toFixed(1)) + ' ' + units[i];
-  }
+  captureToken();
 
-  function fmtDate(iso) {
-    var d = new Date(iso);
-    if (isNaN(d.getTime())) { return iso || '—'; }
-    return d.toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' });
-  }
+  /* ?checkout=success comes back from Stripe. Only claim the purchase is
+     confirmed when a token is present — anyone can forge the parameter,
+     so signed-out visitors get neutral wording instead. */
+  try {
+    if (new URLSearchParams(window.location.search).get('checkout') === 'success' && banner) {
+      if (!getToken()) {
+        banner.innerHTML =
+          '<i class="fa-solid fa-circle-info" aria-hidden="true"></i> ' +
+          'Checkout completed — sign in below to confirm download access.';
+      }
+      banner.hidden = false;
+    }
+  } catch (e) { /* malformed query — ignore */ }
 
   function signInPrompt() {
     notice.innerHTML =
       '<p class="proxy-dl-callout"><i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i> ' +
-      '<a href="' + SIGNIN_URL + '">Sign in with GitHub</a> using the account you purchased ' +
+      '<a href="' + signInHref() + '">Sign in with GitHub</a> using the account you purchased ' +
       'with to download releases. No licence yet? ' +
       '<a href="' + BUY_URL + '">Buy Terraphim Proxy — $15</a>.</p>';
   }
@@ -62,12 +78,12 @@
       '<p class="proxy-dl-callout warn"><i class="fa-solid fa-lock" aria-hidden="true"></i> ' +
       'Purchase required — this account has not bought Terraphim Proxy. ' +
       '<a href="' + BUY_URL + '">Buy a licence</a> to unlock downloads, or ' +
-      '<a href="' + SIGNIN_URL + '">sign in with a different account</a>.</p>';
+      '<a href="' + signInHref() + '">sign in with a different account</a>.</p>';
   }
 
   if (!getToken()) { signInPrompt(); }
 
-  fetch(API + '/api/products/terraphim-proxy/releases', {
+  fetch(H.API + '/api/products/terraphim-proxy/releases', {
     headers: { 'Accept': 'application/json' }
   })
     .then(function (res) {
@@ -75,9 +91,7 @@
       return res.json();
     })
     .then(function (data) {
-      var releases = Array.isArray(data)
-        ? data
-        : (data && Array.isArray(data.releases) ? data.releases : []);
+      var releases = H.normaliseReleases(data);
       if (!releases.length) {
         wrap.innerHTML = '<p class="proxy-dl-muted">No releases are published yet.</p>';
         return;
@@ -96,19 +110,19 @@
       var r = releases[i] || {};
       var sha = r.sha256 || '';
       var shaCell = sha
-        ? '<code class="proxy-dl-sha" title="' + esc(sha) + '">' + esc(sha.slice(0, 12)) + '…</code>'
+        ? '<code class="proxy-dl-sha" title="' + H.esc(sha) + '">' + H.esc(sha.slice(0, 12)) + '…</code>'
         : '—';
       var action = hasToken
         ? '<button type="button" class="btn btn-primary btn-sm" data-i="' + i + '">' +
           '<i class="fa-solid fa-download" aria-hidden="true"></i> Download</button>'
-        : '<a class="btn btn-ghost btn-sm" href="' + SIGNIN_URL + '">' +
+        : '<a class="btn btn-ghost btn-sm" href="' + signInHref() + '">' +
           '<i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i> Sign in</a>';
       rows.push(
         '<tr>' +
-        '<td>' + esc(r.version || '—') + '</td>' +
-        '<td><code>' + esc(r.asset_name || '—') + '</code></td>' +
-        '<td>' + esc(fmtDate(r.published_at)) + '</td>' +
-        '<td>' + esc(humanSize(r.size_bytes)) + '</td>' +
+        '<td>' + H.esc(r.version || '—') + '</td>' +
+        '<td><code>' + H.esc(r.asset_name || '—') + '</code></td>' +
+        '<td>' + H.esc(H.fmtDate(r.published_at)) + '</td>' +
+        '<td>' + H.esc(H.humanSize(r.size_bytes)) + '</td>' +
         '<td>' + shaCell + '</td>' +
         '<td>' + action + '<div class="proxy-dl-row-status"></div></td>' +
         '</tr>'
@@ -135,9 +149,9 @@
     btn.disabled = true;
     rs.innerHTML =
       '<span class="proxy-dl-muted"><i class="fa-solid fa-circle-notch fa-spin" aria-hidden="true"></i> downloading…</span>';
-    var url = API + '/api/products/terraphim-proxy/releases/' +
-      encodeURIComponent(rel.version) + '/' + encodeURIComponent(rel.asset_name);
-    fetch(url, { headers: { 'Authorization': 'Bearer ' + token } })
+    fetch(H.downloadUrl(rel.version, rel.asset_name), {
+      headers: { 'Authorization': 'Bearer ' + token }
+    })
       .then(function (res) {
         if (res.status === 401) {
           rs.innerHTML = '';
@@ -165,10 +179,10 @@
         setTimeout(function () { URL.revokeObjectURL(objectUrl); }, 5000);
         rs.innerHTML = result.sha
           ? '<span class="proxy-dl-ok"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> ' +
-            'Saved. SHA-256: <code title="' + esc(result.sha) + '">' + esc(result.sha) + '</code> ' +
+            'Saved. SHA-256: <code title="' + H.esc(result.sha) + '">' + H.esc(result.sha) + '</code> ' +
             '— verify with <code>shasum -a 256</code></span>'
           : '<span class="proxy-dl-ok"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> ' +
-            'Saved ' + esc(rel.asset_name || 'artefact') + '.</span>';
+            'Saved ' + H.esc(rel.asset_name || 'artefact') + '.</span>';
       })
       .catch(function (err) {
         if (err && err.handled) { return; }

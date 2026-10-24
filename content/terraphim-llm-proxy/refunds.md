@@ -6,7 +6,7 @@ template = "page.html"
 render = true
 +++
 
-**Last updated:** [CONFIRM: set to the date direct-download sales open]
+**Effective upon launch of direct-download sales.**
 
 This policy covers **direct downloads purchased on terraphim.ai**.
 Purchases made through the Mac App Store are refunded by Apple under the
@@ -15,22 +15,23 @@ not Terraphim, decides those refunds.
 
 ## The short version
 
-**You can refund any time before you download a release. Once your
-account has downloaded a release, the sale is final — unless the proxy
-does not function.**
+**Within 14 days of purchase you can get a full refund provided no
+release has been downloaded. Once your account has downloaded a release,
+the sale is final — unless the proxy does not function.**
 
 This is the same shape as Steam's rule for games: a refund is available
 while the product is untouched, and the usage measurement is what makes
-the rule fair to enforce. Steam measures playtime; we measure the
-download event.
+the rule fair to enforce. Steam measures playtime; we measure the moment
+our service first serves the download.
 
 ## Why we do it this way
 
 A signed application bundle cannot be returned once it is copied to your
 Mac — there is no undo. The download is the honest line between
 "bought but not taken" and "taken", and it is a line we can measure: the
-download service records which releases your account has downloaded, and
-that record is the only thing the refund rule consults.
+service records the first time it serves a release download request to
+your account, and that record is the only thing the refund rule
+consults.
 
 We considered the alternative — a blanket 14-day window — and rejected
 it, because it would let anyone buy, download every release, and refund.
@@ -45,6 +46,12 @@ else.
 | **Any release downloaded**, proxy functioning as documented | Final sale — no refund |
 | **Any release downloaded**, proxy does not function | Full refund — see *When the proxy does not function* below |
 | More than 14 days after purchase, no download | Not automatic. Ask anyway — see *Outside the rules* below. |
+
+*"Downloaded" is counted when our service begins delivering the release
+to your account — the request is recorded when delivery starts, not when
+the bytes finish. A failed or interrupted delivery does not count as a
+completed download for refund purposes (see *Downloads were broken*
+below), and where the record is ambiguous we treat it in your favour.*
 
 Refunds go back to the original payment method through Stripe. Card
 refunds usually appear within 5–10 business days, depending on your bank
@@ -79,7 +86,7 @@ Email **[engineering@terraphim.ai](mailto:engineering@terraphim.ai)**
 with the email address on the account you purchased with. For a defect
 claim, include the app version and macOS version.
 
-We aim to process refund requests within **[CONFIRM: 3 business days]**.
+We aim to process refund requests within **3 business days**.
 
 ## Outside the rules
 
@@ -96,9 +103,10 @@ is not closed. We will look seriously at:
 ## What we record
 
 To make this policy enforceable we keep a server-side record, tied to
-your purchase account, of **which releases you downloaded and when**.
-That is the entire record — the app itself collects no telemetry and
-reports nothing back. Purchase and download records are covered in the
+your purchase account, of **when our service first serves a release
+download request to you** — the version, the asset and the time. That is
+the entire record — the app itself collects no telemetry and reports
+nothing back. Purchase and download records are covered in the
 [Privacy policy](/terraphim-llm-proxy/privacy/).
 
 ## Your statutory rights

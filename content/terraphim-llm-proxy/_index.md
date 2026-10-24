@@ -65,6 +65,7 @@ requests you send to your providers.
 .proxy-buy-status:empty { margin: 0; }
 .proxy-buy-caption { font-size: 0.8rem; color: var(--text-dim); margin: 0.25rem 0 0; }
 </style>
+<script src="/js/proxy-helpers.js"></script>
 <script src="/js/proxy-buy.js"></script>
 
 ## Links

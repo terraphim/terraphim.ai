@@ -45,4 +45,5 @@ with its SHA-256 so you can verify the download before opening it.
 #proxy-download .proxy-dl-sha { font-size: 0.75rem; }
 #proxy-download .proxy-dl-table td code { overflow-wrap: anywhere; }
 </style>
+<script src="/js/proxy-helpers.js"></script>
 <script src="/js/proxy-download.js"></script>

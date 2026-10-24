@@ -61,8 +61,9 @@ subscription checks and no licence servers.
 via the Terraphim Skills marketplace (`api.terraphim-skills.md`). Stripe
 — not Terraphim — receives and processes your payment information. The
 marketplace stores the email address on your account, the fact of the
-purchase, and which releases you have downloaded; those records are used
-solely for entitlement checks and refund adjudication, as described in
+purchase, and which release downloads it has served to your account;
+those records are used solely for entitlement checks and refund
+adjudication, as described in
 the [Refund policy](/terraphim-llm-proxy/refunds/). The application
 itself still collects nothing — this record lives entirely on the
 marketplace side.
