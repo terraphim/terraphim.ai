@@ -6,7 +6,7 @@ guides, release information and the browser editor preview.
 
 ## Current downloads
 <!-- terraphim-downloads:start -->
-Verified release links as of 30 October 2026. Core services and CLI clients have
+Verified release links as of 31 October 2026. Core services and CLI clients have
 separate releases.
 
 | Component | Release | Use |
