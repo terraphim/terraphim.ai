@@ -19,7 +19,7 @@ A 300-page survey of code intelligence is full of findings that most agent harne
 
 [From Code Foundation Models to Agents and Applications](https://arxiv.org/abs/2511.18538) (Yang et al., submitted November 2025) surveys the lifecycle of code models: data curation, pre-training, fine-tuning, reinforcement learning and autonomous agents. It also reports its own experiments, and it names the gap between academic benchmarks and real software development as a central problem.
 
-The 30% in our title is our own estimate of how much of this reaches production harnesses. The survey does not state it, nobody has measured it, and you should treat it as shorthand.
+The 30% in our title is our own estimate of how much of this reaches production harnesses. The survey does not state it and we have not found a published measurement of it, so you should treat it as shorthand.
 
 ## Code does not scale like one thing
 
