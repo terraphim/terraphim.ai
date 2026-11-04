@@ -255,6 +255,6 @@ To wire knowledge-graph hooks into your own project, the [Command Rewriting How-
 ## Resources
 
 - [Terraphim AI Repository](https://github.com/terraphim/terraphim-ai)
-- [Claude Code Skills Plugin](https://github.com/terraphim/terraphim-claude-skills)
-- [Hook Installation Guide](https://docs.terraphim.ai/hooks/)
-- [Knowledge Graph Documentation](https://docs.terraphim.ai/knowledge-graph/)
+- [Claude Code Skills Plugin](https://terraphim-skills.md/skills/)
+- [Hook Installation Guide](/capabilities/hooks/)
+- [Knowledge Graph Documentation](https://docs.terraphim.ai/src/kg/knowledge-graph)

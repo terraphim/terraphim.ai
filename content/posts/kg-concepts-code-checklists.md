@@ -168,6 +168,6 @@ spec-violating code.
 </video>
 
 The disciplined-engineering cut (`issue → research → design → impl → verify →
-validate`): real issue [#431](https://git.terraphim.cloud/terraphim/terraphim-clients/issues/431)
+validate`): real issue #431
 through the `disciplined-*` phases — the `rg` finding, the design decision,
 real commits, `fmt`/`blaze` verification, and the checklist verdict.

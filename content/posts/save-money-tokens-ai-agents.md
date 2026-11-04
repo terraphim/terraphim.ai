@@ -79,7 +79,7 @@ What we can claim is mechanism: retrieval that filters before the expensive mode
 
 ## Related posts
 
-- [terraphim-grep and role-aware search](https://terraphim.ai/posts/skill-spotlight-terraphim-grep/)
+- [terraphim-grep and role-aware search](https://terraphim-skills.md/skills/terraphim-grep/)
 - [Disciplined engineering: the V-model for AI agents](https://terraphim.ai/posts/disciplined-engineering-ai-systems/)
 
 The grep tooling is in [terraphim-clients](https://github.com/terraphim/terraphim-clients). The routing proxy from section 3 is `terraphim-llm-proxy`, shared with [GitHub Sponsors](https://github.com/sponsors/terraphim) supporters. If you want this running inside your team rather than as homework, we do it as part of our consulting work at [zestic.ai](https://zestic.ai).

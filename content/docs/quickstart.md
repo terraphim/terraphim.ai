@@ -149,7 +149,7 @@ You can re-run the wizard at any time with `terraphim-agent onboard`.
 ## Next Steps
 
 - [Installation Guide](/docs/installation) -- More installation options and troubleshooting
-- [Configuration Guide](/docs/terraphim_config) -- Customise Terraphim to your needs
+- [Configuration Guide](/docs/terraphim-config/) -- Customise Terraphim to your needs
 - [Contribution Guide](/docs/contribution) -- Contribute to Terraphim development
 - [Discord Community](https://discord.gg/VPJXB6BGuY) -- Join our Discord for support
 - [Discourse Forum](https://terraphim.discourse.group) -- Community discussions and Q&A

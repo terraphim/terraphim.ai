@@ -78,7 +78,7 @@ terraphim-grep "checklist" --haystack all --paths . \
   --force-rlm to synthesise)."
 ```
 
-Zero KG hits, four plain lexical chunks, and an explicit admission that graph confidence was too low to claim concept coverage. The tool does not pretend the checklist applied. If you want "checklist" to be a graph concept, you write it into a `kg/*.md` file with a `synonyms::` line and rebuild; the gap is a text edit, not a retraining run. The project-local variant of this workflow (a `.terraphim/` directory in your repo with its own role thesaurus) is documented in the [terraphim-grep offline setup](/posts/skill-spotlight-terraphim-grep/) and the concepts can be enriched with code anchors mined by ast-grep.
+Zero KG hits, four plain lexical chunks, and an explicit admission that graph confidence was too low to claim concept coverage. The tool does not pretend the checklist applied. If you want "checklist" to be a graph concept, you write it into a `kg/*.md` file with a `synonyms::` line and rebuild; the gap is a text edit, not a retraining run. The project-local variant of this workflow (a `.terraphim/` directory in your repo with its own role thesaurus) is covered by the [terraphim-grep skill](https://terraphim-skills.md/skills/terraphim-grep/) and the concepts can be enriched with code anchors mined by ast-grep.
 
 ### Reproduce it
 
@@ -128,7 +128,7 @@ Put the phases together and the checklist lifecycle is:
 5. **Gate (post-LLM)**: `terraphim-agent hook` emits findings; guards intercept destructive commands; failed commands are captured by the learning hook.
 6. **Correct**: `learn correct` / `learn correction add` turn observed failures into reviewed rules; `memory capture` stores authored lessons; the synonyms grow and the automaton recompiles.
 
-Step 6 is what makes this different from a static lint list. Corrections feed back into the graph, so the checklist the next session runs against is the checklist this session finished — a property the `learn`/`memory` subcommands exist to provide, described in the [learning capture spotlight](/posts/skill-spotlight-learning-capture/).
+Step 6 is what makes this different from a static lint list. Corrections feed back into the graph, so the checklist the next session runs against is the checklist this session finished — a property the `learn`/`memory` subcommands exist to provide, described in [Teaching AI Agents to Learn from Their Mistakes](/posts/teaching-ai-agents-to-learn-from-mistakes/).
 
 ## Why This Is Not a Vector Problem
 

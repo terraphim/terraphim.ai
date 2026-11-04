@@ -55,7 +55,7 @@ The reason a unified role works at all -- not just for two haystacks but for any
 
 The end-to-end how-to is in the docs: install the prerequisites, add the JSON snippet, write the wrapper, run three verification queries.
 
-**Read the how-to: [Personal Assistant Role on docs.terraphim.ai](https://docs.terraphim.ai/howto/personal-assistant-role.html)**
+**Read the how-to: [Personal Assistant Role on docs.terraphim.ai](https://docs.terraphim.ai/src/howto/personal-assistant-role)**
 
 One caveat worth surfacing up front: the published `terraphim-agent` on crates.io does not yet ship with the JMAP haystack (the `haystack_jmap` dependency is not published either). For email search you need to build from local source with `cargo build --release -p terraphim_agent --features jmap`. The how-to walks through the two Cargo.toml edits required.
 
