@@ -23,6 +23,8 @@ Install it with one command:
 cargo install terraphim_agent --features repl-full
 ```
 
+Cargo installs from crates.io, which carries an older version due to private-registry dependency constraints. Prefer the universal installer (Option A) for the current release.
+
 ## What it does
 
 - **Session search**: query across imported Claude Code and Cursor session logs.

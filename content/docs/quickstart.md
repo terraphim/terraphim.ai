@@ -25,7 +25,7 @@ curl -fsSL https://raw.githubusercontent.com/terraphim/terraphim-ai/main/scripts
 ### Option B: Homebrew (macOS/Linux)
 
 ```bash
-brew tap terraphim/terraphim && brew install terraphim-agent
+brew tap terraphim/terraphim && brew install terraphim-agent terraphim-grep
 ```
 
 ### Option C: Cargo
@@ -105,14 +105,14 @@ terraphim-agent graph --top-k 10
 
 ## Session Search
 
-Import and search your AI coding assistant history (Claude Code, Cursor, Aider):
+Search your AI coding assistant history (Claude Code, Cursor, Aider). Listing sessions auto-imports them when the cache is empty:
 
 ```bash
 # Check available sources
 terraphim-agent sessions sources
 
-# Import sessions
-terraphim-agent sessions import
+# List sessions (auto-imports when the cache is empty)
+terraphim-agent sessions list
 
 # Search across sessions
 terraphim-agent sessions search "rust async error"

@@ -47,8 +47,10 @@ The tap also carries `terraphim-grep`. There is no `terraphim-ai` formula.
 
 ### Cargo (Rust)
 
+Cargo is **not recommended** as the primary install path — crates.io carries older versions due to private-registry dependency constraints. Prefer the curl installer or binary downloads below for the current release.
+
 ```bash
-# Install agent with interactive REPL and full features
+# Installs an older version from crates.io — use the curl installer above for current
 cargo install terraphim_agent --features repl-full
 ```
 
@@ -84,6 +86,8 @@ curl -fsSL https://downloads.terraphim.ai/terraphim-agent/stable-v2.json \
   | python3 -c 'import json,sys; m=json.load(sys.stdin); print(m["version"]); print(m["assets"]["x86_64-unknown-linux-gnu"]["sha256"])'
 sha256sum "terraphim-agent-${VERSION}-x86_64-unknown-linux-gnu.tar.gz"
 ```
+
+See the [releases page](https://github.com/terraphim/terraphim-clients/releases) for per-version downloads and checksums.
 
 #### Build from Source
 
@@ -148,7 +152,7 @@ cargo build --release -p terraphim_agent --bin terraphim-agent
 
 ## Server and Library Bindings
 
-The commands above install the client tools (`terraphim-agent`,
+The release paths above cover the client tools (`terraphim-agent`,
 `terraphim-grep`, `terraphim-cli`). The server and the language bindings have
 their own release paths:
 
