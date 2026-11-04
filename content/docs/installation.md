@@ -152,7 +152,7 @@ cargo build --release -p terraphim_agent --bin terraphim-agent
 
 ## Server and Library Bindings
 
-The commands above install the client tools (`terraphim-agent`,
+The release paths above cover the client tools (`terraphim-agent`,
 `terraphim-grep`, `terraphim-cli`). The server and the language bindings have
 their own release paths:
 
