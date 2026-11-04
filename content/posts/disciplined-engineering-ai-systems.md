@@ -43,7 +43,7 @@ The agent shipped code. It even passed the tests. But the tests were written by 
 
 The missing piece is not better models. It is engineering discipline. AI agents need the same rigour humans use: understand the problem before coding, verify against the design, validate against requirements. We encoded this as executable skills that any AI coding agent can follow.
 
-> *The research evidence behind this framework, including language-specific scaling laws and the 30% adoption gap between code intelligence research and production harnesses, is the subject of [our next article](/posts/the-30-percent-problem-code-intelligence/).*
+> *The research evidence behind this framework, including language-specific scaling laws and the 30% adoption gap between code intelligence research and production harnesses, is covered in [The 30% Problem](/posts/the-30-percent-problem-code-intelligence/).*
 
 ## The V-Model: Adding Discipline Back
 
@@ -92,7 +92,7 @@ Validate against the original requirements:
 
 ## terraphim-skills: 32+ Executable Disciplines
 
-We packaged the V-model as executable skills for any AI coding agent. As of May 2026 the repository is private (see the update at the top of this post) and the `skills.sh` installer has been retired. The framework is now deployed as part of our consulting engagements at [zestic.ai](https://zestic.ai).
+We packaged the V-model as executable skills for any AI coding agent. As of May 2026 the repository is private (see the update at the top of this post) and the `skills.sh` installer has been retired. You can now find the skills in the [Terraphim Skills marketplace](https://terraphim-skills.md), or browse the catalogue from your AI app by adding `https://mcp.terraphim-skills.md/mcp` as a remote MCP server ([setup guide](https://terraphim-skills.md/docs/mcp/)). We also deploy the framework as part of our consulting engagements at [zestic.ai](https://zestic.ai).
 
 The skills enforce:
 - **disciplined-research**: Understand before building
@@ -146,7 +146,7 @@ This is disciplined engineering at scale: not process overhead, but automated qu
 
 ## Conclusion
 
-The gap between what AI agents can do and what they should do is real. It is not a technology gap: it is a discipline gap. The V-model and the 32+ executable skills we built are now part of our consulting work rather than an open repository.
+The gap between what AI agents can do and what they should do is real. It is not a technology gap: it is a discipline gap. The V-model and the 32+ executable skills we built are now distributed through the [Terraphim Skills marketplace](https://terraphim-skills.md) and our consulting work rather than an open repository.
 
 Add discipline back. If you want it inside your team, get in touch at [zestic.ai](https://zestic.ai).
 

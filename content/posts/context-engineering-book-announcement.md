@@ -2,6 +2,7 @@
 title="Context Engineering: the book is out"
 description="Announcing Context Engineering: Designing AI That Understands, Remembers, Acts, and Learns, now available on Kindle."
 date=2026-10-19
+aliases=["/posts/from-rag-to-context-graphs/"]
 
 [taxonomies]
 categories = ["Announcements"]

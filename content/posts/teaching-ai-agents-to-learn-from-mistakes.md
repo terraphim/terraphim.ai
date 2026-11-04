@@ -257,5 +257,5 @@ Your agents will still make mistakes. They just will not make the *same* mistake
 
 - [Terraphim AI Repository](https://github.com/terraphim/terraphim-ai)
 - [Knowledge Graph Hooks Post](/posts/teaching-ai-agents-with-knowledge-graphs/)
-- [Claude Code Skills Plugin](https://github.com/terraphim/terraphim-claude-skills)
-- [Hook Installation Guide](https://docs.terraphim.ai/hooks/)
+- [Claude Code Skills Plugin](https://terraphim-skills.md/skills/)
+- [Hook Installation Guide](/capabilities/hooks/)

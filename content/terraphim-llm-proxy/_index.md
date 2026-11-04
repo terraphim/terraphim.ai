@@ -74,4 +74,3 @@ requests you send to your providers.
 - [Privacy policy](/terraphim-llm-proxy/privacy/)
 - [Refund policy](/terraphim-llm-proxy/refunds/)
 - [Support — GitHub issues](https://github.com/terraphim/terraphim-ai/issues)
-- [Source — terraphim-llm-proxy](https://github.com/terraphim/terraphim-llm-proxy)

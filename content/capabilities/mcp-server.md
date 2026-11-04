@@ -51,6 +51,6 @@ Terraphim works as a Claude Code MCP server, providing knowledge-graph-boosted f
 
 ## Learn More
 
-- [Terraphim Configuration](/docs/terraphim_config)
+- [Terraphim Configuration](/docs/terraphim-config/)
 - [Knowledge Graph Engine](/capabilities/knowledge-graph/)
 - [Hooks System](/capabilities/hooks/)

@@ -176,5 +176,5 @@ Enable graph embeddings in your config:
 ## Next Steps
 
 - [Quickstart Guide](/docs/quickstart) - Get started with Terraphim
-- [Configuration Guide](/docs/terraphim_config) - Configure roles and knowledge graphs
+- [Configuration Guide](/docs/terraphim-config/) - Configure roles and knowledge graphs
 - [Installation Guide](/docs/installation) - Install Terraphim on your system

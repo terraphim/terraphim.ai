@@ -1,5 +1,6 @@
 +++
 title = "Terraphim Config structure"
+aliases = ["/docs/terraphim_config/"]
 description = "Terraphim config structure"
 date = 2022-02-21
 [taxonomies]

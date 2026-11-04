@@ -159,6 +159,6 @@ terraphim-agent config reload
 terraphim-agent search --role "Terraphim Engineer" --limit 3 "rolegraph"
 ```
 
-Step-by-step in the docs: [Plug Terraphim Search into Claude Code and opencode](https://docs.terraphim.ai/howto/mcp-integration-claude-opencode.html).
+Step-by-step in the docs: [Plug Terraphim Search into Claude Code and opencode](https://docs.terraphim.ai/src/howto/mcp-integration-claude-opencode).
 
 For the underlying engine, start with [Why Graph Embeddings Matter](/posts/why-graph-embeddings-matter/). For the two roles this integration most cleanly exposes, see [Personal Assistant](/posts/personal-assistant-role-jmap-obsidian/) and [System Operator](/posts/system-operator-logseq-knowledge-graph/).

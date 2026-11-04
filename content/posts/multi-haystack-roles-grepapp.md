@@ -1,6 +1,7 @@
 +++
 title="Introducing Multi-Haystack Roles: Local + Global Code Search"
 date=2026-02-16
+aliases=["/posts/one-agent-many-haystacks/"]
 
 [taxonomies]
 categories = ["Technical"]
