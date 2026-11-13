@@ -63,14 +63,20 @@ def require_help_commands(help_bytes, required):
     return released
 
 
-def assert_process_result(actual_exit, actual_stdout, expected_exit, expected_stdout):
+def assert_process_result(
+    actual_exit, actual_stdout, expected_exit, expected_stdout, stderr=b"", label=""
+):
     if actual_exit != expected_exit:
         raise AssertionError(
-            f"exit mismatch: expected {expected_exit}, received {actual_exit}"
+            f"[{label}] exit mismatch: expected {expected_exit}, "
+            f"received {actual_exit}; "
+            f"stderr: {stderr.decode('utf-8', errors='replace')!r}"
         )
     if actual_stdout != expected_stdout:
         raise AssertionError(
-            f"stdout byte mismatch: expected {expected_stdout!r}, received {actual_stdout!r}"
+            f"[{label}] stdout byte mismatch: expected {expected_stdout!r}, "
+            f"received {actual_stdout!r}; "
+            f"stderr: {stderr.decode('utf-8', errors='replace')!r}"
         )
 
 
@@ -250,7 +256,13 @@ def replay_published_commands(binary, identity):
             stderr=subprocess.PIPE,
             check=False,
         )
-        assert_process_result(help_run.returncode, help_run.stdout, 0, help_fixture)
+        assert_process_result(
+            help_run.returncode,
+            help_run.stdout,
+            0,
+            help_fixture,
+            help_run.stderr,
+        )
         released = require_help_commands(help_run.stdout, {"hook", "validate"})
         if "code" in released:
             raise AssertionError("released help unexpectedly exposes code")
@@ -274,6 +286,9 @@ def replay_published_commands(binary, identity):
                     run.stdout,
                     binding["exitCode"],
                     raw_fixture,
+                    run.stderr,
+                    label=f"{article} {binding['subcommand']} "
+                    f"{'rewrite' if binding.get('rewrite') else 'no-rewrite'}",
                 )
 
 
@@ -449,6 +464,20 @@ class LiveReplayContractTests(unittest.TestCase):
     def test_stdout_comparison_is_exact_bytes(self):
         with self.assertRaisesRegex(AssertionError, "stdout"):
             assert_process_result(0, b"different\n", 0, b"expected\n")
+
+    def test_failure_reports_the_child_stderr_and_the_binding_label(self):
+        with self.assertRaises(AssertionError) as caught:
+            assert_process_result(
+                1,
+                b"",
+                0,
+                b"expected\n",
+                b"boom: role graph missing\n",
+                label="kg article validate",
+            )
+        message = str(caught.exception)
+        self.assertIn("kg article validate", message)
+        self.assertIn("boom: role graph missing", message)
 
     def test_role_input_and_flag_drift_are_rejected(self):
         pages = {path.name: path.read_text() for path in ARTICLES}
