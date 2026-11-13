@@ -1,0 +1,74 @@
+Terraphim Agent: server-backed fullscreen TUI with offline-capable REPL and CLI commands
+
+Usage: terraphim-agent [OPTIONS] [COMMAND]
+
+Commands:
+  search        Search documents using the knowledge graph
+  roles         Manage roles (list, select)
+  config        Manage configuration (show, set, validate, reload)
+  graph         Display the knowledge graph for a role
+  kg            Manage knowledge graph entries
+  chat          Chat with the AI using a specific role
+  extract       Extract paragraphs matching knowledge graph terms from text
+  replace       Replace terms in text using the knowledge graph thesaurus
+  validate      Validate text against knowledge graph
+  suggest       Suggest similar terms using fuzzy matching
+  hook          Unified hook handler for Claude Code integration
+  guard         Check command against safety guard patterns (blocks destructive git/fs commands)
+  interactive   Start fullscreen interactive TUI mode (requires running server)
+  repl          Start REPL (Read-Eval-Print-Loop) interface
+  setup         Interactive setup wizard for first-time configuration
+  check-update  Check for updates without installing
+  update        Update to latest version if available
+  learn         Learning capture for failed commands
+  sessions      Session management for AI coding assistant history
+  listen        Start listener mode for AI agent communication (offline-only)
+  cache         Manage the compiled thesaurus cache
+  robot         Robot mode self-documentation commands
+  memory        Memory lifecycle management (capture, distill, scope, provenance, retrieve, apply, validate, retire, rubric, second-run)
+  help          Print this message or the help of the given subcommand(s)
+
+Options:
+      --server
+          Use server API mode instead of self-contained offline mode
+
+      --server-url <SERVER_URL>
+          Server URL for API mode
+          
+          [default: http://localhost:8000]
+
+      --transparent
+          Enable transparent background mode
+
+      --robot
+          Enable robot mode for AI agent integration (JSON output, exit codes)
+
+      --format <FORMAT>
+          Output format (human, json, json-compact)
+
+          Possible values:
+          - human:        Human-readable output (default)
+          - json:         Machine-readable JSON output
+          - json-compact: Compact JSON for piping
+          
+          [default: human]
+
+      --config <CONFIG>
+          Path to a JSON config file (overrides settings.toml and persistence)
+
+  -h, --help
+          Print help (see a summary with '-h')
+
+  -V, --version
+          Print version
+
+EXIT CODES (F1.2 contract)
+
+  0  SUCCESS             Operation completed successfully
+  1  ERROR_GENERAL       Unspecified or unexpected error
+  2  ERROR_USAGE         Invalid arguments or unknown command
+  3  ERROR_INDEX_MISSING Required index not initialised
+  4  ERROR_NOT_FOUND     No results (only with --fail-on-empty)
+  5  ERROR_AUTH          Authentication required or failed
+  6  ERROR_NETWORK       Transport-level network error
+  7  ERROR_TIMEOUT       Operation exceeded configured timeout

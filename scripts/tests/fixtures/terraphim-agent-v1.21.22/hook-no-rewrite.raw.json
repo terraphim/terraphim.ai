@@ -1,0 +1,1 @@
+{"tool_input":{"command":"npm install react"},"tool_name":"Bash","warnings":["command contained 1 KG-replaceable substring(s); pass --rewrite to enable substitution. Original: `npm install react`"]}

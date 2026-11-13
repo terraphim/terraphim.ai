@@ -31,7 +31,11 @@ Install dependencies using Bun package manager.
 synonyms:: npm install, yarn install, pnpm install, npm i, yarn add, pnpm add
 ```
 
-The filename gives the normalised term the hook reports back (the suggestion in the findings output below is `bun install`, matching `bun install.md`), while the heading names the approved form inside the file. The `synonyms::` line is the checklist itself: every surface form that must be recognised and dealt with. Compile the directory of such files into `thesaurus.json` and you get the "Terraphim Engineer" role used below, currently 219 entries. Rebuilding the automaton after an edit takes about 20 ms, a figure we verified in [Why Graph Embeddings Matter](/posts/why-graph-embeddings-matter/), so the checklist is cheap to change and free to consult.
+The heading gives the normalised replacement, `bun add`; the filename is only the
+source note's name. The `synonyms::` line is the checklist itself: every surface
+form that must be recognised and dealt with. Rebuilding the automaton after an
+edit takes about 20 ms, a figure we verified in [Why Graph Embeddings Matter](/posts/why-graph-embeddings-matter/),
+so the checklist is cheap to change and free to consult.
 
 ## Before the LLM Call: Retrieval as Checklist Execution
 
@@ -91,31 +95,92 @@ terraphim-grep "quality gate" --haystack all --paths . \
 
 Same eight concepts, same honest `kg_hits: 0` on the "checklist" control. For larger published checklist graphs, `docs/src/kg/checklists/` in the terraphim-ai repository carries the code review and security concepts.
 
-## After the LLM Call: The Hook Is a Findings Checklist
+## After the LLM Call: The Hook Checks or Rewrites
 
-The second job of a checklist is gating what comes back. In current releases, `terraphim-agent hook` does not silently rewrite the agent's proposed action; it returns a machine-readable findings list. That distinction matters: the hook's job is to *check*, and a check that mutates silently is a check you cannot audit.
+The following is pinned to the released `terraphim-agent` v1.21.22 binary. The
+role used for replacement must point at the public rewrite notes; merely running
+the command from this checkout does not register that role. This hook also needs
+`rg` (ripgrep) on `PATH`: v1.21.22 invokes it to build the role thesaurus from
+the local knowledge graph. Without it, the released binary exits 1 with
+`Failed to build thesaurus from local KG for role Command Rewriter: Io(Os { code: 2, kind: NotFound, message: "No such file or directory" })`.
+Confirm the prerequisite before continuing:
 
-Run from the directory holding the rewrite config, against a tool call an agent might propose:
+```bash
+rg --version
+```
+
+From the repository root, this creates the complete role configuration used for
+the output below:
+
+```bash
+export TERRAPHIM_REWRITE_CONFIG="$(mktemp "${TMPDIR:-/tmp}/terraphim-rewrite-role.json.XXXXXX")"
+python3 - <<'PY'
+import json
+import os
+from pathlib import Path
+
+rewrite = str(Path(".terraphim/rewrite").resolve())
+role = {
+    "shortname": "rewriter", "name": "Command Rewriter",
+    "relevance_function": "terraphim-graph", "terraphim_it": True,
+    "theme": "lumen", "haystacks": [], "llm_provider": None,
+    "llm_auto_summarize": False, "extra": {},
+    "kg": {"automata_path": None, "public": False, "publish": False,
+           "knowledge_graph_local": {"input_type": "markdown", "path": rewrite}},
+}
+config = {"id": "Server", "global_shortcut": "Ctrl+Shift+T",
+          "roles": {"Command Rewriter": role},
+          "default_role": "Command Rewriter", "selected_role": "Command Rewriter"}
+Path(os.environ["TERRAPHIM_REWRITE_CONFIG"]).write_text(json.dumps(config))
+PY
+```
+
+Keep using that shell for the following fences; the exported variable carries
+the same safely unique configuration path across each copy/paste command.
+
+Without the opt-in `--rewrite`, v1.21.22 preserves the command and warns:
 
 ```bash
 echo '{"tool_name":"Bash","tool_input":{"command":"npm install react"}}' \
-  | terraphim-agent hook --hook-type pre-tool-use --json
+  | terraphim-agent --config "$TERRAPHIM_REWRITE_CONFIG" \
+      hook --hook-type pre-tool-use --role "Command Rewriter" --json
 ```
 
 ```json
-{"tool_input":{"command":"npm install react"},"tool_name":"Bash",
- "validations":{"findings":[{"matched_term":"npm install",
- "suggested_replacement":"bun install"}],"has_findings":true}}
+{"tool_input":{"command":"npm install react"},"tool_name":"Bash","warnings":["command contained 1 KG-replaceable substring(s); pass --rewrite to enable substitution. Original: `npm install react`"]}
 ```
 
-Read that output as a completed checklist line: item "npm install" found, prescribed action "bun install", flag raised. The hook types cover the lifecycle (`pre-tool-use`, `post-tool-use`, `pre-commit`, `prepare-commit-msg`), and `--with-guard` is on by default for pre-tool-use so destructive commands get intercepted in the same pass. We covered the git-hook end of this in [Teaching AI Coding Agents with Knowledge Graph Hooks](/posts/teaching-ai-agents-with-knowledge-graphs/) and the end-to-end verified flow in [Native Hook Support](/posts/native-hook-support/).
+In particular, that no-rewrite response does not return `validations.findings`.
+The hook's global validation KG is independent of the selected role's rewrite
+graph, and it may be absent. Do not treat an omitted findings object as proof
+that the role graph had no match.
+
+With rewriting explicitly enabled, the same configured role produces the
+canonical command from the note heading:
+
+```bash
+echo '{"tool_name":"Bash","tool_input":{"command":"npm install react"}}' \
+  | terraphim-agent --config "$TERRAPHIM_REWRITE_CONFIG" \
+      hook --hook-type pre-tool-use --rewrite \
+      --role "Command Rewriter" --json
+```
+
+```json
+{"tool_input":{"command":"bun add react"},"tool_name":"Bash"}
+```
+
+The hook types cover the lifecycle (`pre-tool-use`, `post-tool-use`,
+`pre-commit`, `prepare-commit-msg`), and `--with-guard` is on by default for
+pre-tool-use so destructive commands get intercepted in the same pass. We
+covered the git-hook end of this in [Teaching AI Coding Agents with Knowledge Graph Hooks](/posts/teaching-ai-agents-with-knowledge-graphs/)
+and the end-to-end verified flow in [Native Hook Support](/posts/native-hook-support/).
 
 ### When the checklist itself fails
 
 Checklists also cover the checking tool. Two honest notes from this session:
 
 - `terraphim-agent learn query "checklist"` returned a list of past failed commands (exit-1 runs captured by the PostToolUse hook); the learning store is doing its job remembering what went wrong before.
-- `terraphim-agent replace` in this build reports `replacements: 1, "changed": true` while returning the input unchanged. The findings-based `hook` path above is the contract to rely on; if `replace` is your integration point, verify the output rather than the flag. This is itself a captured learning; see [Teaching AI Agents to Learn from Their Mistakes](/posts/teaching-ai-agents-to-learn-from-mistakes/) for how such a failure becomes a stored correction and eventually a new synonym.
+- `terraphim-agent replace` in this build reports `replacements: 1, "changed": true` while returning the input unchanged. Verify the returned command itself rather than inferring success from a flag or from an optional findings object. This is itself a captured learning; see [Teaching AI Agents to Learn from Their Mistakes](/posts/teaching-ai-agents-to-learn-from-mistakes/) for how such a failure becomes a stored correction and eventually a new synonym.
 
 ## The Loop, Closed
 
@@ -125,7 +190,7 @@ Put the phases together and the checklist lifecycle is:
 2. **Compile**: generate `thesaurus.json`; ~20 ms per role.
 3. **Retrieve (pre-LLM)**: `terraphim-grep` with the role thesaurus expands queries into concept terms and pulls grounded chunks — or honestly reports `kg_hits: 0`.
 4. **Draft**: the LLM call runs with checklist-shaped context instead of a vibes-based prompt.
-5. **Gate (post-LLM)**: `terraphim-agent hook` emits findings; guards intercept destructive commands; failed commands are captured by the learning hook.
+5. **Gate (post-LLM)**: `terraphim-agent hook` preserves and warns by default or rewrites with explicit `--rewrite`; guards intercept destructive commands; failed commands are captured by the learning hook.
 6. **Correct**: `learn correct` / `learn correction add` turn observed failures into reviewed rules; `memory capture` stores authored lessons; the synonyms grow and the automaton recompiles.
 
 Step 6 is what makes this different from a static lint list. Corrections feed back into the graph, so the checklist the next session runs against is the checklist this session finished — a property the `learn`/`memory` subcommands exist to provide, described in [Teaching AI Agents to Learn from Their Mistakes](/posts/teaching-ai-agents-to-learn-from-mistakes/).

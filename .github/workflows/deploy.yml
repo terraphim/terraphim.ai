@@ -23,6 +23,11 @@ concurrency:
 env:
   EDITOR_MANIFEST_SHA256: e972d1c779cca709ff1a1c8e0b0c543b855d82d7e6fa26fbf14414f84c6fb1d0
   ZOLA_VERSION: "0.22.1"
+  TERRAPHIM_PUBLICATION_URL: https://downloads.terraphim.ai/terraphim-agent/terraphim-agent-1.21.22-x86_64-unknown-linux-musl.tar.gz
+  TERRAPHIM_PUBLICATION_ARCHIVE_SHA256: 3afe1ba64dfd7f19214f2171f8cba467f674f77317c0e05af44408627eb288e1
+  TERRAPHIM_PUBLICATION_BINARY_SHA256: 0680d81956350eb26ac916c426b7b5e60776e587aba624d36f5fab95f385fb09
+  RIPGREP_PUBLICATION_URL: https://github.com/BurntSushi/ripgrep/releases/download/14.1.1/ripgrep-14.1.1-x86_64-unknown-linux-musl.tar.gz
+  RIPGREP_PUBLICATION_ARCHIVE_SHA256: 4cf9f2741e6c465ffdb7c26f38056a59e2a2544b51f7cc128ef28337eeae4d8e
   CF_PROJECT: terraphim-ai
   OP_API_TOKEN: op://TerraphimPlatform/terraphim-md-book-cloudflare/workers-api-token
   OP_ACCOUNT_ID: op://TerraphimPlatform/terraphim-md-book-cloudflare/account_id
@@ -34,6 +39,69 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
+
+      - name: Download checksum-verified terraphim-agent v1.21.22
+        shell: bash
+        run: |
+          set -euo pipefail
+          live_root="${RUNNER_TEMP}/terraphim-publication-v1.21.22"
+          archive="${live_root}/terraphim-agent-1.21.22-x86_64-unknown-linux-musl.tar.gz"
+          binary="${live_root}/terraphim-agent"
+          mkdir -p "${live_root}"
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          identity = json.loads(Path("scripts/tests/fixtures/terraphim-agent-v1.21.22/identity.json").read_text())
+          assert identity["archive"] == "terraphim-agent-1.21.22-x86_64-unknown-linux-musl.tar.gz"
+          assert identity["archiveSha256"] == os.environ["TERRAPHIM_PUBLICATION_ARCHIVE_SHA256"]
+          assert identity["binarySha256"] == os.environ["TERRAPHIM_PUBLICATION_BINARY_SHA256"]
+          PY
+          curl --fail --location --silent --show-error \
+            "${TERRAPHIM_PUBLICATION_URL}" --output "${archive}"
+          printf '%s  %s\n' "${TERRAPHIM_PUBLICATION_ARCHIVE_SHA256}" "${archive}" \
+            | sha256sum --check --strict -
+          tar --extract --gzip --file "${archive}" --directory "${live_root}"
+          test -f "${binary}"
+          chmod +x "${binary}"
+          printf '%s  %s\n' "${TERRAPHIM_PUBLICATION_BINARY_SHA256}" "${binary}" \
+            | sha256sum --check --strict -
+          printf 'TERRAPHIM_AGENT_BIN=%s\n' "${binary}" >> "${GITHUB_ENV}"
+          printf 'TERRAPHIM_PUBLICATION_LIVE_REQUIRED=1\n' >> "${GITHUB_ENV}"
+
+      - name: Install checksum-verified ripgrep 14.1.1
+        shell: bash
+        run: |
+          set -euo pipefail
+          rg_root="${RUNNER_TEMP}/ripgrep-14.1.1"
+          archive="${rg_root}/ripgrep-14.1.1-x86_64-unknown-linux-musl.tar.gz"
+          extracted="${rg_root}/ripgrep-14.1.1-x86_64-unknown-linux-musl"
+          bin_dir="${rg_root}/bin"
+          mkdir -p "${rg_root}" "${bin_dir}"
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          identity = json.loads(Path("scripts/tests/fixtures/terraphim-agent-v1.21.22/identity.json").read_text())
+          assert identity["ripgrepVersion"] == "14.1.1"
+          assert identity["ripgrepArchive"] == "ripgrep-14.1.1-x86_64-unknown-linux-musl.tar.gz"
+          assert identity["ripgrepUrl"] == os.environ["RIPGREP_PUBLICATION_URL"]
+          assert identity["ripgrepArchiveSha256"] == os.environ["RIPGREP_PUBLICATION_ARCHIVE_SHA256"]
+          PY
+          curl --fail --location --silent --show-error \
+            "${RIPGREP_PUBLICATION_URL}" --output "${archive}"
+          printf '%s  %s\n' "${RIPGREP_PUBLICATION_ARCHIVE_SHA256}" "${archive}" \
+            | sha256sum --check --strict -
+          tar --extract --gzip --file "${archive}" --directory "${rg_root}"
+          test -f "${extracted}/rg"
+          install -m 0755 "${extracted}/rg" "${bin_dir}/rg"
+          printf '%s\n' "${bin_dir}" >> "${GITHUB_PATH}"
+          "${bin_dir}/rg" --version
+
+      - name: Replay published terraphim-agent commands
+        run: python3 -m unittest scripts.test_checklist_publication_live -v
 
       - name: Install Zola ${{ env.ZOLA_VERSION }}
         run: |
