@@ -99,8 +99,18 @@ Same eight concepts, same honest `kg_hits: 0` on the "checklist" control. For la
 
 The following is pinned to the released `terraphim-agent` v1.21.22 binary. The
 role used for replacement must point at the public rewrite notes; merely running
-the command from this checkout does not register that role. From the repository
-root, this creates the complete role configuration used for the output below:
+the command from this checkout does not register that role. This hook also needs
+`rg` (ripgrep) on `PATH`: v1.21.22 invokes it to build the role thesaurus from
+the local knowledge graph. Without it, the released binary exits 1 with
+`Failed to build thesaurus from local KG for role Command Rewriter: Io(Os { code: 2, kind: NotFound, message: "No such file or directory" })`.
+Confirm the prerequisite before continuing:
+
+```bash
+rg --version
+```
+
+From the repository root, this creates the complete role configuration used for
+the output below:
 
 ```bash
 export TERRAPHIM_REWRITE_CONFIG="$(mktemp "${TMPDIR:-/tmp}/terraphim-rewrite-role.json.XXXXXX")"

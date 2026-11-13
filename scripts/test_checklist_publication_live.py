@@ -25,6 +25,18 @@ ARTICLE_CONFIG_SNIPPET_SHA256 = (
 DOWNLOAD_STEP_BODY_SHA256 = (
     "193ae1625b66502c3acf7351c7043d76a485a4d0ea8a176c56375bca4009158d"
 )
+RIPGREP_VERSION = "14.1.1"
+RIPGREP_ARCHIVE = "ripgrep-14.1.1-x86_64-unknown-linux-musl.tar.gz"
+RIPGREP_URL = (
+    "https://github.com/BurntSushi/ripgrep/releases/download/14.1.1/"
+    "ripgrep-14.1.1-x86_64-unknown-linux-musl.tar.gz"
+)
+RIPGREP_ARCHIVE_SHA256 = (
+    "4cf9f2741e6c465ffdb7c26f38056a59e2a2544b51f7cc128ef28337eeae4d8e"
+)
+RIPGREP_STEP_BODY_SHA256 = (
+    "877d29d89f0c3d60ddba05e60d6ff424b2e3bc080f789d37207276ab6b19b5c8"
+)
 
 
 def require_live_binary(environ):
@@ -203,6 +215,65 @@ def assert_live_workflow_steps(workflow, later_markers):
             raise AssertionError(f"Replay step must precede {marker}")
 
 
+def assert_ripgrep_workflow_step(workflow, identity, later_markers):
+    expected_identity = {
+        "ripgrepVersion": RIPGREP_VERSION,
+        "ripgrepArchive": RIPGREP_ARCHIVE,
+        "ripgrepUrl": RIPGREP_URL,
+        "ripgrepArchiveSha256": RIPGREP_ARCHIVE_SHA256,
+    }
+    actual_identity = {
+        key: identity.get(key) for key in expected_identity
+    }
+    if actual_identity != expected_identity:
+        raise AssertionError(
+            "ripgrep identity digest or release metadata drifted: "
+            f"expected {expected_identity}, received {actual_identity}"
+        )
+    expected_environment = (
+        f"  RIPGREP_PUBLICATION_URL: {RIPGREP_URL}",
+        "  RIPGREP_PUBLICATION_ARCHIVE_SHA256: " + RIPGREP_ARCHIVE_SHA256,
+    )
+    for line in expected_environment:
+        if workflow.splitlines().count(line) != 1:
+            raise AssertionError(f"ripgrep workflow digest environment drifted: {line}")
+
+    install = _workflow_step(
+        workflow, "Install checksum-verified ripgrep 14.1.1"
+    )
+    install_lines = install.splitlines()
+    expected_header = [
+        "      - name: Install checksum-verified ripgrep 14.1.1",
+        "        shell: bash",
+        "        run: |",
+    ]
+    if install_lines[:3] != expected_header:
+        raise AssertionError("ripgrep step header is not the canonical shape")
+    body_lines = install_lines[3:]
+    if not body_lines or any(
+        line and not line.startswith("          ") for line in body_lines
+    ):
+        raise AssertionError("ripgrep step contains a non-script top-level field")
+    normalized_body = "\n".join(
+        line[10:] if line else "" for line in body_lines
+    ) + "\n"
+    actual_body_sha = hashlib.sha256(normalized_body.encode()).hexdigest()
+    if actual_body_sha != RIPGREP_STEP_BODY_SHA256:
+        raise AssertionError(
+            "ripgrep step body SHA-256 mismatch: "
+            f"expected {RIPGREP_STEP_BODY_SHA256}, received {actual_body_sha}"
+        )
+
+    replay = _workflow_step(workflow, "Replay published terraphim-agent commands")
+    install_at = workflow.index(install)
+    replay_at = workflow.index(replay)
+    if install_at >= replay_at:
+        raise AssertionError("ripgrep step must precede Replay step")
+    for marker in later_markers:
+        if install_at >= workflow.index(marker):
+            raise AssertionError(f"ripgrep step must precede {marker}")
+
+
 def _binding_command(binary, config, binding):
     command = [str(binary)]
     if binding["config"] is not None:
@@ -221,14 +292,16 @@ def _binding_command(binary, config, binding):
     return command
 
 
-def replay_published_commands(binary, identity):
+def replay_published_commands(binary, identity, base_environment=None):
     verify_binary_sha(binary, identity["binarySha256"])
     pages = {path.name: path.read_text() for path in ARTICLES}
     assert_article_provenance(pages, identity)
 
     with tempfile.TemporaryDirectory(prefix=".publication-live-", dir=ROOT) as root:
         isolated = Path(root)
-        environment = dict(os.environ)
+        environment = dict(
+            os.environ if base_environment is None else base_environment
+        )
         for variable, directory in (
             ("TMPDIR", "tmp"),
             ("XDG_CACHE_HOME", "cache"),
@@ -391,6 +464,67 @@ class LiveReplayContractTests(unittest.TestCase):
                     self.assertLess(replay_at, workflow.index(marker))
                 assert_live_workflow_steps(workflow, later_markers)
 
+    def test_workflows_install_verified_ripgrep_before_replay(self):
+        for relative, later_markers in (
+            (
+                ".github/workflows/validate.yml",
+                ("Install Zola", "python3 -m unittest discover", "Build site"),
+            ),
+            (
+                ".github/workflows/deploy.yml",
+                (
+                    "Install Zola",
+                    "python3 -m unittest discover",
+                    "Build site",
+                    "Load secrets from 1Password",
+                    "- name: Deploy to Cloudflare Pages",
+                ),
+            ),
+        ):
+            workflow = (ROOT / relative).read_text()
+            with self.subTest(workflow=relative):
+                assert_ripgrep_workflow_step(workflow, IDENTITY, later_markers)
+
+    def test_ripgrep_workflow_step_rejects_missing_bypasses_and_digest_drift(self):
+        workflow = (ROOT / ".github/workflows/validate.yml").read_text()
+        step_name = "Install checksum-verified ripgrep 14.1.1"
+        mutations = (
+            (
+                "      - name: Install checksum-verified ripgrep 14.1.1\n"
+                "        shell: bash",
+                "      - name: Install checksum-verified ripgrep 14.1.1\n"
+                "        if: false\n"
+                "        shell: bash",
+            ),
+            (
+                "      - name: Install checksum-verified ripgrep 14.1.1\n"
+                "        shell: bash",
+                "      - name: Install checksum-verified ripgrep 14.1.1\n"
+                "        continue-on-error: true\n"
+                "        shell: bash",
+            ),
+        )
+        self.assertIn(f"      - name: {step_name}", workflow)
+        missing = workflow.replace(_workflow_step(workflow, step_name) + "\n", "", 1)
+        with self.assertRaisesRegex(AssertionError, "ripgrep|workflow lacks"):
+            assert_ripgrep_workflow_step(missing, IDENTITY, ())
+        for old, new in mutations:
+            with self.subTest(mutation=new):
+                self.assertIn(old, workflow)
+                with self.assertRaises(AssertionError):
+                    assert_ripgrep_workflow_step(
+                        workflow.replace(old, new, 1), IDENTITY, ()
+                    )
+        wrong_workflow_digest = workflow.replace(
+            IDENTITY["ripgrepArchiveSha256"], "0" * 64, 1
+        )
+        with self.assertRaisesRegex(AssertionError, "ripgrep.*SHA-256|digest"):
+            assert_ripgrep_workflow_step(wrong_workflow_digest, IDENTITY, ())
+        wrong_identity = json.loads(json.dumps(IDENTITY))
+        wrong_identity["ripgrepArchiveSha256"] = "0" * 64
+        with self.assertRaisesRegex(AssertionError, "ripgrep.*SHA-256|digest"):
+            assert_ripgrep_workflow_step(workflow, wrong_identity, ())
+
     def test_workflow_steps_reject_conditional_or_continue_on_error_bypasses(self):
         for relative in (
             ".github/workflows/validate.yml",
@@ -509,6 +643,24 @@ class LivePublicationReplayTests(unittest.TestCase):
     def test_checksum_verified_release_replays_published_commands(self):
         binary = require_live_binary(os.environ)
         replay_published_commands(binary, IDENTITY)
+
+    @unittest.skipUnless(
+        os.environ.get("TERRAPHIM_PUBLICATION_LIVE_REQUIRED") == "1",
+        "live publication replay is enabled explicitly in publication CI",
+    )
+    def test_missing_ripgrep_fails_with_local_kg_diagnostic(self):
+        binary = require_live_binary(os.environ)
+        with tempfile.TemporaryDirectory(prefix=".no-rg-path-", dir=ROOT) as root:
+            environment = dict(os.environ)
+            environment["PATH"] = root
+            with self.assertRaises(AssertionError) as caught:
+                replay_published_commands(binary, IDENTITY, environment)
+        message = str(caught.exception)
+        self.assertIn(
+            "Failed to build thesaurus from local KG for role Command Rewriter",
+            message,
+        )
+        self.assertIn("No such file or directory", message)
 
 
 if __name__ == "__main__":
