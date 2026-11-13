@@ -1,0 +1,3 @@
+{"checklist_name":"code_review","passed":false,"total_items":5,
+ "satisfied":[],
+ "missing":["tests","documentation","error_handling","security","performance"]}

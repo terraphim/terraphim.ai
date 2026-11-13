@@ -1,0 +1,82 @@
+{
+  "version": "terraphim-agent 1.21.22",
+  "sourceSha": "88a09d8b11e4eab550c6f7410f86faee7cc41ecc",
+  "target": "x86_64-unknown-linux-musl",
+  "archive": "terraphim-agent-1.21.22-x86_64-unknown-linux-musl.tar.gz",
+  "archiveSha256": "3afe1ba64dfd7f19214f2171f8cba467f674f77317c0e05af44408627eb288e1",
+  "binarySha256": "0680d81956350eb26ac916c426b7b5e60776e587aba624d36f5fab95f385fb09",
+  "helpRawCommand": "terraphim-agent --help",
+  "helpRawSha256": "b4c3ba6be177a29226242221cc1912dca9f8b76ceba567f3f6130d981b07f934",
+  "validateChecklistCommand": "printf '%s\\n' 'no tests; no documentation; no error handling; no security; no performance' | terraphim-agent validate --checklist code_review --json",
+  "validateChecklistExitCode": 0,
+  "validateChecklistRawSha256": "2ef7287cd4d9a59cf188150563b7b728aaa3e5ee139976b4b7d6ef59faa9fb0f",
+  "validateChecklistHumanSha256": "1b984bcf4669c58489a448c6f57aaacfe3ec81790efd9d72a27c105b1b1be81d",
+  "hookNoRewriteRawSha256": "7d61fc4db1cabfe5f0f6d655baee1c9442a879f160cc949067a1a0f605fb6806",
+  "hookRewriteRawSha256": "f865d48bc967cd5c18fad874d3a20d538b175e43e8934d6c5d2e1382c4ed842f",
+  "articleCommandFixtures": {
+    "graph-embeddings-checklists.md": [
+      {
+        "subcommand": "hook",
+        "stdin": "{\"tool_name\":\"Bash\",\"tool_input\":{\"command\":\"npm install react\"}}",
+        "config": "$TERRAPHIM_REWRITE_CONFIG",
+        "hookType": "pre-tool-use",
+        "role": "Command Rewriter",
+        "json": true,
+        "rewrite": false,
+        "rawFixture": "hook-no-rewrite.raw.json",
+        "displayFixture": "hook-no-rewrite.raw.json",
+        "commandBlockSha256": "ef3d0b13804fb03d94fa4aa04ee585c5b33aee65c36d40d5169f54fccd5ace83",
+        "rawSha256": "7d61fc4db1cabfe5f0f6d655baee1c9442a879f160cc949067a1a0f605fb6806",
+        "displaySha256": "7d61fc4db1cabfe5f0f6d655baee1c9442a879f160cc949067a1a0f605fb6806",
+        "exitCode": 0
+      },
+      {
+        "subcommand": "hook",
+        "stdin": "{\"tool_name\":\"Bash\",\"tool_input\":{\"command\":\"npm install react\"}}",
+        "config": "$TERRAPHIM_REWRITE_CONFIG",
+        "hookType": "pre-tool-use",
+        "role": "Command Rewriter",
+        "json": true,
+        "rewrite": true,
+        "rawFixture": "hook-rewrite.raw.json",
+        "displayFixture": "hook-rewrite.raw.json",
+        "commandBlockSha256": "7cd78864b21bdf8e408271c5149a379303b104b97093d43061037ee3ba1c7472",
+        "rawSha256": "f865d48bc967cd5c18fad874d3a20d538b175e43e8934d6c5d2e1382c4ed842f",
+        "displaySha256": "f865d48bc967cd5c18fad874d3a20d538b175e43e8934d6c5d2e1382c4ed842f",
+        "exitCode": 0
+      }
+    ],
+    "kg-concepts-code-checklists.md": [
+      {
+        "subcommand": "hook",
+        "stdin": "{\"tool_name\":\"Bash\",\"tool_input\":{\"command\":\"npm install react\"}}",
+        "config": "$TERRAPHIM_REWRITE_CONFIG",
+        "hookType": "pre-tool-use",
+        "role": "Command Rewriter",
+        "json": true,
+        "rewrite": true,
+        "rawFixture": "hook-rewrite.raw.json",
+        "displayFixture": "hook-rewrite.raw.json",
+        "commandBlockSha256": "7cd78864b21bdf8e408271c5149a379303b104b97093d43061037ee3ba1c7472",
+        "rawSha256": "f865d48bc967cd5c18fad874d3a20d538b175e43e8934d6c5d2e1382c4ed842f",
+        "displaySha256": "f865d48bc967cd5c18fad874d3a20d538b175e43e8934d6c5d2e1382c4ed842f",
+        "exitCode": 0
+      },
+      {
+        "subcommand": "validate",
+        "stdin": "no tests; no documentation; no error handling; no security; no performance",
+        "config": null,
+        "checklist": "code_review",
+        "json": true,
+        "rawFixture": "validate-checklist-code-review.raw.json",
+        "displayFixture": "validate-checklist-code-review.human.json",
+        "commandBlockSha256": "30e42f4e1092222ee96d62ac25d1cff8279aacf0e34a3b70883ff4c79cb43cdc",
+        "rawSha256": "2ef7287cd4d9a59cf188150563b7b728aaa3e5ee139976b4b7d6ef59faa9fb0f",
+        "displaySha256": "1b984bcf4669c58489a448c6f57aaacfe3ec81790efd9d72a27c105b1b1be81d",
+        "exitCode": 0
+      }
+    ]
+  },
+  "provenance": "stdout captured from the local v1.21.22 binary after its SHA-256 matched binarySha256",
+  "ciScope": "hermetic CI verifies these committed bytes and the offline release snapshot; it does not download or execute release assets"
+}
