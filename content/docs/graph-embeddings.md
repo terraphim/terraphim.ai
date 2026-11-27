@@ -37,7 +37,7 @@ total_rank = node.rank + edge.rank + document_rank
 ```
 
 Where:
-- **node.rank**: Starts at 1 and goes up by one per endpoint update: once for each indexed pair that touches the concept, twice when the pair is the concept followed by itself
+- **node.rank**: Set to 1 when the first indexed pair creates the node, then up by one for each later endpoint update: once per pair that touches the concept, twice when the pair is the concept followed by itself
 - **edge.rank**: Currently always 1; it is set when the edge is created and not updated
 - **document_rank**: The per-document count stored on the edge for that pair (`edge.doc_hash[doc]`)
 
