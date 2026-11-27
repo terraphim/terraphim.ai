@@ -41,7 +41,7 @@ That is why [Why Graph Embeddings Matter](/posts/why-graph-embeddings-matter/) c
 | | FIG-MAC | Terraphim rolegraph |
 |---|---|---|
 | Node | Entity an LLM extracts (paper, question, solution) | Concept from a thesaurus a person writes |
-| Edge | Typed and directed: `has_rq`, `has_sol`, `related`, `inspired` | Directed adjacency, counted per document, no type |
+| Edge | Typed and directed: `has_rq`, `has_sol`, `related`, `inspired` | Default role graph: directed adjacency, counted per document, no type. The optional `medical` feature adds typed edges loaded from curated ontologies |
 | Embedding | Learned 256-d RGCN vectors, plus 1536-d text vectors | Integer counts on nodes and edges |
 | Multi-hop | Scored chains, returned as evidence | A yes-or-no connectivity check |
 | Cost of a new concept | Re-extract, re-classify, retrain | Edit a markdown file, rebuild the automaton |
@@ -52,7 +52,9 @@ No benchmark covers both systems, so this table compares designs, not results.
 
 ## What the paper gets right that we should take
 
-**Edges that mean something.** Our edge records that two concepts appeared next to each other. It cannot record that a solution came before a question, or that one method refines another. FIG's `inspired` edge carries that meaning, and it is why their chains read as an argument rather than a list. A typed relation does not need a classifier. A thesaurus could declare `refines` or `contradicts` between two concepts, so the type would come from the same reviewed text file as the synonyms and stay explainable.
+**Edges that mean something.** In the default role graph, an edge records that two concepts appeared next to each other. It cannot record that a solution came before a question, or that one method refines another. FIG's `inspired` edge carries that meaning, and it is why their chains read as an argument rather than a list.
+
+Terraphim already has typed edges in one place. The optional `medical` feature adds a `MedicalRoleGraph` that stores typed, directed relations such as `IsA`, `Treats`, `Causes` and `Contraindicates`, loaded from curated sources (PrimeKG and SNOMED CT). Those types are specific to medicine, and `query_graph` does not use them when it ranks documents. That points to a route with no classifier: generalise the medical edge types so a role's thesaurus can declare relations such as `refines` or `contradicts` between two concepts. The type would then come from the same reviewed text file as the synonyms and stay explainable.
 
 **Links between documents that share no words.** Two of our documents are linked only through the thesaurus. If two papers describe the same idea in different vocabulary, they stay apart until someone writes the synonym down. FIG's classifier closes that gap automatically, at the price of a learned decision nobody can recompute. That is the real trade: recall from inference, or explanations from counting.
 
@@ -76,7 +78,7 @@ None of this makes the graph result wrong. It means the result supports "typed g
 
 In [Graph Embeddings for Checklists](/posts/graph-embeddings-checklists/) we argued that a checklist is not a vector problem: it is a fixed set of items that must be enumerated, and an automaton does that exactly. FIG-MAC is the opposite kind of problem. Hypothesis generation needs neighbours you did not list, and dense search provides them. The paper's own ablation agrees with both points: graph traversal alone beat vectors alone in every backbone, and the best results came from combining them.
 
-So for Terraphim the lesson is about the graph rather than the vectors. Keep the counting, because counting is what makes a score auditable. Add relation types that people declare, and return the paths we already compute. That narrows the gap with a learned typed graph without giving up the property that every number can be traced to a line in a file.
+So for Terraphim the lesson is about the graph rather than the vectors. Keep the counting, because counting is what makes a score auditable. Generalise the typed edges the medical graph already has into relation types any role can declare, and return the paths we already compute. That narrows the gap with a learned typed graph without giving up the property that every number can be traced to a line in a file.
 
 ## Sources
 
