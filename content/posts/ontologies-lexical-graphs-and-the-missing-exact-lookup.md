@@ -39,7 +39,7 @@ Six MCP tools expose all of this to agents: `list_metrics`, `describe_schema`, `
 Four gaps, each quoted or paraphrased from COA's own documentation:
 
 1. **No exact lookup from a variant to its class.** A steward can add business variants as `skos:altLabel`, but they are only embedded with the class. In COA's own words: "There is no exact lookup from a variant to its class yet, so a question using `顧客離脱` is not guaranteed to find the class whose preferred Japanese label is `解約`."
-2. **Links between the two sides are kept, not followed.** A grounding link from an induced class to a graph class stays in the ontology, "but neither engine follows it". One engine answers each question, and SQL and graph results are not combined.
+2. **Links between the two sides are kept, not followed.** A grounding link from an induced class to a graph class stays in the ontology, "but neither engine follows it". In the default standard cascade, one tier answers each question, so SQL and document results are not combined. An optional `deep-reasoning` mode can combine them in one planner session, at the cost of several model calls, and it bypasses the governed Tier 1 metrics.
 3. **The default Tier 3 ignores the formal ontology.** The default GraphRAG strategy reads only the document graph. Its topic and entity nodes come from extraction, "not the accepted, formally-typed ontology".
 4. **The bridge picks tables by name.** It considers at most 60 tables by default, "the first in name order", and only then finds out which ones have document evidence.
 
@@ -49,7 +49,7 @@ Terraphim compiles markdown knowledge-graph files into a thesaurus that maps eac
 
 Here is how that meets each COA technique. These are proposals: none is built, and none is measured against a COA deployment.
 
-**On the ontology side**, compile a thesaurus from COA's published vocabulary. The graph API returns each class's labels and `altLabels`, the ontology downloads as Turtle, and metrics carry their own synonyms. Make the class or metric the concept, and its IRI the link.
+**On the ontology side**, compile a thesaurus from COA's published vocabulary. The graph API returns each class's labels and `altLabels`, the ontology downloads as Turtle, and metrics carry their own synonyms. Make the class or metric the concept, and its IRI the link. That vocabulary is governed: COA withholds ontology schema from a caller without the `viewOntology` right. So the thesaurus must be built through the same authorised interfaces, scoped to the user and namespace, and rebuilt when their grants or the accepted vocabulary change.
 
 An agent can then resolve a user's wording to a class before it calls `query`, with no model in the loop. That covers gap 1 on the agent side. The agent can also narrow `describe_schema` to the classes it needs. When the question also asks for a filter, the agent can pass it as `options.dimensions`, the channel COA documents for keeping a metric answer deterministic.
 
@@ -86,7 +86,7 @@ connected("attrition by order status") = true
 connected("turnover and attrition") = false
 ```
 
-The Japanese variant resolves to its concept inside an unspaced sentence. The word-boundary check counts only ASCII letters and digits as word characters, so CJK text matches where it must. That is COA's gap 1, on its own example.
+The Japanese variant resolves to its concept inside an unspaced sentence. The word-boundary check counts only ASCII letters, digits and the underscore as word characters, so CJK text matches where it must. That is COA's gap 1, on its own example.
 
 The bridge edge exists only because we wrote a sentence containing both terms. It shows the mechanism and proves nothing about real documents.
 
