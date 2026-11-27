@@ -49,6 +49,7 @@
   {% endif %}
   {% set canonical_path = current_path | default(value="/404.html") %}
     {% set canonical = config.base_url ~ canonical_path %}
+  {% if page and page.extra.canonical_url %}{% set canonical = page.extra.canonical_url %}{% endif %}
   <link rel="canonical" href="{{ canonical }}">
   <link rel="alternate" type="application/rss+xml" title="Terraphim AI" href="{{ get_url(path='rss.xml') }}">
   <meta name="description" content="{{ share_description }}">
