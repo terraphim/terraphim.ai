@@ -94,7 +94,7 @@ Here is the whole trick, and it is smaller than you expect. When a document is i
    (The crate matches `title + body` — `Document::to_string()` — which is why "Raft notes"
    adds a `raft → raft` self-loop: the title itself matches.)
 2. Each **consecutive pair** `(a, b)` becomes a directed edge `magic_pair(a, b)` — an integer
-   key computed by a Cantor-style pairing function, so `(raft → consensus)` and
+   key computed by Szudzik's pairing function, so `(raft → consensus)` and
    `(consensus → raft)` are different edges.
 3. `node.rank += 1` for both endpoints; `edge.doc_hash[doc] += 1` counts how often that pair
    appeared in that document.
