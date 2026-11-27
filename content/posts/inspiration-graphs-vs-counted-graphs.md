@@ -69,7 +69,7 @@ The numbers are a v1 preprint's, and some caveats affect how far they generalise
 - **The judge is the generator.** Qwen-Max is the primary backbone and also gives the 1 to 10 quality scores. The subjective margins over the best baseline are 0.1 to 0.3 points.
 - **The human study does not rank methods.** Five PhD students made 200 assessments of 100 questions, but the table reports no per-method breakdown, so the claim that the human ranking matches the LLM ranking is not shown.
 - **The diversity metric partly measures the mechanism.** Source diversity is the average dissimilarity among the retrieved sources. Traversing cross-domain edges retrieves dissimilar sources by construction, so part of the graph's advantage is built into the metric.
-- **No variance, no cost, no release.** No table reports repeated runs or spread. Runtime, token and call counts are not given. No code or data has been released.
+- **No repeated-run variance, no cost, no release.** The system-result tables report no repeated runs or run-to-run spread. Runtime, token and call counts are not given. No code or data has been released.
 - **One equation does not match its table.** Computing raw novelty (HD × CI / CD) from the Table 2 means gives 0.92 for FIG-MAC against 0.684 reported. Averaging the ratio per hypothesis could explain the gap, but the paper does not say whether it does that.
 
 None of this makes the graph result wrong. It means the result supports "typed graph traversal brings in varied sources for hypothesis generation", not "graphs beat vectors" in general.
