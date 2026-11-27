@@ -22,11 +22,11 @@ This post reads COA at version 0.3.11 (commit `5dd33d7`). It names the gaps in C
 
 COA answers a question in tiers, and each tier falls through to the next on a miss:
 
-- **Tier 1, governed metrics.** It matches a metric by name or synonym and runs the metric's pre-written SQL. No LLM is called.
-- **Tier 2, structured queries.** It writes SQL, or SPARQL that Ontop translates to SQL, from the ontology. Only classes backed by a real table are used.
+- **Tier 1, governed metrics.** It matches a metric by name or synonym and runs the metric's pre-written SQL. No LLM is called. Stewards author metrics separately, through the Metrics API.
+- **Tier 2, structured queries.** It writes SQL directly, or SPARQL that Ontop translates to SQL, over classes backed by a real table. When graph sources are switched on, it can also run SPARQL directly on an RDF graph source, over classes bound to that source.
 - **Tier 3, knowledge retrieval.** It runs GraphRAG over the document graph, and a model writes the answer.
 
-The first two tiers stand on technique one. Induction reads the approved table and column metadata and proposes OWL classes with R2RML mappings. Grounding against an ontology such as FIBO or Schema.org uses embeddings and, by default, an LLM reranker. A data steward accepts the proposal before anything is live.
+Tier 2's relational paths stand on technique one. Induction reads the approved table and column metadata and proposes OWL classes with R2RML mappings. Grounding against an ontology such as FIBO or Schema.org uses embeddings and, by default, an LLM reranker. A data steward accepts the proposal before anything is live.
 
 Tier 3 stands on technique two. An LLM extracts entities, topics and statements from the documents into Amazon Neptune, and embeddings go to OpenSearch.
 
@@ -49,7 +49,7 @@ Terraphim compiles markdown knowledge-graph files into a thesaurus that maps eac
 
 Here is how that meets each COA technique. These are proposals: none is built, and none is measured against a COA deployment.
 
-**On the ontology side**, compile a thesaurus from COA's published vocabulary. The graph API returns each class's labels and `altLabels`, the ontology downloads as Turtle, and metrics carry their own synonyms. Make the class or metric the concept, and its IRI the link. That vocabulary is governed: COA withholds ontology schema from a caller without the `viewOntology` right. So the thesaurus must be built through the same authorised interfaces, scoped to the user and namespace, and rebuilt when their grants or the accepted vocabulary change.
+**On the ontology side**, compile a thesaurus from COA's published vocabulary. The graph API returns each class's labels and `altLabels`, the ontology downloads as Turtle, and metrics carry their own synonyms. Make the class or metric the concept, and its IRI the link. That vocabulary is governed, under two different rights. Class vocabulary needs `viewOntology`: COA refuses `describe_schema` and withholds ontology fields without it. Metric names and synonyms come from `list_metrics`, which needs only the namespace view right. So the thesaurus must be built through those same interfaces, as the user the agent acts for, with each part following its own right. It must also be rebuilt when that user's grants or the accepted vocabulary change.
 
 An agent can then resolve a user's wording to a class before it calls `query`, with no model in the loop. That covers gap 1 on the agent side. The agent can also narrow `describe_schema` to the classes it needs. When the question also asks for a filter, the agent can pass it as `options.dimensions`, the channel COA documents for keeping a metric answer deterministic.
 
