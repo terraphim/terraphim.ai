@@ -37,9 +37,11 @@ total_rank = node.rank + edge.rank + document_rank
 ```
 
 Where:
-- **node.rank**: Number of connections to other concepts in the graph
-- **edge.rank**: Number of documents containing both connected concepts
-- **document.rank**: Base ranking score of the document
+- **node.rank**: Starts at 1 and goes up by one for every indexed pair update that touches the concept
+- **edge.rank**: Currently always 1; it is set when the edge is created and not updated
+- **document_rank**: The per-document count stored on the edge for that pair (`edge.doc_hash[doc]`)
+
+The sum is taken once per edge that touches a matched concept and appears in the document, so documents with more distinct neighbours of the query concept score higher. Two known counting defects (first occurrence stored as 1 or 2 depending on insertion order; removal not fully restoring node rank) are described in [Counts That Are Really Length](/posts/counts-that-are-really-length/).
 
 ### Query Expansion
 

@@ -30,7 +30,7 @@ The result that matters for retrieval is the ablation in Table 5. With every bac
 The mechanism is on the [graph embeddings reference](/docs/graph-embeddings/) and the [interactive explainer](/docs/graph-embeddings-interactive/). Here is the short version, read from `terraphim_rolegraph` in terraphim-core at commit 84a496a:
 
 - **Nodes are concepts you write down.** A role's thesaurus maps every synonym to a normalised concept id. It compiles to an Aho-Corasick automaton (leftmost-longest, case-insensitive).
-- **Edges are counted adjacency.** When a document is indexed, each consecutive pair of matched concepts updates one directed edge. The edge counts that pair's occurrences per document. The node's rank counts the pair updates that touch it.
+- **Edges are counted adjacency.** When a document is indexed, each consecutive pair of matched concepts updates one directed edge. The edge keeps a per-document count of that pair, and the node's rank goes up by one per pair update. (Correction, 27 November: these counts are not exact. A document's first occurrence is stored as 1 or 2 depending on insertion order, and removal does not fully undo node rank; see [Counts That Are Really Length](/posts/counts-that-are-really-length/).)
 - **A score is a sum you can recompute.** For each query concept, `query_graph` walks the concept's edges and adds `node.rank + edge.rank + document count` to each document on them. There are no weights, no vectors and no training.
 - **When nothing matches, the graph says so.** If the automaton finds no concept, a TF-IDF trigger index over concept descriptions can step in, with a 0.3 relevance cut-off. Otherwise the result is empty, not a nearest neighbour.
 
