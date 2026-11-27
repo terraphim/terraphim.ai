@@ -11,7 +11,7 @@ toc = true
 comments = true
 +++
 
-A new paper tests three kinds of method on two questions about sentences, and finds that the symbolic counters look predictive only because longer sentences have bigger counts. Terraphim's graph score is a count too. Checking our own code against the paper's test turned up a length term in the score and two counting defects, which we have filed.
+A new paper tests three kinds of method on two questions about sentences, and finds that the symbolic counters look predictive only because longer sentences have bigger counts. Terraphim's graph score is a count too. Checking our own code against the paper's test turned up a score term that grows with a concept's distinct neighbours, which is a plausible route for length to leak in, and two counting defects, which we have filed.
 
 <!-- more -->
 
@@ -24,7 +24,7 @@ A new paper tests three kinds of method on two questions about sentences, and fi
 
 The answers, on 539 test sentences from English Wikipedia (PropSegmEnt):
 
-- **A learned entailment judge verifies well.** A fine-tuned mDeBERTa-v3 natural language inference (NLI) model gets 92.8% accuracy and an AUC of 0.977. Most of its false positives are statements that are true given the surrounding document but not entailed by the sentence alone. Cosine similarity between embeddings cannot do this job: it saturates at about 0.7 for members and non-members alike.
+- **A learned entailment judge verifies well.** A fine-tuned mDeBERTa-v3 natural language inference (NLI) model gets 92.8% accuracy and an AUC of 0.977. Its errors are structured: definitional statements that are true given the surrounding document, but not entailed by the sentence alone, have a 43% false-positive rate against 11.7% for other negatives. (The abstract calls these most of the errors; the section 5.1 figures put them at roughly 46 of 285.) Cosine similarity between embeddings cannot do this job: it saturates at about 0.7 for members and non-members alike.
 - **Symbolic counters only measure length.** Token count, an idea-density counter (CPIDR) and a predicate counter all correlate with the human counts. Once sentence length is controlled, all three drop to zero or below.
 - **A linear probe on dense embeddings keeps real signal.** After length is controlled, its correlation with human counts is 0.40 to 0.49, and it survives INT4 quantisation and truncation to 256 dimensions.
 
@@ -50,11 +50,11 @@ The mechanism is on the [graph embeddings reference](/docs/graph-embeddings/) an
 - `query_graph` walks every edge of each matched concept and, for each document on that edge, adds `node.rank + edge.rank + count`.
 - `edge.rank` is set to 1 when the edge is created and never changes, so it adds a constant 1 per edge.
 
-Put those together for a one-concept query. A document's score is k × (node.rank + 1) plus the sum of its counts, where k is the number of distinct edges between that concept and its neighbours in that document. node.rank is the same for every document, so k leads the ranking, and k grows with how much text surrounds each mention.
+Put those together for a one-concept query. A document's score is k × (node.rank + 1) plus the sum of its counts, where k is the number of distinct edges between that concept and the concepts matched next to it in that document. node.rank is the same for every document, so each extra distinct neighbour adds node.rank + 1 plus its count. Unmatched text does not change k. A single mention has at most two neighbours, so k grows when the concept is mentioned more often next to different concepts, which longer documents give more room for. That last step is a hypothesis, not something we measured.
 
-We ran one toy case in a scratch test. Two documents each mention `alpha` once. `alpha beta` scores 5. `gamma alpha beta delta epsilon` scores 11. The second has more neighbours, not more `alpha`.
+We ran one toy case in a scratch test. Two documents each mention `alpha` once. `alpha beta` scores 5. `gamma alpha beta delta epsilon` scores 11. The second gives `alpha` two matched neighbours instead of one.
 
-That shows the score has a length-coupled term. It does not show that our ranking reduces to length. That needs the paper's second and third lenses against relevance judgements, which this check did not have. Correlating score with length on its own would be half the test, and the paper's retracted pilot is a reminder of what half a test produces.
+That shows the score is coupled to neighbourhood size. It does not show that neighbourhood size tracks document length in a real corpus, and it does not show that our ranking reduces to length. That needs the paper's second and third lenses against relevance judgements, which this check did not have. Correlating score with length on its own would be half the test, and the paper's retracted pilot is a reminder of what half a test produces.
 
 ## Two counting defects
 
@@ -80,7 +80,7 @@ Our [FIG-MAC comparison](/posts/inspiration-graphs-vs-counted-graphs/) this morn
 - **A caption that does not match the text.** The Figure 3 caption says definitional negatives "drive 43% of the false positives". Section 5.1 says they have a 43% false-positive rate, and only that reading fits the totals.
 - **No code.** The paper says it releases derived statistics. No repository is linked.
 
-None of these touch the main finding: the symbolic counters' length-controlled intervals sit at or below zero under every reading.
+None of these touch the main finding: the symbolic counters' length-controlled point estimates are at or below zero under every reading, and only CPIDR's interval lies wholly below zero.
 
 ## Sources
 
