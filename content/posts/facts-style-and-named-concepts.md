@@ -43,7 +43,7 @@ The model learns to treat *missing* facts as *different* facts. That makes a fai
 
 We ran one cheap check on the released test split. Token-set Jaccard similarity, which knows nothing beyond which words appear, prefers the rewrite in **3 of 8,327 triplets (0.04%)**, with no ties. The base embedding's 0.42% sits right next to that floor. The base model's failure is the surface-overlap shortcut, as the paper says.
 
-The same data shows how small the change is. An anchor and its near-copy differ by a median of **two** distinct words. In **15.7%** of triplets they use exactly the same set of words, and the alteration is a reordering.
+The same data shows how small the change is. An anchor and its near-copy differ by a median of **two** distinct words. In **15.7%** of triplets they use exactly the same set of words, so word-set similarity cannot see the alteration at all. These include reorderings, and also substitutions whose new word already appears elsewhere in the text ("~2 Myr" becoming "~2.2 Myr", "Jo" becoming "Joe").
 
 Two more things turned up in the release:
 
@@ -85,9 +85,9 @@ It is exact **only for words in the thesaurus**:
 
 ## Where each approach is strong
 
-**FOF-80M** generalises. It needs no thesaurus and catches some substitutions in any domain. But it ranks only 29% of hard cases correctly. Its scores are compressed into a narrow high band, and it does worse at retrieval than the model it started from.
+**FOF-80M** needs no thesaurus. Across FOF-Bench's five source domains it catches some substitutions with no vocabulary written down. But it ranks only 29% of hard cases correctly. Its scores are compressed into a narrow high band, and on the paper's one retrieval test (style-agnostic retrieval on DiSC) it does worse than the model it started from.
 
-**Terraphim** is exact and explainable inside its vocabulary, and blind outside it. Two of the paper's failure modes are worth comparing directly.
+**Terraphim** is exact and explainable inside its vocabulary, and blind outside it. "Exact" has one known exception today: matching has no word-boundary check, so a short synonym can match inside a longer word (tracked as terraphim-core#93). Two of the paper's failure modes are worth comparing directly.
 
 - **Omission.** FOF-80M penalises a summary for leaving facts out. Terraphim's query-to-document scoring is directional: a document that contains some of the query's concepts still ranks, and missing ones simply add nothing. That is the entailment-shaped behaviour the paper's model loses.
 - **Entity overpowering.** In the paper's example, a summary uses the right footballers and club but invents a claim about one of them. FOF-80M scores it 0.89. A concept graph would rank it high too, because every entity matches. Neither approach catches a false relation between correct entities. That needs typed relations, which we discussed in [Inspiration Graphs and Counted Graphs](/posts/inspiration-graphs-vs-counted-graphs/).
@@ -112,9 +112,9 @@ In a medical role, a sibling swap is exactly the dangerous substitution: one dru
 
 ## What we take from it
 
-- **A concept diff for answer checking.** Because the automaton returns ordered concept ids, a judge can compare a source and an answer and report "magnesium became beryllium" by name, with no model call. It covers only what the thesaurus covers, which is the point: it is exact where it applies and says nothing where it does not.
+- **A concept diff for answer checking.** Because the automaton returns ordered concept ids, a judge can compare a source and an answer and report "magnesium became beryllium" by name, with no model call. It covers only what the thesaurus covers, which is the point: it is exact where it applies and says nothing where it does not. It needs the word-boundary fix (#93) first, or a substring match could report a substitution that is not there.
 - **FOF-Bench's shape as a regression test.** If we add a dense fallback lane, it should not rank one-fact near-copies above paraphrases. Note that the dataset licence is non-commercial.
-- **Not FOF-80M itself, for search.** By the paper's own tables it retrieves, entails and judges summaries worse than its base.
+- **Not FOF-80M itself, for search.** On the paper's own DiSC, SNLI and SummEval evaluations it retrieves, entails and judges summaries worse than its base.
 
 The broader lesson matches the one from FIG-MAC. Learned similarity buys generality and pays in calibration and explanation. Declared similarity buys exactness and an honest "no match", and pays in coverage. The interesting work is in making the declared side cover more: typed relations, numbers and negation as first-class concepts, without giving up the ability to point at the exact concept that changed.
 
